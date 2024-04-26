@@ -1,6 +1,6 @@
 module github.com/utxorpc/go-codegen
 
-go 1.20
+go 1.21
 
 require (
 	connectrpc.com/connect v1.16.1
