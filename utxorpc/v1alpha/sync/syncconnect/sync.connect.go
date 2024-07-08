@@ -21,8 +21,8 @@ import (
 const _ = connect.IsAtLeastVersion1_13_0
 
 const (
-	// ChainSyncServiceName is the fully-qualified name of the ChainSyncService service.
-	ChainSyncServiceName = "utxorpc.v1alpha.sync.ChainSyncService"
+	// SyncServiceName is the fully-qualified name of the SyncService service.
+	SyncServiceName = "utxorpc.v1alpha.sync.SyncService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,142 +33,138 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// ChainSyncServiceFetchBlockProcedure is the fully-qualified name of the ChainSyncService's
-	// FetchBlock RPC.
-	ChainSyncServiceFetchBlockProcedure = "/utxorpc.v1alpha.sync.ChainSyncService/FetchBlock"
-	// ChainSyncServiceDumpHistoryProcedure is the fully-qualified name of the ChainSyncService's
-	// DumpHistory RPC.
-	ChainSyncServiceDumpHistoryProcedure = "/utxorpc.v1alpha.sync.ChainSyncService/DumpHistory"
-	// ChainSyncServiceFollowTipProcedure is the fully-qualified name of the ChainSyncService's
-	// FollowTip RPC.
-	ChainSyncServiceFollowTipProcedure = "/utxorpc.v1alpha.sync.ChainSyncService/FollowTip"
+	// SyncServiceFetchBlockProcedure is the fully-qualified name of the SyncService's FetchBlock RPC.
+	SyncServiceFetchBlockProcedure = "/utxorpc.v1alpha.sync.SyncService/FetchBlock"
+	// SyncServiceDumpHistoryProcedure is the fully-qualified name of the SyncService's DumpHistory RPC.
+	SyncServiceDumpHistoryProcedure = "/utxorpc.v1alpha.sync.SyncService/DumpHistory"
+	// SyncServiceFollowTipProcedure is the fully-qualified name of the SyncService's FollowTip RPC.
+	SyncServiceFollowTipProcedure = "/utxorpc.v1alpha.sync.SyncService/FollowTip"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	chainSyncServiceServiceDescriptor           = sync.File_utxorpc_v1alpha_sync_sync_proto.Services().ByName("ChainSyncService")
-	chainSyncServiceFetchBlockMethodDescriptor  = chainSyncServiceServiceDescriptor.Methods().ByName("FetchBlock")
-	chainSyncServiceDumpHistoryMethodDescriptor = chainSyncServiceServiceDescriptor.Methods().ByName("DumpHistory")
-	chainSyncServiceFollowTipMethodDescriptor   = chainSyncServiceServiceDescriptor.Methods().ByName("FollowTip")
+	syncServiceServiceDescriptor           = sync.File_utxorpc_v1alpha_sync_sync_proto.Services().ByName("SyncService")
+	syncServiceFetchBlockMethodDescriptor  = syncServiceServiceDescriptor.Methods().ByName("FetchBlock")
+	syncServiceDumpHistoryMethodDescriptor = syncServiceServiceDescriptor.Methods().ByName("DumpHistory")
+	syncServiceFollowTipMethodDescriptor   = syncServiceServiceDescriptor.Methods().ByName("FollowTip")
 )
 
-// ChainSyncServiceClient is a client for the utxorpc.v1alpha.sync.ChainSyncService service.
-type ChainSyncServiceClient interface {
+// SyncServiceClient is a client for the utxorpc.v1alpha.sync.SyncService service.
+type SyncServiceClient interface {
 	FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error)
 	DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error)
 	FollowTip(context.Context, *connect.Request[sync.FollowTipRequest]) (*connect.ServerStreamForClient[sync.FollowTipResponse], error)
 }
 
-// NewChainSyncServiceClient constructs a client for the utxorpc.v1alpha.sync.ChainSyncService
-// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
-// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
-// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+// NewSyncServiceClient constructs a client for the utxorpc.v1alpha.sync.SyncService service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewChainSyncServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) ChainSyncServiceClient {
+func NewSyncServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SyncServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	return &chainSyncServiceClient{
+	return &syncServiceClient{
 		fetchBlock: connect.NewClient[sync.FetchBlockRequest, sync.FetchBlockResponse](
 			httpClient,
-			baseURL+ChainSyncServiceFetchBlockProcedure,
-			connect.WithSchema(chainSyncServiceFetchBlockMethodDescriptor),
+			baseURL+SyncServiceFetchBlockProcedure,
+			connect.WithSchema(syncServiceFetchBlockMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 		dumpHistory: connect.NewClient[sync.DumpHistoryRequest, sync.DumpHistoryResponse](
 			httpClient,
-			baseURL+ChainSyncServiceDumpHistoryProcedure,
-			connect.WithSchema(chainSyncServiceDumpHistoryMethodDescriptor),
+			baseURL+SyncServiceDumpHistoryProcedure,
+			connect.WithSchema(syncServiceDumpHistoryMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 		followTip: connect.NewClient[sync.FollowTipRequest, sync.FollowTipResponse](
 			httpClient,
-			baseURL+ChainSyncServiceFollowTipProcedure,
-			connect.WithSchema(chainSyncServiceFollowTipMethodDescriptor),
+			baseURL+SyncServiceFollowTipProcedure,
+			connect.WithSchema(syncServiceFollowTipMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
-// chainSyncServiceClient implements ChainSyncServiceClient.
-type chainSyncServiceClient struct {
+// syncServiceClient implements SyncServiceClient.
+type syncServiceClient struct {
 	fetchBlock  *connect.Client[sync.FetchBlockRequest, sync.FetchBlockResponse]
 	dumpHistory *connect.Client[sync.DumpHistoryRequest, sync.DumpHistoryResponse]
 	followTip   *connect.Client[sync.FollowTipRequest, sync.FollowTipResponse]
 }
 
-// FetchBlock calls utxorpc.v1alpha.sync.ChainSyncService.FetchBlock.
-func (c *chainSyncServiceClient) FetchBlock(ctx context.Context, req *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error) {
+// FetchBlock calls utxorpc.v1alpha.sync.SyncService.FetchBlock.
+func (c *syncServiceClient) FetchBlock(ctx context.Context, req *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error) {
 	return c.fetchBlock.CallUnary(ctx, req)
 }
 
-// DumpHistory calls utxorpc.v1alpha.sync.ChainSyncService.DumpHistory.
-func (c *chainSyncServiceClient) DumpHistory(ctx context.Context, req *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error) {
+// DumpHistory calls utxorpc.v1alpha.sync.SyncService.DumpHistory.
+func (c *syncServiceClient) DumpHistory(ctx context.Context, req *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error) {
 	return c.dumpHistory.CallUnary(ctx, req)
 }
 
-// FollowTip calls utxorpc.v1alpha.sync.ChainSyncService.FollowTip.
-func (c *chainSyncServiceClient) FollowTip(ctx context.Context, req *connect.Request[sync.FollowTipRequest]) (*connect.ServerStreamForClient[sync.FollowTipResponse], error) {
+// FollowTip calls utxorpc.v1alpha.sync.SyncService.FollowTip.
+func (c *syncServiceClient) FollowTip(ctx context.Context, req *connect.Request[sync.FollowTipRequest]) (*connect.ServerStreamForClient[sync.FollowTipResponse], error) {
 	return c.followTip.CallServerStream(ctx, req)
 }
 
-// ChainSyncServiceHandler is an implementation of the utxorpc.v1alpha.sync.ChainSyncService
-// service.
-type ChainSyncServiceHandler interface {
+// SyncServiceHandler is an implementation of the utxorpc.v1alpha.sync.SyncService service.
+type SyncServiceHandler interface {
 	FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error)
 	DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error)
 	FollowTip(context.Context, *connect.Request[sync.FollowTipRequest], *connect.ServerStream[sync.FollowTipResponse]) error
 }
 
-// NewChainSyncServiceHandler builds an HTTP handler from the service implementation. It returns the
-// path on which to mount the handler and the handler itself.
+// NewSyncServiceHandler builds an HTTP handler from the service implementation. It returns the path
+// on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewChainSyncServiceHandler(svc ChainSyncServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	chainSyncServiceFetchBlockHandler := connect.NewUnaryHandler(
-		ChainSyncServiceFetchBlockProcedure,
+func NewSyncServiceHandler(svc SyncServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	syncServiceFetchBlockHandler := connect.NewUnaryHandler(
+		SyncServiceFetchBlockProcedure,
 		svc.FetchBlock,
-		connect.WithSchema(chainSyncServiceFetchBlockMethodDescriptor),
+		connect.WithSchema(syncServiceFetchBlockMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	chainSyncServiceDumpHistoryHandler := connect.NewUnaryHandler(
-		ChainSyncServiceDumpHistoryProcedure,
+	syncServiceDumpHistoryHandler := connect.NewUnaryHandler(
+		SyncServiceDumpHistoryProcedure,
 		svc.DumpHistory,
-		connect.WithSchema(chainSyncServiceDumpHistoryMethodDescriptor),
+		connect.WithSchema(syncServiceDumpHistoryMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	chainSyncServiceFollowTipHandler := connect.NewServerStreamHandler(
-		ChainSyncServiceFollowTipProcedure,
+	syncServiceFollowTipHandler := connect.NewServerStreamHandler(
+		SyncServiceFollowTipProcedure,
 		svc.FollowTip,
-		connect.WithSchema(chainSyncServiceFollowTipMethodDescriptor),
+		connect.WithSchema(syncServiceFollowTipMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/utxorpc.v1alpha.sync.ChainSyncService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/utxorpc.v1alpha.sync.SyncService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case ChainSyncServiceFetchBlockProcedure:
-			chainSyncServiceFetchBlockHandler.ServeHTTP(w, r)
-		case ChainSyncServiceDumpHistoryProcedure:
-			chainSyncServiceDumpHistoryHandler.ServeHTTP(w, r)
-		case ChainSyncServiceFollowTipProcedure:
-			chainSyncServiceFollowTipHandler.ServeHTTP(w, r)
+		case SyncServiceFetchBlockProcedure:
+			syncServiceFetchBlockHandler.ServeHTTP(w, r)
+		case SyncServiceDumpHistoryProcedure:
+			syncServiceDumpHistoryHandler.ServeHTTP(w, r)
+		case SyncServiceFollowTipProcedure:
+			syncServiceFollowTipHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedChainSyncServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedChainSyncServiceHandler struct{}
+// UnimplementedSyncServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedSyncServiceHandler struct{}
 
-func (UnimplementedChainSyncServiceHandler) FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.ChainSyncService.FetchBlock is not implemented"))
+func (UnimplementedSyncServiceHandler) FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.SyncService.FetchBlock is not implemented"))
 }
 
-func (UnimplementedChainSyncServiceHandler) DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.ChainSyncService.DumpHistory is not implemented"))
+func (UnimplementedSyncServiceHandler) DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.SyncService.DumpHistory is not implemented"))
 }
 
-func (UnimplementedChainSyncServiceHandler) FollowTip(context.Context, *connect.Request[sync.FollowTipRequest], *connect.ServerStream[sync.FollowTipResponse]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.ChainSyncService.FollowTip is not implemented"))
+func (UnimplementedSyncServiceHandler) FollowTip(context.Context, *connect.Request[sync.FollowTipRequest], *connect.ServerStream[sync.FollowTipResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.SyncService.FollowTip is not implemented"))
 }

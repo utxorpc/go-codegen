@@ -33,6 +33,8 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// SubmitServiceEvalTxProcedure is the fully-qualified name of the SubmitService's EvalTx RPC.
+	SubmitServiceEvalTxProcedure = "/utxorpc.v1alpha.submit.SubmitService/EvalTx"
 	// SubmitServiceSubmitTxProcedure is the fully-qualified name of the SubmitService's SubmitTx RPC.
 	SubmitServiceSubmitTxProcedure = "/utxorpc.v1alpha.submit.SubmitService/SubmitTx"
 	// SubmitServiceWaitForTxProcedure is the fully-qualified name of the SubmitService's WaitForTx RPC.
@@ -48,6 +50,7 @@ const (
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
 	submitServiceServiceDescriptor            = submit.File_utxorpc_v1alpha_submit_submit_proto.Services().ByName("SubmitService")
+	submitServiceEvalTxMethodDescriptor       = submitServiceServiceDescriptor.Methods().ByName("EvalTx")
 	submitServiceSubmitTxMethodDescriptor     = submitServiceServiceDescriptor.Methods().ByName("SubmitTx")
 	submitServiceWaitForTxMethodDescriptor    = submitServiceServiceDescriptor.Methods().ByName("WaitForTx")
 	submitServiceReadMempoolMethodDescriptor  = submitServiceServiceDescriptor.Methods().ByName("ReadMempool")
@@ -56,6 +59,7 @@ var (
 
 // SubmitServiceClient is a client for the utxorpc.v1alpha.submit.SubmitService service.
 type SubmitServiceClient interface {
+	EvalTx(context.Context, *connect.Request[submit.EvalTxRequest]) (*connect.Response[submit.EvalTxResponse], error)
 	SubmitTx(context.Context, *connect.Request[submit.SubmitTxRequest]) (*connect.Response[submit.SubmitTxResponse], error)
 	WaitForTx(context.Context, *connect.Request[submit.WaitForTxRequest]) (*connect.ServerStreamForClient[submit.WaitForTxResponse], error)
 	ReadMempool(context.Context, *connect.Request[submit.ReadMempoolRequest]) (*connect.Response[submit.ReadMempoolResponse], error)
@@ -72,6 +76,12 @@ type SubmitServiceClient interface {
 func NewSubmitServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SubmitServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &submitServiceClient{
+		evalTx: connect.NewClient[submit.EvalTxRequest, submit.EvalTxResponse](
+			httpClient,
+			baseURL+SubmitServiceEvalTxProcedure,
+			connect.WithSchema(submitServiceEvalTxMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 		submitTx: connect.NewClient[submit.SubmitTxRequest, submit.SubmitTxResponse](
 			httpClient,
 			baseURL+SubmitServiceSubmitTxProcedure,
@@ -101,10 +111,16 @@ func NewSubmitServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 
 // submitServiceClient implements SubmitServiceClient.
 type submitServiceClient struct {
+	evalTx       *connect.Client[submit.EvalTxRequest, submit.EvalTxResponse]
 	submitTx     *connect.Client[submit.SubmitTxRequest, submit.SubmitTxResponse]
 	waitForTx    *connect.Client[submit.WaitForTxRequest, submit.WaitForTxResponse]
 	readMempool  *connect.Client[submit.ReadMempoolRequest, submit.ReadMempoolResponse]
 	watchMempool *connect.Client[submit.WatchMempoolRequest, submit.WatchMempoolResponse]
+}
+
+// EvalTx calls utxorpc.v1alpha.submit.SubmitService.EvalTx.
+func (c *submitServiceClient) EvalTx(ctx context.Context, req *connect.Request[submit.EvalTxRequest]) (*connect.Response[submit.EvalTxResponse], error) {
+	return c.evalTx.CallUnary(ctx, req)
 }
 
 // SubmitTx calls utxorpc.v1alpha.submit.SubmitService.SubmitTx.
@@ -129,6 +145,7 @@ func (c *submitServiceClient) WatchMempool(ctx context.Context, req *connect.Req
 
 // SubmitServiceHandler is an implementation of the utxorpc.v1alpha.submit.SubmitService service.
 type SubmitServiceHandler interface {
+	EvalTx(context.Context, *connect.Request[submit.EvalTxRequest]) (*connect.Response[submit.EvalTxResponse], error)
 	SubmitTx(context.Context, *connect.Request[submit.SubmitTxRequest]) (*connect.Response[submit.SubmitTxResponse], error)
 	WaitForTx(context.Context, *connect.Request[submit.WaitForTxRequest], *connect.ServerStream[submit.WaitForTxResponse]) error
 	ReadMempool(context.Context, *connect.Request[submit.ReadMempoolRequest]) (*connect.Response[submit.ReadMempoolResponse], error)
@@ -141,6 +158,12 @@ type SubmitServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewSubmitServiceHandler(svc SubmitServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	submitServiceEvalTxHandler := connect.NewUnaryHandler(
+		SubmitServiceEvalTxProcedure,
+		svc.EvalTx,
+		connect.WithSchema(submitServiceEvalTxMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	submitServiceSubmitTxHandler := connect.NewUnaryHandler(
 		SubmitServiceSubmitTxProcedure,
 		svc.SubmitTx,
@@ -167,6 +190,8 @@ func NewSubmitServiceHandler(svc SubmitServiceHandler, opts ...connect.HandlerOp
 	)
 	return "/utxorpc.v1alpha.submit.SubmitService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case SubmitServiceEvalTxProcedure:
+			submitServiceEvalTxHandler.ServeHTTP(w, r)
 		case SubmitServiceSubmitTxProcedure:
 			submitServiceSubmitTxHandler.ServeHTTP(w, r)
 		case SubmitServiceWaitForTxProcedure:
@@ -183,6 +208,10 @@ func NewSubmitServiceHandler(svc SubmitServiceHandler, opts ...connect.HandlerOp
 
 // UnimplementedSubmitServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedSubmitServiceHandler struct{}
+
+func (UnimplementedSubmitServiceHandler) EvalTx(context.Context, *connect.Request[submit.EvalTxRequest]) (*connect.Response[submit.EvalTxResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.submit.SubmitService.EvalTx is not implemented"))
+}
 
 func (UnimplementedSubmitServiceHandler) SubmitTx(context.Context, *connect.Request[submit.SubmitTxRequest]) (*connect.Response[submit.SubmitTxResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.submit.SubmitService.SubmitTx is not implemented"))

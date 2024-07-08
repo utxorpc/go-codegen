@@ -42,9 +42,8 @@ const (
 	// QueryServiceSearchUtxosProcedure is the fully-qualified name of the QueryService's SearchUtxos
 	// RPC.
 	QueryServiceSearchUtxosProcedure = "/utxorpc.v1alpha.query.QueryService/SearchUtxos"
-	// QueryServiceStreamUtxosProcedure is the fully-qualified name of the QueryService's StreamUtxos
-	// RPC.
-	QueryServiceStreamUtxosProcedure = "/utxorpc.v1alpha.query.QueryService/StreamUtxos"
+	// QueryServiceReadDataProcedure is the fully-qualified name of the QueryService's ReadData RPC.
+	QueryServiceReadDataProcedure = "/utxorpc.v1alpha.query.QueryService/ReadData"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -53,7 +52,7 @@ var (
 	queryServiceReadParamsMethodDescriptor  = queryServiceServiceDescriptor.Methods().ByName("ReadParams")
 	queryServiceReadUtxosMethodDescriptor   = queryServiceServiceDescriptor.Methods().ByName("ReadUtxos")
 	queryServiceSearchUtxosMethodDescriptor = queryServiceServiceDescriptor.Methods().ByName("SearchUtxos")
-	queryServiceStreamUtxosMethodDescriptor = queryServiceServiceDescriptor.Methods().ByName("StreamUtxos")
+	queryServiceReadDataMethodDescriptor    = queryServiceServiceDescriptor.Methods().ByName("ReadData")
 )
 
 // QueryServiceClient is a client for the utxorpc.v1alpha.query.QueryService service.
@@ -61,7 +60,7 @@ type QueryServiceClient interface {
 	ReadParams(context.Context, *connect.Request[query.ReadParamsRequest]) (*connect.Response[query.ReadParamsResponse], error)
 	ReadUtxos(context.Context, *connect.Request[query.ReadUtxosRequest]) (*connect.Response[query.ReadUtxosResponse], error)
 	SearchUtxos(context.Context, *connect.Request[query.SearchUtxosRequest]) (*connect.Response[query.SearchUtxosResponse], error)
-	StreamUtxos(context.Context, *connect.Request[query.ReadUtxosRequest]) (*connect.ServerStreamForClient[query.ReadUtxosResponse], error)
+	ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error)
 }
 
 // NewQueryServiceClient constructs a client for the utxorpc.v1alpha.query.QueryService service. By
@@ -92,10 +91,10 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceSearchUtxosMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		streamUtxos: connect.NewClient[query.ReadUtxosRequest, query.ReadUtxosResponse](
+		readData: connect.NewClient[query.ReadDataRequest, query.ReadDataResponse](
 			httpClient,
-			baseURL+QueryServiceStreamUtxosProcedure,
-			connect.WithSchema(queryServiceStreamUtxosMethodDescriptor),
+			baseURL+QueryServiceReadDataProcedure,
+			connect.WithSchema(queryServiceReadDataMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -106,7 +105,7 @@ type queryServiceClient struct {
 	readParams  *connect.Client[query.ReadParamsRequest, query.ReadParamsResponse]
 	readUtxos   *connect.Client[query.ReadUtxosRequest, query.ReadUtxosResponse]
 	searchUtxos *connect.Client[query.SearchUtxosRequest, query.SearchUtxosResponse]
-	streamUtxos *connect.Client[query.ReadUtxosRequest, query.ReadUtxosResponse]
+	readData    *connect.Client[query.ReadDataRequest, query.ReadDataResponse]
 }
 
 // ReadParams calls utxorpc.v1alpha.query.QueryService.ReadParams.
@@ -124,9 +123,9 @@ func (c *queryServiceClient) SearchUtxos(ctx context.Context, req *connect.Reque
 	return c.searchUtxos.CallUnary(ctx, req)
 }
 
-// StreamUtxos calls utxorpc.v1alpha.query.QueryService.StreamUtxos.
-func (c *queryServiceClient) StreamUtxos(ctx context.Context, req *connect.Request[query.ReadUtxosRequest]) (*connect.ServerStreamForClient[query.ReadUtxosResponse], error) {
-	return c.streamUtxos.CallServerStream(ctx, req)
+// ReadData calls utxorpc.v1alpha.query.QueryService.ReadData.
+func (c *queryServiceClient) ReadData(ctx context.Context, req *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error) {
+	return c.readData.CallUnary(ctx, req)
 }
 
 // QueryServiceHandler is an implementation of the utxorpc.v1alpha.query.QueryService service.
@@ -134,7 +133,7 @@ type QueryServiceHandler interface {
 	ReadParams(context.Context, *connect.Request[query.ReadParamsRequest]) (*connect.Response[query.ReadParamsResponse], error)
 	ReadUtxos(context.Context, *connect.Request[query.ReadUtxosRequest]) (*connect.Response[query.ReadUtxosResponse], error)
 	SearchUtxos(context.Context, *connect.Request[query.SearchUtxosRequest]) (*connect.Response[query.SearchUtxosResponse], error)
-	StreamUtxos(context.Context, *connect.Request[query.ReadUtxosRequest], *connect.ServerStream[query.ReadUtxosResponse]) error
+	ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error)
 }
 
 // NewQueryServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -161,10 +160,10 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceSearchUtxosMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	queryServiceStreamUtxosHandler := connect.NewServerStreamHandler(
-		QueryServiceStreamUtxosProcedure,
-		svc.StreamUtxos,
-		connect.WithSchema(queryServiceStreamUtxosMethodDescriptor),
+	queryServiceReadDataHandler := connect.NewUnaryHandler(
+		QueryServiceReadDataProcedure,
+		svc.ReadData,
+		connect.WithSchema(queryServiceReadDataMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/utxorpc.v1alpha.query.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -175,8 +174,8 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 			queryServiceReadUtxosHandler.ServeHTTP(w, r)
 		case QueryServiceSearchUtxosProcedure:
 			queryServiceSearchUtxosHandler.ServeHTTP(w, r)
-		case QueryServiceStreamUtxosProcedure:
-			queryServiceStreamUtxosHandler.ServeHTTP(w, r)
+		case QueryServiceReadDataProcedure:
+			queryServiceReadDataHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -198,6 +197,6 @@ func (UnimplementedQueryServiceHandler) SearchUtxos(context.Context, *connect.Re
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.SearchUtxos is not implemented"))
 }
 
-func (UnimplementedQueryServiceHandler) StreamUtxos(context.Context, *connect.Request[query.ReadUtxosRequest], *connect.ServerStream[query.ReadUtxosResponse]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.StreamUtxos is not implemented"))
+func (UnimplementedQueryServiceHandler) ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.ReadData is not implemented"))
 }
