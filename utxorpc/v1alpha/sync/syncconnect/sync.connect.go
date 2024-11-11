@@ -39,6 +39,8 @@ const (
 	SyncServiceDumpHistoryProcedure = "/utxorpc.v1alpha.sync.SyncService/DumpHistory"
 	// SyncServiceFollowTipProcedure is the fully-qualified name of the SyncService's FollowTip RPC.
 	SyncServiceFollowTipProcedure = "/utxorpc.v1alpha.sync.SyncService/FollowTip"
+	// SyncServiceReadTipProcedure is the fully-qualified name of the SyncService's ReadTip RPC.
+	SyncServiceReadTipProcedure = "/utxorpc.v1alpha.sync.SyncService/ReadTip"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -47,6 +49,7 @@ var (
 	syncServiceFetchBlockMethodDescriptor  = syncServiceServiceDescriptor.Methods().ByName("FetchBlock")
 	syncServiceDumpHistoryMethodDescriptor = syncServiceServiceDescriptor.Methods().ByName("DumpHistory")
 	syncServiceFollowTipMethodDescriptor   = syncServiceServiceDescriptor.Methods().ByName("FollowTip")
+	syncServiceReadTipMethodDescriptor     = syncServiceServiceDescriptor.Methods().ByName("ReadTip")
 )
 
 // SyncServiceClient is a client for the utxorpc.v1alpha.sync.SyncService service.
@@ -54,6 +57,7 @@ type SyncServiceClient interface {
 	FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error)
 	DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error)
 	FollowTip(context.Context, *connect.Request[sync.FollowTipRequest]) (*connect.ServerStreamForClient[sync.FollowTipResponse], error)
+	ReadTip(context.Context, *connect.Request[sync.ReadTipRequest]) (*connect.Response[sync.ReadTipResponse], error)
 }
 
 // NewSyncServiceClient constructs a client for the utxorpc.v1alpha.sync.SyncService service. By
@@ -84,6 +88,12 @@ func NewSyncServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(syncServiceFollowTipMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		readTip: connect.NewClient[sync.ReadTipRequest, sync.ReadTipResponse](
+			httpClient,
+			baseURL+SyncServiceReadTipProcedure,
+			connect.WithSchema(syncServiceReadTipMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -92,6 +102,7 @@ type syncServiceClient struct {
 	fetchBlock  *connect.Client[sync.FetchBlockRequest, sync.FetchBlockResponse]
 	dumpHistory *connect.Client[sync.DumpHistoryRequest, sync.DumpHistoryResponse]
 	followTip   *connect.Client[sync.FollowTipRequest, sync.FollowTipResponse]
+	readTip     *connect.Client[sync.ReadTipRequest, sync.ReadTipResponse]
 }
 
 // FetchBlock calls utxorpc.v1alpha.sync.SyncService.FetchBlock.
@@ -109,11 +120,17 @@ func (c *syncServiceClient) FollowTip(ctx context.Context, req *connect.Request[
 	return c.followTip.CallServerStream(ctx, req)
 }
 
+// ReadTip calls utxorpc.v1alpha.sync.SyncService.ReadTip.
+func (c *syncServiceClient) ReadTip(ctx context.Context, req *connect.Request[sync.ReadTipRequest]) (*connect.Response[sync.ReadTipResponse], error) {
+	return c.readTip.CallUnary(ctx, req)
+}
+
 // SyncServiceHandler is an implementation of the utxorpc.v1alpha.sync.SyncService service.
 type SyncServiceHandler interface {
 	FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error)
 	DumpHistory(context.Context, *connect.Request[sync.DumpHistoryRequest]) (*connect.Response[sync.DumpHistoryResponse], error)
 	FollowTip(context.Context, *connect.Request[sync.FollowTipRequest], *connect.ServerStream[sync.FollowTipResponse]) error
+	ReadTip(context.Context, *connect.Request[sync.ReadTipRequest]) (*connect.Response[sync.ReadTipResponse], error)
 }
 
 // NewSyncServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -140,6 +157,12 @@ func NewSyncServiceHandler(svc SyncServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(syncServiceFollowTipMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	syncServiceReadTipHandler := connect.NewUnaryHandler(
+		SyncServiceReadTipProcedure,
+		svc.ReadTip,
+		connect.WithSchema(syncServiceReadTipMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/utxorpc.v1alpha.sync.SyncService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SyncServiceFetchBlockProcedure:
@@ -148,6 +171,8 @@ func NewSyncServiceHandler(svc SyncServiceHandler, opts ...connect.HandlerOption
 			syncServiceDumpHistoryHandler.ServeHTTP(w, r)
 		case SyncServiceFollowTipProcedure:
 			syncServiceFollowTipHandler.ServeHTTP(w, r)
+		case SyncServiceReadTipProcedure:
+			syncServiceReadTipHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -167,4 +192,8 @@ func (UnimplementedSyncServiceHandler) DumpHistory(context.Context, *connect.Req
 
 func (UnimplementedSyncServiceHandler) FollowTip(context.Context, *connect.Request[sync.FollowTipRequest], *connect.ServerStream[sync.FollowTipResponse]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.SyncService.FollowTip is not implemented"))
+}
+
+func (UnimplementedSyncServiceHandler) ReadTip(context.Context, *connect.Request[sync.ReadTipRequest]) (*connect.Response[sync.ReadTipResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.sync.SyncService.ReadTip is not implemented"))
 }
