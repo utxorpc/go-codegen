@@ -37,12 +37,6 @@ const (
 	WatchServiceWatchTxProcedure = "/utxorpc.v1alpha.watch.WatchService/WatchTx"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	watchServiceServiceDescriptor       = watch.File_utxorpc_v1alpha_watch_watch_proto.Services().ByName("WatchService")
-	watchServiceWatchTxMethodDescriptor = watchServiceServiceDescriptor.Methods().ByName("WatchTx")
-)
-
 // WatchServiceClient is a client for the utxorpc.v1alpha.watch.WatchService service.
 type WatchServiceClient interface {
 	WatchTx(context.Context, *connect.Request[watch.WatchTxRequest]) (*connect.ServerStreamForClient[watch.WatchTxResponse], error)
@@ -57,11 +51,12 @@ type WatchServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewWatchServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) WatchServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	watchServiceMethods := watch.File_utxorpc_v1alpha_watch_watch_proto.Services().ByName("WatchService").Methods()
 	return &watchServiceClient{
 		watchTx: connect.NewClient[watch.WatchTxRequest, watch.WatchTxResponse](
 			httpClient,
 			baseURL+WatchServiceWatchTxProcedure,
-			connect.WithSchema(watchServiceWatchTxMethodDescriptor),
+			connect.WithSchema(watchServiceMethods.ByName("WatchTx")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -88,10 +83,11 @@ type WatchServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewWatchServiceHandler(svc WatchServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	watchServiceMethods := watch.File_utxorpc_v1alpha_watch_watch_proto.Services().ByName("WatchService").Methods()
 	watchServiceWatchTxHandler := connect.NewServerStreamHandler(
 		WatchServiceWatchTxProcedure,
 		svc.WatchTx,
-		connect.WithSchema(watchServiceWatchTxMethodDescriptor),
+		connect.WithSchema(watchServiceMethods.ByName("WatchTx")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/utxorpc.v1alpha.watch.WatchService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

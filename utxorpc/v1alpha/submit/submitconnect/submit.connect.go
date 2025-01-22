@@ -47,16 +47,6 @@ const (
 	SubmitServiceWatchMempoolProcedure = "/utxorpc.v1alpha.submit.SubmitService/WatchMempool"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	submitServiceServiceDescriptor            = submit.File_utxorpc_v1alpha_submit_submit_proto.Services().ByName("SubmitService")
-	submitServiceEvalTxMethodDescriptor       = submitServiceServiceDescriptor.Methods().ByName("EvalTx")
-	submitServiceSubmitTxMethodDescriptor     = submitServiceServiceDescriptor.Methods().ByName("SubmitTx")
-	submitServiceWaitForTxMethodDescriptor    = submitServiceServiceDescriptor.Methods().ByName("WaitForTx")
-	submitServiceReadMempoolMethodDescriptor  = submitServiceServiceDescriptor.Methods().ByName("ReadMempool")
-	submitServiceWatchMempoolMethodDescriptor = submitServiceServiceDescriptor.Methods().ByName("WatchMempool")
-)
-
 // SubmitServiceClient is a client for the utxorpc.v1alpha.submit.SubmitService service.
 type SubmitServiceClient interface {
 	EvalTx(context.Context, *connect.Request[submit.EvalTxRequest]) (*connect.Response[submit.EvalTxResponse], error)
@@ -75,35 +65,36 @@ type SubmitServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewSubmitServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SubmitServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	submitServiceMethods := submit.File_utxorpc_v1alpha_submit_submit_proto.Services().ByName("SubmitService").Methods()
 	return &submitServiceClient{
 		evalTx: connect.NewClient[submit.EvalTxRequest, submit.EvalTxResponse](
 			httpClient,
 			baseURL+SubmitServiceEvalTxProcedure,
-			connect.WithSchema(submitServiceEvalTxMethodDescriptor),
+			connect.WithSchema(submitServiceMethods.ByName("EvalTx")),
 			connect.WithClientOptions(opts...),
 		),
 		submitTx: connect.NewClient[submit.SubmitTxRequest, submit.SubmitTxResponse](
 			httpClient,
 			baseURL+SubmitServiceSubmitTxProcedure,
-			connect.WithSchema(submitServiceSubmitTxMethodDescriptor),
+			connect.WithSchema(submitServiceMethods.ByName("SubmitTx")),
 			connect.WithClientOptions(opts...),
 		),
 		waitForTx: connect.NewClient[submit.WaitForTxRequest, submit.WaitForTxResponse](
 			httpClient,
 			baseURL+SubmitServiceWaitForTxProcedure,
-			connect.WithSchema(submitServiceWaitForTxMethodDescriptor),
+			connect.WithSchema(submitServiceMethods.ByName("WaitForTx")),
 			connect.WithClientOptions(opts...),
 		),
 		readMempool: connect.NewClient[submit.ReadMempoolRequest, submit.ReadMempoolResponse](
 			httpClient,
 			baseURL+SubmitServiceReadMempoolProcedure,
-			connect.WithSchema(submitServiceReadMempoolMethodDescriptor),
+			connect.WithSchema(submitServiceMethods.ByName("ReadMempool")),
 			connect.WithClientOptions(opts...),
 		),
 		watchMempool: connect.NewClient[submit.WatchMempoolRequest, submit.WatchMempoolResponse](
 			httpClient,
 			baseURL+SubmitServiceWatchMempoolProcedure,
-			connect.WithSchema(submitServiceWatchMempoolMethodDescriptor),
+			connect.WithSchema(submitServiceMethods.ByName("WatchMempool")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -158,34 +149,35 @@ type SubmitServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewSubmitServiceHandler(svc SubmitServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	submitServiceMethods := submit.File_utxorpc_v1alpha_submit_submit_proto.Services().ByName("SubmitService").Methods()
 	submitServiceEvalTxHandler := connect.NewUnaryHandler(
 		SubmitServiceEvalTxProcedure,
 		svc.EvalTx,
-		connect.WithSchema(submitServiceEvalTxMethodDescriptor),
+		connect.WithSchema(submitServiceMethods.ByName("EvalTx")),
 		connect.WithHandlerOptions(opts...),
 	)
 	submitServiceSubmitTxHandler := connect.NewUnaryHandler(
 		SubmitServiceSubmitTxProcedure,
 		svc.SubmitTx,
-		connect.WithSchema(submitServiceSubmitTxMethodDescriptor),
+		connect.WithSchema(submitServiceMethods.ByName("SubmitTx")),
 		connect.WithHandlerOptions(opts...),
 	)
 	submitServiceWaitForTxHandler := connect.NewServerStreamHandler(
 		SubmitServiceWaitForTxProcedure,
 		svc.WaitForTx,
-		connect.WithSchema(submitServiceWaitForTxMethodDescriptor),
+		connect.WithSchema(submitServiceMethods.ByName("WaitForTx")),
 		connect.WithHandlerOptions(opts...),
 	)
 	submitServiceReadMempoolHandler := connect.NewUnaryHandler(
 		SubmitServiceReadMempoolProcedure,
 		svc.ReadMempool,
-		connect.WithSchema(submitServiceReadMempoolMethodDescriptor),
+		connect.WithSchema(submitServiceMethods.ByName("ReadMempool")),
 		connect.WithHandlerOptions(opts...),
 	)
 	submitServiceWatchMempoolHandler := connect.NewServerStreamHandler(
 		SubmitServiceWatchMempoolProcedure,
 		svc.WatchMempool,
-		connect.WithSchema(submitServiceWatchMempoolMethodDescriptor),
+		connect.WithSchema(submitServiceMethods.ByName("WatchMempool")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/utxorpc.v1alpha.submit.SubmitService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

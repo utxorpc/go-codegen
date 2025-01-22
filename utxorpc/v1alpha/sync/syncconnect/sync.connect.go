@@ -43,15 +43,6 @@ const (
 	SyncServiceReadTipProcedure = "/utxorpc.v1alpha.sync.SyncService/ReadTip"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	syncServiceServiceDescriptor           = sync.File_utxorpc_v1alpha_sync_sync_proto.Services().ByName("SyncService")
-	syncServiceFetchBlockMethodDescriptor  = syncServiceServiceDescriptor.Methods().ByName("FetchBlock")
-	syncServiceDumpHistoryMethodDescriptor = syncServiceServiceDescriptor.Methods().ByName("DumpHistory")
-	syncServiceFollowTipMethodDescriptor   = syncServiceServiceDescriptor.Methods().ByName("FollowTip")
-	syncServiceReadTipMethodDescriptor     = syncServiceServiceDescriptor.Methods().ByName("ReadTip")
-)
-
 // SyncServiceClient is a client for the utxorpc.v1alpha.sync.SyncService service.
 type SyncServiceClient interface {
 	FetchBlock(context.Context, *connect.Request[sync.FetchBlockRequest]) (*connect.Response[sync.FetchBlockResponse], error)
@@ -69,29 +60,30 @@ type SyncServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewSyncServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SyncServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	syncServiceMethods := sync.File_utxorpc_v1alpha_sync_sync_proto.Services().ByName("SyncService").Methods()
 	return &syncServiceClient{
 		fetchBlock: connect.NewClient[sync.FetchBlockRequest, sync.FetchBlockResponse](
 			httpClient,
 			baseURL+SyncServiceFetchBlockProcedure,
-			connect.WithSchema(syncServiceFetchBlockMethodDescriptor),
+			connect.WithSchema(syncServiceMethods.ByName("FetchBlock")),
 			connect.WithClientOptions(opts...),
 		),
 		dumpHistory: connect.NewClient[sync.DumpHistoryRequest, sync.DumpHistoryResponse](
 			httpClient,
 			baseURL+SyncServiceDumpHistoryProcedure,
-			connect.WithSchema(syncServiceDumpHistoryMethodDescriptor),
+			connect.WithSchema(syncServiceMethods.ByName("DumpHistory")),
 			connect.WithClientOptions(opts...),
 		),
 		followTip: connect.NewClient[sync.FollowTipRequest, sync.FollowTipResponse](
 			httpClient,
 			baseURL+SyncServiceFollowTipProcedure,
-			connect.WithSchema(syncServiceFollowTipMethodDescriptor),
+			connect.WithSchema(syncServiceMethods.ByName("FollowTip")),
 			connect.WithClientOptions(opts...),
 		),
 		readTip: connect.NewClient[sync.ReadTipRequest, sync.ReadTipResponse](
 			httpClient,
 			baseURL+SyncServiceReadTipProcedure,
-			connect.WithSchema(syncServiceReadTipMethodDescriptor),
+			connect.WithSchema(syncServiceMethods.ByName("ReadTip")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -139,28 +131,29 @@ type SyncServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewSyncServiceHandler(svc SyncServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	syncServiceMethods := sync.File_utxorpc_v1alpha_sync_sync_proto.Services().ByName("SyncService").Methods()
 	syncServiceFetchBlockHandler := connect.NewUnaryHandler(
 		SyncServiceFetchBlockProcedure,
 		svc.FetchBlock,
-		connect.WithSchema(syncServiceFetchBlockMethodDescriptor),
+		connect.WithSchema(syncServiceMethods.ByName("FetchBlock")),
 		connect.WithHandlerOptions(opts...),
 	)
 	syncServiceDumpHistoryHandler := connect.NewUnaryHandler(
 		SyncServiceDumpHistoryProcedure,
 		svc.DumpHistory,
-		connect.WithSchema(syncServiceDumpHistoryMethodDescriptor),
+		connect.WithSchema(syncServiceMethods.ByName("DumpHistory")),
 		connect.WithHandlerOptions(opts...),
 	)
 	syncServiceFollowTipHandler := connect.NewServerStreamHandler(
 		SyncServiceFollowTipProcedure,
 		svc.FollowTip,
-		connect.WithSchema(syncServiceFollowTipMethodDescriptor),
+		connect.WithSchema(syncServiceMethods.ByName("FollowTip")),
 		connect.WithHandlerOptions(opts...),
 	)
 	syncServiceReadTipHandler := connect.NewUnaryHandler(
 		SyncServiceReadTipProcedure,
 		svc.ReadTip,
-		connect.WithSchema(syncServiceReadTipMethodDescriptor),
+		connect.WithSchema(syncServiceMethods.ByName("ReadTip")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/utxorpc.v1alpha.sync.SyncService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

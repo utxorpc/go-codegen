@@ -46,15 +46,6 @@ const (
 	QueryServiceReadDataProcedure = "/utxorpc.v1alpha.query.QueryService/ReadData"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	queryServiceServiceDescriptor           = query.File_utxorpc_v1alpha_query_query_proto.Services().ByName("QueryService")
-	queryServiceReadParamsMethodDescriptor  = queryServiceServiceDescriptor.Methods().ByName("ReadParams")
-	queryServiceReadUtxosMethodDescriptor   = queryServiceServiceDescriptor.Methods().ByName("ReadUtxos")
-	queryServiceSearchUtxosMethodDescriptor = queryServiceServiceDescriptor.Methods().ByName("SearchUtxos")
-	queryServiceReadDataMethodDescriptor    = queryServiceServiceDescriptor.Methods().ByName("ReadData")
-)
-
 // QueryServiceClient is a client for the utxorpc.v1alpha.query.QueryService service.
 type QueryServiceClient interface {
 	ReadParams(context.Context, *connect.Request[query.ReadParamsRequest]) (*connect.Response[query.ReadParamsResponse], error)
@@ -72,29 +63,30 @@ type QueryServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) QueryServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	queryServiceMethods := query.File_utxorpc_v1alpha_query_query_proto.Services().ByName("QueryService").Methods()
 	return &queryServiceClient{
 		readParams: connect.NewClient[query.ReadParamsRequest, query.ReadParamsResponse](
 			httpClient,
 			baseURL+QueryServiceReadParamsProcedure,
-			connect.WithSchema(queryServiceReadParamsMethodDescriptor),
+			connect.WithSchema(queryServiceMethods.ByName("ReadParams")),
 			connect.WithClientOptions(opts...),
 		),
 		readUtxos: connect.NewClient[query.ReadUtxosRequest, query.ReadUtxosResponse](
 			httpClient,
 			baseURL+QueryServiceReadUtxosProcedure,
-			connect.WithSchema(queryServiceReadUtxosMethodDescriptor),
+			connect.WithSchema(queryServiceMethods.ByName("ReadUtxos")),
 			connect.WithClientOptions(opts...),
 		),
 		searchUtxos: connect.NewClient[query.SearchUtxosRequest, query.SearchUtxosResponse](
 			httpClient,
 			baseURL+QueryServiceSearchUtxosProcedure,
-			connect.WithSchema(queryServiceSearchUtxosMethodDescriptor),
+			connect.WithSchema(queryServiceMethods.ByName("SearchUtxos")),
 			connect.WithClientOptions(opts...),
 		),
 		readData: connect.NewClient[query.ReadDataRequest, query.ReadDataResponse](
 			httpClient,
 			baseURL+QueryServiceReadDataProcedure,
-			connect.WithSchema(queryServiceReadDataMethodDescriptor),
+			connect.WithSchema(queryServiceMethods.ByName("ReadData")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -142,28 +134,29 @@ type QueryServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	queryServiceMethods := query.File_utxorpc_v1alpha_query_query_proto.Services().ByName("QueryService").Methods()
 	queryServiceReadParamsHandler := connect.NewUnaryHandler(
 		QueryServiceReadParamsProcedure,
 		svc.ReadParams,
-		connect.WithSchema(queryServiceReadParamsMethodDescriptor),
+		connect.WithSchema(queryServiceMethods.ByName("ReadParams")),
 		connect.WithHandlerOptions(opts...),
 	)
 	queryServiceReadUtxosHandler := connect.NewUnaryHandler(
 		QueryServiceReadUtxosProcedure,
 		svc.ReadUtxos,
-		connect.WithSchema(queryServiceReadUtxosMethodDescriptor),
+		connect.WithSchema(queryServiceMethods.ByName("ReadUtxos")),
 		connect.WithHandlerOptions(opts...),
 	)
 	queryServiceSearchUtxosHandler := connect.NewUnaryHandler(
 		QueryServiceSearchUtxosProcedure,
 		svc.SearchUtxos,
-		connect.WithSchema(queryServiceSearchUtxosMethodDescriptor),
+		connect.WithSchema(queryServiceMethods.ByName("SearchUtxos")),
 		connect.WithHandlerOptions(opts...),
 	)
 	queryServiceReadDataHandler := connect.NewUnaryHandler(
 		QueryServiceReadDataProcedure,
 		svc.ReadData,
-		connect.WithSchema(queryServiceReadDataMethodDescriptor),
+		connect.WithSchema(queryServiceMethods.ByName("ReadData")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/utxorpc.v1alpha.query.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
