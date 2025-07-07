@@ -44,6 +44,14 @@ const (
 	QueryServiceSearchUtxosProcedure = "/utxorpc.v1alpha.query.QueryService/SearchUtxos"
 	// QueryServiceReadDataProcedure is the fully-qualified name of the QueryService's ReadData RPC.
 	QueryServiceReadDataProcedure = "/utxorpc.v1alpha.query.QueryService/ReadData"
+	// QueryServiceReadTxProcedure is the fully-qualified name of the QueryService's ReadTx RPC.
+	QueryServiceReadTxProcedure = "/utxorpc.v1alpha.query.QueryService/ReadTx"
+	// QueryServiceReadGenesisProcedure is the fully-qualified name of the QueryService's ReadGenesis
+	// RPC.
+	QueryServiceReadGenesisProcedure = "/utxorpc.v1alpha.query.QueryService/ReadGenesis"
+	// QueryServiceReadEraSummaryProcedure is the fully-qualified name of the QueryService's
+	// ReadEraSummary RPC.
+	QueryServiceReadEraSummaryProcedure = "/utxorpc.v1alpha.query.QueryService/ReadEraSummary"
 )
 
 // QueryServiceClient is a client for the utxorpc.v1alpha.query.QueryService service.
@@ -52,6 +60,9 @@ type QueryServiceClient interface {
 	ReadUtxos(context.Context, *connect.Request[query.ReadUtxosRequest]) (*connect.Response[query.ReadUtxosResponse], error)
 	SearchUtxos(context.Context, *connect.Request[query.SearchUtxosRequest]) (*connect.Response[query.SearchUtxosResponse], error)
 	ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error)
+	ReadTx(context.Context, *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error)
+	ReadGenesis(context.Context, *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error)
+	ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error)
 }
 
 // NewQueryServiceClient constructs a client for the utxorpc.v1alpha.query.QueryService service. By
@@ -89,15 +100,36 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceMethods.ByName("ReadData")),
 			connect.WithClientOptions(opts...),
 		),
+		readTx: connect.NewClient[query.ReadTxRequest, query.ReadTxResponse](
+			httpClient,
+			baseURL+QueryServiceReadTxProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("ReadTx")),
+			connect.WithClientOptions(opts...),
+		),
+		readGenesis: connect.NewClient[query.ReadGenesisRequest, query.ReadGenesisResponse](
+			httpClient,
+			baseURL+QueryServiceReadGenesisProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("ReadGenesis")),
+			connect.WithClientOptions(opts...),
+		),
+		readEraSummary: connect.NewClient[query.ReadEraSummaryRequest, query.ReadEraSummaryResponse](
+			httpClient,
+			baseURL+QueryServiceReadEraSummaryProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("ReadEraSummary")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // queryServiceClient implements QueryServiceClient.
 type queryServiceClient struct {
-	readParams  *connect.Client[query.ReadParamsRequest, query.ReadParamsResponse]
-	readUtxos   *connect.Client[query.ReadUtxosRequest, query.ReadUtxosResponse]
-	searchUtxos *connect.Client[query.SearchUtxosRequest, query.SearchUtxosResponse]
-	readData    *connect.Client[query.ReadDataRequest, query.ReadDataResponse]
+	readParams     *connect.Client[query.ReadParamsRequest, query.ReadParamsResponse]
+	readUtxos      *connect.Client[query.ReadUtxosRequest, query.ReadUtxosResponse]
+	searchUtxos    *connect.Client[query.SearchUtxosRequest, query.SearchUtxosResponse]
+	readData       *connect.Client[query.ReadDataRequest, query.ReadDataResponse]
+	readTx         *connect.Client[query.ReadTxRequest, query.ReadTxResponse]
+	readGenesis    *connect.Client[query.ReadGenesisRequest, query.ReadGenesisResponse]
+	readEraSummary *connect.Client[query.ReadEraSummaryRequest, query.ReadEraSummaryResponse]
 }
 
 // ReadParams calls utxorpc.v1alpha.query.QueryService.ReadParams.
@@ -120,12 +152,30 @@ func (c *queryServiceClient) ReadData(ctx context.Context, req *connect.Request[
 	return c.readData.CallUnary(ctx, req)
 }
 
+// ReadTx calls utxorpc.v1alpha.query.QueryService.ReadTx.
+func (c *queryServiceClient) ReadTx(ctx context.Context, req *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error) {
+	return c.readTx.CallUnary(ctx, req)
+}
+
+// ReadGenesis calls utxorpc.v1alpha.query.QueryService.ReadGenesis.
+func (c *queryServiceClient) ReadGenesis(ctx context.Context, req *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error) {
+	return c.readGenesis.CallUnary(ctx, req)
+}
+
+// ReadEraSummary calls utxorpc.v1alpha.query.QueryService.ReadEraSummary.
+func (c *queryServiceClient) ReadEraSummary(ctx context.Context, req *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error) {
+	return c.readEraSummary.CallUnary(ctx, req)
+}
+
 // QueryServiceHandler is an implementation of the utxorpc.v1alpha.query.QueryService service.
 type QueryServiceHandler interface {
 	ReadParams(context.Context, *connect.Request[query.ReadParamsRequest]) (*connect.Response[query.ReadParamsResponse], error)
 	ReadUtxos(context.Context, *connect.Request[query.ReadUtxosRequest]) (*connect.Response[query.ReadUtxosResponse], error)
 	SearchUtxos(context.Context, *connect.Request[query.SearchUtxosRequest]) (*connect.Response[query.SearchUtxosResponse], error)
 	ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error)
+	ReadTx(context.Context, *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error)
+	ReadGenesis(context.Context, *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error)
+	ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error)
 }
 
 // NewQueryServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -159,6 +209,24 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceMethods.ByName("ReadData")),
 		connect.WithHandlerOptions(opts...),
 	)
+	queryServiceReadTxHandler := connect.NewUnaryHandler(
+		QueryServiceReadTxProcedure,
+		svc.ReadTx,
+		connect.WithSchema(queryServiceMethods.ByName("ReadTx")),
+		connect.WithHandlerOptions(opts...),
+	)
+	queryServiceReadGenesisHandler := connect.NewUnaryHandler(
+		QueryServiceReadGenesisProcedure,
+		svc.ReadGenesis,
+		connect.WithSchema(queryServiceMethods.ByName("ReadGenesis")),
+		connect.WithHandlerOptions(opts...),
+	)
+	queryServiceReadEraSummaryHandler := connect.NewUnaryHandler(
+		QueryServiceReadEraSummaryProcedure,
+		svc.ReadEraSummary,
+		connect.WithSchema(queryServiceMethods.ByName("ReadEraSummary")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/utxorpc.v1alpha.query.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case QueryServiceReadParamsProcedure:
@@ -169,6 +237,12 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 			queryServiceSearchUtxosHandler.ServeHTTP(w, r)
 		case QueryServiceReadDataProcedure:
 			queryServiceReadDataHandler.ServeHTTP(w, r)
+		case QueryServiceReadTxProcedure:
+			queryServiceReadTxHandler.ServeHTTP(w, r)
+		case QueryServiceReadGenesisProcedure:
+			queryServiceReadGenesisHandler.ServeHTTP(w, r)
+		case QueryServiceReadEraSummaryProcedure:
+			queryServiceReadEraSummaryHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -192,4 +266,16 @@ func (UnimplementedQueryServiceHandler) SearchUtxos(context.Context, *connect.Re
 
 func (UnimplementedQueryServiceHandler) ReadData(context.Context, *connect.Request[query.ReadDataRequest]) (*connect.Response[query.ReadDataResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.ReadData is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) ReadTx(context.Context, *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.ReadTx is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) ReadGenesis(context.Context, *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.ReadGenesis is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1alpha.query.QueryService.ReadEraSummary is not implemented"))
 }
