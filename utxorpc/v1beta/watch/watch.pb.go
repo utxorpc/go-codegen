@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: utxorpc/v1alpha/watch/watch.proto
+// source: utxorpc/v1beta/watch/watch.proto
 
 package watch
 
 import (
-	cardano "github.com/utxorpc/go-codegen/utxorpc/v1alpha/cardano"
+	cardano "github.com/utxorpc/go-codegen/utxorpc/v1beta/cardano"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -35,7 +35,7 @@ type BlockRef struct {
 
 func (x *BlockRef) Reset() {
 	*x = BlockRef{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *BlockRef) String() string {
 func (*BlockRef) ProtoMessage() {}
 
 func (x *BlockRef) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *BlockRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockRef.ProtoReflect.Descriptor instead.
 func (*BlockRef) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *BlockRef) GetSlot() uint64 {
@@ -97,7 +97,7 @@ type AnyChainBlock struct {
 
 func (x *AnyChainBlock) Reset() {
 	*x = AnyChainBlock{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -109,7 +109,7 @@ func (x *AnyChainBlock) String() string {
 func (*AnyChainBlock) ProtoMessage() {}
 
 func (x *AnyChainBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122,7 +122,7 @@ func (x *AnyChainBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainBlock.ProtoReflect.Descriptor instead.
 func (*AnyChainBlock) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AnyChainBlock) GetNativeBytes() []byte {
@@ -171,7 +171,7 @@ type AnyChainTxPattern struct {
 
 func (x *AnyChainTxPattern) Reset() {
 	*x = AnyChainTxPattern{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +183,7 @@ func (x *AnyChainTxPattern) String() string {
 func (*AnyChainTxPattern) ProtoMessage() {}
 
 func (x *AnyChainTxPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +196,7 @@ func (x *AnyChainTxPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainTxPattern.ProtoReflect.Descriptor instead.
 func (*AnyChainTxPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{2}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AnyChainTxPattern) GetChain() isAnyChainTxPattern_Chain {
@@ -238,7 +238,7 @@ type TxPredicate struct {
 
 func (x *TxPredicate) Reset() {
 	*x = TxPredicate{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -250,7 +250,7 @@ func (x *TxPredicate) String() string {
 func (*TxPredicate) ProtoMessage() {}
 
 func (x *TxPredicate) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -263,7 +263,7 @@ func (x *TxPredicate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxPredicate.ProtoReflect.Descriptor instead.
 func (*TxPredicate) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{3}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TxPredicate) GetMatch() *AnyChainTxPattern {
@@ -306,7 +306,7 @@ type WatchTxRequest struct {
 
 func (x *WatchTxRequest) Reset() {
 	*x = WatchTxRequest{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -318,7 +318,7 @@ func (x *WatchTxRequest) String() string {
 func (*WatchTxRequest) ProtoMessage() {}
 
 func (x *WatchTxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -331,7 +331,7 @@ func (x *WatchTxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchTxRequest.ProtoReflect.Descriptor instead.
 func (*WatchTxRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{4}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *WatchTxRequest) GetPredicate() *TxPredicate {
@@ -369,7 +369,7 @@ type AnyChainTx struct {
 
 func (x *AnyChainTx) Reset() {
 	*x = AnyChainTx{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -381,7 +381,7 @@ func (x *AnyChainTx) String() string {
 func (*AnyChainTx) ProtoMessage() {}
 
 func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,7 +394,7 @@ func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainTx.ProtoReflect.Descriptor instead.
 func (*AnyChainTx) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{5}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AnyChainTx) GetChain() isAnyChainTx_Chain {
@@ -445,7 +445,7 @@ type WatchTxResponse struct {
 
 func (x *WatchTxResponse) Reset() {
 	*x = WatchTxResponse{}
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -457,7 +457,7 @@ func (x *WatchTxResponse) String() string {
 func (*WatchTxResponse) ProtoMessage() {}
 
 func (x *WatchTxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_watch_watch_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_watch_watch_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -470,7 +470,7 @@ func (x *WatchTxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchTxResponse.ProtoReflect.Descriptor instead.
 func (*WatchTxResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP(), []int{6}
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *WatchTxResponse) GetAction() isWatchTxResponse_Action {
@@ -529,90 +529,90 @@ func (*WatchTxResponse_Undo) isWatchTxResponse_Action() {}
 
 func (*WatchTxResponse_Idle) isWatchTxResponse_Action() {}
 
-var File_utxorpc_v1alpha_watch_watch_proto protoreflect.FileDescriptor
+var File_utxorpc_v1beta_watch_watch_proto protoreflect.FileDescriptor
 
-const file_utxorpc_v1alpha_watch_watch_proto_rawDesc = "" +
+const file_utxorpc_v1beta_watch_watch_proto_rawDesc = "" +
 	"\n" +
-	"!utxorpc/v1alpha/watch/watch.proto\x12\x15utxorpc.v1alpha.watch\x1a google/protobuf/field_mask.proto\x1a%utxorpc/v1alpha/cardano/cardano.proto\"J\n" +
+	" utxorpc/v1beta/watch/watch.proto\x12\x14utxorpc.v1beta.watch\x1a google/protobuf/field_mask.proto\x1a$utxorpc/v1beta/cardano/cardano.proto\"J\n" +
 	"\bBlockRef\x12\x12\n" +
 	"\x04slot\x18\x01 \x01(\x04R\x04slot\x12\x12\n" +
 	"\x04hash\x18\x02 \x01(\fR\x04hash\x12\x16\n" +
-	"\x06height\x18\x03 \x01(\x04R\x06height\"w\n" +
+	"\x06height\x18\x03 \x01(\x04R\x06height\"v\n" +
 	"\rAnyChainBlock\x12!\n" +
-	"\fnative_bytes\x18\x01 \x01(\fR\vnativeBytes\x12:\n" +
-	"\acardano\x18\x02 \x01(\v2\x1e.utxorpc.v1alpha.cardano.BlockH\x00R\acardanoB\a\n" +
-	"\x05chain\"\\\n" +
-	"\x11AnyChainTxPattern\x12>\n" +
-	"\acardano\x18\x01 \x01(\v2\".utxorpc.v1alpha.cardano.TxPatternH\x00R\acardanoB\a\n" +
-	"\x05chain\"\xf9\x01\n" +
-	"\vTxPredicate\x12>\n" +
-	"\x05match\x18\x01 \x01(\v2(.utxorpc.v1alpha.watch.AnyChainTxPatternR\x05match\x124\n" +
-	"\x03not\x18\x02 \x03(\v2\".utxorpc.v1alpha.watch.TxPredicateR\x03not\x129\n" +
-	"\x06all_of\x18\x03 \x03(\v2\".utxorpc.v1alpha.watch.TxPredicateR\x05allOf\x129\n" +
-	"\x06any_of\x18\x04 \x03(\v2\".utxorpc.v1alpha.watch.TxPredicateR\x05anyOf\"\xcc\x01\n" +
-	"\x0eWatchTxRequest\x12@\n" +
-	"\tpredicate\x18\x01 \x01(\v2\".utxorpc.v1alpha.watch.TxPredicateR\tpredicate\x129\n" +
+	"\fnative_bytes\x18\x01 \x01(\fR\vnativeBytes\x129\n" +
+	"\acardano\x18\x02 \x01(\v2\x1d.utxorpc.v1beta.cardano.BlockH\x00R\acardanoB\a\n" +
+	"\x05chain\"[\n" +
+	"\x11AnyChainTxPattern\x12=\n" +
+	"\acardano\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.TxPatternH\x00R\acardanoB\a\n" +
+	"\x05chain\"\xf5\x01\n" +
+	"\vTxPredicate\x12=\n" +
+	"\x05match\x18\x01 \x01(\v2'.utxorpc.v1beta.watch.AnyChainTxPatternR\x05match\x123\n" +
+	"\x03not\x18\x02 \x03(\v2!.utxorpc.v1beta.watch.TxPredicateR\x03not\x128\n" +
+	"\x06all_of\x18\x03 \x03(\v2!.utxorpc.v1beta.watch.TxPredicateR\x05allOf\x128\n" +
+	"\x06any_of\x18\x04 \x03(\v2!.utxorpc.v1beta.watch.TxPredicateR\x05anyOf\"\xca\x01\n" +
+	"\x0eWatchTxRequest\x12?\n" +
+	"\tpredicate\x18\x01 \x01(\v2!.utxorpc.v1beta.watch.TxPredicateR\tpredicate\x129\n" +
 	"\n" +
-	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\x12=\n" +
-	"\tintersect\x18\x03 \x03(\v2\x1f.utxorpc.v1alpha.watch.BlockRefR\tintersect\"\x8a\x01\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\x12<\n" +
+	"\tintersect\x18\x03 \x03(\v2\x1e.utxorpc.v1beta.watch.BlockRefR\tintersect\"\x88\x01\n" +
 	"\n" +
-	"AnyChainTx\x127\n" +
-	"\acardano\x18\x01 \x01(\v2\x1b.utxorpc.v1alpha.cardano.TxH\x00R\acardano\x12:\n" +
-	"\x05block\x18\x02 \x01(\v2$.utxorpc.v1alpha.watch.AnyChainBlockR\x05blockB\a\n" +
-	"\x05chain\"\xc6\x01\n" +
-	"\x0fWatchTxResponse\x129\n" +
-	"\x05apply\x18\x01 \x01(\v2!.utxorpc.v1alpha.watch.AnyChainTxH\x00R\x05apply\x127\n" +
-	"\x04undo\x18\x02 \x01(\v2!.utxorpc.v1alpha.watch.AnyChainTxH\x00R\x04undo\x125\n" +
-	"\x04idle\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.watch.BlockRefH\x00R\x04idleB\b\n" +
-	"\x06action2j\n" +
-	"\fWatchService\x12Z\n" +
-	"\aWatchTx\x12%.utxorpc.v1alpha.watch.WatchTxRequest\x1a&.utxorpc.v1alpha.watch.WatchTxResponse0\x01B\xd2\x01\n" +
-	"\x19com.utxorpc.v1alpha.watchB\n" +
-	"WatchProtoP\x01Z3github.com/utxorpc/go-codegen/utxorpc/v1alpha/watch\xa2\x02\x03UVW\xaa\x02\x15Utxorpc.V1alpha.Watch\xca\x02\x15Utxorpc\\V1alpha\\Watch\xe2\x02!Utxorpc\\V1alpha\\Watch\\GPBMetadata\xea\x02\x17Utxorpc::V1alpha::Watchb\x06proto3"
+	"AnyChainTx\x126\n" +
+	"\acardano\x18\x01 \x01(\v2\x1a.utxorpc.v1beta.cardano.TxH\x00R\acardano\x129\n" +
+	"\x05block\x18\x02 \x01(\v2#.utxorpc.v1beta.watch.AnyChainBlockR\x05blockB\a\n" +
+	"\x05chain\"\xc3\x01\n" +
+	"\x0fWatchTxResponse\x128\n" +
+	"\x05apply\x18\x01 \x01(\v2 .utxorpc.v1beta.watch.AnyChainTxH\x00R\x05apply\x126\n" +
+	"\x04undo\x18\x02 \x01(\v2 .utxorpc.v1beta.watch.AnyChainTxH\x00R\x04undo\x124\n" +
+	"\x04idle\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.watch.BlockRefH\x00R\x04idleB\b\n" +
+	"\x06action2h\n" +
+	"\fWatchService\x12X\n" +
+	"\aWatchTx\x12$.utxorpc.v1beta.watch.WatchTxRequest\x1a%.utxorpc.v1beta.watch.WatchTxResponse0\x01B\xcc\x01\n" +
+	"\x18com.utxorpc.v1beta.watchB\n" +
+	"WatchProtoP\x01Z2github.com/utxorpc/go-codegen/utxorpc/v1beta/watch\xa2\x02\x03UVW\xaa\x02\x14Utxorpc.V1beta.Watch\xca\x02\x14Utxorpc\\V1beta\\Watch\xe2\x02 Utxorpc\\V1beta\\Watch\\GPBMetadata\xea\x02\x16Utxorpc::V1beta::Watchb\x06proto3"
 
 var (
-	file_utxorpc_v1alpha_watch_watch_proto_rawDescOnce sync.Once
-	file_utxorpc_v1alpha_watch_watch_proto_rawDescData []byte
+	file_utxorpc_v1beta_watch_watch_proto_rawDescOnce sync.Once
+	file_utxorpc_v1beta_watch_watch_proto_rawDescData []byte
 )
 
-func file_utxorpc_v1alpha_watch_watch_proto_rawDescGZIP() []byte {
-	file_utxorpc_v1alpha_watch_watch_proto_rawDescOnce.Do(func() {
-		file_utxorpc_v1alpha_watch_watch_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_watch_watch_proto_rawDesc), len(file_utxorpc_v1alpha_watch_watch_proto_rawDesc)))
+func file_utxorpc_v1beta_watch_watch_proto_rawDescGZIP() []byte {
+	file_utxorpc_v1beta_watch_watch_proto_rawDescOnce.Do(func() {
+		file_utxorpc_v1beta_watch_watch_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_watch_watch_proto_rawDesc), len(file_utxorpc_v1beta_watch_watch_proto_rawDesc)))
 	})
-	return file_utxorpc_v1alpha_watch_watch_proto_rawDescData
+	return file_utxorpc_v1beta_watch_watch_proto_rawDescData
 }
 
-var file_utxorpc_v1alpha_watch_watch_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_utxorpc_v1alpha_watch_watch_proto_goTypes = []any{
-	(*BlockRef)(nil),              // 0: utxorpc.v1alpha.watch.BlockRef
-	(*AnyChainBlock)(nil),         // 1: utxorpc.v1alpha.watch.AnyChainBlock
-	(*AnyChainTxPattern)(nil),     // 2: utxorpc.v1alpha.watch.AnyChainTxPattern
-	(*TxPredicate)(nil),           // 3: utxorpc.v1alpha.watch.TxPredicate
-	(*WatchTxRequest)(nil),        // 4: utxorpc.v1alpha.watch.WatchTxRequest
-	(*AnyChainTx)(nil),            // 5: utxorpc.v1alpha.watch.AnyChainTx
-	(*WatchTxResponse)(nil),       // 6: utxorpc.v1alpha.watch.WatchTxResponse
-	(*cardano.Block)(nil),         // 7: utxorpc.v1alpha.cardano.Block
-	(*cardano.TxPattern)(nil),     // 8: utxorpc.v1alpha.cardano.TxPattern
+var file_utxorpc_v1beta_watch_watch_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_utxorpc_v1beta_watch_watch_proto_goTypes = []any{
+	(*BlockRef)(nil),              // 0: utxorpc.v1beta.watch.BlockRef
+	(*AnyChainBlock)(nil),         // 1: utxorpc.v1beta.watch.AnyChainBlock
+	(*AnyChainTxPattern)(nil),     // 2: utxorpc.v1beta.watch.AnyChainTxPattern
+	(*TxPredicate)(nil),           // 3: utxorpc.v1beta.watch.TxPredicate
+	(*WatchTxRequest)(nil),        // 4: utxorpc.v1beta.watch.WatchTxRequest
+	(*AnyChainTx)(nil),            // 5: utxorpc.v1beta.watch.AnyChainTx
+	(*WatchTxResponse)(nil),       // 6: utxorpc.v1beta.watch.WatchTxResponse
+	(*cardano.Block)(nil),         // 7: utxorpc.v1beta.cardano.Block
+	(*cardano.TxPattern)(nil),     // 8: utxorpc.v1beta.cardano.TxPattern
 	(*fieldmaskpb.FieldMask)(nil), // 9: google.protobuf.FieldMask
-	(*cardano.Tx)(nil),            // 10: utxorpc.v1alpha.cardano.Tx
+	(*cardano.Tx)(nil),            // 10: utxorpc.v1beta.cardano.Tx
 }
-var file_utxorpc_v1alpha_watch_watch_proto_depIdxs = []int32{
-	7,  // 0: utxorpc.v1alpha.watch.AnyChainBlock.cardano:type_name -> utxorpc.v1alpha.cardano.Block
-	8,  // 1: utxorpc.v1alpha.watch.AnyChainTxPattern.cardano:type_name -> utxorpc.v1alpha.cardano.TxPattern
-	2,  // 2: utxorpc.v1alpha.watch.TxPredicate.match:type_name -> utxorpc.v1alpha.watch.AnyChainTxPattern
-	3,  // 3: utxorpc.v1alpha.watch.TxPredicate.not:type_name -> utxorpc.v1alpha.watch.TxPredicate
-	3,  // 4: utxorpc.v1alpha.watch.TxPredicate.all_of:type_name -> utxorpc.v1alpha.watch.TxPredicate
-	3,  // 5: utxorpc.v1alpha.watch.TxPredicate.any_of:type_name -> utxorpc.v1alpha.watch.TxPredicate
-	3,  // 6: utxorpc.v1alpha.watch.WatchTxRequest.predicate:type_name -> utxorpc.v1alpha.watch.TxPredicate
-	9,  // 7: utxorpc.v1alpha.watch.WatchTxRequest.field_mask:type_name -> google.protobuf.FieldMask
-	0,  // 8: utxorpc.v1alpha.watch.WatchTxRequest.intersect:type_name -> utxorpc.v1alpha.watch.BlockRef
-	10, // 9: utxorpc.v1alpha.watch.AnyChainTx.cardano:type_name -> utxorpc.v1alpha.cardano.Tx
-	1,  // 10: utxorpc.v1alpha.watch.AnyChainTx.block:type_name -> utxorpc.v1alpha.watch.AnyChainBlock
-	5,  // 11: utxorpc.v1alpha.watch.WatchTxResponse.apply:type_name -> utxorpc.v1alpha.watch.AnyChainTx
-	5,  // 12: utxorpc.v1alpha.watch.WatchTxResponse.undo:type_name -> utxorpc.v1alpha.watch.AnyChainTx
-	0,  // 13: utxorpc.v1alpha.watch.WatchTxResponse.idle:type_name -> utxorpc.v1alpha.watch.BlockRef
-	4,  // 14: utxorpc.v1alpha.watch.WatchService.WatchTx:input_type -> utxorpc.v1alpha.watch.WatchTxRequest
-	6,  // 15: utxorpc.v1alpha.watch.WatchService.WatchTx:output_type -> utxorpc.v1alpha.watch.WatchTxResponse
+var file_utxorpc_v1beta_watch_watch_proto_depIdxs = []int32{
+	7,  // 0: utxorpc.v1beta.watch.AnyChainBlock.cardano:type_name -> utxorpc.v1beta.cardano.Block
+	8,  // 1: utxorpc.v1beta.watch.AnyChainTxPattern.cardano:type_name -> utxorpc.v1beta.cardano.TxPattern
+	2,  // 2: utxorpc.v1beta.watch.TxPredicate.match:type_name -> utxorpc.v1beta.watch.AnyChainTxPattern
+	3,  // 3: utxorpc.v1beta.watch.TxPredicate.not:type_name -> utxorpc.v1beta.watch.TxPredicate
+	3,  // 4: utxorpc.v1beta.watch.TxPredicate.all_of:type_name -> utxorpc.v1beta.watch.TxPredicate
+	3,  // 5: utxorpc.v1beta.watch.TxPredicate.any_of:type_name -> utxorpc.v1beta.watch.TxPredicate
+	3,  // 6: utxorpc.v1beta.watch.WatchTxRequest.predicate:type_name -> utxorpc.v1beta.watch.TxPredicate
+	9,  // 7: utxorpc.v1beta.watch.WatchTxRequest.field_mask:type_name -> google.protobuf.FieldMask
+	0,  // 8: utxorpc.v1beta.watch.WatchTxRequest.intersect:type_name -> utxorpc.v1beta.watch.BlockRef
+	10, // 9: utxorpc.v1beta.watch.AnyChainTx.cardano:type_name -> utxorpc.v1beta.cardano.Tx
+	1,  // 10: utxorpc.v1beta.watch.AnyChainTx.block:type_name -> utxorpc.v1beta.watch.AnyChainBlock
+	5,  // 11: utxorpc.v1beta.watch.WatchTxResponse.apply:type_name -> utxorpc.v1beta.watch.AnyChainTx
+	5,  // 12: utxorpc.v1beta.watch.WatchTxResponse.undo:type_name -> utxorpc.v1beta.watch.AnyChainTx
+	0,  // 13: utxorpc.v1beta.watch.WatchTxResponse.idle:type_name -> utxorpc.v1beta.watch.BlockRef
+	4,  // 14: utxorpc.v1beta.watch.WatchService.WatchTx:input_type -> utxorpc.v1beta.watch.WatchTxRequest
+	6,  // 15: utxorpc.v1beta.watch.WatchService.WatchTx:output_type -> utxorpc.v1beta.watch.WatchTxResponse
 	15, // [15:16] is the sub-list for method output_type
 	14, // [14:15] is the sub-list for method input_type
 	14, // [14:14] is the sub-list for extension type_name
@@ -620,21 +620,21 @@ var file_utxorpc_v1alpha_watch_watch_proto_depIdxs = []int32{
 	0,  // [0:14] is the sub-list for field type_name
 }
 
-func init() { file_utxorpc_v1alpha_watch_watch_proto_init() }
-func file_utxorpc_v1alpha_watch_watch_proto_init() {
-	if File_utxorpc_v1alpha_watch_watch_proto != nil {
+func init() { file_utxorpc_v1beta_watch_watch_proto_init() }
+func file_utxorpc_v1beta_watch_watch_proto_init() {
+	if File_utxorpc_v1beta_watch_watch_proto != nil {
 		return
 	}
-	file_utxorpc_v1alpha_watch_watch_proto_msgTypes[1].OneofWrappers = []any{
+	file_utxorpc_v1beta_watch_watch_proto_msgTypes[1].OneofWrappers = []any{
 		(*AnyChainBlock_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_watch_watch_proto_msgTypes[2].OneofWrappers = []any{
+	file_utxorpc_v1beta_watch_watch_proto_msgTypes[2].OneofWrappers = []any{
 		(*AnyChainTxPattern_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_watch_watch_proto_msgTypes[5].OneofWrappers = []any{
+	file_utxorpc_v1beta_watch_watch_proto_msgTypes[5].OneofWrappers = []any{
 		(*AnyChainTx_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_watch_watch_proto_msgTypes[6].OneofWrappers = []any{
+	file_utxorpc_v1beta_watch_watch_proto_msgTypes[6].OneofWrappers = []any{
 		(*WatchTxResponse_Apply)(nil),
 		(*WatchTxResponse_Undo)(nil),
 		(*WatchTxResponse_Idle)(nil),
@@ -643,17 +643,17 @@ func file_utxorpc_v1alpha_watch_watch_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_watch_watch_proto_rawDesc), len(file_utxorpc_v1alpha_watch_watch_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_watch_watch_proto_rawDesc), len(file_utxorpc_v1beta_watch_watch_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_utxorpc_v1alpha_watch_watch_proto_goTypes,
-		DependencyIndexes: file_utxorpc_v1alpha_watch_watch_proto_depIdxs,
-		MessageInfos:      file_utxorpc_v1alpha_watch_watch_proto_msgTypes,
+		GoTypes:           file_utxorpc_v1beta_watch_watch_proto_goTypes,
+		DependencyIndexes: file_utxorpc_v1beta_watch_watch_proto_depIdxs,
+		MessageInfos:      file_utxorpc_v1beta_watch_watch_proto_msgTypes,
 	}.Build()
-	File_utxorpc_v1alpha_watch_watch_proto = out.File
-	file_utxorpc_v1alpha_watch_watch_proto_goTypes = nil
-	file_utxorpc_v1alpha_watch_watch_proto_depIdxs = nil
+	File_utxorpc_v1beta_watch_watch_proto = out.File
+	file_utxorpc_v1beta_watch_watch_proto_goTypes = nil
+	file_utxorpc_v1beta_watch_watch_proto_depIdxs = nil
 }

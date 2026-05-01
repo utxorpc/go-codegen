@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: utxorpc/v1alpha/sync/sync.proto
+// source: utxorpc/v1beta/sync/sync.proto
 
 package sync
 
 import (
-	cardano "github.com/utxorpc/go-codegen/utxorpc/v1alpha/cardano"
+	cardano "github.com/utxorpc/go-codegen/utxorpc/v1beta/cardano"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -36,7 +36,7 @@ type BlockRef struct {
 
 func (x *BlockRef) Reset() {
 	*x = BlockRef{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *BlockRef) String() string {
 func (*BlockRef) ProtoMessage() {}
 
 func (x *BlockRef) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *BlockRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockRef.ProtoReflect.Descriptor instead.
 func (*BlockRef) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *BlockRef) GetSlot() uint64 {
@@ -105,7 +105,7 @@ type AnyChainBlock struct {
 
 func (x *AnyChainBlock) Reset() {
 	*x = AnyChainBlock{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117,7 +117,7 @@ func (x *AnyChainBlock) String() string {
 func (*AnyChainBlock) ProtoMessage() {}
 
 func (x *AnyChainBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +130,7 @@ func (x *AnyChainBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainBlock.ProtoReflect.Descriptor instead.
 func (*AnyChainBlock) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AnyChainBlock) GetNativeBytes() []byte {
@@ -177,7 +177,7 @@ type FetchBlockRequest struct {
 
 func (x *FetchBlockRequest) Reset() {
 	*x = FetchBlockRequest{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -189,7 +189,7 @@ func (x *FetchBlockRequest) String() string {
 func (*FetchBlockRequest) ProtoMessage() {}
 
 func (x *FetchBlockRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,7 +202,7 @@ func (x *FetchBlockRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchBlockRequest.ProtoReflect.Descriptor instead.
 func (*FetchBlockRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{2}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *FetchBlockRequest) GetRef() []*BlockRef {
@@ -229,7 +229,7 @@ type FetchBlockResponse struct {
 
 func (x *FetchBlockResponse) Reset() {
 	*x = FetchBlockResponse{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -241,7 +241,7 @@ func (x *FetchBlockResponse) String() string {
 func (*FetchBlockResponse) ProtoMessage() {}
 
 func (x *FetchBlockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +254,7 @@ func (x *FetchBlockResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FetchBlockResponse.ProtoReflect.Descriptor instead.
 func (*FetchBlockResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{3}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *FetchBlockResponse) GetBlock() []*AnyChainBlock {
@@ -276,7 +276,7 @@ type DumpHistoryRequest struct {
 
 func (x *DumpHistoryRequest) Reset() {
 	*x = DumpHistoryRequest{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -288,7 +288,7 @@ func (x *DumpHistoryRequest) String() string {
 func (*DumpHistoryRequest) ProtoMessage() {}
 
 func (x *DumpHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -301,7 +301,7 @@ func (x *DumpHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DumpHistoryRequest.ProtoReflect.Descriptor instead.
 func (*DumpHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{4}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DumpHistoryRequest) GetStartToken() *BlockRef {
@@ -336,7 +336,7 @@ type DumpHistoryResponse struct {
 
 func (x *DumpHistoryResponse) Reset() {
 	*x = DumpHistoryResponse{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -348,7 +348,7 @@ func (x *DumpHistoryResponse) String() string {
 func (*DumpHistoryResponse) ProtoMessage() {}
 
 func (x *DumpHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -361,7 +361,7 @@ func (x *DumpHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DumpHistoryResponse.ProtoReflect.Descriptor instead.
 func (*DumpHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{5}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DumpHistoryResponse) GetBlock() []*AnyChainBlock {
@@ -389,7 +389,7 @@ type FollowTipRequest struct {
 
 func (x *FollowTipRequest) Reset() {
 	*x = FollowTipRequest{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -401,7 +401,7 @@ func (x *FollowTipRequest) String() string {
 func (*FollowTipRequest) ProtoMessage() {}
 
 func (x *FollowTipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -414,7 +414,7 @@ func (x *FollowTipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowTipRequest.ProtoReflect.Descriptor instead.
 func (*FollowTipRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{6}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *FollowTipRequest) GetIntersect() []*BlockRef {
@@ -447,7 +447,7 @@ type FollowTipResponse struct {
 
 func (x *FollowTipResponse) Reset() {
 	*x = FollowTipResponse{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -459,7 +459,7 @@ func (x *FollowTipResponse) String() string {
 func (*FollowTipResponse) ProtoMessage() {}
 
 func (x *FollowTipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +472,7 @@ func (x *FollowTipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowTipResponse.ProtoReflect.Descriptor instead.
 func (*FollowTipResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{7}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *FollowTipResponse) GetAction() isFollowTipResponse_Action {
@@ -547,7 +547,7 @@ type ReadTipRequest struct {
 
 func (x *ReadTipRequest) Reset() {
 	*x = ReadTipRequest{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -559,7 +559,7 @@ func (x *ReadTipRequest) String() string {
 func (*ReadTipRequest) ProtoMessage() {}
 
 func (x *ReadTipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -572,7 +572,7 @@ func (x *ReadTipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadTipRequest.ProtoReflect.Descriptor instead.
 func (*ReadTipRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{8}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{8}
 }
 
 // Response containing the current tip of the blockchain.
@@ -585,7 +585,7 @@ type ReadTipResponse struct {
 
 func (x *ReadTipResponse) Reset() {
 	*x = ReadTipResponse{}
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +597,7 @@ func (x *ReadTipResponse) String() string {
 func (*ReadTipResponse) ProtoMessage() {}
 
 func (x *ReadTipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_sync_sync_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_sync_sync_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +610,7 @@ func (x *ReadTipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadTipResponse.ProtoReflect.Descriptor instead.
 func (*ReadTipResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP(), []int{9}
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ReadTipResponse) GetTip() *BlockRef {
@@ -620,108 +620,108 @@ func (x *ReadTipResponse) GetTip() *BlockRef {
 	return nil
 }
 
-var File_utxorpc_v1alpha_sync_sync_proto protoreflect.FileDescriptor
+var File_utxorpc_v1beta_sync_sync_proto protoreflect.FileDescriptor
 
-const file_utxorpc_v1alpha_sync_sync_proto_rawDesc = "" +
+const file_utxorpc_v1beta_sync_sync_proto_rawDesc = "" +
 	"\n" +
-	"\x1futxorpc/v1alpha/sync/sync.proto\x12\x14utxorpc.v1alpha.sync\x1a google/protobuf/field_mask.proto\x1a%utxorpc/v1alpha/cardano/cardano.proto\"h\n" +
+	"\x1eutxorpc/v1beta/sync/sync.proto\x12\x13utxorpc.v1beta.sync\x1a google/protobuf/field_mask.proto\x1a$utxorpc/v1beta/cardano/cardano.proto\"h\n" +
 	"\bBlockRef\x12\x12\n" +
 	"\x04slot\x18\x01 \x01(\x04R\x04slot\x12\x12\n" +
 	"\x04hash\x18\x02 \x01(\fR\x04hash\x12\x16\n" +
 	"\x06height\x18\x03 \x01(\x04R\x06height\x12\x1c\n" +
-	"\ttimestamp\x18\x04 \x01(\x04R\ttimestamp\"w\n" +
+	"\ttimestamp\x18\x04 \x01(\x04R\ttimestamp\"v\n" +
 	"\rAnyChainBlock\x12!\n" +
-	"\fnative_bytes\x18\x01 \x01(\fR\vnativeBytes\x12:\n" +
-	"\acardano\x18\x02 \x01(\v2\x1e.utxorpc.v1alpha.cardano.BlockH\x00R\acardanoB\a\n" +
-	"\x05chain\"\x80\x01\n" +
-	"\x11FetchBlockRequest\x120\n" +
-	"\x03ref\x18\x01 \x03(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\x03ref\x129\n" +
+	"\fnative_bytes\x18\x01 \x01(\fR\vnativeBytes\x129\n" +
+	"\acardano\x18\x02 \x01(\v2\x1d.utxorpc.v1beta.cardano.BlockH\x00R\acardanoB\a\n" +
+	"\x05chain\"\x7f\n" +
+	"\x11FetchBlockRequest\x12/\n" +
+	"\x03ref\x18\x01 \x03(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\x03ref\x129\n" +
 	"\n" +
-	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"O\n" +
-	"\x12FetchBlockResponse\x129\n" +
-	"\x05block\x18\x01 \x03(\v2#.utxorpc.v1alpha.sync.AnyChainBlockR\x05block\"\xad\x01\n" +
-	"\x12DumpHistoryRequest\x12?\n" +
-	"\vstart_token\x18\x02 \x01(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"N\n" +
+	"\x12FetchBlockResponse\x128\n" +
+	"\x05block\x18\x01 \x03(\v2\".utxorpc.v1beta.sync.AnyChainBlockR\x05block\"\xac\x01\n" +
+	"\x12DumpHistoryRequest\x12>\n" +
+	"\vstart_token\x18\x02 \x01(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\n" +
 	"startToken\x12\x1b\n" +
 	"\tmax_items\x18\x03 \x01(\rR\bmaxItems\x129\n" +
 	"\n" +
-	"field_mask\x18\x04 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"\x8f\x01\n" +
-	"\x13DumpHistoryResponse\x129\n" +
-	"\x05block\x18\x01 \x03(\v2#.utxorpc.v1alpha.sync.AnyChainBlockR\x05block\x12=\n" +
+	"field_mask\x18\x04 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"\x8d\x01\n" +
+	"\x13DumpHistoryResponse\x128\n" +
+	"\x05block\x18\x01 \x03(\v2\".utxorpc.v1beta.sync.AnyChainBlockR\x05block\x12<\n" +
 	"\n" +
-	"next_token\x18\x02 \x01(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\tnextToken\"\x8b\x01\n" +
-	"\x10FollowTipRequest\x12<\n" +
-	"\tintersect\x18\x01 \x03(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\tintersect\x129\n" +
+	"next_token\x18\x02 \x01(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\tnextToken\"\x8a\x01\n" +
+	"\x10FollowTipRequest\x12;\n" +
+	"\tintersect\x18\x01 \x03(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\tintersect\x129\n" +
 	"\n" +
-	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"\xff\x01\n" +
-	"\x11FollowTipResponse\x12;\n" +
-	"\x05apply\x18\x01 \x01(\v2#.utxorpc.v1alpha.sync.AnyChainBlockH\x00R\x05apply\x129\n" +
-	"\x04undo\x18\x02 \x01(\v2#.utxorpc.v1alpha.sync.AnyChainBlockH\x00R\x04undo\x126\n" +
-	"\x05reset\x18\x03 \x01(\v2\x1e.utxorpc.v1alpha.sync.BlockRefH\x00R\x05reset\x120\n" +
-	"\x03tip\x18\x04 \x01(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\x03tipB\b\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"\xfb\x01\n" +
+	"\x11FollowTipResponse\x12:\n" +
+	"\x05apply\x18\x01 \x01(\v2\".utxorpc.v1beta.sync.AnyChainBlockH\x00R\x05apply\x128\n" +
+	"\x04undo\x18\x02 \x01(\v2\".utxorpc.v1beta.sync.AnyChainBlockH\x00R\x04undo\x125\n" +
+	"\x05reset\x18\x03 \x01(\v2\x1d.utxorpc.v1beta.sync.BlockRefH\x00R\x05reset\x12/\n" +
+	"\x03tip\x18\x04 \x01(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\x03tipB\b\n" +
 	"\x06action\"\x10\n" +
-	"\x0eReadTipRequest\"C\n" +
-	"\x0fReadTipResponse\x120\n" +
-	"\x03tip\x18\x01 \x01(\v2\x1e.utxorpc.v1alpha.sync.BlockRefR\x03tip2\x8a\x03\n" +
-	"\vSyncService\x12_\n" +
+	"\x0eReadTipRequest\"B\n" +
+	"\x0fReadTipResponse\x12/\n" +
+	"\x03tip\x18\x01 \x01(\v2\x1d.utxorpc.v1beta.sync.BlockRefR\x03tip2\x82\x03\n" +
+	"\vSyncService\x12]\n" +
 	"\n" +
-	"FetchBlock\x12'.utxorpc.v1alpha.sync.FetchBlockRequest\x1a(.utxorpc.v1alpha.sync.FetchBlockResponse\x12b\n" +
-	"\vDumpHistory\x12(.utxorpc.v1alpha.sync.DumpHistoryRequest\x1a).utxorpc.v1alpha.sync.DumpHistoryResponse\x12^\n" +
-	"\tFollowTip\x12&.utxorpc.v1alpha.sync.FollowTipRequest\x1a'.utxorpc.v1alpha.sync.FollowTipResponse0\x01\x12V\n" +
-	"\aReadTip\x12$.utxorpc.v1alpha.sync.ReadTipRequest\x1a%.utxorpc.v1alpha.sync.ReadTipResponseB\xcb\x01\n" +
-	"\x18com.utxorpc.v1alpha.syncB\tSyncProtoP\x01Z2github.com/utxorpc/go-codegen/utxorpc/v1alpha/sync\xa2\x02\x03UVS\xaa\x02\x14Utxorpc.V1alpha.Sync\xca\x02\x14Utxorpc\\V1alpha\\Sync\xe2\x02 Utxorpc\\V1alpha\\Sync\\GPBMetadata\xea\x02\x16Utxorpc::V1alpha::Syncb\x06proto3"
+	"FetchBlock\x12&.utxorpc.v1beta.sync.FetchBlockRequest\x1a'.utxorpc.v1beta.sync.FetchBlockResponse\x12`\n" +
+	"\vDumpHistory\x12'.utxorpc.v1beta.sync.DumpHistoryRequest\x1a(.utxorpc.v1beta.sync.DumpHistoryResponse\x12\\\n" +
+	"\tFollowTip\x12%.utxorpc.v1beta.sync.FollowTipRequest\x1a&.utxorpc.v1beta.sync.FollowTipResponse0\x01\x12T\n" +
+	"\aReadTip\x12#.utxorpc.v1beta.sync.ReadTipRequest\x1a$.utxorpc.v1beta.sync.ReadTipResponseB\xc5\x01\n" +
+	"\x17com.utxorpc.v1beta.syncB\tSyncProtoP\x01Z1github.com/utxorpc/go-codegen/utxorpc/v1beta/sync\xa2\x02\x03UVS\xaa\x02\x13Utxorpc.V1beta.Sync\xca\x02\x13Utxorpc\\V1beta\\Sync\xe2\x02\x1fUtxorpc\\V1beta\\Sync\\GPBMetadata\xea\x02\x15Utxorpc::V1beta::Syncb\x06proto3"
 
 var (
-	file_utxorpc_v1alpha_sync_sync_proto_rawDescOnce sync.Once
-	file_utxorpc_v1alpha_sync_sync_proto_rawDescData []byte
+	file_utxorpc_v1beta_sync_sync_proto_rawDescOnce sync.Once
+	file_utxorpc_v1beta_sync_sync_proto_rawDescData []byte
 )
 
-func file_utxorpc_v1alpha_sync_sync_proto_rawDescGZIP() []byte {
-	file_utxorpc_v1alpha_sync_sync_proto_rawDescOnce.Do(func() {
-		file_utxorpc_v1alpha_sync_sync_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_sync_sync_proto_rawDesc), len(file_utxorpc_v1alpha_sync_sync_proto_rawDesc)))
+func file_utxorpc_v1beta_sync_sync_proto_rawDescGZIP() []byte {
+	file_utxorpc_v1beta_sync_sync_proto_rawDescOnce.Do(func() {
+		file_utxorpc_v1beta_sync_sync_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_sync_sync_proto_rawDesc), len(file_utxorpc_v1beta_sync_sync_proto_rawDesc)))
 	})
-	return file_utxorpc_v1alpha_sync_sync_proto_rawDescData
+	return file_utxorpc_v1beta_sync_sync_proto_rawDescData
 }
 
-var file_utxorpc_v1alpha_sync_sync_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_utxorpc_v1alpha_sync_sync_proto_goTypes = []any{
-	(*BlockRef)(nil),              // 0: utxorpc.v1alpha.sync.BlockRef
-	(*AnyChainBlock)(nil),         // 1: utxorpc.v1alpha.sync.AnyChainBlock
-	(*FetchBlockRequest)(nil),     // 2: utxorpc.v1alpha.sync.FetchBlockRequest
-	(*FetchBlockResponse)(nil),    // 3: utxorpc.v1alpha.sync.FetchBlockResponse
-	(*DumpHistoryRequest)(nil),    // 4: utxorpc.v1alpha.sync.DumpHistoryRequest
-	(*DumpHistoryResponse)(nil),   // 5: utxorpc.v1alpha.sync.DumpHistoryResponse
-	(*FollowTipRequest)(nil),      // 6: utxorpc.v1alpha.sync.FollowTipRequest
-	(*FollowTipResponse)(nil),     // 7: utxorpc.v1alpha.sync.FollowTipResponse
-	(*ReadTipRequest)(nil),        // 8: utxorpc.v1alpha.sync.ReadTipRequest
-	(*ReadTipResponse)(nil),       // 9: utxorpc.v1alpha.sync.ReadTipResponse
-	(*cardano.Block)(nil),         // 10: utxorpc.v1alpha.cardano.Block
+var file_utxorpc_v1beta_sync_sync_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_utxorpc_v1beta_sync_sync_proto_goTypes = []any{
+	(*BlockRef)(nil),              // 0: utxorpc.v1beta.sync.BlockRef
+	(*AnyChainBlock)(nil),         // 1: utxorpc.v1beta.sync.AnyChainBlock
+	(*FetchBlockRequest)(nil),     // 2: utxorpc.v1beta.sync.FetchBlockRequest
+	(*FetchBlockResponse)(nil),    // 3: utxorpc.v1beta.sync.FetchBlockResponse
+	(*DumpHistoryRequest)(nil),    // 4: utxorpc.v1beta.sync.DumpHistoryRequest
+	(*DumpHistoryResponse)(nil),   // 5: utxorpc.v1beta.sync.DumpHistoryResponse
+	(*FollowTipRequest)(nil),      // 6: utxorpc.v1beta.sync.FollowTipRequest
+	(*FollowTipResponse)(nil),     // 7: utxorpc.v1beta.sync.FollowTipResponse
+	(*ReadTipRequest)(nil),        // 8: utxorpc.v1beta.sync.ReadTipRequest
+	(*ReadTipResponse)(nil),       // 9: utxorpc.v1beta.sync.ReadTipResponse
+	(*cardano.Block)(nil),         // 10: utxorpc.v1beta.cardano.Block
 	(*fieldmaskpb.FieldMask)(nil), // 11: google.protobuf.FieldMask
 }
-var file_utxorpc_v1alpha_sync_sync_proto_depIdxs = []int32{
-	10, // 0: utxorpc.v1alpha.sync.AnyChainBlock.cardano:type_name -> utxorpc.v1alpha.cardano.Block
-	0,  // 1: utxorpc.v1alpha.sync.FetchBlockRequest.ref:type_name -> utxorpc.v1alpha.sync.BlockRef
-	11, // 2: utxorpc.v1alpha.sync.FetchBlockRequest.field_mask:type_name -> google.protobuf.FieldMask
-	1,  // 3: utxorpc.v1alpha.sync.FetchBlockResponse.block:type_name -> utxorpc.v1alpha.sync.AnyChainBlock
-	0,  // 4: utxorpc.v1alpha.sync.DumpHistoryRequest.start_token:type_name -> utxorpc.v1alpha.sync.BlockRef
-	11, // 5: utxorpc.v1alpha.sync.DumpHistoryRequest.field_mask:type_name -> google.protobuf.FieldMask
-	1,  // 6: utxorpc.v1alpha.sync.DumpHistoryResponse.block:type_name -> utxorpc.v1alpha.sync.AnyChainBlock
-	0,  // 7: utxorpc.v1alpha.sync.DumpHistoryResponse.next_token:type_name -> utxorpc.v1alpha.sync.BlockRef
-	0,  // 8: utxorpc.v1alpha.sync.FollowTipRequest.intersect:type_name -> utxorpc.v1alpha.sync.BlockRef
-	11, // 9: utxorpc.v1alpha.sync.FollowTipRequest.field_mask:type_name -> google.protobuf.FieldMask
-	1,  // 10: utxorpc.v1alpha.sync.FollowTipResponse.apply:type_name -> utxorpc.v1alpha.sync.AnyChainBlock
-	1,  // 11: utxorpc.v1alpha.sync.FollowTipResponse.undo:type_name -> utxorpc.v1alpha.sync.AnyChainBlock
-	0,  // 12: utxorpc.v1alpha.sync.FollowTipResponse.reset:type_name -> utxorpc.v1alpha.sync.BlockRef
-	0,  // 13: utxorpc.v1alpha.sync.FollowTipResponse.tip:type_name -> utxorpc.v1alpha.sync.BlockRef
-	0,  // 14: utxorpc.v1alpha.sync.ReadTipResponse.tip:type_name -> utxorpc.v1alpha.sync.BlockRef
-	2,  // 15: utxorpc.v1alpha.sync.SyncService.FetchBlock:input_type -> utxorpc.v1alpha.sync.FetchBlockRequest
-	4,  // 16: utxorpc.v1alpha.sync.SyncService.DumpHistory:input_type -> utxorpc.v1alpha.sync.DumpHistoryRequest
-	6,  // 17: utxorpc.v1alpha.sync.SyncService.FollowTip:input_type -> utxorpc.v1alpha.sync.FollowTipRequest
-	8,  // 18: utxorpc.v1alpha.sync.SyncService.ReadTip:input_type -> utxorpc.v1alpha.sync.ReadTipRequest
-	3,  // 19: utxorpc.v1alpha.sync.SyncService.FetchBlock:output_type -> utxorpc.v1alpha.sync.FetchBlockResponse
-	5,  // 20: utxorpc.v1alpha.sync.SyncService.DumpHistory:output_type -> utxorpc.v1alpha.sync.DumpHistoryResponse
-	7,  // 21: utxorpc.v1alpha.sync.SyncService.FollowTip:output_type -> utxorpc.v1alpha.sync.FollowTipResponse
-	9,  // 22: utxorpc.v1alpha.sync.SyncService.ReadTip:output_type -> utxorpc.v1alpha.sync.ReadTipResponse
+var file_utxorpc_v1beta_sync_sync_proto_depIdxs = []int32{
+	10, // 0: utxorpc.v1beta.sync.AnyChainBlock.cardano:type_name -> utxorpc.v1beta.cardano.Block
+	0,  // 1: utxorpc.v1beta.sync.FetchBlockRequest.ref:type_name -> utxorpc.v1beta.sync.BlockRef
+	11, // 2: utxorpc.v1beta.sync.FetchBlockRequest.field_mask:type_name -> google.protobuf.FieldMask
+	1,  // 3: utxorpc.v1beta.sync.FetchBlockResponse.block:type_name -> utxorpc.v1beta.sync.AnyChainBlock
+	0,  // 4: utxorpc.v1beta.sync.DumpHistoryRequest.start_token:type_name -> utxorpc.v1beta.sync.BlockRef
+	11, // 5: utxorpc.v1beta.sync.DumpHistoryRequest.field_mask:type_name -> google.protobuf.FieldMask
+	1,  // 6: utxorpc.v1beta.sync.DumpHistoryResponse.block:type_name -> utxorpc.v1beta.sync.AnyChainBlock
+	0,  // 7: utxorpc.v1beta.sync.DumpHistoryResponse.next_token:type_name -> utxorpc.v1beta.sync.BlockRef
+	0,  // 8: utxorpc.v1beta.sync.FollowTipRequest.intersect:type_name -> utxorpc.v1beta.sync.BlockRef
+	11, // 9: utxorpc.v1beta.sync.FollowTipRequest.field_mask:type_name -> google.protobuf.FieldMask
+	1,  // 10: utxorpc.v1beta.sync.FollowTipResponse.apply:type_name -> utxorpc.v1beta.sync.AnyChainBlock
+	1,  // 11: utxorpc.v1beta.sync.FollowTipResponse.undo:type_name -> utxorpc.v1beta.sync.AnyChainBlock
+	0,  // 12: utxorpc.v1beta.sync.FollowTipResponse.reset:type_name -> utxorpc.v1beta.sync.BlockRef
+	0,  // 13: utxorpc.v1beta.sync.FollowTipResponse.tip:type_name -> utxorpc.v1beta.sync.BlockRef
+	0,  // 14: utxorpc.v1beta.sync.ReadTipResponse.tip:type_name -> utxorpc.v1beta.sync.BlockRef
+	2,  // 15: utxorpc.v1beta.sync.SyncService.FetchBlock:input_type -> utxorpc.v1beta.sync.FetchBlockRequest
+	4,  // 16: utxorpc.v1beta.sync.SyncService.DumpHistory:input_type -> utxorpc.v1beta.sync.DumpHistoryRequest
+	6,  // 17: utxorpc.v1beta.sync.SyncService.FollowTip:input_type -> utxorpc.v1beta.sync.FollowTipRequest
+	8,  // 18: utxorpc.v1beta.sync.SyncService.ReadTip:input_type -> utxorpc.v1beta.sync.ReadTipRequest
+	3,  // 19: utxorpc.v1beta.sync.SyncService.FetchBlock:output_type -> utxorpc.v1beta.sync.FetchBlockResponse
+	5,  // 20: utxorpc.v1beta.sync.SyncService.DumpHistory:output_type -> utxorpc.v1beta.sync.DumpHistoryResponse
+	7,  // 21: utxorpc.v1beta.sync.SyncService.FollowTip:output_type -> utxorpc.v1beta.sync.FollowTipResponse
+	9,  // 22: utxorpc.v1beta.sync.SyncService.ReadTip:output_type -> utxorpc.v1beta.sync.ReadTipResponse
 	19, // [19:23] is the sub-list for method output_type
 	15, // [15:19] is the sub-list for method input_type
 	15, // [15:15] is the sub-list for extension type_name
@@ -729,15 +729,15 @@ var file_utxorpc_v1alpha_sync_sync_proto_depIdxs = []int32{
 	0,  // [0:15] is the sub-list for field type_name
 }
 
-func init() { file_utxorpc_v1alpha_sync_sync_proto_init() }
-func file_utxorpc_v1alpha_sync_sync_proto_init() {
-	if File_utxorpc_v1alpha_sync_sync_proto != nil {
+func init() { file_utxorpc_v1beta_sync_sync_proto_init() }
+func file_utxorpc_v1beta_sync_sync_proto_init() {
+	if File_utxorpc_v1beta_sync_sync_proto != nil {
 		return
 	}
-	file_utxorpc_v1alpha_sync_sync_proto_msgTypes[1].OneofWrappers = []any{
+	file_utxorpc_v1beta_sync_sync_proto_msgTypes[1].OneofWrappers = []any{
 		(*AnyChainBlock_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_sync_sync_proto_msgTypes[7].OneofWrappers = []any{
+	file_utxorpc_v1beta_sync_sync_proto_msgTypes[7].OneofWrappers = []any{
 		(*FollowTipResponse_Apply)(nil),
 		(*FollowTipResponse_Undo)(nil),
 		(*FollowTipResponse_Reset_)(nil),
@@ -746,17 +746,17 @@ func file_utxorpc_v1alpha_sync_sync_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_sync_sync_proto_rawDesc), len(file_utxorpc_v1alpha_sync_sync_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_sync_sync_proto_rawDesc), len(file_utxorpc_v1beta_sync_sync_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_utxorpc_v1alpha_sync_sync_proto_goTypes,
-		DependencyIndexes: file_utxorpc_v1alpha_sync_sync_proto_depIdxs,
-		MessageInfos:      file_utxorpc_v1alpha_sync_sync_proto_msgTypes,
+		GoTypes:           file_utxorpc_v1beta_sync_sync_proto_goTypes,
+		DependencyIndexes: file_utxorpc_v1beta_sync_sync_proto_depIdxs,
+		MessageInfos:      file_utxorpc_v1beta_sync_sync_proto_msgTypes,
 	}.Build()
-	File_utxorpc_v1alpha_sync_sync_proto = out.File
-	file_utxorpc_v1alpha_sync_sync_proto_goTypes = nil
-	file_utxorpc_v1alpha_sync_sync_proto_depIdxs = nil
+	File_utxorpc_v1beta_sync_sync_proto = out.File
+	file_utxorpc_v1beta_sync_sync_proto_goTypes = nil
+	file_utxorpc_v1beta_sync_sync_proto_depIdxs = nil
 }

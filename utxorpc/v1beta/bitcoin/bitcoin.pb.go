@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: utxorpc/v1alpha/bitcoin/bitcoin.proto
+// source: utxorpc/v1beta/bitcoin/bitcoin.proto
 
 package bitcoin
 
@@ -35,7 +35,7 @@ type TxInput struct {
 
 func (x *TxInput) Reset() {
 	*x = TxInput{}
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *TxInput) String() string {
 func (*TxInput) ProtoMessage() {}
 
 func (x *TxInput) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *TxInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxInput.ProtoReflect.Descriptor instead.
 func (*TxInput) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *TxInput) GetTxid() []byte {
@@ -109,7 +109,7 @@ type TxOutput struct {
 
 func (x *TxOutput) Reset() {
 	*x = TxOutput{}
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +121,7 @@ func (x *TxOutput) String() string {
 func (*TxOutput) ProtoMessage() {}
 
 func (x *TxOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,7 +134,7 @@ func (x *TxOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxOutput.ProtoReflect.Descriptor instead.
 func (*TxOutput) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *TxOutput) GetValue() uint64 {
@@ -164,7 +164,7 @@ type ScriptPubKey struct {
 
 func (x *ScriptPubKey) Reset() {
 	*x = ScriptPubKey{}
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -176,7 +176,7 @@ func (x *ScriptPubKey) String() string {
 func (*ScriptPubKey) ProtoMessage() {}
 
 func (x *ScriptPubKey) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -189,7 +189,7 @@ func (x *ScriptPubKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScriptPubKey.ProtoReflect.Descriptor instead.
 func (*ScriptPubKey) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP(), []int{2}
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ScriptPubKey) GetAsm() []byte {
@@ -236,7 +236,7 @@ type Transaction struct {
 
 func (x *Transaction) Reset() {
 	*x = Transaction{}
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +248,7 @@ func (x *Transaction) String() string {
 func (*Transaction) ProtoMessage() {}
 
 func (x *Transaction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +261,7 @@ func (x *Transaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
 func (*Transaction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP(), []int{3}
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Transaction) GetVersion() uint32 {
@@ -329,7 +329,7 @@ type Block struct {
 
 func (x *Block) Reset() {
 	*x = Block{}
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -341,7 +341,7 @@ func (x *Block) String() string {
 func (*Block) ProtoMessage() {}
 
 func (x *Block) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -354,7 +354,7 @@ func (x *Block) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Block.ProtoReflect.Descriptor instead.
 func (*Block) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP(), []int{4}
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Block) GetVersion() uint32 {
@@ -406,11 +406,11 @@ func (x *Block) GetTx() []*Transaction {
 	return nil
 }
 
-var File_utxorpc_v1alpha_bitcoin_bitcoin_proto protoreflect.FileDescriptor
+var File_utxorpc_v1beta_bitcoin_bitcoin_proto protoreflect.FileDescriptor
 
-const file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc = "" +
+const file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDesc = "" +
 	"\n" +
-	"%utxorpc/v1alpha/bitcoin/bitcoin.proto\x12\x17utxorpc.v1alpha.bitcoin\"\xc8\x01\n" +
+	"$utxorpc/v1beta/bitcoin/bitcoin.proto\x12\x16utxorpc.v1beta.bitcoin\"\xc8\x01\n" +
 	"\aTxInput\x12\x17\n" +
 	"\x04txid\x18\x01 \x01(\fH\x00R\x04txid\x88\x01\x01\x12!\n" +
 	"\tscriptSig\x18\x02 \x01(\fH\x01R\tscriptSig\x88\x01\x01\x12\x1a\n" +
@@ -420,28 +420,28 @@ const file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc = "" +
 	"\x05_txidB\f\n" +
 	"\n" +
 	"_scriptSigB\v\n" +
-	"\t_coinbase\"k\n" +
+	"\t_coinbase\"j\n" +
 	"\bTxOutput\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x04R\x05value\x12I\n" +
-	"\fscriptPubKey\x18\x02 \x01(\v2%.utxorpc.v1alpha.bitcoin.ScriptPubKeyR\fscriptPubKey\"q\n" +
+	"\x05value\x18\x01 \x01(\x04R\x05value\x12H\n" +
+	"\fscriptPubKey\x18\x02 \x01(\v2$.utxorpc.v1beta.bitcoin.ScriptPubKeyR\fscriptPubKey\"q\n" +
 	"\fScriptPubKey\x12\x10\n" +
 	"\x03asm\x18\x01 \x01(\fR\x03asm\x12\x10\n" +
 	"\x03hex\x18\x02 \x01(\fR\x03hex\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\fR\x04type\x12\x1d\n" +
 	"\aaddress\x18\x04 \x01(\fH\x00R\aaddress\x88\x01\x01B\n" +
 	"\n" +
-	"\b_address\"\x95\x02\n" +
+	"\b_address\"\x93\x02\n" +
 	"\vTransaction\x12\x18\n" +
-	"\aversion\x18\x01 \x01(\rR\aversion\x122\n" +
-	"\x03vin\x18\x02 \x03(\v2 .utxorpc.v1alpha.bitcoin.TxInputR\x03vin\x125\n" +
-	"\x04vout\x18\x03 \x03(\v2!.utxorpc.v1alpha.bitcoin.TxOutputR\x04vout\x12\x1a\n" +
+	"\aversion\x18\x01 \x01(\rR\aversion\x121\n" +
+	"\x03vin\x18\x02 \x03(\v2\x1f.utxorpc.v1beta.bitcoin.TxInputR\x03vin\x124\n" +
+	"\x04vout\x18\x03 \x03(\v2 .utxorpc.v1beta.bitcoin.TxOutputR\x04vout\x12\x1a\n" +
 	"\blocktime\x18\x04 \x01(\rR\blocktime\x12\x12\n" +
 	"\x04hash\x18\x05 \x01(\fR\x04hash\x12!\n" +
 	"\tblockhash\x18\x06 \x01(\fH\x00R\tblockhash\x88\x01\x01\x12\x17\n" +
 	"\x04time\x18\a \x01(\rH\x01R\x04time\x88\x01\x01B\f\n" +
 	"\n" +
 	"_blockhashB\a\n" +
-	"\x05_time\"\xfe\x01\n" +
+	"\x05_time\"\xfd\x01\n" +
 	"\x05Block\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\rR\aversion\x121\n" +
 	"\x11previousblockhash\x18\x02 \x01(\fH\x00R\x11previousblockhash\x88\x01\x01\x12\x1e\n" +
@@ -450,36 +450,36 @@ const file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc = "" +
 	"merkleroot\x12\x12\n" +
 	"\x04time\x18\x04 \x01(\rR\x04time\x12\x12\n" +
 	"\x04bits\x18\x05 \x01(\rR\x04bits\x12\x14\n" +
-	"\x05nonce\x18\x06 \x01(\rR\x05nonce\x124\n" +
-	"\x02tx\x18\a \x03(\v2$.utxorpc.v1alpha.bitcoin.TransactionR\x02txB\x14\n" +
-	"\x12_previousblockhashB\xe0\x01\n" +
-	"\x1bcom.utxorpc.v1alpha.bitcoinB\fBitcoinProtoP\x01Z5github.com/utxorpc/go-codegen/utxorpc/v1alpha/bitcoin\xa2\x02\x03UVB\xaa\x02\x17Utxorpc.V1alpha.Bitcoin\xca\x02\x17Utxorpc\\V1alpha\\Bitcoin\xe2\x02#Utxorpc\\V1alpha\\Bitcoin\\GPBMetadata\xea\x02\x19Utxorpc::V1alpha::Bitcoinb\x06proto3"
+	"\x05nonce\x18\x06 \x01(\rR\x05nonce\x123\n" +
+	"\x02tx\x18\a \x03(\v2#.utxorpc.v1beta.bitcoin.TransactionR\x02txB\x14\n" +
+	"\x12_previousblockhashB\xda\x01\n" +
+	"\x1acom.utxorpc.v1beta.bitcoinB\fBitcoinProtoP\x01Z4github.com/utxorpc/go-codegen/utxorpc/v1beta/bitcoin\xa2\x02\x03UVB\xaa\x02\x16Utxorpc.V1beta.Bitcoin\xca\x02\x16Utxorpc\\V1beta\\Bitcoin\xe2\x02\"Utxorpc\\V1beta\\Bitcoin\\GPBMetadata\xea\x02\x18Utxorpc::V1beta::Bitcoinb\x06proto3"
 
 var (
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescOnce sync.Once
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescData []byte
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescOnce sync.Once
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescData []byte
 )
 
-func file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescGZIP() []byte {
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescOnce.Do(func() {
-		file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc), len(file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc)))
+func file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescGZIP() []byte {
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescOnce.Do(func() {
+		file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDesc), len(file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDesc)))
 	})
-	return file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDescData
+	return file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDescData
 }
 
-var file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_utxorpc_v1alpha_bitcoin_bitcoin_proto_goTypes = []any{
-	(*TxInput)(nil),      // 0: utxorpc.v1alpha.bitcoin.TxInput
-	(*TxOutput)(nil),     // 1: utxorpc.v1alpha.bitcoin.TxOutput
-	(*ScriptPubKey)(nil), // 2: utxorpc.v1alpha.bitcoin.ScriptPubKey
-	(*Transaction)(nil),  // 3: utxorpc.v1alpha.bitcoin.Transaction
-	(*Block)(nil),        // 4: utxorpc.v1alpha.bitcoin.Block
+var file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_utxorpc_v1beta_bitcoin_bitcoin_proto_goTypes = []any{
+	(*TxInput)(nil),      // 0: utxorpc.v1beta.bitcoin.TxInput
+	(*TxOutput)(nil),     // 1: utxorpc.v1beta.bitcoin.TxOutput
+	(*ScriptPubKey)(nil), // 2: utxorpc.v1beta.bitcoin.ScriptPubKey
+	(*Transaction)(nil),  // 3: utxorpc.v1beta.bitcoin.Transaction
+	(*Block)(nil),        // 4: utxorpc.v1beta.bitcoin.Block
 }
-var file_utxorpc_v1alpha_bitcoin_bitcoin_proto_depIdxs = []int32{
-	2, // 0: utxorpc.v1alpha.bitcoin.TxOutput.scriptPubKey:type_name -> utxorpc.v1alpha.bitcoin.ScriptPubKey
-	0, // 1: utxorpc.v1alpha.bitcoin.Transaction.vin:type_name -> utxorpc.v1alpha.bitcoin.TxInput
-	1, // 2: utxorpc.v1alpha.bitcoin.Transaction.vout:type_name -> utxorpc.v1alpha.bitcoin.TxOutput
-	3, // 3: utxorpc.v1alpha.bitcoin.Block.tx:type_name -> utxorpc.v1alpha.bitcoin.Transaction
+var file_utxorpc_v1beta_bitcoin_bitcoin_proto_depIdxs = []int32{
+	2, // 0: utxorpc.v1beta.bitcoin.TxOutput.scriptPubKey:type_name -> utxorpc.v1beta.bitcoin.ScriptPubKey
+	0, // 1: utxorpc.v1beta.bitcoin.Transaction.vin:type_name -> utxorpc.v1beta.bitcoin.TxInput
+	1, // 2: utxorpc.v1beta.bitcoin.Transaction.vout:type_name -> utxorpc.v1beta.bitcoin.TxOutput
+	3, // 3: utxorpc.v1beta.bitcoin.Block.tx:type_name -> utxorpc.v1beta.bitcoin.Transaction
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -487,30 +487,30 @@ var file_utxorpc_v1alpha_bitcoin_bitcoin_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_utxorpc_v1alpha_bitcoin_bitcoin_proto_init() }
-func file_utxorpc_v1alpha_bitcoin_bitcoin_proto_init() {
-	if File_utxorpc_v1alpha_bitcoin_bitcoin_proto != nil {
+func init() { file_utxorpc_v1beta_bitcoin_bitcoin_proto_init() }
+func file_utxorpc_v1beta_bitcoin_bitcoin_proto_init() {
+	if File_utxorpc_v1beta_bitcoin_bitcoin_proto != nil {
 		return
 	}
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[0].OneofWrappers = []any{}
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[2].OneofWrappers = []any{}
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[3].OneofWrappers = []any{}
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes[4].OneofWrappers = []any{}
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[0].OneofWrappers = []any{}
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[2].OneofWrappers = []any{}
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[3].OneofWrappers = []any{}
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc), len(file_utxorpc_v1alpha_bitcoin_bitcoin_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDesc), len(file_utxorpc_v1beta_bitcoin_bitcoin_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_utxorpc_v1alpha_bitcoin_bitcoin_proto_goTypes,
-		DependencyIndexes: file_utxorpc_v1alpha_bitcoin_bitcoin_proto_depIdxs,
-		MessageInfos:      file_utxorpc_v1alpha_bitcoin_bitcoin_proto_msgTypes,
+		GoTypes:           file_utxorpc_v1beta_bitcoin_bitcoin_proto_goTypes,
+		DependencyIndexes: file_utxorpc_v1beta_bitcoin_bitcoin_proto_depIdxs,
+		MessageInfos:      file_utxorpc_v1beta_bitcoin_bitcoin_proto_msgTypes,
 	}.Build()
-	File_utxorpc_v1alpha_bitcoin_bitcoin_proto = out.File
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_goTypes = nil
-	file_utxorpc_v1alpha_bitcoin_bitcoin_proto_depIdxs = nil
+	File_utxorpc_v1beta_bitcoin_bitcoin_proto = out.File
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_goTypes = nil
+	file_utxorpc_v1beta_bitcoin_bitcoin_proto_depIdxs = nil
 }

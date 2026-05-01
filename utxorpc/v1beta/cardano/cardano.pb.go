@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: utxorpc/v1alpha/cardano/cardano.proto
+// source: utxorpc/v1beta/cardano/cardano.proto
 
 package cardano
 
@@ -67,11 +67,11 @@ func (x RedeemerPurpose) String() string {
 }
 
 func (RedeemerPurpose) Descriptor() protoreflect.EnumDescriptor {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes[0].Descriptor()
+	return file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[0].Descriptor()
 }
 
 func (RedeemerPurpose) Type() protoreflect.EnumType {
-	return &file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes[0]
+	return &file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[0]
 }
 
 func (x RedeemerPurpose) Number() protoreflect.EnumNumber {
@@ -80,7 +80,61 @@ func (x RedeemerPurpose) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RedeemerPurpose.Descriptor instead.
 func (RedeemerPurpose) EnumDescriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{0}
+}
+
+// Valid vote choices for a governance action (CIP-1694).
+// On-chain CBOR mapping: No=0, Yes=1, Abstain=2.
+type Vote int32
+
+const (
+	Vote_VOTE_UNSPECIFIED Vote = 0
+	Vote_VOTE_NO          Vote = 1
+	Vote_VOTE_YES         Vote = 2
+	Vote_VOTE_ABSTAIN     Vote = 3
+)
+
+// Enum value maps for Vote.
+var (
+	Vote_name = map[int32]string{
+		0: "VOTE_UNSPECIFIED",
+		1: "VOTE_NO",
+		2: "VOTE_YES",
+		3: "VOTE_ABSTAIN",
+	}
+	Vote_value = map[string]int32{
+		"VOTE_UNSPECIFIED": 0,
+		"VOTE_NO":          1,
+		"VOTE_YES":         2,
+		"VOTE_ABSTAIN":     3,
+	}
+)
+
+func (x Vote) Enum() *Vote {
+	p := new(Vote)
+	*p = x
+	return p
+}
+
+func (x Vote) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Vote) Descriptor() protoreflect.EnumDescriptor {
+	return file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[1].Descriptor()
+}
+
+func (Vote) Type() protoreflect.EnumType {
+	return &file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[1]
+}
+
+func (x Vote) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Vote.Descriptor instead.
+func (Vote) EnumDescriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{1}
 }
 
 type MirSource int32
@@ -116,11 +170,11 @@ func (x MirSource) String() string {
 }
 
 func (MirSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes[1].Descriptor()
+	return file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[2].Descriptor()
 }
 
 func (MirSource) Type() protoreflect.EnumType {
-	return &file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes[1]
+	return &file_utxorpc_v1beta_cardano_cardano_proto_enumTypes[2]
 }
 
 func (x MirSource) Number() protoreflect.EnumNumber {
@@ -129,24 +183,24 @@ func (x MirSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MirSource.Descriptor instead.
 func (MirSource) EnumDescriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{2}
 }
 
 // Redeemer information for a Plutus script.
 type Redeemer struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Purpose       RedeemerPurpose        `protobuf:"varint,1,opt,name=purpose,proto3,enum=utxorpc.v1alpha.cardano.RedeemerPurpose" json:"purpose,omitempty"` // Purpose of the redeemer.
-	Payload       *PlutusData            `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`                                               // Plutus data associated with the redeemer.
-	Index         uint32                 `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`                                                  // Index of the redeemer.
-	ExUnits       *ExUnits               `protobuf:"bytes,4,opt,name=ex_units,json=exUnits,proto3" json:"ex_units,omitempty"`                                // Execution units consumed by the redeemer.
-	OriginalCbor  []byte                 `protobuf:"bytes,5,opt,name=original_cbor,json=originalCbor,proto3" json:"original_cbor,omitempty"`                 // Original cbor-encoded data as seen on-chain
+	Purpose       RedeemerPurpose        `protobuf:"varint,1,opt,name=purpose,proto3,enum=utxorpc.v1beta.cardano.RedeemerPurpose" json:"purpose,omitempty"` // Purpose of the redeemer.
+	Payload       *PlutusData            `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`                                              // Plutus data associated with the redeemer.
+	Index         uint32                 `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`                                                 // Index of the redeemer.
+	ExUnits       *ExUnits               `protobuf:"bytes,4,opt,name=ex_units,json=exUnits,proto3" json:"ex_units,omitempty"`                               // Execution units consumed by the redeemer.
+	OriginalCbor  []byte                 `protobuf:"bytes,5,opt,name=original_cbor,json=originalCbor,proto3" json:"original_cbor,omitempty"`                // Original cbor-encoded data as seen on-chain
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Redeemer) Reset() {
 	*x = Redeemer{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +212,7 @@ func (x *Redeemer) String() string {
 func (*Redeemer) ProtoMessage() {}
 
 func (x *Redeemer) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +225,7 @@ func (x *Redeemer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Redeemer.ProtoReflect.Descriptor instead.
 func (*Redeemer) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Redeemer) GetPurpose() RedeemerPurpose {
@@ -215,14 +269,14 @@ type TxInput struct {
 	TxHash        []byte                 `protobuf:"bytes,1,opt,name=tx_hash,json=txHash,proto3" json:"tx_hash,omitempty"`                 // Hash of the previous transaction.
 	OutputIndex   uint32                 `protobuf:"varint,2,opt,name=output_index,json=outputIndex,proto3" json:"output_index,omitempty"` // Index of the output in the previous transaction.
 	AsOutput      *TxOutput              `protobuf:"bytes,3,opt,name=as_output,json=asOutput,proto3" json:"as_output,omitempty"`           // Content of the input represented as output of the related transaction
-	Redeemer      *Redeemer              `protobuf:"bytes,4,opt,name=redeemer,proto3" json:"redeemer,omitempty"`                           // Redeemer for the Plutus script.
+	Redeemer      *Redeemer              `protobuf:"bytes,4,opt,name=redeemer,proto3,oneof" json:"redeemer,omitempty"`                     // Redeemer for the Plutus script.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TxInput) Reset() {
 	*x = TxInput{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +288,7 @@ func (x *TxInput) String() string {
 func (*TxInput) ProtoMessage() {}
 
 func (x *TxInput) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +301,7 @@ func (x *TxInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxInput.ProtoReflect.Descriptor instead.
 func (*TxInput) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *TxInput) GetTxHash() []byte {
@@ -281,18 +335,19 @@ func (x *TxInput) GetRedeemer() *Redeemer {
 // Represents a transaction output in the Cardano blockchain.
 type TxOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Address       []byte                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"` // Address receiving the output.
-	Coin          *BigInt                `protobuf:"bytes,2,opt,name=coin,proto3" json:"coin,omitempty"`       // Amount of ADA in the output.
-	Assets        []*Multiasset          `protobuf:"bytes,3,rep,name=assets,proto3" json:"assets,omitempty"`   // Additional native (non-ADA) assets in the output.
-	Datum         *Datum                 `protobuf:"bytes,4,opt,name=datum,proto3" json:"datum,omitempty"`     // Plutus data associated with the output.
-	Script        *Script                `protobuf:"bytes,5,opt,name=script,proto3" json:"script,omitempty"`   // Script associated with the output.
+	Address       []byte                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`                                     // Address receiving the output.
+	Coin          *BigInt                `protobuf:"bytes,2,opt,name=coin,proto3" json:"coin,omitempty"`                                           // Amount of ADA in the output.
+	Assets        []*Multiasset          `protobuf:"bytes,3,rep,name=assets,proto3" json:"assets,omitempty"`                                       // Additional native (non-ADA) assets in the output.
+	Datum         *Datum                 `protobuf:"bytes,4,opt,name=datum,proto3,oneof" json:"datum,omitempty"`                                   // Plutus data associated with the output.
+	Script        *Script                `protobuf:"bytes,5,opt,name=script,proto3,oneof" json:"script,omitempty"`                                 // Script associated with the output.
+	OriginalCbor  []byte                 `protobuf:"bytes,6,opt,name=original_cbor,json=originalCbor,proto3,oneof" json:"original_cbor,omitempty"` // Original cbor-encoded output as seen on-chain.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TxOutput) Reset() {
 	*x = TxOutput{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -304,7 +359,7 @@ func (x *TxOutput) String() string {
 func (*TxOutput) ProtoMessage() {}
 
 func (x *TxOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -317,7 +372,7 @@ func (x *TxOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxOutput.ProtoReflect.Descriptor instead.
 func (*TxOutput) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{2}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TxOutput) GetAddress() []byte {
@@ -355,18 +410,25 @@ func (x *TxOutput) GetScript() *Script {
 	return nil
 }
 
+func (x *TxOutput) GetOriginalCbor() []byte {
+	if x != nil {
+		return x.OriginalCbor
+	}
+	return nil
+}
+
 type Datum struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Hash          []byte                 `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`                                     // Hash of this datum as seen on-chain
-	Payload       *PlutusData            `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`                               // Parsed Plutus data payload
-	OriginalCbor  []byte                 `protobuf:"bytes,3,opt,name=original_cbor,json=originalCbor,proto3" json:"original_cbor,omitempty"` // Original cbor-encoded data as seen on-chain
+	Hash          []byte                 `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`                                           // Hash of this datum as seen on-chain
+	Payload       *PlutusData            `protobuf:"bytes,2,opt,name=payload,proto3,oneof" json:"payload,omitempty"`                               // Parsed Plutus data payload
+	OriginalCbor  []byte                 `protobuf:"bytes,3,opt,name=original_cbor,json=originalCbor,proto3,oneof" json:"original_cbor,omitempty"` // Original cbor-encoded data as seen on-chain
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Datum) Reset() {
 	*x = Datum{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -378,7 +440,7 @@ func (x *Datum) String() string {
 func (*Datum) ProtoMessage() {}
 
 func (x *Datum) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +453,7 @@ func (x *Datum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Datum.ProtoReflect.Descriptor instead.
 func (*Datum) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{3}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Datum) GetHash() []byte {
@@ -417,20 +479,16 @@ func (x *Datum) GetOriginalCbor() []byte {
 
 // Represents a custom asset in the Cardano blockchain.
 type Asset struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	Name  []byte                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"` // Name of the custom asset.
-	// Types that are valid to be assigned to Quantity:
-	//
-	//	*Asset_OutputCoin
-	//	*Asset_MintCoin
-	Quantity      isAsset_Quantity `protobuf_oneof:"quantity"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          []byte                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`         // Name of the custom asset.
+	Quantity      *BigInt                `protobuf:"bytes,2,opt,name=quantity,proto3" json:"quantity,omitempty"` // Quantity of the custom asset. This can be negative only if it is in a `Tx.mint` field and the transaction is burning tokens.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Asset) Reset() {
 	*x = Asset{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -442,7 +500,7 @@ func (x *Asset) String() string {
 func (*Asset) ProtoMessage() {}
 
 func (x *Asset) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -455,7 +513,7 @@ func (x *Asset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Asset.ProtoReflect.Descriptor instead.
 func (*Asset) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{4}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Asset) GetName() []byte {
@@ -465,60 +523,25 @@ func (x *Asset) GetName() []byte {
 	return nil
 }
 
-func (x *Asset) GetQuantity() isAsset_Quantity {
+func (x *Asset) GetQuantity() *BigInt {
 	if x != nil {
 		return x.Quantity
 	}
 	return nil
 }
 
-func (x *Asset) GetOutputCoin() *BigInt {
-	if x != nil {
-		if x, ok := x.Quantity.(*Asset_OutputCoin); ok {
-			return x.OutputCoin
-		}
-	}
-	return nil
-}
-
-func (x *Asset) GetMintCoin() *BigInt {
-	if x != nil {
-		if x, ok := x.Quantity.(*Asset_MintCoin); ok {
-			return x.MintCoin
-		}
-	}
-	return nil
-}
-
-type isAsset_Quantity interface {
-	isAsset_Quantity()
-}
-
-type Asset_OutputCoin struct {
-	OutputCoin *BigInt `protobuf:"bytes,2,opt,name=output_coin,json=outputCoin,proto3,oneof"` // Quantity of the custom asset in case of an output.
-}
-
-type Asset_MintCoin struct {
-	MintCoin *BigInt `protobuf:"bytes,3,opt,name=mint_coin,json=mintCoin,proto3,oneof"` // Quantity of the custom asset in case of a mint (can be negative for burning).
-}
-
-func (*Asset_OutputCoin) isAsset_Quantity() {}
-
-func (*Asset_MintCoin) isAsset_Quantity() {}
-
 // Represents a multi-asset group in the Cardano blockchain.
 type Multiasset struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PolicyId      []byte                 `protobuf:"bytes,1,opt,name=policy_id,json=policyId,proto3" json:"policy_id,omitempty"` // Policy ID governing the custom assets.
 	Assets        []*Asset               `protobuf:"bytes,2,rep,name=assets,proto3" json:"assets,omitempty"`                     // List of custom assets.
-	Redeemer      *Redeemer              `protobuf:"bytes,3,opt,name=redeemer,proto3" json:"redeemer,omitempty"`                 // Redeemer for the Plutus script.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Multiasset) Reset() {
 	*x = Multiasset{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -530,7 +553,7 @@ func (x *Multiasset) String() string {
 func (*Multiasset) ProtoMessage() {}
 
 func (x *Multiasset) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +566,7 @@ func (x *Multiasset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Multiasset.ProtoReflect.Descriptor instead.
 func (*Multiasset) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{5}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Multiasset) GetPolicyId() []byte {
@@ -560,13 +583,6 @@ func (x *Multiasset) GetAssets() []*Asset {
 	return nil
 }
 
-func (x *Multiasset) GetRedeemer() *Redeemer {
-	if x != nil {
-		return x.Redeemer
-	}
-	return nil
-}
-
 // Represents the validity interval of a transaction.
 type TxValidity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -578,7 +594,7 @@ type TxValidity struct {
 
 func (x *TxValidity) Reset() {
 	*x = TxValidity{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -590,7 +606,7 @@ func (x *TxValidity) String() string {
 func (*TxValidity) ProtoMessage() {}
 
 func (x *TxValidity) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -603,7 +619,7 @@ func (x *TxValidity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxValidity.ProtoReflect.Descriptor instead.
 func (*TxValidity) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{6}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TxValidity) GetStart() uint64 {
@@ -632,7 +648,7 @@ type Collateral struct {
 
 func (x *Collateral) Reset() {
 	*x = Collateral{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -644,7 +660,7 @@ func (x *Collateral) String() string {
 func (*Collateral) ProtoMessage() {}
 
 func (x *Collateral) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +673,7 @@ func (x *Collateral) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Collateral.ProtoReflect.Descriptor instead.
 func (*Collateral) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{7}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Collateral) GetCollateral() []*TxInput {
@@ -693,7 +709,7 @@ type Withdrawal struct {
 
 func (x *Withdrawal) Reset() {
 	*x = Withdrawal{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -705,7 +721,7 @@ func (x *Withdrawal) String() string {
 func (*Withdrawal) ProtoMessage() {}
 
 func (x *Withdrawal) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -718,7 +734,7 @@ func (x *Withdrawal) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Withdrawal.ProtoReflect.Descriptor instead.
 func (*Withdrawal) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{8}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Withdrawal) GetRewardAccount() []byte {
@@ -744,17 +760,19 @@ func (x *Withdrawal) GetRedeemer() *Redeemer {
 
 // Represents a set of witnesses that validate a transaction
 type WitnessSet struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Vkeywitness   []*VKeyWitness         `protobuf:"bytes,1,rep,name=vkeywitness,proto3" json:"vkeywitness,omitempty"`                       // List of VKey witnesses.
-	Script        []*Script              `protobuf:"bytes,2,rep,name=script,proto3" json:"script,omitempty"`                                 // List of scripts.
-	PlutusDatums  []*PlutusData          `protobuf:"bytes,3,rep,name=plutus_datums,json=plutusDatums,proto3" json:"plutus_datums,omitempty"` // List of Plutus data elements associated with the transaction.
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Vkeywitness        []*VKeyWitness         `protobuf:"bytes,1,rep,name=vkeywitness,proto3" json:"vkeywitness,omitempty"`                       // List of VKey witnesses.
+	Script             []*Script              `protobuf:"bytes,2,rep,name=script,proto3" json:"script,omitempty"`                                 // List of scripts.
+	PlutusDatums       []*PlutusData          `protobuf:"bytes,3,rep,name=plutus_datums,json=plutusDatums,proto3" json:"plutus_datums,omitempty"` // List of Plutus data elements associated with the transaction.
+	Redeemers          []*Redeemer            `protobuf:"bytes,4,rep,name=redeemers,proto3" json:"redeemers,omitempty"`                           // List of redeemers
+	BootstrapWitnesses []*BootstrapWitness    `protobuf:"bytes,5,rep,name=bootstrapWitnesses,proto3" json:"bootstrapWitnesses,omitempty"`         // List of bootstrap witnesses
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *WitnessSet) Reset() {
 	*x = WitnessSet{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -766,7 +784,7 @@ func (x *WitnessSet) String() string {
 func (*WitnessSet) ProtoMessage() {}
 
 func (x *WitnessSet) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -779,7 +797,7 @@ func (x *WitnessSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WitnessSet.ProtoReflect.Descriptor instead.
 func (*WitnessSet) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{9}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *WitnessSet) GetVkeywitness() []*VKeyWitness {
@@ -803,6 +821,20 @@ func (x *WitnessSet) GetPlutusDatums() []*PlutusData {
 	return nil
 }
 
+func (x *WitnessSet) GetRedeemers() []*Redeemer {
+	if x != nil {
+		return x.Redeemers
+	}
+	return nil
+}
+
+func (x *WitnessSet) GetBootstrapWitnesses() []*BootstrapWitness {
+	if x != nil {
+		return x.BootstrapWitnesses
+	}
+	return nil
+}
+
 // Auxiliary data not directly tied to the validation process
 type AuxData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -814,7 +846,7 @@ type AuxData struct {
 
 func (x *AuxData) Reset() {
 	*x = AuxData{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -826,7 +858,7 @@ func (x *AuxData) String() string {
 func (*AuxData) ProtoMessage() {}
 
 func (x *AuxData) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -839,7 +871,7 @@ func (x *AuxData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuxData.ProtoReflect.Descriptor instead.
 func (*AuxData) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{10}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AuxData) GetMetadata() []*Metadata {
@@ -873,13 +905,14 @@ type Tx struct {
 	Auxiliary       *AuxData                    `protobuf:"bytes,12,opt,name=auxiliary,proto3" json:"auxiliary,omitempty"`                                   // Auxiliary data not directly tied to the validation process
 	Hash            []byte                      `protobuf:"bytes,13,opt,name=hash,proto3" json:"hash,omitempty"`                                             // Hash of the transaction that serves as main identifier
 	Proposals       []*GovernanceActionProposal `protobuf:"bytes,14,rep,name=proposals,proto3" json:"proposals,omitempty"`                                   // List of governance actions proposed
+	Votes           []*VoterVotes               `protobuf:"bytes,15,rep,name=votes,proto3" json:"votes,omitempty"`                                           // List of voters and their corresponding votes cast in this transaction
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *Tx) Reset() {
 	*x = Tx{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -891,7 +924,7 @@ func (x *Tx) String() string {
 func (*Tx) ProtoMessage() {}
 
 func (x *Tx) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -904,7 +937,7 @@ func (x *Tx) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tx.ProtoReflect.Descriptor instead.
 func (*Tx) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{11}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Tx) GetInputs() []*TxInput {
@@ -1005,6 +1038,13 @@ func (x *Tx) GetProposals() []*GovernanceActionProposal {
 	return nil
 }
 
+func (x *Tx) GetVotes() []*VoterVotes {
+	if x != nil {
+		return x.Votes
+	}
+	return nil
+}
+
 // Define a governance action proposal
 type GovernanceActionProposal struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1018,7 +1058,7 @@ type GovernanceActionProposal struct {
 
 func (x *GovernanceActionProposal) Reset() {
 	*x = GovernanceActionProposal{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1030,7 +1070,7 @@ func (x *GovernanceActionProposal) String() string {
 func (*GovernanceActionProposal) ProtoMessage() {}
 
 func (x *GovernanceActionProposal) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1043,7 +1083,7 @@ func (x *GovernanceActionProposal) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GovernanceActionProposal.ProtoReflect.Descriptor instead.
 func (*GovernanceActionProposal) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{12}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GovernanceActionProposal) GetDeposit() *BigInt {
@@ -1093,7 +1133,7 @@ type GovernanceAction struct {
 
 func (x *GovernanceAction) Reset() {
 	*x = GovernanceAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1105,7 +1145,7 @@ func (x *GovernanceAction) String() string {
 func (*GovernanceAction) ProtoMessage() {}
 
 func (x *GovernanceAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1118,7 +1158,7 @@ func (x *GovernanceAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GovernanceAction.ProtoReflect.Descriptor instead.
 func (*GovernanceAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{13}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GovernanceAction) GetGovernanceAction() isGovernanceAction_GovernanceAction {
@@ -1182,13 +1222,13 @@ func (x *GovernanceAction) GetNewConstitutionAction() *NewConstitutionAction {
 	return nil
 }
 
-func (x *GovernanceAction) GetInfoAction() uint32 {
+func (x *GovernanceAction) GetInfoAction() *InfoAction {
 	if x != nil {
 		if x, ok := x.GovernanceAction.(*GovernanceAction_InfoAction); ok {
 			return x.InfoAction
 		}
 	}
-	return 0
+	return nil
 }
 
 type isGovernanceAction_GovernanceAction interface {
@@ -1220,8 +1260,7 @@ type GovernanceAction_NewConstitutionAction struct {
 }
 
 type GovernanceAction_InfoAction struct {
-	// TODO: revisit if there's a better way to handle this option because it doesn't actually need a value but proto syntax needs to require it
-	InfoAction uint32 `protobuf:"varint,7,opt,name=info_action,json=infoAction,proto3,oneof"` // Info action should just be the integer number 6
+	InfoAction *InfoAction `protobuf:"bytes,7,opt,name=info_action,json=infoAction,proto3,oneof"` // Info action
 }
 
 func (*GovernanceAction_ParameterChangeAction) isGovernanceAction_GovernanceAction() {}
@@ -1248,7 +1287,7 @@ type GovernanceActionId struct {
 
 func (x *GovernanceActionId) Reset() {
 	*x = GovernanceActionId{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1260,7 +1299,7 @@ func (x *GovernanceActionId) String() string {
 func (*GovernanceActionId) ProtoMessage() {}
 
 func (x *GovernanceActionId) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1273,7 +1312,7 @@ func (x *GovernanceActionId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GovernanceActionId.ProtoReflect.Descriptor instead.
 func (*GovernanceActionId) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{14}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GovernanceActionId) GetTransactionId() []byte {
@@ -1290,6 +1329,175 @@ func (x *GovernanceActionId) GetGovernanceActionIndex() uint32 {
 	return 0
 }
 
+// A single cast vote on a governance action.
+type VotingProcedure struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GovActionId   *GovernanceActionId    `protobuf:"bytes,1,opt,name=gov_action_id,json=govActionId,proto3" json:"gov_action_id,omitempty"` // ID of the governance action being voted on.
+	Vote          Vote                   `protobuf:"varint,2,opt,name=vote,proto3,enum=utxorpc.v1beta.cardano.Vote" json:"vote,omitempty"`  // The vote cast.
+	Anchor        *Anchor                `protobuf:"bytes,3,opt,name=anchor,proto3,oneof" json:"anchor,omitempty"`                          // Optional anchor for voter rationale.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VotingProcedure) Reset() {
+	*x = VotingProcedure{}
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VotingProcedure) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VotingProcedure) ProtoMessage() {}
+
+func (x *VotingProcedure) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VotingProcedure.ProtoReflect.Descriptor instead.
+func (*VotingProcedure) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *VotingProcedure) GetGovActionId() *GovernanceActionId {
+	if x != nil {
+		return x.GovActionId
+	}
+	return nil
+}
+
+func (x *VotingProcedure) GetVote() Vote {
+	if x != nil {
+		return x.Vote
+	}
+	return Vote_VOTE_UNSPECIFIED
+}
+
+func (x *VotingProcedure) GetAnchor() *Anchor {
+	if x != nil {
+		return x.Anchor
+	}
+	return nil
+}
+
+// Groups a voter with all votes they cast in the transaction.
+// SPOs can only identify via pool key hash; DReps and CC members may use key or script hash.
+type VoterVotes struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Voter:
+	//
+	//	*VoterVotes_ConstitutionalCommittee
+	//	*VoterVotes_Drep
+	//	*VoterVotes_Spo
+	Voter         isVoterVotes_Voter `protobuf_oneof:"voter"`
+	Votes         []*VotingProcedure `protobuf:"bytes,4,rep,name=votes,proto3" json:"votes,omitempty"` // Votes cast by this voter.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VoterVotes) Reset() {
+	*x = VoterVotes{}
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VoterVotes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VoterVotes) ProtoMessage() {}
+
+func (x *VoterVotes) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VoterVotes.ProtoReflect.Descriptor instead.
+func (*VoterVotes) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *VoterVotes) GetVoter() isVoterVotes_Voter {
+	if x != nil {
+		return x.Voter
+	}
+	return nil
+}
+
+func (x *VoterVotes) GetConstitutionalCommittee() *StakeCredential {
+	if x != nil {
+		if x, ok := x.Voter.(*VoterVotes_ConstitutionalCommittee); ok {
+			return x.ConstitutionalCommittee
+		}
+	}
+	return nil
+}
+
+func (x *VoterVotes) GetDrep() *StakeCredential {
+	if x != nil {
+		if x, ok := x.Voter.(*VoterVotes_Drep); ok {
+			return x.Drep
+		}
+	}
+	return nil
+}
+
+func (x *VoterVotes) GetSpo() []byte {
+	if x != nil {
+		if x, ok := x.Voter.(*VoterVotes_Spo); ok {
+			return x.Spo
+		}
+	}
+	return nil
+}
+
+func (x *VoterVotes) GetVotes() []*VotingProcedure {
+	if x != nil {
+		return x.Votes
+	}
+	return nil
+}
+
+type isVoterVotes_Voter interface {
+	isVoterVotes_Voter()
+}
+
+type VoterVotes_ConstitutionalCommittee struct {
+	ConstitutionalCommittee *StakeCredential `protobuf:"bytes,1,opt,name=constitutional_committee,json=constitutionalCommittee,proto3,oneof"` // Constitutional Committee member.
+}
+
+type VoterVotes_Drep struct {
+	Drep *StakeCredential `protobuf:"bytes,2,opt,name=drep,proto3,oneof"` // Delegated Representative.
+}
+
+type VoterVotes_Spo struct {
+	Spo []byte `protobuf:"bytes,3,opt,name=spo,proto3,oneof"` // Stake Pool Operator (pool key hash).
+}
+
+func (*VoterVotes_ConstitutionalCommittee) isVoterVotes_Voter() {}
+
+func (*VoterVotes_Drep) isVoterVotes_Voter() {}
+
+func (*VoterVotes_Spo) isVoterVotes_Voter() {}
+
 type ParameterChangeAction struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	GovActionId         *GovernanceActionId    `protobuf:"bytes,1,opt,name=gov_action_id,json=govActionId,proto3" json:"gov_action_id,omitempty"`
@@ -1301,7 +1509,7 @@ type ParameterChangeAction struct {
 
 func (x *ParameterChangeAction) Reset() {
 	*x = ParameterChangeAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[15]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1313,7 +1521,7 @@ func (x *ParameterChangeAction) String() string {
 func (*ParameterChangeAction) ProtoMessage() {}
 
 func (x *ParameterChangeAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[15]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1326,7 +1534,7 @@ func (x *ParameterChangeAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParameterChangeAction.ProtoReflect.Descriptor instead.
 func (*ParameterChangeAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{15}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ParameterChangeAction) GetGovActionId() *GovernanceActionId {
@@ -1360,7 +1568,7 @@ type HardForkInitiationAction struct {
 
 func (x *HardForkInitiationAction) Reset() {
 	*x = HardForkInitiationAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[16]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1372,7 +1580,7 @@ func (x *HardForkInitiationAction) String() string {
 func (*HardForkInitiationAction) ProtoMessage() {}
 
 func (x *HardForkInitiationAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[16]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1385,7 +1593,7 @@ func (x *HardForkInitiationAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HardForkInitiationAction.ProtoReflect.Descriptor instead.
 func (*HardForkInitiationAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{16}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *HardForkInitiationAction) GetGovActionId() *GovernanceActionId {
@@ -1404,7 +1612,7 @@ func (x *HardForkInitiationAction) GetProtocolVersion() *ProtocolVersion {
 
 type TreasuryWithdrawalsAction struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Withdrawals   []*WithdrawalAmount    `protobuf:"bytes,1,rep,name=withdrawals,proto3" json:"withdrawals,omitempty"` // A map of the withdrawals to make
+	Withdrawals   []*WithdrawalAmount    `protobuf:"bytes,1,rep,name=withdrawals,proto3" json:"withdrawals,omitempty"` // A list of the withdrawals to make
 	PolicyHash    []byte                 `protobuf:"bytes,2,opt,name=policy_hash,json=policyHash,proto3" json:"policy_hash,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1412,7 +1620,7 @@ type TreasuryWithdrawalsAction struct {
 
 func (x *TreasuryWithdrawalsAction) Reset() {
 	*x = TreasuryWithdrawalsAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[17]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1424,7 +1632,7 @@ func (x *TreasuryWithdrawalsAction) String() string {
 func (*TreasuryWithdrawalsAction) ProtoMessage() {}
 
 func (x *TreasuryWithdrawalsAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[17]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1437,7 +1645,7 @@ func (x *TreasuryWithdrawalsAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TreasuryWithdrawalsAction.ProtoReflect.Descriptor instead.
 func (*TreasuryWithdrawalsAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{17}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *TreasuryWithdrawalsAction) GetWithdrawals() []*WithdrawalAmount {
@@ -1464,7 +1672,7 @@ type WithdrawalAmount struct {
 
 func (x *WithdrawalAmount) Reset() {
 	*x = WithdrawalAmount{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[18]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1476,7 +1684,7 @@ func (x *WithdrawalAmount) String() string {
 func (*WithdrawalAmount) ProtoMessage() {}
 
 func (x *WithdrawalAmount) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[18]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1489,7 +1697,7 @@ func (x *WithdrawalAmount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WithdrawalAmount.ProtoReflect.Descriptor instead.
 func (*WithdrawalAmount) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{18}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *WithdrawalAmount) GetRewardAccount() []byte {
@@ -1515,7 +1723,7 @@ type NoConfidenceAction struct {
 
 func (x *NoConfidenceAction) Reset() {
 	*x = NoConfidenceAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[19]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1527,7 +1735,7 @@ func (x *NoConfidenceAction) String() string {
 func (*NoConfidenceAction) ProtoMessage() {}
 
 func (x *NoConfidenceAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[19]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1540,7 +1748,7 @@ func (x *NoConfidenceAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NoConfidenceAction.ProtoReflect.Descriptor instead.
 func (*NoConfidenceAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{19}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *NoConfidenceAction) GetGovActionId() *GovernanceActionId {
@@ -1562,7 +1770,7 @@ type UpdateCommitteeAction struct {
 
 func (x *UpdateCommitteeAction) Reset() {
 	*x = UpdateCommitteeAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[20]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1574,7 +1782,7 @@ func (x *UpdateCommitteeAction) String() string {
 func (*UpdateCommitteeAction) ProtoMessage() {}
 
 func (x *UpdateCommitteeAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[20]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1587,7 +1795,7 @@ func (x *UpdateCommitteeAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCommitteeAction.ProtoReflect.Descriptor instead.
 func (*UpdateCommitteeAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{20}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateCommitteeAction) GetGovActionId() *GovernanceActionId {
@@ -1628,7 +1836,7 @@ type NewConstitutionAction struct {
 
 func (x *NewConstitutionAction) Reset() {
 	*x = NewConstitutionAction{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[21]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1640,7 +1848,7 @@ func (x *NewConstitutionAction) String() string {
 func (*NewConstitutionAction) ProtoMessage() {}
 
 func (x *NewConstitutionAction) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[21]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1653,7 +1861,7 @@ func (x *NewConstitutionAction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NewConstitutionAction.ProtoReflect.Descriptor instead.
 func (*NewConstitutionAction) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{21}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *NewConstitutionAction) GetGovActionId() *GovernanceActionId {
@@ -1670,6 +1878,42 @@ func (x *NewConstitutionAction) GetConstitution() *Constitution {
 	return nil
 }
 
+type InfoAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InfoAction) Reset() {
+	*x = InfoAction{}
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InfoAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InfoAction) ProtoMessage() {}
+
+func (x *InfoAction) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InfoAction.ProtoReflect.Descriptor instead.
+func (*InfoAction) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{24}
+}
+
 type Constitution struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Anchor        *Anchor                `protobuf:"bytes,1,opt,name=anchor,proto3" json:"anchor,omitempty"` // Anchor to the new document
@@ -1680,7 +1924,7 @@ type Constitution struct {
 
 func (x *Constitution) Reset() {
 	*x = Constitution{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[22]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1692,7 +1936,7 @@ func (x *Constitution) String() string {
 func (*Constitution) ProtoMessage() {}
 
 func (x *Constitution) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[22]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1705,7 +1949,7 @@ func (x *Constitution) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Constitution.ProtoReflect.Descriptor instead.
 func (*Constitution) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{22}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Constitution) GetAnchor() *Anchor {
@@ -1734,7 +1978,7 @@ type NewCommitteeCredentials struct {
 
 func (x *NewCommitteeCredentials) Reset() {
 	*x = NewCommitteeCredentials{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[23]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1746,7 +1990,7 @@ func (x *NewCommitteeCredentials) String() string {
 func (*NewCommitteeCredentials) ProtoMessage() {}
 
 func (x *NewCommitteeCredentials) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[23]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1759,7 +2003,7 @@ func (x *NewCommitteeCredentials) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NewCommitteeCredentials.ProtoReflect.Descriptor instead.
 func (*NewCommitteeCredentials) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{23}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *NewCommitteeCredentials) GetCommitteeColdCredential() *StakeCredential {
@@ -1788,7 +2032,7 @@ type BlockHeader struct {
 
 func (x *BlockHeader) Reset() {
 	*x = BlockHeader{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[24]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1800,7 +2044,7 @@ func (x *BlockHeader) String() string {
 func (*BlockHeader) ProtoMessage() {}
 
 func (x *BlockHeader) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[24]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1813,7 +2057,7 @@ func (x *BlockHeader) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockHeader.ProtoReflect.Descriptor instead.
 func (*BlockHeader) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{24}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *BlockHeader) GetSlot() uint64 {
@@ -1847,7 +2091,7 @@ type BlockBody struct {
 
 func (x *BlockBody) Reset() {
 	*x = BlockBody{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[25]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1859,7 +2103,7 @@ func (x *BlockBody) String() string {
 func (*BlockBody) ProtoMessage() {}
 
 func (x *BlockBody) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[25]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1872,7 +2116,7 @@ func (x *BlockBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockBody.ProtoReflect.Descriptor instead.
 func (*BlockBody) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{25}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *BlockBody) GetTx() []*Tx {
@@ -1894,7 +2138,7 @@ type Block struct {
 
 func (x *Block) Reset() {
 	*x = Block{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[26]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1906,7 +2150,7 @@ func (x *Block) String() string {
 func (*Block) ProtoMessage() {}
 
 func (x *Block) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[26]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1919,7 +2163,7 @@ func (x *Block) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Block.ProtoReflect.Descriptor instead.
 func (*Block) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{26}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *Block) GetHeader() *BlockHeader {
@@ -1943,6 +2187,75 @@ func (x *Block) GetTimestamp() uint64 {
 	return 0
 }
 
+// Represents bootstrap keys from Byron era
+type BootstrapWitness struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Vkey          []byte                 `protobuf:"bytes,1,opt,name=vkey,proto3" json:"vkey,omitempty"`                            // Verification key.
+	Signature     []byte                 `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`                  // Signature generated using the associated private key.
+	ChainCode     []byte                 `protobuf:"bytes,3,opt,name=chain_code,json=chainCode,proto3" json:"chain_code,omitempty"` // 32 bytes of chain code
+	Attributes    []byte                 `protobuf:"bytes,4,opt,name=attributes,proto3" json:"attributes,omitempty"`                // key attributes
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BootstrapWitness) Reset() {
+	*x = BootstrapWitness{}
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BootstrapWitness) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BootstrapWitness) ProtoMessage() {}
+
+func (x *BootstrapWitness) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BootstrapWitness.ProtoReflect.Descriptor instead.
+func (*BootstrapWitness) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *BootstrapWitness) GetVkey() []byte {
+	if x != nil {
+		return x.Vkey
+	}
+	return nil
+}
+
+func (x *BootstrapWitness) GetSignature() []byte {
+	if x != nil {
+		return x.Signature
+	}
+	return nil
+}
+
+func (x *BootstrapWitness) GetChainCode() []byte {
+	if x != nil {
+		return x.ChainCode
+	}
+	return nil
+}
+
+func (x *BootstrapWitness) GetAttributes() []byte {
+	if x != nil {
+		return x.Attributes
+	}
+	return nil
+}
+
 // Represents a VKey witness used to sign a transaction.
 type VKeyWitness struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1954,7 +2267,7 @@ type VKeyWitness struct {
 
 func (x *VKeyWitness) Reset() {
 	*x = VKeyWitness{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[27]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1966,7 +2279,7 @@ func (x *VKeyWitness) String() string {
 func (*VKeyWitness) ProtoMessage() {}
 
 func (x *VKeyWitness) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[27]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1979,7 +2292,7 @@ func (x *VKeyWitness) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VKeyWitness.ProtoReflect.Descriptor instead.
 func (*VKeyWitness) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{27}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *VKeyWitness) GetVkey() []byte {
@@ -2001,7 +2314,7 @@ type NativeScript struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to NativeScript:
 	//
-	//	*NativeScript_ScriptPubkey
+	//	*NativeScript_ScriptPubkeyHash
 	//	*NativeScript_ScriptAll
 	//	*NativeScript_ScriptAny
 	//	*NativeScript_ScriptNOfK
@@ -2014,7 +2327,7 @@ type NativeScript struct {
 
 func (x *NativeScript) Reset() {
 	*x = NativeScript{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[28]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2026,7 +2339,7 @@ func (x *NativeScript) String() string {
 func (*NativeScript) ProtoMessage() {}
 
 func (x *NativeScript) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[28]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2039,7 +2352,7 @@ func (x *NativeScript) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NativeScript.ProtoReflect.Descriptor instead.
 func (*NativeScript) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{28}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *NativeScript) GetNativeScript() isNativeScript_NativeScript {
@@ -2049,10 +2362,10 @@ func (x *NativeScript) GetNativeScript() isNativeScript_NativeScript {
 	return nil
 }
 
-func (x *NativeScript) GetScriptPubkey() []byte {
+func (x *NativeScript) GetScriptPubkeyHash() []byte {
 	if x != nil {
-		if x, ok := x.NativeScript.(*NativeScript_ScriptPubkey); ok {
-			return x.ScriptPubkey
+		if x, ok := x.NativeScript.(*NativeScript_ScriptPubkeyHash); ok {
+			return x.ScriptPubkeyHash
 		}
 	}
 	return nil
@@ -2107,8 +2420,8 @@ type isNativeScript_NativeScript interface {
 	isNativeScript_NativeScript()
 }
 
-type NativeScript_ScriptPubkey struct {
-	ScriptPubkey []byte `protobuf:"bytes,1,opt,name=script_pubkey,json=scriptPubkey,proto3,oneof"` // Script based on an address key hash.
+type NativeScript_ScriptPubkeyHash struct {
+	ScriptPubkeyHash []byte `protobuf:"bytes,1,opt,name=script_pubkey_hash,json=scriptPubkeyHash,proto3,oneof"` // Script based on an address key hash.
 }
 
 type NativeScript_ScriptAll struct {
@@ -2131,7 +2444,7 @@ type NativeScript_InvalidHereafter struct {
 	InvalidHereafter uint64 `protobuf:"varint,6,opt,name=invalid_hereafter,json=invalidHereafter,proto3,oneof"` // Slot number after which the script is invalid.
 }
 
-func (*NativeScript_ScriptPubkey) isNativeScript_NativeScript() {}
+func (*NativeScript_ScriptPubkeyHash) isNativeScript_NativeScript() {}
 
 func (*NativeScript_ScriptAll) isNativeScript_NativeScript() {}
 
@@ -2153,7 +2466,7 @@ type NativeScriptList struct {
 
 func (x *NativeScriptList) Reset() {
 	*x = NativeScriptList{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[29]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2165,7 +2478,7 @@ func (x *NativeScriptList) String() string {
 func (*NativeScriptList) ProtoMessage() {}
 
 func (x *NativeScriptList) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[29]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2178,7 +2491,7 @@ func (x *NativeScriptList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NativeScriptList.ProtoReflect.Descriptor instead.
 func (*NativeScriptList) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{29}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *NativeScriptList) GetItems() []*NativeScript {
@@ -2199,7 +2512,7 @@ type ScriptNOfK struct {
 
 func (x *ScriptNOfK) Reset() {
 	*x = ScriptNOfK{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[30]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2211,7 +2524,7 @@ func (x *ScriptNOfK) String() string {
 func (*ScriptNOfK) ProtoMessage() {}
 
 func (x *ScriptNOfK) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[30]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2224,7 +2537,7 @@ func (x *ScriptNOfK) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScriptNOfK.ProtoReflect.Descriptor instead.
 func (*ScriptNOfK) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{30}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ScriptNOfK) GetK() uint32 {
@@ -2253,7 +2566,7 @@ type Constr struct {
 
 func (x *Constr) Reset() {
 	*x = Constr{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[31]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2265,7 +2578,7 @@ func (x *Constr) String() string {
 func (*Constr) ProtoMessage() {}
 
 func (x *Constr) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[31]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2278,7 +2591,7 @@ func (x *Constr) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Constr.ProtoReflect.Descriptor instead.
 func (*Constr) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{31}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *Constr) GetTag() uint32 {
@@ -2303,6 +2616,8 @@ func (x *Constr) GetFields() []*PlutusData {
 }
 
 // Represents a big integer for Plutus data in Cardano.
+// The representation here follows CBOR specification for bignums:
+// https://www.rfc-editor.org/rfc/rfc8949.html#name-bignums section 3.4.3.
 type BigInt struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to BigInt:
@@ -2317,7 +2632,7 @@ type BigInt struct {
 
 func (x *BigInt) Reset() {
 	*x = BigInt{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[32]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2329,7 +2644,7 @@ func (x *BigInt) String() string {
 func (*BigInt) ProtoMessage() {}
 
 func (x *BigInt) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[32]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2342,7 +2657,7 @@ func (x *BigInt) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BigInt.ProtoReflect.Descriptor instead.
 func (*BigInt) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{32}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *BigInt) GetBigInt() isBigInt_BigInt {
@@ -2384,15 +2699,15 @@ type isBigInt_BigInt interface {
 }
 
 type BigInt_Int struct {
-	Int int64 `protobuf:"varint,1,opt,name=int,proto3,oneof"`
+	Int int64 `protobuf:"varint,1,opt,name=int,proto3,oneof"` // Stores value fitting within int64 range
 }
 
 type BigInt_BigUInt struct {
-	BigUInt []byte `protobuf:"bytes,2,opt,name=big_u_int,json=bigUInt,proto3,oneof"`
+	BigUInt []byte `protobuf:"bytes,2,opt,name=big_u_int,json=bigUInt,proto3,oneof"` // Stores unsigned value exceeding int64 range
 }
 
 type BigInt_BigNInt struct {
-	BigNInt []byte `protobuf:"bytes,3,opt,name=big_n_int,json=bigNInt,proto3,oneof"`
+	BigNInt []byte `protobuf:"bytes,3,opt,name=big_n_int,json=bigNInt,proto3,oneof"` // Stores negative value `n` exceeding int64 range as `-1 - n`
 }
 
 func (*BigInt_Int) isBigInt_BigInt() {}
@@ -2412,7 +2727,7 @@ type PlutusDataPair struct {
 
 func (x *PlutusDataPair) Reset() {
 	*x = PlutusDataPair{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[33]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2424,7 +2739,7 @@ func (x *PlutusDataPair) String() string {
 func (*PlutusDataPair) ProtoMessage() {}
 
 func (x *PlutusDataPair) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[33]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2437,7 +2752,7 @@ func (x *PlutusDataPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlutusDataPair.ProtoReflect.Descriptor instead.
 func (*PlutusDataPair) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{33}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *PlutusDataPair) GetKey() *PlutusData {
@@ -2471,7 +2786,7 @@ type PlutusData struct {
 
 func (x *PlutusData) Reset() {
 	*x = PlutusData{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[34]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2483,7 +2798,7 @@ func (x *PlutusData) String() string {
 func (*PlutusData) ProtoMessage() {}
 
 func (x *PlutusData) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[34]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2496,7 +2811,7 @@ func (x *PlutusData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlutusData.ProtoReflect.Descriptor instead.
 func (*PlutusData) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{34}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *PlutusData) GetPlutusData() isPlutusData_PlutusData {
@@ -2595,7 +2910,7 @@ type PlutusDataMap struct {
 
 func (x *PlutusDataMap) Reset() {
 	*x = PlutusDataMap{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[35]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2607,7 +2922,7 @@ func (x *PlutusDataMap) String() string {
 func (*PlutusDataMap) ProtoMessage() {}
 
 func (x *PlutusDataMap) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[35]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2620,7 +2935,7 @@ func (x *PlutusDataMap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlutusDataMap.ProtoReflect.Descriptor instead.
 func (*PlutusDataMap) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{35}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *PlutusDataMap) GetPairs() []*PlutusDataPair {
@@ -2640,7 +2955,7 @@ type PlutusDataArray struct {
 
 func (x *PlutusDataArray) Reset() {
 	*x = PlutusDataArray{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[36]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2652,7 +2967,7 @@ func (x *PlutusDataArray) String() string {
 func (*PlutusDataArray) ProtoMessage() {}
 
 func (x *PlutusDataArray) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[36]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2665,7 +2980,7 @@ func (x *PlutusDataArray) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlutusDataArray.ProtoReflect.Descriptor instead.
 func (*PlutusDataArray) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{36}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *PlutusDataArray) GetItems() []*PlutusData {
@@ -2692,7 +3007,7 @@ type Script struct {
 
 func (x *Script) Reset() {
 	*x = Script{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[37]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2704,7 +3019,7 @@ func (x *Script) String() string {
 func (*Script) ProtoMessage() {}
 
 func (x *Script) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[37]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2717,7 +3032,7 @@ func (x *Script) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Script.ProtoReflect.Descriptor instead.
 func (*Script) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{37}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *Script) GetScript() isScript_Script {
@@ -2822,7 +3137,7 @@ type Metadatum struct {
 
 func (x *Metadatum) Reset() {
 	*x = Metadatum{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[38]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2834,7 +3149,7 @@ func (x *Metadatum) String() string {
 func (*Metadatum) ProtoMessage() {}
 
 func (x *Metadatum) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[38]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2847,7 +3162,7 @@ func (x *Metadatum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Metadatum.ProtoReflect.Descriptor instead.
 func (*Metadatum) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{38}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *Metadatum) GetMetadatum() isMetadatum_Metadatum {
@@ -2945,7 +3260,7 @@ type MetadatumArray struct {
 
 func (x *MetadatumArray) Reset() {
 	*x = MetadatumArray{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[39]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2957,7 +3272,7 @@ func (x *MetadatumArray) String() string {
 func (*MetadatumArray) ProtoMessage() {}
 
 func (x *MetadatumArray) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[39]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2970,7 +3285,7 @@ func (x *MetadatumArray) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetadatumArray.ProtoReflect.Descriptor instead.
 func (*MetadatumArray) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{39}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *MetadatumArray) GetItems() []*Metadatum {
@@ -2989,7 +3304,7 @@ type MetadatumMap struct {
 
 func (x *MetadatumMap) Reset() {
 	*x = MetadatumMap{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[40]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3001,7 +3316,7 @@ func (x *MetadatumMap) String() string {
 func (*MetadatumMap) ProtoMessage() {}
 
 func (x *MetadatumMap) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[40]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3014,7 +3329,7 @@ func (x *MetadatumMap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetadatumMap.ProtoReflect.Descriptor instead.
 func (*MetadatumMap) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{40}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *MetadatumMap) GetPairs() []*MetadatumPair {
@@ -3034,7 +3349,7 @@ type MetadatumPair struct {
 
 func (x *MetadatumPair) Reset() {
 	*x = MetadatumPair{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[41]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3046,7 +3361,7 @@ func (x *MetadatumPair) String() string {
 func (*MetadatumPair) ProtoMessage() {}
 
 func (x *MetadatumPair) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[41]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3059,7 +3374,7 @@ func (x *MetadatumPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetadatumPair.ProtoReflect.Descriptor instead.
 func (*MetadatumPair) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{41}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *MetadatumPair) GetKey() *Metadatum {
@@ -3086,7 +3401,7 @@ type Metadata struct {
 
 func (x *Metadata) Reset() {
 	*x = Metadata{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[42]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3098,7 +3413,7 @@ func (x *Metadata) String() string {
 func (*Metadata) ProtoMessage() {}
 
 func (x *Metadata) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[42]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3111,7 +3426,7 @@ func (x *Metadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Metadata.ProtoReflect.Descriptor instead.
 func (*Metadata) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{42}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *Metadata) GetLabel() uint64 {
@@ -3142,7 +3457,7 @@ type StakeCredential struct {
 
 func (x *StakeCredential) Reset() {
 	*x = StakeCredential{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[43]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3154,7 +3469,7 @@ func (x *StakeCredential) String() string {
 func (*StakeCredential) ProtoMessage() {}
 
 func (x *StakeCredential) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[43]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3167,7 +3482,7 @@ func (x *StakeCredential) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeCredential.ProtoReflect.Descriptor instead.
 func (*StakeCredential) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{43}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *StakeCredential) GetStakeCredential() isStakeCredential_StakeCredential {
@@ -3222,7 +3537,7 @@ type RationalNumber struct {
 
 func (x *RationalNumber) Reset() {
 	*x = RationalNumber{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[44]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3234,7 +3549,7 @@ func (x *RationalNumber) String() string {
 func (*RationalNumber) ProtoMessage() {}
 
 func (x *RationalNumber) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[44]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3247,7 +3562,7 @@ func (x *RationalNumber) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RationalNumber.ProtoReflect.Descriptor instead.
 func (*RationalNumber) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{44}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *RationalNumber) GetNumerator() int32 {
@@ -3277,7 +3592,7 @@ type Relay struct {
 
 func (x *Relay) Reset() {
 	*x = Relay{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[45]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3289,7 +3604,7 @@ func (x *Relay) String() string {
 func (*Relay) ProtoMessage() {}
 
 func (x *Relay) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[45]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3302,7 +3617,7 @@ func (x *Relay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Relay.ProtoReflect.Descriptor instead.
 func (*Relay) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{45}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *Relay) GetIpV4() []byte {
@@ -3344,7 +3659,7 @@ type PoolMetadata struct {
 
 func (x *PoolMetadata) Reset() {
 	*x = PoolMetadata{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[46]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3356,7 +3671,7 @@ func (x *PoolMetadata) String() string {
 func (*PoolMetadata) ProtoMessage() {}
 
 func (x *PoolMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[46]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3369,7 +3684,7 @@ func (x *PoolMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolMetadata.ProtoReflect.Descriptor instead.
 func (*PoolMetadata) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{46}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *PoolMetadata) GetUrl() string {
@@ -3418,7 +3733,7 @@ type Certificate struct {
 
 func (x *Certificate) Reset() {
 	*x = Certificate{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[47]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3430,7 +3745,7 @@ func (x *Certificate) String() string {
 func (*Certificate) ProtoMessage() {}
 
 func (x *Certificate) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[47]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3443,7 +3758,7 @@ func (x *Certificate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Certificate.ProtoReflect.Descriptor instead.
 func (*Certificate) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{47}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *Certificate) GetCertificate() isCertificate_Certificate {
@@ -3760,7 +4075,7 @@ type StakeDelegationCert struct {
 
 func (x *StakeDelegationCert) Reset() {
 	*x = StakeDelegationCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[48]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3772,7 +4087,7 @@ func (x *StakeDelegationCert) String() string {
 func (*StakeDelegationCert) ProtoMessage() {}
 
 func (x *StakeDelegationCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[48]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3785,7 +4100,7 @@ func (x *StakeDelegationCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeDelegationCert.ProtoReflect.Descriptor instead.
 func (*StakeDelegationCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{48}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *StakeDelegationCert) GetStakeCredential() *StakeCredential {
@@ -3820,7 +4135,7 @@ type PoolRegistrationCert struct {
 
 func (x *PoolRegistrationCert) Reset() {
 	*x = PoolRegistrationCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[49]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3832,7 +4147,7 @@ func (x *PoolRegistrationCert) String() string {
 func (*PoolRegistrationCert) ProtoMessage() {}
 
 func (x *PoolRegistrationCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[49]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3845,7 +4160,7 @@ func (x *PoolRegistrationCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolRegistrationCert.ProtoReflect.Descriptor instead.
 func (*PoolRegistrationCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{49}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *PoolRegistrationCert) GetOperator() []byte {
@@ -3922,7 +4237,7 @@ type PoolRetirementCert struct {
 
 func (x *PoolRetirementCert) Reset() {
 	*x = PoolRetirementCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[50]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3934,7 +4249,7 @@ func (x *PoolRetirementCert) String() string {
 func (*PoolRetirementCert) ProtoMessage() {}
 
 func (x *PoolRetirementCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[50]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3947,7 +4262,7 @@ func (x *PoolRetirementCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolRetirementCert.ProtoReflect.Descriptor instead.
 func (*PoolRetirementCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{50}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *PoolRetirementCert) GetPoolKeyhash() []byte {
@@ -3976,7 +4291,7 @@ type GenesisKeyDelegationCert struct {
 
 func (x *GenesisKeyDelegationCert) Reset() {
 	*x = GenesisKeyDelegationCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[51]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3988,7 +4303,7 @@ func (x *GenesisKeyDelegationCert) String() string {
 func (*GenesisKeyDelegationCert) ProtoMessage() {}
 
 func (x *GenesisKeyDelegationCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[51]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4001,7 +4316,7 @@ func (x *GenesisKeyDelegationCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenesisKeyDelegationCert.ProtoReflect.Descriptor instead.
 func (*GenesisKeyDelegationCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{51}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *GenesisKeyDelegationCert) GetGenesisHash() []byte {
@@ -4035,7 +4350,7 @@ type MirTarget struct {
 
 func (x *MirTarget) Reset() {
 	*x = MirTarget{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[52]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4047,7 +4362,7 @@ func (x *MirTarget) String() string {
 func (*MirTarget) ProtoMessage() {}
 
 func (x *MirTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[52]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4060,7 +4375,7 @@ func (x *MirTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MirTarget.ProtoReflect.Descriptor instead.
 func (*MirTarget) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{52}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *MirTarget) GetStakeCredential() *StakeCredential {
@@ -4080,7 +4395,7 @@ func (x *MirTarget) GetDeltaCoin() *BigInt {
 // Represents a move instantaneous reward certificate in Cardano.
 type MirCert struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	From          MirSource              `protobuf:"varint,1,opt,name=from,proto3,enum=utxorpc.v1alpha.cardano.MirSource" json:"from,omitempty"`
+	From          MirSource              `protobuf:"varint,1,opt,name=from,proto3,enum=utxorpc.v1beta.cardano.MirSource" json:"from,omitempty"`
 	To            []*MirTarget           `protobuf:"bytes,2,rep,name=to,proto3" json:"to,omitempty"`
 	OtherPot      uint64                 `protobuf:"varint,3,opt,name=other_pot,json=otherPot,proto3" json:"other_pot,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -4089,7 +4404,7 @@ type MirCert struct {
 
 func (x *MirCert) Reset() {
 	*x = MirCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[53]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4101,7 +4416,7 @@ func (x *MirCert) String() string {
 func (*MirCert) ProtoMessage() {}
 
 func (x *MirCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[53]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4114,7 +4429,7 @@ func (x *MirCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MirCert.ProtoReflect.Descriptor instead.
 func (*MirCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{53}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *MirCert) GetFrom() MirSource {
@@ -4148,7 +4463,7 @@ type RegCert struct {
 
 func (x *RegCert) Reset() {
 	*x = RegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[54]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4160,7 +4475,7 @@ func (x *RegCert) String() string {
 func (*RegCert) ProtoMessage() {}
 
 func (x *RegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[54]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4173,7 +4488,7 @@ func (x *RegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegCert.ProtoReflect.Descriptor instead.
 func (*RegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{54}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *RegCert) GetStakeCredential() *StakeCredential {
@@ -4200,7 +4515,7 @@ type UnRegCert struct {
 
 func (x *UnRegCert) Reset() {
 	*x = UnRegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[55]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4212,7 +4527,7 @@ func (x *UnRegCert) String() string {
 func (*UnRegCert) ProtoMessage() {}
 
 func (x *UnRegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[55]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4225,7 +4540,7 @@ func (x *UnRegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnRegCert.ProtoReflect.Descriptor instead.
 func (*UnRegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{55}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UnRegCert) GetStakeCredential() *StakeCredential {
@@ -4257,7 +4572,7 @@ type DRep struct {
 
 func (x *DRep) Reset() {
 	*x = DRep{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[56]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4269,7 +4584,7 @@ func (x *DRep) String() string {
 func (*DRep) ProtoMessage() {}
 
 func (x *DRep) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[56]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4282,7 +4597,7 @@ func (x *DRep) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DRep.ProtoReflect.Descriptor instead.
 func (*DRep) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{56}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *DRep) GetDrep() isDRep_Drep {
@@ -4366,7 +4681,7 @@ type VoteDelegCert struct {
 
 func (x *VoteDelegCert) Reset() {
 	*x = VoteDelegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[57]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4378,7 +4693,7 @@ func (x *VoteDelegCert) String() string {
 func (*VoteDelegCert) ProtoMessage() {}
 
 func (x *VoteDelegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[57]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4391,7 +4706,7 @@ func (x *VoteDelegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteDelegCert.ProtoReflect.Descriptor instead.
 func (*VoteDelegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{57}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *VoteDelegCert) GetStakeCredential() *StakeCredential {
@@ -4419,7 +4734,7 @@ type StakeVoteDelegCert struct {
 
 func (x *StakeVoteDelegCert) Reset() {
 	*x = StakeVoteDelegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[58]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4431,7 +4746,7 @@ func (x *StakeVoteDelegCert) String() string {
 func (*StakeVoteDelegCert) ProtoMessage() {}
 
 func (x *StakeVoteDelegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[58]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4444,7 +4759,7 @@ func (x *StakeVoteDelegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeVoteDelegCert.ProtoReflect.Descriptor instead.
 func (*StakeVoteDelegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{58}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *StakeVoteDelegCert) GetStakeCredential() *StakeCredential {
@@ -4479,7 +4794,7 @@ type StakeRegDelegCert struct {
 
 func (x *StakeRegDelegCert) Reset() {
 	*x = StakeRegDelegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[59]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4491,7 +4806,7 @@ func (x *StakeRegDelegCert) String() string {
 func (*StakeRegDelegCert) ProtoMessage() {}
 
 func (x *StakeRegDelegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[59]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4504,7 +4819,7 @@ func (x *StakeRegDelegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeRegDelegCert.ProtoReflect.Descriptor instead.
 func (*StakeRegDelegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{59}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *StakeRegDelegCert) GetStakeCredential() *StakeCredential {
@@ -4539,7 +4854,7 @@ type VoteRegDelegCert struct {
 
 func (x *VoteRegDelegCert) Reset() {
 	*x = VoteRegDelegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[60]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4551,7 +4866,7 @@ func (x *VoteRegDelegCert) String() string {
 func (*VoteRegDelegCert) ProtoMessage() {}
 
 func (x *VoteRegDelegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[60]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4564,7 +4879,7 @@ func (x *VoteRegDelegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoteRegDelegCert.ProtoReflect.Descriptor instead.
 func (*VoteRegDelegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{60}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *VoteRegDelegCert) GetStakeCredential() *StakeCredential {
@@ -4600,7 +4915,7 @@ type StakeVoteRegDelegCert struct {
 
 func (x *StakeVoteRegDelegCert) Reset() {
 	*x = StakeVoteRegDelegCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[61]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4612,7 +4927,7 @@ func (x *StakeVoteRegDelegCert) String() string {
 func (*StakeVoteRegDelegCert) ProtoMessage() {}
 
 func (x *StakeVoteRegDelegCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[61]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4625,7 +4940,7 @@ func (x *StakeVoteRegDelegCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeVoteRegDelegCert.ProtoReflect.Descriptor instead.
 func (*StakeVoteRegDelegCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{61}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *StakeVoteRegDelegCert) GetStakeCredential() *StakeCredential {
@@ -4666,7 +4981,7 @@ type AuthCommitteeHotCert struct {
 
 func (x *AuthCommitteeHotCert) Reset() {
 	*x = AuthCommitteeHotCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[62]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4678,7 +4993,7 @@ func (x *AuthCommitteeHotCert) String() string {
 func (*AuthCommitteeHotCert) ProtoMessage() {}
 
 func (x *AuthCommitteeHotCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[62]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4691,7 +5006,7 @@ func (x *AuthCommitteeHotCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthCommitteeHotCert.ProtoReflect.Descriptor instead.
 func (*AuthCommitteeHotCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{62}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *AuthCommitteeHotCert) GetCommitteeColdCredential() *StakeCredential {
@@ -4718,7 +5033,7 @@ type Anchor struct {
 
 func (x *Anchor) Reset() {
 	*x = Anchor{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[63]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4730,7 +5045,7 @@ func (x *Anchor) String() string {
 func (*Anchor) ProtoMessage() {}
 
 func (x *Anchor) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[63]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4743,7 +5058,7 @@ func (x *Anchor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Anchor.ProtoReflect.Descriptor instead.
 func (*Anchor) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{63}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *Anchor) GetUrl() string {
@@ -4770,7 +5085,7 @@ type ResignCommitteeColdCert struct {
 
 func (x *ResignCommitteeColdCert) Reset() {
 	*x = ResignCommitteeColdCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[64]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4782,7 +5097,7 @@ func (x *ResignCommitteeColdCert) String() string {
 func (*ResignCommitteeColdCert) ProtoMessage() {}
 
 func (x *ResignCommitteeColdCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[64]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4795,7 +5110,7 @@ func (x *ResignCommitteeColdCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResignCommitteeColdCert.ProtoReflect.Descriptor instead.
 func (*ResignCommitteeColdCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{64}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ResignCommitteeColdCert) GetCommitteeColdCredential() *StakeCredential {
@@ -4823,7 +5138,7 @@ type RegDRepCert struct {
 
 func (x *RegDRepCert) Reset() {
 	*x = RegDRepCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[65]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4835,7 +5150,7 @@ func (x *RegDRepCert) String() string {
 func (*RegDRepCert) ProtoMessage() {}
 
 func (x *RegDRepCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[65]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4848,7 +5163,7 @@ func (x *RegDRepCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegDRepCert.ProtoReflect.Descriptor instead.
 func (*RegDRepCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{65}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *RegDRepCert) GetDrepCredential() *StakeCredential {
@@ -4882,7 +5197,7 @@ type UnRegDRepCert struct {
 
 func (x *UnRegDRepCert) Reset() {
 	*x = UnRegDRepCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[66]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4894,7 +5209,7 @@ func (x *UnRegDRepCert) String() string {
 func (*UnRegDRepCert) ProtoMessage() {}
 
 func (x *UnRegDRepCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[66]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4907,7 +5222,7 @@ func (x *UnRegDRepCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnRegDRepCert.ProtoReflect.Descriptor instead.
 func (*UnRegDRepCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{66}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *UnRegDRepCert) GetDrepCredential() *StakeCredential {
@@ -4934,7 +5249,7 @@ type UpdateDRepCert struct {
 
 func (x *UpdateDRepCert) Reset() {
 	*x = UpdateDRepCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[67]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4946,7 +5261,7 @@ func (x *UpdateDRepCert) String() string {
 func (*UpdateDRepCert) ProtoMessage() {}
 
 func (x *UpdateDRepCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[67]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4959,7 +5274,7 @@ func (x *UpdateDRepCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDRepCert.ProtoReflect.Descriptor instead.
 func (*UpdateDRepCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{67}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *UpdateDRepCert) GetDrepCredential() *StakeCredential {
@@ -4988,7 +5303,7 @@ type AddressPattern struct {
 
 func (x *AddressPattern) Reset() {
 	*x = AddressPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[68]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5000,7 +5315,7 @@ func (x *AddressPattern) String() string {
 func (*AddressPattern) ProtoMessage() {}
 
 func (x *AddressPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[68]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5013,7 +5328,7 @@ func (x *AddressPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressPattern.ProtoReflect.Descriptor instead.
 func (*AddressPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{68}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *AddressPattern) GetExactAddress() []byte {
@@ -5048,7 +5363,7 @@ type AssetPattern struct {
 
 func (x *AssetPattern) Reset() {
 	*x = AssetPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[69]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5060,7 +5375,7 @@ func (x *AssetPattern) String() string {
 func (*AssetPattern) ProtoMessage() {}
 
 func (x *AssetPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[69]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5073,7 +5388,7 @@ func (x *AssetPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetPattern.ProtoReflect.Descriptor instead.
 func (*AssetPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{69}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *AssetPattern) GetPolicyId() []byte {
@@ -5110,7 +5425,7 @@ type CertificatePattern struct {
 
 func (x *CertificatePattern) Reset() {
 	*x = CertificatePattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[70]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5122,7 +5437,7 @@ func (x *CertificatePattern) String() string {
 func (*CertificatePattern) ProtoMessage() {}
 
 func (x *CertificatePattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[70]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5135,7 +5450,7 @@ func (x *CertificatePattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CertificatePattern.ProtoReflect.Descriptor instead.
 func (*CertificatePattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{70}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *CertificatePattern) GetCertificateType() isCertificatePattern_CertificateType {
@@ -5280,7 +5595,7 @@ type StakeDelegationPattern struct {
 
 func (x *StakeDelegationPattern) Reset() {
 	*x = StakeDelegationPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[71]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5292,7 +5607,7 @@ func (x *StakeDelegationPattern) String() string {
 func (*StakeDelegationPattern) ProtoMessage() {}
 
 func (x *StakeDelegationPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[71]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5305,7 +5620,7 @@ func (x *StakeDelegationPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StakeDelegationPattern.ProtoReflect.Descriptor instead.
 func (*StakeDelegationPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{71}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *StakeDelegationPattern) GetStakeCredential() *StakeCredential {
@@ -5333,7 +5648,7 @@ type PoolRegistrationPattern struct {
 
 func (x *PoolRegistrationPattern) Reset() {
 	*x = PoolRegistrationPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[72]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5345,7 +5660,7 @@ func (x *PoolRegistrationPattern) String() string {
 func (*PoolRegistrationPattern) ProtoMessage() {}
 
 func (x *PoolRegistrationPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[72]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5358,7 +5673,7 @@ func (x *PoolRegistrationPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolRegistrationPattern.ProtoReflect.Descriptor instead.
 func (*PoolRegistrationPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{72}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *PoolRegistrationPattern) GetOperator() []byte {
@@ -5386,7 +5701,7 @@ type PoolRetirementPattern struct {
 
 func (x *PoolRetirementPattern) Reset() {
 	*x = PoolRetirementPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[73]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5398,7 +5713,7 @@ func (x *PoolRetirementPattern) String() string {
 func (*PoolRetirementPattern) ProtoMessage() {}
 
 func (x *PoolRetirementPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[73]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5411,7 +5726,7 @@ func (x *PoolRetirementPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolRetirementPattern.ProtoReflect.Descriptor instead.
 func (*PoolRetirementPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{73}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *PoolRetirementPattern) GetPoolKeyhash() []byte {
@@ -5439,7 +5754,7 @@ type TxOutputPattern struct {
 
 func (x *TxOutputPattern) Reset() {
 	*x = TxOutputPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[74]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5451,7 +5766,7 @@ func (x *TxOutputPattern) String() string {
 func (*TxOutputPattern) ProtoMessage() {}
 
 func (x *TxOutputPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[74]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5464,7 +5779,7 @@ func (x *TxOutputPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxOutputPattern.ProtoReflect.Descriptor instead.
 func (*TxOutputPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{74}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *TxOutputPattern) GetAddress() *AddressPattern {
@@ -5496,7 +5811,7 @@ type TxPattern struct {
 
 func (x *TxPattern) Reset() {
 	*x = TxPattern{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[75]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5508,7 +5823,7 @@ func (x *TxPattern) String() string {
 func (*TxPattern) ProtoMessage() {}
 
 func (x *TxPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[75]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5521,7 +5836,7 @@ func (x *TxPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxPattern.ProtoReflect.Descriptor instead.
 func (*TxPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{75}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *TxPattern) GetConsumes() *TxOutputPattern {
@@ -5576,7 +5891,7 @@ type ExUnits struct {
 
 func (x *ExUnits) Reset() {
 	*x = ExUnits{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[76]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5588,7 +5903,7 @@ func (x *ExUnits) String() string {
 func (*ExUnits) ProtoMessage() {}
 
 func (x *ExUnits) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[76]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5601,7 +5916,7 @@ func (x *ExUnits) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExUnits.ProtoReflect.Descriptor instead.
 func (*ExUnits) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{76}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *ExUnits) GetSteps() uint64 {
@@ -5628,7 +5943,7 @@ type ExPrices struct {
 
 func (x *ExPrices) Reset() {
 	*x = ExPrices{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[77]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5640,7 +5955,7 @@ func (x *ExPrices) String() string {
 func (*ExPrices) ProtoMessage() {}
 
 func (x *ExPrices) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[77]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5653,7 +5968,7 @@ func (x *ExPrices) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExPrices.ProtoReflect.Descriptor instead.
 func (*ExPrices) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{77}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ExPrices) GetSteps() *RationalNumber {
@@ -5680,7 +5995,7 @@ type ProtocolVersion struct {
 
 func (x *ProtocolVersion) Reset() {
 	*x = ProtocolVersion{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[78]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5692,7 +6007,7 @@ func (x *ProtocolVersion) String() string {
 func (*ProtocolVersion) ProtoMessage() {}
 
 func (x *ProtocolVersion) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[78]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5705,7 +6020,7 @@ func (x *ProtocolVersion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProtocolVersion.ProtoReflect.Descriptor instead.
 func (*ProtocolVersion) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{78}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *ProtocolVersion) GetMajor() uint32 {
@@ -5731,7 +6046,7 @@ type CostModel struct {
 
 func (x *CostModel) Reset() {
 	*x = CostModel{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[79]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5743,7 +6058,7 @@ func (x *CostModel) String() string {
 func (*CostModel) ProtoMessage() {}
 
 func (x *CostModel) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[79]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5756,7 +6071,7 @@ func (x *CostModel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostModel.ProtoReflect.Descriptor instead.
 func (*CostModel) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{79}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *CostModel) GetValues() []int64 {
@@ -5778,7 +6093,7 @@ type CostModels struct {
 
 func (x *CostModels) Reset() {
 	*x = CostModels{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[80]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5790,7 +6105,7 @@ func (x *CostModels) String() string {
 func (*CostModels) ProtoMessage() {}
 
 func (x *CostModels) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[80]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5803,7 +6118,7 @@ func (x *CostModels) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostModels.ProtoReflect.Descriptor instead.
 func (*CostModels) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{80}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *CostModels) GetPlutusV1() *CostModel {
@@ -5843,7 +6158,7 @@ type VotingThresholds struct {
 
 func (x *VotingThresholds) Reset() {
 	*x = VotingThresholds{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[81]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5855,7 +6170,7 @@ func (x *VotingThresholds) String() string {
 func (*VotingThresholds) ProtoMessage() {}
 
 func (x *VotingThresholds) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[81]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5868,7 +6183,7 @@ func (x *VotingThresholds) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VotingThresholds.ProtoReflect.Descriptor instead.
 func (*VotingThresholds) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{81}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *VotingThresholds) GetThresholds() []*RationalNumber {
@@ -5917,7 +6232,7 @@ type PParams struct {
 
 func (x *PParams) Reset() {
 	*x = PParams{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[82]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5929,7 +6244,7 @@ func (x *PParams) String() string {
 func (*PParams) ProtoMessage() {}
 
 func (x *PParams) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[82]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5942,7 +6257,7 @@ func (x *PParams) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PParams.ProtoReflect.Descriptor instead.
 func (*PParams) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{82}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *PParams) GetCoinsPerUtxoByte() *BigInt {
@@ -6173,7 +6488,7 @@ type EraBoundary struct {
 
 func (x *EraBoundary) Reset() {
 	*x = EraBoundary{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[83]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6185,7 +6500,7 @@ func (x *EraBoundary) String() string {
 func (*EraBoundary) ProtoMessage() {}
 
 func (x *EraBoundary) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[83]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6198,7 +6513,7 @@ func (x *EraBoundary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EraBoundary.ProtoReflect.Descriptor instead.
 func (*EraBoundary) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{83}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *EraBoundary) GetTime() uint64 {
@@ -6234,7 +6549,7 @@ type EraSummary struct {
 
 func (x *EraSummary) Reset() {
 	*x = EraSummary{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[84]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6246,7 +6561,7 @@ func (x *EraSummary) String() string {
 func (*EraSummary) ProtoMessage() {}
 
 func (x *EraSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[84]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6259,7 +6574,7 @@ func (x *EraSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EraSummary.ProtoReflect.Descriptor instead.
 func (*EraSummary) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{84}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *EraSummary) GetName() string {
@@ -6299,7 +6614,7 @@ type EraSummaries struct {
 
 func (x *EraSummaries) Reset() {
 	*x = EraSummaries{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[85]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6311,7 +6626,7 @@ func (x *EraSummaries) String() string {
 func (*EraSummaries) ProtoMessage() {}
 
 func (x *EraSummaries) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[85]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6324,7 +6639,7 @@ func (x *EraSummaries) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EraSummaries.ProtoReflect.Descriptor instead.
 func (*EraSummaries) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{85}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *EraSummaries) GetSummaries() []*EraSummary {
@@ -6343,7 +6658,7 @@ type EvalError struct {
 
 func (x *EvalError) Reset() {
 	*x = EvalError{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[86]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6355,7 +6670,7 @@ func (x *EvalError) String() string {
 func (*EvalError) ProtoMessage() {}
 
 func (x *EvalError) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[86]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6368,7 +6683,7 @@ func (x *EvalError) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvalError.ProtoReflect.Descriptor instead.
 func (*EvalError) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{86}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *EvalError) GetMsg() string {
@@ -6387,7 +6702,7 @@ type EvalTrace struct {
 
 func (x *EvalTrace) Reset() {
 	*x = EvalTrace{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[87]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6399,7 +6714,7 @@ func (x *EvalTrace) String() string {
 func (*EvalTrace) ProtoMessage() {}
 
 func (x *EvalTrace) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[87]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6412,7 +6727,7 @@ func (x *EvalTrace) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvalTrace.ProtoReflect.Descriptor instead.
 func (*EvalTrace) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{87}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *EvalTrace) GetMsg() string {
@@ -6435,7 +6750,7 @@ type TxEval struct {
 
 func (x *TxEval) Reset() {
 	*x = TxEval{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[88]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6447,7 +6762,7 @@ func (x *TxEval) String() string {
 func (*TxEval) ProtoMessage() {}
 
 func (x *TxEval) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[88]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6460,7 +6775,7 @@ func (x *TxEval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxEval.ProtoReflect.Descriptor instead.
 func (*TxEval) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{88}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *TxEval) GetFee() *BigInt {
@@ -6507,7 +6822,7 @@ type ExtraEntropy struct {
 
 func (x *ExtraEntropy) Reset() {
 	*x = ExtraEntropy{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[89]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6519,7 +6834,7 @@ func (x *ExtraEntropy) String() string {
 func (*ExtraEntropy) ProtoMessage() {}
 
 func (x *ExtraEntropy) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[89]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6532,7 +6847,7 @@ func (x *ExtraEntropy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExtraEntropy.ProtoReflect.Descriptor instead.
 func (*ExtraEntropy) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{89}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ExtraEntropy) GetTag() string {
@@ -6564,7 +6879,7 @@ type BlockVersionData struct {
 
 func (x *BlockVersionData) Reset() {
 	*x = BlockVersionData{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[90]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6576,7 +6891,7 @@ func (x *BlockVersionData) String() string {
 func (*BlockVersionData) ProtoMessage() {}
 
 func (x *BlockVersionData) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[90]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6589,7 +6904,7 @@ func (x *BlockVersionData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockVersionData.ProtoReflect.Descriptor instead.
 func (*BlockVersionData) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{90}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *BlockVersionData) GetScriptVersion() uint32 {
@@ -6701,7 +7016,7 @@ type SoftforkRule struct {
 
 func (x *SoftforkRule) Reset() {
 	*x = SoftforkRule{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[91]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6713,7 +7028,7 @@ func (x *SoftforkRule) String() string {
 func (*SoftforkRule) ProtoMessage() {}
 
 func (x *SoftforkRule) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[91]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6726,7 +7041,7 @@ func (x *SoftforkRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SoftforkRule.ProtoReflect.Descriptor instead.
 func (*SoftforkRule) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{91}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *SoftforkRule) GetInitThd() string {
@@ -6760,7 +7075,7 @@ type TxFeePolicy struct {
 
 func (x *TxFeePolicy) Reset() {
 	*x = TxFeePolicy{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[92]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6772,7 +7087,7 @@ func (x *TxFeePolicy) String() string {
 func (*TxFeePolicy) ProtoMessage() {}
 
 func (x *TxFeePolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[92]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6785,7 +7100,7 @@ func (x *TxFeePolicy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxFeePolicy.ProtoReflect.Descriptor instead.
 func (*TxFeePolicy) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{92}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *TxFeePolicy) GetMultiplier() string {
@@ -6814,7 +7129,7 @@ type ProtocolConsts struct {
 
 func (x *ProtocolConsts) Reset() {
 	*x = ProtocolConsts{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[93]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6826,7 +7141,7 @@ func (x *ProtocolConsts) String() string {
 func (*ProtocolConsts) ProtoMessage() {}
 
 func (x *ProtocolConsts) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[93]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6839,7 +7154,7 @@ func (x *ProtocolConsts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProtocolConsts.ProtoReflect.Descriptor instead.
 func (*ProtocolConsts) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{93}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *ProtocolConsts) GetK() uint32 {
@@ -6882,7 +7197,7 @@ type HeavyDelegation struct {
 
 func (x *HeavyDelegation) Reset() {
 	*x = HeavyDelegation{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[94]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6894,7 +7209,7 @@ func (x *HeavyDelegation) String() string {
 func (*HeavyDelegation) ProtoMessage() {}
 
 func (x *HeavyDelegation) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[94]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6907,7 +7222,7 @@ func (x *HeavyDelegation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeavyDelegation.ProtoReflect.Descriptor instead.
 func (*HeavyDelegation) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{94}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *HeavyDelegation) GetCert() string {
@@ -6950,7 +7265,7 @@ type VssCert struct {
 
 func (x *VssCert) Reset() {
 	*x = VssCert{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[95]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6962,7 +7277,7 @@ func (x *VssCert) String() string {
 func (*VssCert) ProtoMessage() {}
 
 func (x *VssCert) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[95]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6975,7 +7290,7 @@ func (x *VssCert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VssCert.ProtoReflect.Descriptor instead.
 func (*VssCert) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{95}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *VssCert) GetExpiryEpoch() uint32 {
@@ -7016,7 +7331,7 @@ type GenDelegs struct {
 
 func (x *GenDelegs) Reset() {
 	*x = GenDelegs{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[96]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7028,7 +7343,7 @@ func (x *GenDelegs) String() string {
 func (*GenDelegs) ProtoMessage() {}
 
 func (x *GenDelegs) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[96]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7041,7 +7356,7 @@ func (x *GenDelegs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenDelegs.ProtoReflect.Descriptor instead.
 func (*GenDelegs) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{96}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *GenDelegs) GetDelegate() string {
@@ -7071,7 +7386,7 @@ type PoolVotingThresholds struct {
 
 func (x *PoolVotingThresholds) Reset() {
 	*x = PoolVotingThresholds{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[97]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7083,7 +7398,7 @@ func (x *PoolVotingThresholds) String() string {
 func (*PoolVotingThresholds) ProtoMessage() {}
 
 func (x *PoolVotingThresholds) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[97]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7096,7 +7411,7 @@ func (x *PoolVotingThresholds) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PoolVotingThresholds.ProtoReflect.Descriptor instead.
 func (*PoolVotingThresholds) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{97}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *PoolVotingThresholds) GetMotionNoConfidence() *RationalNumber {
@@ -7152,7 +7467,7 @@ type DRepVotingThresholds struct {
 
 func (x *DRepVotingThresholds) Reset() {
 	*x = DRepVotingThresholds{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[98]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7164,7 +7479,7 @@ func (x *DRepVotingThresholds) String() string {
 func (*DRepVotingThresholds) ProtoMessage() {}
 
 func (x *DRepVotingThresholds) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[98]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7177,7 +7492,7 @@ func (x *DRepVotingThresholds) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DRepVotingThresholds.ProtoReflect.Descriptor instead.
 func (*DRepVotingThresholds) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{98}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *DRepVotingThresholds) GetMotionNoConfidence() *RationalNumber {
@@ -7260,7 +7575,7 @@ type Committee struct {
 
 func (x *Committee) Reset() {
 	*x = Committee{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[99]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7272,7 +7587,7 @@ func (x *Committee) String() string {
 func (*Committee) ProtoMessage() {}
 
 func (x *Committee) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[99]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7285,7 +7600,7 @@ func (x *Committee) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Committee.ProtoReflect.Descriptor instead.
 func (*Committee) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{99}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *Committee) GetMembers() map[string]uint64 {
@@ -7314,7 +7629,7 @@ type CostModelMap struct {
 
 func (x *CostModelMap) Reset() {
 	*x = CostModelMap{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[100]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7326,7 +7641,7 @@ func (x *CostModelMap) String() string {
 func (*CostModelMap) ProtoMessage() {}
 
 func (x *CostModelMap) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[100]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7339,7 +7654,7 @@ func (x *CostModelMap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CostModelMap.ProtoReflect.Descriptor instead.
 func (*CostModelMap) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{100}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *CostModelMap) GetPlutusV1() *CostModel {
@@ -7425,7 +7740,7 @@ type Genesis struct {
 
 func (x *Genesis) Reset() {
 	*x = Genesis{}
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[101]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7437,7 +7752,7 @@ func (x *Genesis) String() string {
 func (*Genesis) ProtoMessage() {}
 
 func (x *Genesis) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[101]
+	mi := &file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7450,7 +7765,7 @@ func (x *Genesis) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Genesis.ProtoReflect.Descriptor instead.
 func (*Genesis) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP(), []int{101}
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *Genesis) GetAvvmDistr() map[string]string {
@@ -7747,216 +8062,244 @@ func (x *Genesis) GetPoolVotingThresholds() *PoolVotingThresholds {
 	return nil
 }
 
-var File_utxorpc_v1alpha_cardano_cardano_proto protoreflect.FileDescriptor
+var File_utxorpc_v1beta_cardano_cardano_proto protoreflect.FileDescriptor
 
-const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
+const file_utxorpc_v1beta_cardano_cardano_proto_rawDesc = "" +
 	"\n" +
-	"%utxorpc/v1alpha/cardano/cardano.proto\x12\x17utxorpc.v1alpha.cardano\"\x85\x02\n" +
-	"\bRedeemer\x12B\n" +
-	"\apurpose\x18\x01 \x01(\x0e2(.utxorpc.v1alpha.cardano.RedeemerPurposeR\apurpose\x12=\n" +
-	"\apayload\x18\x02 \x01(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\apayload\x12\x14\n" +
-	"\x05index\x18\x03 \x01(\rR\x05index\x12;\n" +
-	"\bex_units\x18\x04 \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\aexUnits\x12#\n" +
-	"\roriginal_cbor\x18\x05 \x01(\fR\foriginalCbor\"\xc4\x01\n" +
+	"$utxorpc/v1beta/cardano/cardano.proto\x12\x16utxorpc.v1beta.cardano\"\x82\x02\n" +
+	"\bRedeemer\x12A\n" +
+	"\apurpose\x18\x01 \x01(\x0e2'.utxorpc.v1beta.cardano.RedeemerPurposeR\apurpose\x12<\n" +
+	"\apayload\x18\x02 \x01(\v2\".utxorpc.v1beta.cardano.PlutusDataR\apayload\x12\x14\n" +
+	"\x05index\x18\x03 \x01(\rR\x05index\x12:\n" +
+	"\bex_units\x18\x04 \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\aexUnits\x12#\n" +
+	"\roriginal_cbor\x18\x05 \x01(\fR\foriginalCbor\"\xd4\x01\n" +
 	"\aTxInput\x12\x17\n" +
 	"\atx_hash\x18\x01 \x01(\fR\x06txHash\x12!\n" +
-	"\foutput_index\x18\x02 \x01(\rR\voutputIndex\x12>\n" +
-	"\tas_output\x18\x03 \x01(\v2!.utxorpc.v1alpha.cardano.TxOutputR\basOutput\x12=\n" +
-	"\bredeemer\x18\x04 \x01(\v2!.utxorpc.v1alpha.cardano.RedeemerR\bredeemer\"\x85\x02\n" +
+	"\foutput_index\x18\x02 \x01(\rR\voutputIndex\x12=\n" +
+	"\tas_output\x18\x03 \x01(\v2 .utxorpc.v1beta.cardano.TxOutputR\basOutput\x12A\n" +
+	"\bredeemer\x18\x04 \x01(\v2 .utxorpc.v1beta.cardano.RedeemerH\x00R\bredeemer\x88\x01\x01B\v\n" +
+	"\t_redeemer\"\xdc\x02\n" +
 	"\bTxOutput\x12\x18\n" +
-	"\aaddress\x18\x01 \x01(\fR\aaddress\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\x12;\n" +
-	"\x06assets\x18\x03 \x03(\v2#.utxorpc.v1alpha.cardano.MultiassetR\x06assets\x124\n" +
-	"\x05datum\x18\x04 \x01(\v2\x1e.utxorpc.v1alpha.cardano.DatumR\x05datum\x127\n" +
-	"\x06script\x18\x05 \x01(\v2\x1f.utxorpc.v1alpha.cardano.ScriptR\x06script\"\x7f\n" +
+	"\aaddress\x18\x01 \x01(\fR\aaddress\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\x12:\n" +
+	"\x06assets\x18\x03 \x03(\v2\".utxorpc.v1beta.cardano.MultiassetR\x06assets\x128\n" +
+	"\x05datum\x18\x04 \x01(\v2\x1d.utxorpc.v1beta.cardano.DatumH\x00R\x05datum\x88\x01\x01\x12;\n" +
+	"\x06script\x18\x05 \x01(\v2\x1e.utxorpc.v1beta.cardano.ScriptH\x01R\x06script\x88\x01\x01\x12(\n" +
+	"\roriginal_cbor\x18\x06 \x01(\fH\x02R\foriginalCbor\x88\x01\x01B\b\n" +
+	"\x06_datumB\t\n" +
+	"\a_scriptB\x10\n" +
+	"\x0e_original_cbor\"\xa6\x01\n" +
 	"\x05Datum\x12\x12\n" +
-	"\x04hash\x18\x01 \x01(\fR\x04hash\x12=\n" +
-	"\apayload\x18\x02 \x01(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\apayload\x12#\n" +
-	"\roriginal_cbor\x18\x03 \x01(\fR\foriginalCbor\"\xab\x01\n" +
-	"\x05Asset\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\fR\x04name\x12B\n" +
-	"\voutput_coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntH\x00R\n" +
-	"outputCoin\x12>\n" +
-	"\tmint_coin\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntH\x00R\bmintCoinB\n" +
+	"\x04hash\x18\x01 \x01(\fR\x04hash\x12A\n" +
+	"\apayload\x18\x02 \x01(\v2\".utxorpc.v1beta.cardano.PlutusDataH\x00R\apayload\x88\x01\x01\x12(\n" +
+	"\roriginal_cbor\x18\x03 \x01(\fH\x01R\foriginalCbor\x88\x01\x01B\n" +
 	"\n" +
-	"\bquantity\"\xa0\x01\n" +
+	"\b_payloadB\x10\n" +
+	"\x0e_original_cbor\"W\n" +
+	"\x05Asset\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\fR\x04name\x12:\n" +
+	"\bquantity\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\bquantity\"`\n" +
 	"\n" +
 	"Multiasset\x12\x1b\n" +
-	"\tpolicy_id\x18\x01 \x01(\fR\bpolicyId\x126\n" +
-	"\x06assets\x18\x02 \x03(\v2\x1e.utxorpc.v1alpha.cardano.AssetR\x06assets\x12=\n" +
-	"\bredeemer\x18\x03 \x01(\v2!.utxorpc.v1alpha.cardano.RedeemerR\bredeemer\"4\n" +
+	"\tpolicy_id\x18\x01 \x01(\fR\bpolicyId\x125\n" +
+	"\x06assets\x18\x02 \x03(\v2\x1d.utxorpc.v1beta.cardano.AssetR\x06assets\"4\n" +
 	"\n" +
 	"TxValidity\x12\x14\n" +
 	"\x05start\x18\x01 \x01(\x04R\x05start\x12\x10\n" +
-	"\x03ttl\x18\x02 \x01(\x04R\x03ttl\"\xea\x01\n" +
+	"\x03ttl\x18\x02 \x01(\x04R\x03ttl\"\xe7\x01\n" +
 	"\n" +
-	"Collateral\x12@\n" +
+	"Collateral\x12?\n" +
 	"\n" +
-	"collateral\x18\x01 \x03(\v2 .utxorpc.v1alpha.cardano.TxInputR\n" +
-	"collateral\x12N\n" +
-	"\x11collateral_return\x18\x02 \x01(\v2!.utxorpc.v1alpha.cardano.TxOutputR\x10collateralReturn\x12J\n" +
-	"\x10total_collateral\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x0ftotalCollateral\"\xa7\x01\n" +
+	"collateral\x18\x01 \x03(\v2\x1f.utxorpc.v1beta.cardano.TxInputR\n" +
+	"collateral\x12M\n" +
+	"\x11collateral_return\x18\x02 \x01(\v2 .utxorpc.v1beta.cardano.TxOutputR\x10collateralReturn\x12I\n" +
+	"\x10total_collateral\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x0ftotalCollateral\"\xa5\x01\n" +
 	"\n" +
 	"Withdrawal\x12%\n" +
-	"\x0ereward_account\x18\x01 \x01(\fR\rrewardAccount\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\x12=\n" +
-	"\bredeemer\x18\x03 \x01(\v2!.utxorpc.v1alpha.cardano.RedeemerR\bredeemer\"\xd7\x01\n" +
+	"\x0ereward_account\x18\x01 \x01(\fR\rrewardAccount\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\x12<\n" +
+	"\bredeemer\x18\x03 \x01(\v2 .utxorpc.v1beta.cardano.RedeemerR\bredeemer\"\xee\x02\n" +
 	"\n" +
-	"WitnessSet\x12F\n" +
-	"\vvkeywitness\x18\x01 \x03(\v2$.utxorpc.v1alpha.cardano.VKeyWitnessR\vvkeywitness\x127\n" +
-	"\x06script\x18\x02 \x03(\v2\x1f.utxorpc.v1alpha.cardano.ScriptR\x06script\x12H\n" +
-	"\rplutus_datums\x18\x03 \x03(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\fplutusDatums\"\x83\x01\n" +
-	"\aAuxData\x12=\n" +
-	"\bmetadata\x18\x01 \x03(\v2!.utxorpc.v1alpha.cardano.MetadataR\bmetadata\x129\n" +
-	"\ascripts\x18\x02 \x03(\v2\x1f.utxorpc.v1alpha.cardano.ScriptR\ascripts\"\xd3\x06\n" +
-	"\x02Tx\x128\n" +
-	"\x06inputs\x18\x01 \x03(\v2 .utxorpc.v1alpha.cardano.TxInputR\x06inputs\x12;\n" +
-	"\aoutputs\x18\x02 \x03(\v2!.utxorpc.v1alpha.cardano.TxOutputR\aoutputs\x12H\n" +
-	"\fcertificates\x18\x03 \x03(\v2$.utxorpc.v1alpha.cardano.CertificateR\fcertificates\x12E\n" +
-	"\vwithdrawals\x18\x04 \x03(\v2#.utxorpc.v1alpha.cardano.WithdrawalR\vwithdrawals\x127\n" +
-	"\x04mint\x18\x05 \x03(\v2#.utxorpc.v1alpha.cardano.MultiassetR\x04mint\x12K\n" +
-	"\x10reference_inputs\x18\x06 \x03(\v2 .utxorpc.v1alpha.cardano.TxInputR\x0freferenceInputs\x12A\n" +
-	"\twitnesses\x18\a \x01(\v2#.utxorpc.v1alpha.cardano.WitnessSetR\twitnesses\x12C\n" +
+	"WitnessSet\x12E\n" +
+	"\vvkeywitness\x18\x01 \x03(\v2#.utxorpc.v1beta.cardano.VKeyWitnessR\vvkeywitness\x126\n" +
+	"\x06script\x18\x02 \x03(\v2\x1e.utxorpc.v1beta.cardano.ScriptR\x06script\x12G\n" +
+	"\rplutus_datums\x18\x03 \x03(\v2\".utxorpc.v1beta.cardano.PlutusDataR\fplutusDatums\x12>\n" +
+	"\tredeemers\x18\x04 \x03(\v2 .utxorpc.v1beta.cardano.RedeemerR\tredeemers\x12X\n" +
+	"\x12bootstrapWitnesses\x18\x05 \x03(\v2(.utxorpc.v1beta.cardano.BootstrapWitnessR\x12bootstrapWitnesses\"\x81\x01\n" +
+	"\aAuxData\x12<\n" +
+	"\bmetadata\x18\x01 \x03(\v2 .utxorpc.v1beta.cardano.MetadataR\bmetadata\x128\n" +
+	"\ascripts\x18\x02 \x03(\v2\x1e.utxorpc.v1beta.cardano.ScriptR\ascripts\"\x81\a\n" +
+	"\x02Tx\x127\n" +
+	"\x06inputs\x18\x01 \x03(\v2\x1f.utxorpc.v1beta.cardano.TxInputR\x06inputs\x12:\n" +
+	"\aoutputs\x18\x02 \x03(\v2 .utxorpc.v1beta.cardano.TxOutputR\aoutputs\x12G\n" +
+	"\fcertificates\x18\x03 \x03(\v2#.utxorpc.v1beta.cardano.CertificateR\fcertificates\x12D\n" +
+	"\vwithdrawals\x18\x04 \x03(\v2\".utxorpc.v1beta.cardano.WithdrawalR\vwithdrawals\x126\n" +
+	"\x04mint\x18\x05 \x03(\v2\".utxorpc.v1beta.cardano.MultiassetR\x04mint\x12J\n" +
+	"\x10reference_inputs\x18\x06 \x03(\v2\x1f.utxorpc.v1beta.cardano.TxInputR\x0freferenceInputs\x12@\n" +
+	"\twitnesses\x18\a \x01(\v2\".utxorpc.v1beta.cardano.WitnessSetR\twitnesses\x12B\n" +
 	"\n" +
-	"collateral\x18\b \x01(\v2#.utxorpc.v1alpha.cardano.CollateralR\n" +
-	"collateral\x121\n" +
-	"\x03fee\x18\t \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x03fee\x12?\n" +
+	"collateral\x18\b \x01(\v2\".utxorpc.v1beta.cardano.CollateralR\n" +
+	"collateral\x120\n" +
+	"\x03fee\x18\t \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x03fee\x12>\n" +
 	"\bvalidity\x18\n" +
-	" \x01(\v2#.utxorpc.v1alpha.cardano.TxValidityR\bvalidity\x12\x1e\n" +
+	" \x01(\v2\".utxorpc.v1beta.cardano.TxValidityR\bvalidity\x12\x1e\n" +
 	"\n" +
 	"successful\x18\v \x01(\bR\n" +
-	"successful\x12>\n" +
-	"\tauxiliary\x18\f \x01(\v2 .utxorpc.v1alpha.cardano.AuxDataR\tauxiliary\x12\x12\n" +
-	"\x04hash\x18\r \x01(\fR\x04hash\x12O\n" +
-	"\tproposals\x18\x0e \x03(\v21.utxorpc.v1alpha.cardano.GovernanceActionProposalR\tproposals\"\xff\x01\n" +
-	"\x18GovernanceActionProposal\x129\n" +
-	"\adeposit\x18\x01 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\adeposit\x12%\n" +
-	"\x0ereward_account\x18\x02 \x01(\fR\rrewardAccount\x12H\n" +
+	"successful\x12=\n" +
+	"\tauxiliary\x18\f \x01(\v2\x1f.utxorpc.v1beta.cardano.AuxDataR\tauxiliary\x12\x12\n" +
+	"\x04hash\x18\r \x01(\fR\x04hash\x12N\n" +
+	"\tproposals\x18\x0e \x03(\v20.utxorpc.v1beta.cardano.GovernanceActionProposalR\tproposals\x128\n" +
+	"\x05votes\x18\x0f \x03(\v2\".utxorpc.v1beta.cardano.VoterVotesR\x05votes\"\xfc\x01\n" +
+	"\x18GovernanceActionProposal\x128\n" +
+	"\adeposit\x18\x01 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\adeposit\x12%\n" +
+	"\x0ereward_account\x18\x02 \x01(\fR\rrewardAccount\x12G\n" +
 	"\n" +
-	"gov_action\x18\x03 \x01(\v2).utxorpc.v1alpha.cardano.GovernanceActionR\tgovAction\x127\n" +
-	"\x06anchor\x18\x04 \x01(\v2\x1f.utxorpc.v1alpha.cardano.AnchorR\x06anchor\"\xd3\x05\n" +
-	"\x10GovernanceAction\x12h\n" +
-	"\x17parameter_change_action\x18\x01 \x01(\v2..utxorpc.v1alpha.cardano.ParameterChangeActionH\x00R\x15parameterChangeAction\x12r\n" +
-	"\x1bhard_fork_initiation_action\x18\x02 \x01(\v21.utxorpc.v1alpha.cardano.HardForkInitiationActionH\x00R\x18hardForkInitiationAction\x12t\n" +
-	"\x1btreasury_withdrawals_action\x18\x03 \x01(\v22.utxorpc.v1alpha.cardano.TreasuryWithdrawalsActionH\x00R\x19treasuryWithdrawalsAction\x12_\n" +
-	"\x14no_confidence_action\x18\x04 \x01(\v2+.utxorpc.v1alpha.cardano.NoConfidenceActionH\x00R\x12noConfidenceAction\x12h\n" +
-	"\x17update_committee_action\x18\x05 \x01(\v2..utxorpc.v1alpha.cardano.UpdateCommitteeActionH\x00R\x15updateCommitteeAction\x12h\n" +
-	"\x17new_constitution_action\x18\x06 \x01(\v2..utxorpc.v1alpha.cardano.NewConstitutionActionH\x00R\x15newConstitutionAction\x12!\n" +
-	"\vinfo_action\x18\a \x01(\rH\x00R\n" +
+	"gov_action\x18\x03 \x01(\v2(.utxorpc.v1beta.cardano.GovernanceActionR\tgovAction\x126\n" +
+	"\x06anchor\x18\x04 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorR\x06anchor\"\xf1\x05\n" +
+	"\x10GovernanceAction\x12g\n" +
+	"\x17parameter_change_action\x18\x01 \x01(\v2-.utxorpc.v1beta.cardano.ParameterChangeActionH\x00R\x15parameterChangeAction\x12q\n" +
+	"\x1bhard_fork_initiation_action\x18\x02 \x01(\v20.utxorpc.v1beta.cardano.HardForkInitiationActionH\x00R\x18hardForkInitiationAction\x12s\n" +
+	"\x1btreasury_withdrawals_action\x18\x03 \x01(\v21.utxorpc.v1beta.cardano.TreasuryWithdrawalsActionH\x00R\x19treasuryWithdrawalsAction\x12^\n" +
+	"\x14no_confidence_action\x18\x04 \x01(\v2*.utxorpc.v1beta.cardano.NoConfidenceActionH\x00R\x12noConfidenceAction\x12g\n" +
+	"\x17update_committee_action\x18\x05 \x01(\v2-.utxorpc.v1beta.cardano.UpdateCommitteeActionH\x00R\x15updateCommitteeAction\x12g\n" +
+	"\x17new_constitution_action\x18\x06 \x01(\v2-.utxorpc.v1beta.cardano.NewConstitutionActionH\x00R\x15newConstitutionAction\x12E\n" +
+	"\vinfo_action\x18\a \x01(\v2\".utxorpc.v1beta.cardano.InfoActionH\x00R\n" +
 	"infoActionB\x13\n" +
 	"\x11governance_action\"s\n" +
 	"\x12GovernanceActionId\x12%\n" +
 	"\x0etransaction_id\x18\x01 \x01(\fR\rtransactionId\x126\n" +
-	"\x17governance_action_index\x18\x02 \x01(\rR\x15governanceActionIndex\"\xdf\x01\n" +
-	"\x15ParameterChangeAction\x12O\n" +
-	"\rgov_action_id\x18\x01 \x01(\v2+.utxorpc.v1alpha.cardano.GovernanceActionIdR\vgovActionId\x12T\n" +
-	"\x15protocol_param_update\x18\x02 \x01(\v2 .utxorpc.v1alpha.cardano.PParamsR\x13protocolParamUpdate\x12\x1f\n" +
+	"\x17governance_action_index\x18\x02 \x01(\rR\x15governanceActionIndex\"\xdb\x01\n" +
+	"\x0fVotingProcedure\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\x120\n" +
+	"\x04vote\x18\x02 \x01(\x0e2\x1c.utxorpc.v1beta.cardano.VoteR\x04vote\x12;\n" +
+	"\x06anchor\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorH\x00R\x06anchor\x88\x01\x01B\t\n" +
+	"\a_anchor\"\x8d\x02\n" +
+	"\n" +
+	"VoterVotes\x12d\n" +
+	"\x18constitutional_committee\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x17constitutionalCommittee\x12=\n" +
+	"\x04drep\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x04drep\x12\x12\n" +
+	"\x03spo\x18\x03 \x01(\fH\x00R\x03spo\x12=\n" +
+	"\x05votes\x18\x04 \x03(\v2'.utxorpc.v1beta.cardano.VotingProcedureR\x05votesB\a\n" +
+	"\x05voter\"\xdd\x01\n" +
+	"\x15ParameterChangeAction\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\x12S\n" +
+	"\x15protocol_param_update\x18\x02 \x01(\v2\x1f.utxorpc.v1beta.cardano.PParamsR\x13protocolParamUpdate\x12\x1f\n" +
 	"\vpolicy_hash\x18\x03 \x01(\fR\n" +
-	"policyHash\"\xc0\x01\n" +
-	"\x18HardForkInitiationAction\x12O\n" +
-	"\rgov_action_id\x18\x01 \x01(\v2+.utxorpc.v1alpha.cardano.GovernanceActionIdR\vgovActionId\x12S\n" +
-	"\x10protocol_version\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.ProtocolVersionR\x0fprotocolVersion\"\x89\x01\n" +
-	"\x19TreasuryWithdrawalsAction\x12K\n" +
-	"\vwithdrawals\x18\x01 \x03(\v2).utxorpc.v1alpha.cardano.WithdrawalAmountR\vwithdrawals\x12\x1f\n" +
+	"policyHash\"\xbe\x01\n" +
+	"\x18HardForkInitiationAction\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\x12R\n" +
+	"\x10protocol_version\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.ProtocolVersionR\x0fprotocolVersion\"\x88\x01\n" +
+	"\x19TreasuryWithdrawalsAction\x12J\n" +
+	"\vwithdrawals\x18\x01 \x03(\v2(.utxorpc.v1beta.cardano.WithdrawalAmountR\vwithdrawals\x12\x1f\n" +
 	"\vpolicy_hash\x18\x02 \x01(\fR\n" +
-	"policyHash\"n\n" +
+	"policyHash\"m\n" +
 	"\x10WithdrawalAmount\x12%\n" +
-	"\x0ereward_account\x18\x01 \x01(\fR\rrewardAccount\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"e\n" +
-	"\x12NoConfidenceAction\x12O\n" +
-	"\rgov_action_id\x18\x01 \x01(\v2+.utxorpc.v1alpha.cardano.GovernanceActionIdR\vgovActionId\"\xa3\x03\n" +
-	"\x15UpdateCommitteeAction\x12O\n" +
-	"\rgov_action_id\x18\x01 \x01(\v2+.utxorpc.v1alpha.cardano.GovernanceActionIdR\vgovActionId\x12j\n" +
-	"\x1cremove_committee_credentials\x18\x02 \x03(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x1aremoveCommitteeCredentials\x12l\n" +
-	"\x19new_committee_credentials\x18\x03 \x03(\v20.utxorpc.v1alpha.cardano.NewCommitteeCredentialsR\x17newCommitteeCredentials\x12_\n" +
-	"\x17new_committee_threshold\x18\x04 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x15newCommitteeThreshold\"\xb3\x01\n" +
-	"\x15NewConstitutionAction\x12O\n" +
-	"\rgov_action_id\x18\x01 \x01(\v2+.utxorpc.v1alpha.cardano.GovernanceActionIdR\vgovActionId\x12I\n" +
-	"\fconstitution\x18\x02 \x01(\v2%.utxorpc.v1alpha.cardano.ConstitutionR\fconstitution\"[\n" +
-	"\fConstitution\x127\n" +
-	"\x06anchor\x18\x01 \x01(\v2\x1f.utxorpc.v1alpha.cardano.AnchorR\x06anchor\x12\x12\n" +
-	"\x04hash\x18\x02 \x01(\fR\x04hash\"\xa4\x01\n" +
-	"\x17NewCommitteeCredentials\x12d\n" +
-	"\x19committee_cold_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x17committeeColdCredential\x12#\n" +
+	"\x0ereward_account\x18\x01 \x01(\fR\rrewardAccount\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"d\n" +
+	"\x12NoConfidenceAction\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\"\x9f\x03\n" +
+	"\x15UpdateCommitteeAction\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\x12i\n" +
+	"\x1cremove_committee_credentials\x18\x02 \x03(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x1aremoveCommitteeCredentials\x12k\n" +
+	"\x19new_committee_credentials\x18\x03 \x03(\v2/.utxorpc.v1beta.cardano.NewCommitteeCredentialsR\x17newCommitteeCredentials\x12^\n" +
+	"\x17new_committee_threshold\x18\x04 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x15newCommitteeThreshold\"\xb1\x01\n" +
+	"\x15NewConstitutionAction\x12N\n" +
+	"\rgov_action_id\x18\x01 \x01(\v2*.utxorpc.v1beta.cardano.GovernanceActionIdR\vgovActionId\x12H\n" +
+	"\fconstitution\x18\x02 \x01(\v2$.utxorpc.v1beta.cardano.ConstitutionR\fconstitution\"\f\n" +
+	"\n" +
+	"InfoAction\"Z\n" +
+	"\fConstitution\x126\n" +
+	"\x06anchor\x18\x01 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorR\x06anchor\x12\x12\n" +
+	"\x04hash\x18\x02 \x01(\fR\x04hash\"\xa3\x01\n" +
+	"\x17NewCommitteeCredentials\x12c\n" +
+	"\x19committee_cold_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x17committeeColdCredential\x12#\n" +
 	"\rexpires_epoch\x18\x02 \x01(\rR\fexpiresEpoch\"M\n" +
 	"\vBlockHeader\x12\x12\n" +
 	"\x04slot\x18\x01 \x01(\x04R\x04slot\x12\x12\n" +
 	"\x04hash\x18\x02 \x01(\fR\x04hash\x12\x16\n" +
-	"\x06height\x18\x03 \x01(\x04R\x06height\"8\n" +
-	"\tBlockBody\x12+\n" +
-	"\x02tx\x18\x01 \x03(\v2\x1b.utxorpc.v1alpha.cardano.TxR\x02tx\"\x9b\x01\n" +
-	"\x05Block\x12<\n" +
-	"\x06header\x18\x01 \x01(\v2$.utxorpc.v1alpha.cardano.BlockHeaderR\x06header\x126\n" +
-	"\x04body\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.BlockBodyR\x04body\x12\x1c\n" +
-	"\ttimestamp\x18\x03 \x01(\x04R\ttimestamp\"?\n" +
+	"\x06height\x18\x03 \x01(\x04R\x06height\"7\n" +
+	"\tBlockBody\x12*\n" +
+	"\x02tx\x18\x01 \x03(\v2\x1a.utxorpc.v1beta.cardano.TxR\x02tx\"\x99\x01\n" +
+	"\x05Block\x12;\n" +
+	"\x06header\x18\x01 \x01(\v2#.utxorpc.v1beta.cardano.BlockHeaderR\x06header\x125\n" +
+	"\x04body\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.BlockBodyR\x04body\x12\x1c\n" +
+	"\ttimestamp\x18\x03 \x01(\x04R\ttimestamp\"\x83\x01\n" +
+	"\x10BootstrapWitness\x12\x12\n" +
+	"\x04vkey\x18\x01 \x01(\fR\x04vkey\x12\x1c\n" +
+	"\tsignature\x18\x02 \x01(\fR\tsignature\x12\x1d\n" +
+	"\n" +
+	"chain_code\x18\x03 \x01(\fR\tchainCode\x12\x1e\n" +
+	"\n" +
+	"attributes\x18\x04 \x01(\fR\n" +
+	"attributes\"?\n" +
 	"\vVKeyWitness\x12\x12\n" +
 	"\x04vkey\x18\x01 \x01(\fR\x04vkey\x12\x1c\n" +
-	"\tsignature\x18\x02 \x01(\fR\tsignature\"\x80\x03\n" +
-	"\fNativeScript\x12%\n" +
-	"\rscript_pubkey\x18\x01 \x01(\fH\x00R\fscriptPubkey\x12J\n" +
+	"\tsignature\x18\x02 \x01(\fR\tsignature\"\x86\x03\n" +
+	"\fNativeScript\x12.\n" +
+	"\x12script_pubkey_hash\x18\x01 \x01(\fH\x00R\x10scriptPubkeyHash\x12I\n" +
 	"\n" +
-	"script_all\x18\x02 \x01(\v2).utxorpc.v1alpha.cardano.NativeScriptListH\x00R\tscriptAll\x12J\n" +
+	"script_all\x18\x02 \x01(\v2(.utxorpc.v1beta.cardano.NativeScriptListH\x00R\tscriptAll\x12I\n" +
 	"\n" +
-	"script_any\x18\x03 \x01(\v2).utxorpc.v1alpha.cardano.NativeScriptListH\x00R\tscriptAny\x12H\n" +
-	"\rscript_n_of_k\x18\x04 \x01(\v2#.utxorpc.v1alpha.cardano.ScriptNOfKH\x00R\n" +
+	"script_any\x18\x03 \x01(\v2(.utxorpc.v1beta.cardano.NativeScriptListH\x00R\tscriptAny\x12G\n" +
+	"\rscript_n_of_k\x18\x04 \x01(\v2\".utxorpc.v1beta.cardano.ScriptNOfKH\x00R\n" +
 	"scriptNOfK\x12'\n" +
 	"\x0einvalid_before\x18\x05 \x01(\x04H\x00R\rinvalidBefore\x12-\n" +
 	"\x11invalid_hereafter\x18\x06 \x01(\x04H\x00R\x10invalidHereafterB\x0f\n" +
-	"\rnative_script\"O\n" +
-	"\x10NativeScriptList\x12;\n" +
-	"\x05items\x18\x01 \x03(\v2%.utxorpc.v1alpha.cardano.NativeScriptR\x05items\"[\n" +
+	"\rnative_script\"N\n" +
+	"\x10NativeScriptList\x12:\n" +
+	"\x05items\x18\x01 \x03(\v2$.utxorpc.v1beta.cardano.NativeScriptR\x05items\"Z\n" +
 	"\n" +
 	"ScriptNOfK\x12\f\n" +
-	"\x01k\x18\x01 \x01(\rR\x01k\x12?\n" +
-	"\ascripts\x18\x02 \x03(\v2%.utxorpc.v1alpha.cardano.NativeScriptR\ascripts\"\x80\x01\n" +
+	"\x01k\x18\x01 \x01(\rR\x01k\x12>\n" +
+	"\ascripts\x18\x02 \x03(\v2$.utxorpc.v1beta.cardano.NativeScriptR\ascripts\"\x7f\n" +
 	"\x06Constr\x12\x10\n" +
 	"\x03tag\x18\x01 \x01(\rR\x03tag\x12'\n" +
-	"\x0fany_constructor\x18\x02 \x01(\x04R\x0eanyConstructor\x12;\n" +
-	"\x06fields\x18\x03 \x03(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\x06fields\"c\n" +
+	"\x0fany_constructor\x18\x02 \x01(\x04R\x0eanyConstructor\x12:\n" +
+	"\x06fields\x18\x03 \x03(\v2\".utxorpc.v1beta.cardano.PlutusDataR\x06fields\"c\n" +
 	"\x06BigInt\x12\x12\n" +
 	"\x03int\x18\x01 \x01(\x03H\x00R\x03int\x12\x1c\n" +
 	"\tbig_u_int\x18\x02 \x01(\fH\x00R\abigUInt\x12\x1c\n" +
 	"\tbig_n_int\x18\x03 \x01(\fH\x00R\abigNIntB\t\n" +
-	"\abig_int\"\x82\x01\n" +
-	"\x0ePlutusDataPair\x125\n" +
-	"\x03key\x18\x01 \x01(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\x03key\x129\n" +
-	"\x05value\x18\x02 \x01(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\x05value\"\xb7\x02\n" +
+	"\abig_int\"\x80\x01\n" +
+	"\x0ePlutusDataPair\x124\n" +
+	"\x03key\x18\x01 \x01(\v2\".utxorpc.v1beta.cardano.PlutusDataR\x03key\x128\n" +
+	"\x05value\x18\x02 \x01(\v2\".utxorpc.v1beta.cardano.PlutusDataR\x05value\"\xb3\x02\n" +
 	"\n" +
-	"PlutusData\x129\n" +
-	"\x06constr\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.ConstrH\x00R\x06constr\x12:\n" +
-	"\x03map\x18\x03 \x01(\v2&.utxorpc.v1alpha.cardano.PlutusDataMapH\x00R\x03map\x12:\n" +
-	"\abig_int\x18\x04 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntH\x00R\x06bigInt\x12%\n" +
-	"\rbounded_bytes\x18\x05 \x01(\fH\x00R\fboundedBytes\x12@\n" +
-	"\x05array\x18\x06 \x01(\v2(.utxorpc.v1alpha.cardano.PlutusDataArrayH\x00R\x05arrayB\r\n" +
-	"\vplutus_data\"N\n" +
-	"\rPlutusDataMap\x12=\n" +
-	"\x05pairs\x18\x01 \x03(\v2'.utxorpc.v1alpha.cardano.PlutusDataPairR\x05pairs\"L\n" +
-	"\x0fPlutusDataArray\x129\n" +
-	"\x05items\x18\x01 \x03(\v2#.utxorpc.v1alpha.cardano.PlutusDataR\x05items\"\xcf\x01\n" +
-	"\x06Script\x12?\n" +
-	"\x06native\x18\x01 \x01(\v2%.utxorpc.v1alpha.cardano.NativeScriptH\x00R\x06native\x12\x1d\n" +
+	"PlutusData\x128\n" +
+	"\x06constr\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.ConstrH\x00R\x06constr\x129\n" +
+	"\x03map\x18\x03 \x01(\v2%.utxorpc.v1beta.cardano.PlutusDataMapH\x00R\x03map\x129\n" +
+	"\abig_int\x18\x04 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntH\x00R\x06bigInt\x12%\n" +
+	"\rbounded_bytes\x18\x05 \x01(\fH\x00R\fboundedBytes\x12?\n" +
+	"\x05array\x18\x06 \x01(\v2'.utxorpc.v1beta.cardano.PlutusDataArrayH\x00R\x05arrayB\r\n" +
+	"\vplutus_data\"M\n" +
+	"\rPlutusDataMap\x12<\n" +
+	"\x05pairs\x18\x01 \x03(\v2&.utxorpc.v1beta.cardano.PlutusDataPairR\x05pairs\"K\n" +
+	"\x0fPlutusDataArray\x128\n" +
+	"\x05items\x18\x01 \x03(\v2\".utxorpc.v1beta.cardano.PlutusDataR\x05items\"\xce\x01\n" +
+	"\x06Script\x12>\n" +
+	"\x06native\x18\x01 \x01(\v2$.utxorpc.v1beta.cardano.NativeScriptH\x00R\x06native\x12\x1d\n" +
 	"\tplutus_v1\x18\x02 \x01(\fH\x00R\bplutusV1\x12\x1d\n" +
 	"\tplutus_v2\x18\x03 \x01(\fH\x00R\bplutusV2\x12\x1d\n" +
 	"\tplutus_v3\x18\x04 \x01(\fH\x00R\bplutusV3\x12\x1d\n" +
 	"\tplutus_v4\x18\x05 \x01(\fH\x00R\bplutusV4B\b\n" +
-	"\x06script\"\xd6\x01\n" +
+	"\x06script\"\xd4\x01\n" +
 	"\tMetadatum\x12\x12\n" +
 	"\x03int\x18\x01 \x01(\x03H\x00R\x03int\x12\x16\n" +
 	"\x05bytes\x18\x02 \x01(\fH\x00R\x05bytes\x12\x14\n" +
-	"\x04text\x18\x03 \x01(\tH\x00R\x04text\x12?\n" +
-	"\x05array\x18\x04 \x01(\v2'.utxorpc.v1alpha.cardano.MetadatumArrayH\x00R\x05array\x129\n" +
-	"\x03map\x18\x05 \x01(\v2%.utxorpc.v1alpha.cardano.MetadatumMapH\x00R\x03mapB\v\n" +
-	"\tmetadatum\"J\n" +
-	"\x0eMetadatumArray\x128\n" +
-	"\x05items\x18\x01 \x03(\v2\".utxorpc.v1alpha.cardano.MetadatumR\x05items\"L\n" +
-	"\fMetadatumMap\x12<\n" +
-	"\x05pairs\x18\x01 \x03(\v2&.utxorpc.v1alpha.cardano.MetadatumPairR\x05pairs\"\x7f\n" +
-	"\rMetadatumPair\x124\n" +
-	"\x03key\x18\x01 \x01(\v2\".utxorpc.v1alpha.cardano.MetadatumR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.MetadatumR\x05value\"Z\n" +
+	"\x04text\x18\x03 \x01(\tH\x00R\x04text\x12>\n" +
+	"\x05array\x18\x04 \x01(\v2&.utxorpc.v1beta.cardano.MetadatumArrayH\x00R\x05array\x128\n" +
+	"\x03map\x18\x05 \x01(\v2$.utxorpc.v1beta.cardano.MetadatumMapH\x00R\x03mapB\v\n" +
+	"\tmetadatum\"I\n" +
+	"\x0eMetadatumArray\x127\n" +
+	"\x05items\x18\x01 \x03(\v2!.utxorpc.v1beta.cardano.MetadatumR\x05items\"K\n" +
+	"\fMetadatumMap\x12;\n" +
+	"\x05pairs\x18\x01 \x03(\v2%.utxorpc.v1beta.cardano.MetadatumPairR\x05pairs\"}\n" +
+	"\rMetadatumPair\x123\n" +
+	"\x03key\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.MetadatumR\x03key\x127\n" +
+	"\x05value\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.MetadatumR\x05value\"Y\n" +
 	"\bMetadata\x12\x14\n" +
-	"\x05label\x18\x01 \x01(\x04R\x05label\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.MetadatumR\x05value\"n\n" +
+	"\x05label\x18\x01 \x01(\x04R\x05label\x127\n" +
+	"\x05value\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.MetadatumR\x05value\"n\n" +
 	"\x0fStakeCredential\x12$\n" +
 	"\raddr_key_hash\x18\x01 \x01(\fH\x00R\vaddrKeyHash\x12!\n" +
 	"\vscript_hash\x18\x02 \x01(\fH\x00R\n" +
@@ -7972,46 +8315,46 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\x04port\x18\x04 \x01(\rR\x04port\"4\n" +
 	"\fPoolMetadata\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x12\n" +
-	"\x04hash\x18\x02 \x01(\fR\x04hash\"\xfb\r\n" +
-	"\vCertificate\x12Y\n" +
-	"\x12stake_registration\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialH\x00R\x11stakeRegistration\x12]\n" +
-	"\x14stake_deregistration\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialH\x00R\x13stakeDeregistration\x12Y\n" +
-	"\x10stake_delegation\x18\x03 \x01(\v2,.utxorpc.v1alpha.cardano.StakeDelegationCertH\x00R\x0fstakeDelegation\x12\\\n" +
-	"\x11pool_registration\x18\x04 \x01(\v2-.utxorpc.v1alpha.cardano.PoolRegistrationCertH\x00R\x10poolRegistration\x12V\n" +
-	"\x0fpool_retirement\x18\x05 \x01(\v2+.utxorpc.v1alpha.cardano.PoolRetirementCertH\x00R\x0epoolRetirement\x12i\n" +
-	"\x16genesis_key_delegation\x18\x06 \x01(\v21.utxorpc.v1alpha.cardano.GenesisKeyDelegationCertH\x00R\x14genesisKeyDelegation\x12=\n" +
-	"\bmir_cert\x18\a \x01(\v2 .utxorpc.v1alpha.cardano.MirCertH\x00R\amirCert\x12=\n" +
-	"\breg_cert\x18\b \x01(\v2 .utxorpc.v1alpha.cardano.RegCertH\x00R\aregCert\x12C\n" +
+	"\x04hash\x18\x02 \x01(\fR\x04hash\"\xe7\r\n" +
+	"\vCertificate\x12X\n" +
+	"\x12stake_registration\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x11stakeRegistration\x12\\\n" +
+	"\x14stake_deregistration\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x13stakeDeregistration\x12X\n" +
+	"\x10stake_delegation\x18\x03 \x01(\v2+.utxorpc.v1beta.cardano.StakeDelegationCertH\x00R\x0fstakeDelegation\x12[\n" +
+	"\x11pool_registration\x18\x04 \x01(\v2,.utxorpc.v1beta.cardano.PoolRegistrationCertH\x00R\x10poolRegistration\x12U\n" +
+	"\x0fpool_retirement\x18\x05 \x01(\v2*.utxorpc.v1beta.cardano.PoolRetirementCertH\x00R\x0epoolRetirement\x12h\n" +
+	"\x16genesis_key_delegation\x18\x06 \x01(\v20.utxorpc.v1beta.cardano.GenesisKeyDelegationCertH\x00R\x14genesisKeyDelegation\x12<\n" +
+	"\bmir_cert\x18\a \x01(\v2\x1f.utxorpc.v1beta.cardano.MirCertH\x00R\amirCert\x12<\n" +
+	"\breg_cert\x18\b \x01(\v2\x1f.utxorpc.v1beta.cardano.RegCertH\x00R\aregCert\x12B\n" +
 	"\n" +
-	"unreg_cert\x18\t \x01(\v2\".utxorpc.v1alpha.cardano.UnRegCertH\x00R\tunregCert\x12P\n" +
+	"unreg_cert\x18\t \x01(\v2!.utxorpc.v1beta.cardano.UnRegCertH\x00R\tunregCert\x12O\n" +
 	"\x0fvote_deleg_cert\x18\n" +
-	" \x01(\v2&.utxorpc.v1alpha.cardano.VoteDelegCertH\x00R\rvoteDelegCert\x12`\n" +
-	"\x15stake_vote_deleg_cert\x18\v \x01(\v2+.utxorpc.v1alpha.cardano.StakeVoteDelegCertH\x00R\x12stakeVoteDelegCert\x12]\n" +
-	"\x14stake_reg_deleg_cert\x18\f \x01(\v2*.utxorpc.v1alpha.cardano.StakeRegDelegCertH\x00R\x11stakeRegDelegCert\x12Z\n" +
-	"\x13vote_reg_deleg_cert\x18\r \x01(\v2).utxorpc.v1alpha.cardano.VoteRegDelegCertH\x00R\x10voteRegDelegCert\x12j\n" +
-	"\x19stake_vote_reg_deleg_cert\x18\x0e \x01(\v2..utxorpc.v1alpha.cardano.StakeVoteRegDelegCertH\x00R\x15stakeVoteRegDelegCert\x12f\n" +
-	"\x17auth_committee_hot_cert\x18\x0f \x01(\v2-.utxorpc.v1alpha.cardano.AuthCommitteeHotCertH\x00R\x14authCommitteeHotCert\x12o\n" +
-	"\x1aresign_committee_cold_cert\x18\x10 \x01(\v20.utxorpc.v1alpha.cardano.ResignCommitteeColdCertH\x00R\x17resignCommitteeColdCert\x12J\n" +
-	"\rreg_drep_cert\x18\x11 \x01(\v2$.utxorpc.v1alpha.cardano.RegDRepCertH\x00R\vregDrepCert\x12P\n" +
-	"\x0funreg_drep_cert\x18\x12 \x01(\v2&.utxorpc.v1alpha.cardano.UnRegDRepCertH\x00R\runregDrepCert\x12S\n" +
-	"\x10update_drep_cert\x18\x13 \x01(\v2'.utxorpc.v1alpha.cardano.UpdateDRepCertH\x00R\x0eupdateDrepCert\x12=\n" +
-	"\bredeemer\x18d \x01(\v2!.utxorpc.v1alpha.cardano.RedeemerR\bredeemerB\r\n" +
-	"\vcertificate\"\x8d\x01\n" +
-	"\x13StakeDelegationCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
-	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\"\xce\x03\n" +
+	" \x01(\v2%.utxorpc.v1beta.cardano.VoteDelegCertH\x00R\rvoteDelegCert\x12_\n" +
+	"\x15stake_vote_deleg_cert\x18\v \x01(\v2*.utxorpc.v1beta.cardano.StakeVoteDelegCertH\x00R\x12stakeVoteDelegCert\x12\\\n" +
+	"\x14stake_reg_deleg_cert\x18\f \x01(\v2).utxorpc.v1beta.cardano.StakeRegDelegCertH\x00R\x11stakeRegDelegCert\x12Y\n" +
+	"\x13vote_reg_deleg_cert\x18\r \x01(\v2(.utxorpc.v1beta.cardano.VoteRegDelegCertH\x00R\x10voteRegDelegCert\x12i\n" +
+	"\x19stake_vote_reg_deleg_cert\x18\x0e \x01(\v2-.utxorpc.v1beta.cardano.StakeVoteRegDelegCertH\x00R\x15stakeVoteRegDelegCert\x12e\n" +
+	"\x17auth_committee_hot_cert\x18\x0f \x01(\v2,.utxorpc.v1beta.cardano.AuthCommitteeHotCertH\x00R\x14authCommitteeHotCert\x12n\n" +
+	"\x1aresign_committee_cold_cert\x18\x10 \x01(\v2/.utxorpc.v1beta.cardano.ResignCommitteeColdCertH\x00R\x17resignCommitteeColdCert\x12I\n" +
+	"\rreg_drep_cert\x18\x11 \x01(\v2#.utxorpc.v1beta.cardano.RegDRepCertH\x00R\vregDrepCert\x12O\n" +
+	"\x0funreg_drep_cert\x18\x12 \x01(\v2%.utxorpc.v1beta.cardano.UnRegDRepCertH\x00R\runregDrepCert\x12R\n" +
+	"\x10update_drep_cert\x18\x13 \x01(\v2&.utxorpc.v1beta.cardano.UpdateDRepCertH\x00R\x0eupdateDrepCert\x12<\n" +
+	"\bredeemer\x18d \x01(\v2 .utxorpc.v1beta.cardano.RedeemerR\bredeemerB\r\n" +
+	"\vcertificate\"\x8c\x01\n" +
+	"\x13StakeDelegationCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
+	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\"\xc9\x03\n" +
 	"\x14PoolRegistrationCert\x12\x1a\n" +
 	"\boperator\x18\x01 \x01(\fR\boperator\x12\x1f\n" +
 	"\vvrf_keyhash\x18\x02 \x01(\fR\n" +
-	"vrfKeyhash\x127\n" +
-	"\x06pledge\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x06pledge\x123\n" +
-	"\x04cost\x18\x04 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04cost\x12?\n" +
-	"\x06margin\x18\x05 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x06margin\x12%\n" +
+	"vrfKeyhash\x126\n" +
+	"\x06pledge\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x06pledge\x122\n" +
+	"\x04cost\x18\x04 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04cost\x12>\n" +
+	"\x06margin\x18\x05 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x06margin\x12%\n" +
 	"\x0ereward_account\x18\x06 \x01(\fR\rrewardAccount\x12\x1f\n" +
 	"\vpool_owners\x18\a \x03(\fR\n" +
-	"poolOwners\x126\n" +
-	"\x06relays\x18\b \x03(\v2\x1e.utxorpc.v1alpha.cardano.RelayR\x06relays\x12J\n" +
-	"\rpool_metadata\x18\t \x01(\v2%.utxorpc.v1alpha.cardano.PoolMetadataR\fpoolMetadata\"M\n" +
+	"poolOwners\x125\n" +
+	"\x06relays\x18\b \x03(\v2\x1d.utxorpc.v1beta.cardano.RelayR\x06relays\x12I\n" +
+	"\rpool_metadata\x18\t \x01(\v2$.utxorpc.v1beta.cardano.PoolMetadataR\fpoolMetadata\"M\n" +
 	"\x12PoolRetirementCert\x12!\n" +
 	"\fpool_keyhash\x18\x01 \x01(\fR\vpoolKeyhash\x12\x14\n" +
 	"\x05epoch\x18\x02 \x01(\x04R\x05epoch\"\x92\x01\n" +
@@ -8019,67 +8362,67 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\fgenesis_hash\x18\x01 \x01(\fR\vgenesisHash\x122\n" +
 	"\x15genesis_delegate_hash\x18\x02 \x01(\fR\x13genesisDelegateHash\x12\x1f\n" +
 	"\vvrf_keyhash\x18\x03 \x01(\fR\n" +
-	"vrfKeyhash\"\xa0\x01\n" +
-	"\tMirTarget\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12>\n" +
+	"vrfKeyhash\"\x9e\x01\n" +
+	"\tMirTarget\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12=\n" +
 	"\n" +
-	"delta_coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\tdeltaCoin\"\x92\x01\n" +
-	"\aMirCert\x126\n" +
-	"\x04from\x18\x01 \x01(\x0e2\".utxorpc.v1alpha.cardano.MirSourceR\x04from\x122\n" +
-	"\x02to\x18\x02 \x03(\v2\".utxorpc.v1alpha.cardano.MirTargetR\x02to\x12\x1b\n" +
-	"\tother_pot\x18\x03 \x01(\x04R\botherPot\"\x93\x01\n" +
-	"\aRegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\x95\x01\n" +
-	"\tUnRegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\x9a\x01\n" +
+	"delta_coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\tdeltaCoin\"\x90\x01\n" +
+	"\aMirCert\x125\n" +
+	"\x04from\x18\x01 \x01(\x0e2!.utxorpc.v1beta.cardano.MirSourceR\x04from\x121\n" +
+	"\x02to\x18\x02 \x03(\v2!.utxorpc.v1beta.cardano.MirTargetR\x02to\x12\x1b\n" +
+	"\tother_pot\x18\x03 \x01(\x04R\botherPot\"\x91\x01\n" +
+	"\aRegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\x93\x01\n" +
+	"\tUnRegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\x9a\x01\n" +
 	"\x04DRep\x12$\n" +
 	"\raddr_key_hash\x18\x01 \x01(\fH\x00R\vaddrKeyHash\x12!\n" +
 	"\vscript_hash\x18\x02 \x01(\fH\x00R\n" +
 	"scriptHash\x12\x1a\n" +
 	"\aabstain\x18\x03 \x01(\bH\x00R\aabstain\x12%\n" +
 	"\rno_confidence\x18\x04 \x01(\bH\x00R\fnoConfidenceB\x06\n" +
-	"\x04drep\"\x97\x01\n" +
-	"\rVoteDelegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x121\n" +
-	"\x04drep\x18\x02 \x01(\v2\x1d.utxorpc.v1alpha.cardano.DRepR\x04drep\"\xbf\x01\n" +
-	"\x12StakeVoteDelegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
-	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x121\n" +
-	"\x04drep\x18\x03 \x01(\v2\x1d.utxorpc.v1alpha.cardano.DRepR\x04drep\"\xc0\x01\n" +
-	"\x11StakeRegDelegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
-	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x123\n" +
-	"\x04coin\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\xcf\x01\n" +
-	"\x10VoteRegDelegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x121\n" +
-	"\x04drep\x18\x02 \x01(\v2\x1d.utxorpc.v1alpha.cardano.DRepR\x04drep\x123\n" +
-	"\x04coin\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\xf7\x01\n" +
-	"\x15StakeVoteRegDelegCert\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
-	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x121\n" +
-	"\x04drep\x18\x03 \x01(\v2\x1d.utxorpc.v1alpha.cardano.DRepR\x04drep\x123\n" +
-	"\x04coin\x18\x04 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\xe0\x01\n" +
-	"\x14AuthCommitteeHotCert\x12d\n" +
-	"\x19committee_cold_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x17committeeColdCredential\x12b\n" +
-	"\x18committee_hot_credential\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x16committeeHotCredential\"=\n" +
+	"\x04drep\"\x95\x01\n" +
+	"\rVoteDelegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x120\n" +
+	"\x04drep\x18\x02 \x01(\v2\x1c.utxorpc.v1beta.cardano.DRepR\x04drep\"\xbd\x01\n" +
+	"\x12StakeVoteDelegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
+	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x120\n" +
+	"\x04drep\x18\x03 \x01(\v2\x1c.utxorpc.v1beta.cardano.DRepR\x04drep\"\xbe\x01\n" +
+	"\x11StakeRegDelegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
+	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x122\n" +
+	"\x04coin\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\xcc\x01\n" +
+	"\x10VoteRegDelegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x120\n" +
+	"\x04drep\x18\x02 \x01(\v2\x1c.utxorpc.v1beta.cardano.DRepR\x04drep\x122\n" +
+	"\x04coin\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\xf4\x01\n" +
+	"\x15StakeVoteRegDelegCert\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
+	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\x120\n" +
+	"\x04drep\x18\x03 \x01(\v2\x1c.utxorpc.v1beta.cardano.DRepR\x04drep\x122\n" +
+	"\x04coin\x18\x04 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\xde\x01\n" +
+	"\x14AuthCommitteeHotCert\x12c\n" +
+	"\x19committee_cold_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x17committeeColdCredential\x12a\n" +
+	"\x18committee_hot_credential\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x16committeeHotCredential\"=\n" +
 	"\x06Anchor\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12!\n" +
-	"\fcontent_hash\x18\x02 \x01(\fR\vcontentHash\"\xb8\x01\n" +
-	"\x17ResignCommitteeColdCert\x12d\n" +
-	"\x19committee_cold_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x17committeeColdCredential\x127\n" +
-	"\x06anchor\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.AnchorR\x06anchor\"\xce\x01\n" +
-	"\vRegDRepCert\x12Q\n" +
-	"\x0fdrep_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0edrepCredential\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\x127\n" +
-	"\x06anchor\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.AnchorR\x06anchor\"\x97\x01\n" +
-	"\rUnRegDRepCert\x12Q\n" +
-	"\x0fdrep_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0edrepCredential\x123\n" +
-	"\x04coin\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x04coin\"\x9c\x01\n" +
-	"\x0eUpdateDRepCert\x12Q\n" +
-	"\x0fdrep_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0edrepCredential\x127\n" +
-	"\x06anchor\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.AnchorR\x06anchor\"\x81\x01\n" +
+	"\fcontent_hash\x18\x02 \x01(\fR\vcontentHash\"\xb6\x01\n" +
+	"\x17ResignCommitteeColdCert\x12c\n" +
+	"\x19committee_cold_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x17committeeColdCredential\x126\n" +
+	"\x06anchor\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorR\x06anchor\"\xcb\x01\n" +
+	"\vRegDRepCert\x12P\n" +
+	"\x0fdrep_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0edrepCredential\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\x126\n" +
+	"\x06anchor\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorR\x06anchor\"\x95\x01\n" +
+	"\rUnRegDRepCert\x12P\n" +
+	"\x0fdrep_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0edrepCredential\x122\n" +
+	"\x04coin\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x04coin\"\x9a\x01\n" +
+	"\x0eUpdateDRepCert\x12P\n" +
+	"\x0fdrep_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0edrepCredential\x126\n" +
+	"\x06anchor\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.AnchorR\x06anchor\"\x81\x01\n" +
 	"\x0eAddressPattern\x12#\n" +
 	"\rexact_address\x18\x01 \x01(\fR\fexactAddress\x12!\n" +
 	"\fpayment_part\x18\x02 \x01(\fR\vpaymentPart\x12'\n" +
@@ -8087,118 +8430,118 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\fAssetPattern\x12\x1b\n" +
 	"\tpolicy_id\x18\x01 \x01(\fR\bpolicyId\x12\x1d\n" +
 	"\n" +
-	"asset_name\x18\x02 \x01(\fR\tassetName\"\xf9\x04\n" +
-	"\x12CertificatePattern\x12Y\n" +
-	"\x12stake_registration\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialH\x00R\x11stakeRegistration\x12]\n" +
-	"\x14stake_deregistration\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialH\x00R\x13stakeDeregistration\x12\\\n" +
-	"\x10stake_delegation\x18\x03 \x01(\v2/.utxorpc.v1alpha.cardano.StakeDelegationPatternH\x00R\x0fstakeDelegation\x12_\n" +
-	"\x11pool_registration\x18\x04 \x01(\v20.utxorpc.v1alpha.cardano.PoolRegistrationPatternH\x00R\x10poolRegistration\x12Y\n" +
-	"\x0fpool_retirement\x18\x05 \x01(\v2..utxorpc.v1alpha.cardano.PoolRetirementPatternH\x00R\x0epoolRetirement\x122\n" +
+	"asset_name\x18\x02 \x01(\fR\tassetName\"\xf4\x04\n" +
+	"\x12CertificatePattern\x12X\n" +
+	"\x12stake_registration\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x11stakeRegistration\x12\\\n" +
+	"\x14stake_deregistration\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialH\x00R\x13stakeDeregistration\x12[\n" +
+	"\x10stake_delegation\x18\x03 \x01(\v2..utxorpc.v1beta.cardano.StakeDelegationPatternH\x00R\x0fstakeDelegation\x12^\n" +
+	"\x11pool_registration\x18\x04 \x01(\v2/.utxorpc.v1beta.cardano.PoolRegistrationPatternH\x00R\x10poolRegistration\x12X\n" +
+	"\x0fpool_retirement\x18\x05 \x01(\v2-.utxorpc.v1beta.cardano.PoolRetirementPatternH\x00R\x0epoolRetirement\x122\n" +
 	"\x14any_stake_credential\x18\x06 \x01(\fH\x00R\x12anyStakeCredential\x12*\n" +
 	"\x10any_pool_keyhash\x18\a \x01(\fH\x00R\x0eanyPoolKeyhash\x12\x1b\n" +
 	"\bany_drep\x18\b \x01(\fH\x00R\aanyDrepB\x12\n" +
-	"\x10certificate_type\"\x90\x01\n" +
-	"\x16StakeDelegationPattern\x12S\n" +
-	"\x10stake_credential\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
+	"\x10certificate_type\"\x8f\x01\n" +
+	"\x16StakeDelegationPattern\x12R\n" +
+	"\x10stake_credential\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.StakeCredentialR\x0fstakeCredential\x12!\n" +
 	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\"X\n" +
 	"\x17PoolRegistrationPattern\x12\x1a\n" +
 	"\boperator\x18\x01 \x01(\fR\boperator\x12!\n" +
 	"\fpool_keyhash\x18\x02 \x01(\fR\vpoolKeyhash\"P\n" +
 	"\x15PoolRetirementPattern\x12!\n" +
 	"\fpool_keyhash\x18\x01 \x01(\fR\vpoolKeyhash\x12\x14\n" +
-	"\x05epoch\x18\x02 \x01(\x04R\x05epoch\"\x91\x01\n" +
-	"\x0fTxOutputPattern\x12A\n" +
-	"\aaddress\x18\x01 \x01(\v2'.utxorpc.v1alpha.cardano.AddressPatternR\aaddress\x12;\n" +
-	"\x05asset\x18\x02 \x01(\v2%.utxorpc.v1alpha.cardano.AssetPatternR\x05asset\"\xc7\x03\n" +
-	"\tTxPattern\x12D\n" +
-	"\bconsumes\x18\x01 \x01(\v2(.utxorpc.v1alpha.cardano.TxOutputPatternR\bconsumes\x12D\n" +
-	"\bproduces\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.TxOutputPatternR\bproduces\x12H\n" +
-	"\vhas_address\x18\x03 \x01(\v2'.utxorpc.v1alpha.cardano.AddressPatternR\n" +
-	"hasAddress\x12F\n" +
-	"\vmoves_asset\x18\x04 \x01(\v2%.utxorpc.v1alpha.cardano.AssetPatternR\n" +
-	"movesAsset\x12F\n" +
-	"\vmints_asset\x18\x05 \x01(\v2%.utxorpc.v1alpha.cardano.AssetPatternR\n" +
-	"mintsAsset\x12T\n" +
-	"\x0fhas_certificate\x18\x06 \x01(\v2+.utxorpc.v1alpha.cardano.CertificatePatternR\x0ehasCertificate\"7\n" +
+	"\x05epoch\x18\x02 \x01(\x04R\x05epoch\"\x8f\x01\n" +
+	"\x0fTxOutputPattern\x12@\n" +
+	"\aaddress\x18\x01 \x01(\v2&.utxorpc.v1beta.cardano.AddressPatternR\aaddress\x12:\n" +
+	"\x05asset\x18\x02 \x01(\v2$.utxorpc.v1beta.cardano.AssetPatternR\x05asset\"\xc1\x03\n" +
+	"\tTxPattern\x12C\n" +
+	"\bconsumes\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.TxOutputPatternR\bconsumes\x12C\n" +
+	"\bproduces\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.TxOutputPatternR\bproduces\x12G\n" +
+	"\vhas_address\x18\x03 \x01(\v2&.utxorpc.v1beta.cardano.AddressPatternR\n" +
+	"hasAddress\x12E\n" +
+	"\vmoves_asset\x18\x04 \x01(\v2$.utxorpc.v1beta.cardano.AssetPatternR\n" +
+	"movesAsset\x12E\n" +
+	"\vmints_asset\x18\x05 \x01(\v2$.utxorpc.v1beta.cardano.AssetPatternR\n" +
+	"mintsAsset\x12S\n" +
+	"\x0fhas_certificate\x18\x06 \x01(\v2*.utxorpc.v1beta.cardano.CertificatePatternR\x0ehasCertificate\"7\n" +
 	"\aExUnits\x12\x14\n" +
 	"\x05steps\x18\x01 \x01(\x04R\x05steps\x12\x16\n" +
-	"\x06memory\x18\x02 \x01(\x04R\x06memory\"\x8a\x01\n" +
-	"\bExPrices\x12=\n" +
-	"\x05steps\x18\x01 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x05steps\x12?\n" +
-	"\x06memory\x18\x02 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x06memory\"=\n" +
+	"\x06memory\x18\x02 \x01(\x04R\x06memory\"\x88\x01\n" +
+	"\bExPrices\x12<\n" +
+	"\x05steps\x18\x01 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x05steps\x12>\n" +
+	"\x06memory\x18\x02 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x06memory\"=\n" +
 	"\x0fProtocolVersion\x12\x14\n" +
 	"\x05major\x18\x01 \x01(\rR\x05major\x12\x14\n" +
 	"\x05minor\x18\x02 \x01(\rR\x05minor\"#\n" +
 	"\tCostModel\x12\x16\n" +
-	"\x06values\x18\x01 \x03(\x03R\x06values\"\x90\x02\n" +
+	"\x06values\x18\x01 \x03(\x03R\x06values\"\x8c\x02\n" +
 	"\n" +
-	"CostModels\x12?\n" +
-	"\tplutus_v1\x18\x01 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV1\x12?\n" +
-	"\tplutus_v2\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV2\x12?\n" +
-	"\tplutus_v3\x18\x03 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV3\x12?\n" +
-	"\tplutus_v4\x18\x04 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV4\"[\n" +
-	"\x10VotingThresholds\x12G\n" +
+	"CostModels\x12>\n" +
+	"\tplutus_v1\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV1\x12>\n" +
+	"\tplutus_v2\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV2\x12>\n" +
+	"\tplutus_v3\x18\x03 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV3\x12>\n" +
+	"\tplutus_v4\x18\x04 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV4\"Z\n" +
+	"\x10VotingThresholds\x12F\n" +
 	"\n" +
-	"thresholds\x18\x01 \x03(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\n" +
-	"thresholds\"\xaf\x11\n" +
-	"\aPParams\x12N\n" +
-	"\x13coins_per_utxo_byte\x18\x01 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x10coinsPerUtxoByte\x12\x1e\n" +
-	"\vmax_tx_size\x18\x02 \x01(\x04R\tmaxTxSize\x12O\n" +
-	"\x13min_fee_coefficient\x18\x03 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x11minFeeCoefficient\x12I\n" +
-	"\x10min_fee_constant\x18\x04 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x0eminFeeConstant\x12-\n" +
+	"thresholds\x18\x01 \x03(\v2&.utxorpc.v1beta.cardano.RationalNumberR\n" +
+	"thresholds\"\x9c\x11\n" +
+	"\aPParams\x12M\n" +
+	"\x13coins_per_utxo_byte\x18\x01 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x10coinsPerUtxoByte\x12\x1e\n" +
+	"\vmax_tx_size\x18\x02 \x01(\x04R\tmaxTxSize\x12N\n" +
+	"\x13min_fee_coefficient\x18\x03 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x11minFeeCoefficient\x12H\n" +
+	"\x10min_fee_constant\x18\x04 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x0eminFeeConstant\x12-\n" +
 	"\x13max_block_body_size\x18\x05 \x01(\x04R\x10maxBlockBodySize\x121\n" +
-	"\x15max_block_header_size\x18\x06 \x01(\x04R\x12maxBlockHeaderSize\x12K\n" +
-	"\x11stake_key_deposit\x18\a \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x0fstakeKeyDeposit\x12B\n" +
-	"\fpool_deposit\x18\b \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\vpoolDeposit\x12=\n" +
+	"\x15max_block_header_size\x18\x06 \x01(\x04R\x12maxBlockHeaderSize\x12J\n" +
+	"\x11stake_key_deposit\x18\a \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x0fstakeKeyDeposit\x12A\n" +
+	"\fpool_deposit\x18\b \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\vpoolDeposit\x12=\n" +
 	"\x1bpool_retirement_epoch_bound\x18\t \x01(\x04R\x18poolRetirementEpochBound\x125\n" +
 	"\x17desired_number_of_pools\x18\n" +
-	" \x01(\x04R\x14desiredNumberOfPools\x12N\n" +
-	"\x0epool_influence\x18\v \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\rpoolInfluence\x12V\n" +
-	"\x12monetary_expansion\x18\f \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x11monetaryExpansion\x12V\n" +
-	"\x12treasury_expansion\x18\r \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x11treasuryExpansion\x12C\n" +
-	"\rmin_pool_cost\x18\x0e \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\vminPoolCost\x12S\n" +
-	"\x10protocol_version\x18\x0f \x01(\v2(.utxorpc.v1alpha.cardano.ProtocolVersionR\x0fprotocolVersion\x12$\n" +
+	" \x01(\x04R\x14desiredNumberOfPools\x12M\n" +
+	"\x0epool_influence\x18\v \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\rpoolInfluence\x12U\n" +
+	"\x12monetary_expansion\x18\f \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x11monetaryExpansion\x12U\n" +
+	"\x12treasury_expansion\x18\r \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x11treasuryExpansion\x12B\n" +
+	"\rmin_pool_cost\x18\x0e \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\vminPoolCost\x12R\n" +
+	"\x10protocol_version\x18\x0f \x01(\v2'.utxorpc.v1beta.cardano.ProtocolVersionR\x0fprotocolVersion\x12$\n" +
 	"\x0emax_value_size\x18\x10 \x01(\x04R\fmaxValueSize\x123\n" +
 	"\x15collateral_percentage\x18\x11 \x01(\x04R\x14collateralPercentage\x122\n" +
-	"\x15max_collateral_inputs\x18\x12 \x01(\x04R\x13maxCollateralInputs\x12D\n" +
-	"\vcost_models\x18\x13 \x01(\v2#.utxorpc.v1alpha.cardano.CostModelsR\n" +
-	"costModels\x129\n" +
-	"\x06prices\x18\x14 \x01(\v2!.utxorpc.v1alpha.cardano.ExPricesR\x06prices\x12n\n" +
-	"#max_execution_units_per_transaction\x18\x15 \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\x1fmaxExecutionUnitsPerTransaction\x12b\n" +
-	"\x1dmax_execution_units_per_block\x18\x16 \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\x19maxExecutionUnitsPerBlock\x12m\n" +
-	" min_fee_script_ref_cost_per_byte\x18\x17 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x1aminFeeScriptRefCostPerByte\x12_\n" +
-	"\x16pool_voting_thresholds\x18\x18 \x01(\v2).utxorpc.v1alpha.cardano.VotingThresholdsR\x14poolVotingThresholds\x12_\n" +
-	"\x16drep_voting_thresholds\x18\x19 \x01(\v2).utxorpc.v1alpha.cardano.VotingThresholdsR\x14drepVotingThresholds\x12,\n" +
+	"\x15max_collateral_inputs\x18\x12 \x01(\x04R\x13maxCollateralInputs\x12C\n" +
+	"\vcost_models\x18\x13 \x01(\v2\".utxorpc.v1beta.cardano.CostModelsR\n" +
+	"costModels\x128\n" +
+	"\x06prices\x18\x14 \x01(\v2 .utxorpc.v1beta.cardano.ExPricesR\x06prices\x12m\n" +
+	"#max_execution_units_per_transaction\x18\x15 \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\x1fmaxExecutionUnitsPerTransaction\x12a\n" +
+	"\x1dmax_execution_units_per_block\x18\x16 \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\x19maxExecutionUnitsPerBlock\x12l\n" +
+	" min_fee_script_ref_cost_per_byte\x18\x17 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x1aminFeeScriptRefCostPerByte\x12^\n" +
+	"\x16pool_voting_thresholds\x18\x18 \x01(\v2(.utxorpc.v1beta.cardano.VotingThresholdsR\x14poolVotingThresholds\x12^\n" +
+	"\x16drep_voting_thresholds\x18\x19 \x01(\v2(.utxorpc.v1beta.cardano.VotingThresholdsR\x14drepVotingThresholds\x12,\n" +
 	"\x12min_committee_size\x18\x1a \x01(\rR\x10minCommitteeSize\x120\n" +
 	"\x14committee_term_limit\x18\x1b \x01(\x04R\x12committeeTermLimit\x12I\n" +
-	"!governance_action_validity_period\x18\x1c \x01(\x04R\x1egovernanceActionValidityPeriod\x12[\n" +
-	"\x19governance_action_deposit\x18\x1d \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x17governanceActionDeposit\x12B\n" +
-	"\fdrep_deposit\x18\x1e \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\vdrepDeposit\x124\n" +
+	"!governance_action_validity_period\x18\x1c \x01(\x04R\x1egovernanceActionValidityPeriod\x12Z\n" +
+	"\x19governance_action_deposit\x18\x1d \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x17governanceActionDeposit\x12A\n" +
+	"\fdrep_deposit\x18\x1e \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\vdrepDeposit\x124\n" +
 	"\x16drep_inactivity_period\x18\x1f \x01(\x04R\x14drepInactivityPeriod\"K\n" +
 	"\vEraBoundary\x12\x12\n" +
 	"\x04time\x18\x01 \x01(\x04R\x04time\x12\x12\n" +
 	"\x04slot\x18\x02 \x01(\x04R\x04slot\x12\x14\n" +
-	"\x05epoch\x18\x03 \x01(\x04R\x05epoch\"\xdf\x01\n" +
+	"\x05epoch\x18\x03 \x01(\x04R\x05epoch\"\xdc\x01\n" +
 	"\n" +
 	"EraSummary\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12:\n" +
-	"\x05start\x18\x02 \x01(\v2$.utxorpc.v1alpha.cardano.EraBoundaryR\x05start\x126\n" +
-	"\x03end\x18\x03 \x01(\v2$.utxorpc.v1alpha.cardano.EraBoundaryR\x03end\x12I\n" +
-	"\x0fprotocol_params\x18\x04 \x01(\v2 .utxorpc.v1alpha.cardano.PParamsR\x0eprotocolParams\"Q\n" +
-	"\fEraSummaries\x12A\n" +
-	"\tsummaries\x18\x01 \x03(\v2#.utxorpc.v1alpha.cardano.EraSummaryR\tsummaries\"\x1d\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x129\n" +
+	"\x05start\x18\x02 \x01(\v2#.utxorpc.v1beta.cardano.EraBoundaryR\x05start\x125\n" +
+	"\x03end\x18\x03 \x01(\v2#.utxorpc.v1beta.cardano.EraBoundaryR\x03end\x12H\n" +
+	"\x0fprotocol_params\x18\x04 \x01(\v2\x1f.utxorpc.v1beta.cardano.PParamsR\x0eprotocolParams\"P\n" +
+	"\fEraSummaries\x12@\n" +
+	"\tsummaries\x18\x01 \x03(\v2\".utxorpc.v1beta.cardano.EraSummaryR\tsummaries\"\x1d\n" +
 	"\tEvalError\x12\x10\n" +
 	"\x03msg\x18\x01 \x01(\tR\x03msg\"\x1d\n" +
 	"\tEvalTrace\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg\"\xb1\x02\n" +
-	"\x06TxEval\x121\n" +
-	"\x03fee\x18\x01 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x03fee\x12;\n" +
-	"\bex_units\x18\x02 \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\aexUnits\x12:\n" +
-	"\x06errors\x18\x03 \x03(\v2\".utxorpc.v1alpha.cardano.EvalErrorR\x06errors\x12:\n" +
-	"\x06traces\x18\x04 \x03(\v2\".utxorpc.v1alpha.cardano.EvalTraceR\x06traces\x12?\n" +
-	"\tredeemers\x18\x05 \x03(\v2!.utxorpc.v1alpha.cardano.RedeemerR\tredeemers\" \n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg\"\xac\x02\n" +
+	"\x06TxEval\x120\n" +
+	"\x03fee\x18\x01 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x03fee\x12:\n" +
+	"\bex_units\x18\x02 \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\aexUnits\x129\n" +
+	"\x06errors\x18\x03 \x03(\v2!.utxorpc.v1beta.cardano.EvalErrorR\x06errors\x129\n" +
+	"\x06traces\x18\x04 \x03(\v2!.utxorpc.v1beta.cardano.EvalTraceR\x06traces\x12>\n" +
+	"\tredeemers\x18\x05 \x03(\v2 .utxorpc.v1beta.cardano.RedeemerR\tredeemers\" \n" +
 	"\fExtraEntropy\x12\x10\n" +
-	"\x03tag\x18\x01 \x01(\tR\x03tag\"\xfa\x04\n" +
+	"\x03tag\x18\x01 \x01(\tR\x03tag\"\xf8\x04\n" +
 	"\x10BlockVersionData\x12%\n" +
 	"\x0escript_version\x18\x01 \x01(\rR\rscriptVersion\x12#\n" +
 	"\rslot_duration\x18\x02 \x01(\tR\fslotDuration\x12$\n" +
@@ -8211,9 +8554,9 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\x0fupdate_vote_thd\x18\t \x01(\tR\rupdateVoteThd\x12.\n" +
 	"\x13update_proposal_thd\x18\n" +
 	" \x01(\tR\x11updateProposalThd\x12'\n" +
-	"\x0fupdate_implicit\x18\v \x01(\tR\x0eupdateImplicit\x12J\n" +
-	"\rsoftfork_rule\x18\f \x01(\v2%.utxorpc.v1alpha.cardano.SoftforkRuleR\fsoftforkRule\x12H\n" +
-	"\rtx_fee_policy\x18\r \x01(\v2$.utxorpc.v1alpha.cardano.TxFeePolicyR\vtxFeePolicy\x12,\n" +
+	"\x0fupdate_implicit\x18\v \x01(\tR\x0eupdateImplicit\x12I\n" +
+	"\rsoftfork_rule\x18\f \x01(\v2$.utxorpc.v1beta.cardano.SoftforkRuleR\fsoftforkRule\x12G\n" +
+	"\rtx_fee_policy\x18\r \x01(\v2#.utxorpc.v1beta.cardano.TxFeePolicyR\vtxFeePolicy\x12,\n" +
 	"\x12unlock_stake_epoch\x18\x0e \x01(\tR\x10unlockStakeEpoch\"g\n" +
 	"\fSoftforkRule\x12\x19\n" +
 	"\binit_thd\x18\x01 \x01(\tR\ainitThd\x12\x17\n" +
@@ -8243,108 +8586,108 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\avss_key\x18\x04 \x01(\tR\x06vssKey\"9\n" +
 	"\tGenDelegs\x12\x1a\n" +
 	"\bdelegate\x18\x01 \x01(\tR\bdelegate\x12\x10\n" +
-	"\x03vrf\x18\x02 \x01(\tR\x03vrf\"\xd6\x03\n" +
-	"\x14PoolVotingThresholds\x12Y\n" +
-	"\x14motion_no_confidence\x18\x01 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x12motionNoConfidence\x12R\n" +
-	"\x10committee_normal\x18\x02 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x0fcommitteeNormal\x12_\n" +
-	"\x17committee_no_confidence\x18\x03 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x15committeeNoConfidence\x12Y\n" +
-	"\x14hard_fork_initiation\x18\x04 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x12hardForkInitiation\x12S\n" +
-	"\x11pp_security_group\x18\x05 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x0fppSecurityGroup\"\x84\a\n" +
-	"\x14DRepVotingThresholds\x12Y\n" +
-	"\x14motion_no_confidence\x18\x01 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x12motionNoConfidence\x12R\n" +
-	"\x10committee_normal\x18\x02 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x0fcommitteeNormal\x12_\n" +
-	"\x17committee_no_confidence\x18\x03 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x15committeeNoConfidence\x12]\n" +
-	"\x16update_to_constitution\x18\x04 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x14updateToConstitution\x12Y\n" +
-	"\x14hard_fork_initiation\x18\x05 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x12hardForkInitiation\x12Q\n" +
-	"\x10pp_network_group\x18\x06 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x0eppNetworkGroup\x12S\n" +
-	"\x11pp_economic_group\x18\a \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x0fppEconomicGroup\x12U\n" +
-	"\x12pp_technical_group\x18\b \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x10ppTechnicalGroup\x12I\n" +
-	"\fpp_gov_group\x18\t \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\n" +
-	"ppGovGroup\x12X\n" +
+	"\x03vrf\x18\x02 \x01(\tR\x03vrf\"\xd1\x03\n" +
+	"\x14PoolVotingThresholds\x12X\n" +
+	"\x14motion_no_confidence\x18\x01 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x12motionNoConfidence\x12Q\n" +
+	"\x10committee_normal\x18\x02 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x0fcommitteeNormal\x12^\n" +
+	"\x17committee_no_confidence\x18\x03 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x15committeeNoConfidence\x12X\n" +
+	"\x14hard_fork_initiation\x18\x04 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x12hardForkInitiation\x12R\n" +
+	"\x11pp_security_group\x18\x05 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x0fppSecurityGroup\"\xfa\x06\n" +
+	"\x14DRepVotingThresholds\x12X\n" +
+	"\x14motion_no_confidence\x18\x01 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x12motionNoConfidence\x12Q\n" +
+	"\x10committee_normal\x18\x02 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x0fcommitteeNormal\x12^\n" +
+	"\x17committee_no_confidence\x18\x03 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x15committeeNoConfidence\x12\\\n" +
+	"\x16update_to_constitution\x18\x04 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x14updateToConstitution\x12X\n" +
+	"\x14hard_fork_initiation\x18\x05 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x12hardForkInitiation\x12P\n" +
+	"\x10pp_network_group\x18\x06 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x0eppNetworkGroup\x12R\n" +
+	"\x11pp_economic_group\x18\a \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x0fppEconomicGroup\x12T\n" +
+	"\x12pp_technical_group\x18\b \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x10ppTechnicalGroup\x12H\n" +
+	"\fpp_gov_group\x18\t \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\n" +
+	"ppGovGroup\x12W\n" +
 	"\x13treasury_withdrawal\x18\n" +
-	" \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x12treasuryWithdrawal\"\xd9\x01\n" +
-	"\tCommittee\x12I\n" +
-	"\amembers\x18\x01 \x03(\v2/.utxorpc.v1alpha.cardano.Committee.MembersEntryR\amembers\x12E\n" +
-	"\tthreshold\x18\x02 \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\tthreshold\x1a:\n" +
+	" \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x12treasuryWithdrawal\"\xd7\x01\n" +
+	"\tCommittee\x12H\n" +
+	"\amembers\x18\x01 \x03(\v2..utxorpc.v1beta.cardano.Committee.MembersEntryR\amembers\x12D\n" +
+	"\tthreshold\x18\x02 \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\tthreshold\x1a:\n" +
 	"\fMembersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\x92\x02\n" +
-	"\fCostModelMap\x12?\n" +
-	"\tplutus_v1\x18\x01 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV1\x12?\n" +
-	"\tplutus_v2\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV2\x12?\n" +
-	"\tplutus_v3\x18\x03 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV3\x12?\n" +
-	"\tplutus_v4\x18\x04 \x01(\v2\".utxorpc.v1alpha.cardano.CostModelR\bplutusV4\"\xa9\x1a\n" +
-	"\aGenesis\x12N\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\x8e\x02\n" +
+	"\fCostModelMap\x12>\n" +
+	"\tplutus_v1\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV1\x12>\n" +
+	"\tplutus_v2\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV2\x12>\n" +
+	"\tplutus_v3\x18\x03 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV3\x12>\n" +
+	"\tplutus_v4\x18\x04 \x01(\v2!.utxorpc.v1beta.cardano.CostModelR\bplutusV4\"\x8d\x1a\n" +
+	"\aGenesis\x12M\n" +
 	"\n" +
-	"avvm_distr\x18\x01 \x03(\v2/.utxorpc.v1alpha.cardano.Genesis.AvvmDistrEntryR\tavvmDistr\x12W\n" +
-	"\x12block_version_data\x18\x02 \x01(\v2).utxorpc.v1alpha.cardano.BlockVersionDataR\x10blockVersionData\x12\x19\n" +
-	"\bfts_seed\x18\x03 \x01(\tR\aftsSeed\x12P\n" +
-	"\x0fprotocol_consts\x18\x04 \x01(\v2'.utxorpc.v1alpha.cardano.ProtocolConstsR\x0eprotocolConsts\x12\x1d\n" +
+	"avvm_distr\x18\x01 \x03(\v2..utxorpc.v1beta.cardano.Genesis.AvvmDistrEntryR\tavvmDistr\x12V\n" +
+	"\x12block_version_data\x18\x02 \x01(\v2(.utxorpc.v1beta.cardano.BlockVersionDataR\x10blockVersionData\x12\x19\n" +
+	"\bfts_seed\x18\x03 \x01(\tR\aftsSeed\x12O\n" +
+	"\x0fprotocol_consts\x18\x04 \x01(\v2&.utxorpc.v1beta.cardano.ProtocolConstsR\x0eprotocolConsts\x12\x1d\n" +
 	"\n" +
-	"start_time\x18\x05 \x01(\x04R\tstartTime\x12c\n" +
-	"\x11boot_stakeholders\x18\x06 \x03(\v26.utxorpc.v1alpha.cardano.Genesis.BootStakeholdersEntryR\x10bootStakeholders\x12`\n" +
-	"\x10heavy_delegation\x18\a \x03(\v25.utxorpc.v1alpha.cardano.Genesis.HeavyDelegationEntryR\x0fheavyDelegation\x12a\n" +
-	"\x11non_avvm_balances\x18\b \x03(\v25.utxorpc.v1alpha.cardano.Genesis.NonAvvmBalancesEntryR\x0fnonAvvmBalances\x12K\n" +
-	"\tvss_certs\x18\t \x03(\v2..utxorpc.v1alpha.cardano.Genesis.VssCertsEntryR\bvssCerts\x12U\n" +
+	"start_time\x18\x05 \x01(\x04R\tstartTime\x12b\n" +
+	"\x11boot_stakeholders\x18\x06 \x03(\v25.utxorpc.v1beta.cardano.Genesis.BootStakeholdersEntryR\x10bootStakeholders\x12_\n" +
+	"\x10heavy_delegation\x18\a \x03(\v24.utxorpc.v1beta.cardano.Genesis.HeavyDelegationEntryR\x0fheavyDelegation\x12`\n" +
+	"\x11non_avvm_balances\x18\b \x03(\v24.utxorpc.v1beta.cardano.Genesis.NonAvvmBalancesEntryR\x0fnonAvvmBalances\x12J\n" +
+	"\tvss_certs\x18\t \x03(\v2-.utxorpc.v1beta.cardano.Genesis.VssCertsEntryR\bvssCerts\x12T\n" +
 	"\x12active_slots_coeff\x18\n" +
-	" \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x10activeSlotsCoeff\x12!\n" +
-	"\fepoch_length\x18\v \x01(\rR\vepochLength\x12N\n" +
+	" \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x10activeSlotsCoeff\x12!\n" +
+	"\fepoch_length\x18\v \x01(\rR\vepochLength\x12M\n" +
 	"\n" +
-	"gen_delegs\x18\f \x03(\v2/.utxorpc.v1alpha.cardano.Genesis.GenDelegsEntryR\tgenDelegs\x12W\n" +
-	"\rinitial_funds\x18\r \x03(\v22.utxorpc.v1alpha.cardano.Genesis.InitialFundsEntryR\finitialFunds\x12,\n" +
-	"\x12max_kes_evolutions\x18\x0e \x01(\rR\x10maxKesEvolutions\x12O\n" +
-	"\x13max_lovelace_supply\x18\x0f \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x11maxLovelaceSupply\x12\x1d\n" +
+	"gen_delegs\x18\f \x03(\v2..utxorpc.v1beta.cardano.Genesis.GenDelegsEntryR\tgenDelegs\x12V\n" +
+	"\rinitial_funds\x18\r \x03(\v21.utxorpc.v1beta.cardano.Genesis.InitialFundsEntryR\finitialFunds\x12,\n" +
+	"\x12max_kes_evolutions\x18\x0e \x01(\rR\x10maxKesEvolutions\x12N\n" +
+	"\x13max_lovelace_supply\x18\x0f \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x11maxLovelaceSupply\x12\x1d\n" +
 	"\n" +
 	"network_id\x18\x10 \x01(\tR\tnetworkId\x12#\n" +
-	"\rnetwork_magic\x18\x11 \x01(\rR\fnetworkMagic\x12I\n" +
-	"\x0fprotocol_params\x18\x12 \x01(\v2 .utxorpc.v1alpha.cardano.PParamsR\x0eprotocolParams\x12%\n" +
+	"\rnetwork_magic\x18\x11 \x01(\rR\fnetworkMagic\x12H\n" +
+	"\x0fprotocol_params\x18\x12 \x01(\v2\x1f.utxorpc.v1beta.cardano.PParamsR\x0eprotocolParams\x12%\n" +
 	"\x0esecurity_param\x18\x13 \x01(\rR\rsecurityParam\x12\x1f\n" +
 	"\vslot_length\x18\x14 \x01(\rR\n" +
 	"slotLength\x12/\n" +
 	"\x14slots_per_kes_period\x18\x15 \x01(\rR\x11slotsPerKesPeriod\x12!\n" +
 	"\fsystem_start\x18\x16 \x01(\tR\vsystemStart\x12#\n" +
-	"\rupdate_quorum\x18\x17 \x01(\rR\fupdateQuorum\x12T\n" +
-	"\x16lovelace_per_utxo_word\x18\x18 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x13lovelacePerUtxoWord\x12L\n" +
-	"\x10execution_prices\x18\x19 \x01(\v2!.utxorpc.v1alpha.cardano.ExPricesR\x0fexecutionPrices\x12G\n" +
-	"\x0fmax_tx_ex_units\x18\x1a \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\fmaxTxExUnits\x12M\n" +
-	"\x12max_block_ex_units\x18\x1b \x01(\v2 .utxorpc.v1alpha.cardano.ExUnitsR\x0fmaxBlockExUnits\x12$\n" +
+	"\rupdate_quorum\x18\x17 \x01(\rR\fupdateQuorum\x12S\n" +
+	"\x16lovelace_per_utxo_word\x18\x18 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x13lovelacePerUtxoWord\x12K\n" +
+	"\x10execution_prices\x18\x19 \x01(\v2 .utxorpc.v1beta.cardano.ExPricesR\x0fexecutionPrices\x12F\n" +
+	"\x0fmax_tx_ex_units\x18\x1a \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\fmaxTxExUnits\x12L\n" +
+	"\x12max_block_ex_units\x18\x1b \x01(\v2\x1f.utxorpc.v1beta.cardano.ExUnitsR\x0fmaxBlockExUnits\x12$\n" +
 	"\x0emax_value_size\x18\x1c \x01(\rR\fmaxValueSize\x123\n" +
 	"\x15collateral_percentage\x18\x1d \x01(\rR\x14collateralPercentage\x122\n" +
-	"\x15max_collateral_inputs\x18\x1e \x01(\rR\x13maxCollateralInputs\x12F\n" +
-	"\vcost_models\x18\x1f \x01(\v2%.utxorpc.v1alpha.cardano.CostModelMapR\n" +
-	"costModels\x12@\n" +
-	"\tcommittee\x18  \x01(\v2\".utxorpc.v1alpha.cardano.CommitteeR\tcommittee\x12I\n" +
-	"\fconstitution\x18! \x01(\v2%.utxorpc.v1alpha.cardano.ConstitutionR\fconstitution\x12,\n" +
+	"\x15max_collateral_inputs\x18\x1e \x01(\rR\x13maxCollateralInputs\x12E\n" +
+	"\vcost_models\x18\x1f \x01(\v2$.utxorpc.v1beta.cardano.CostModelMapR\n" +
+	"costModels\x12?\n" +
+	"\tcommittee\x18  \x01(\v2!.utxorpc.v1beta.cardano.CommitteeR\tcommittee\x12H\n" +
+	"\fconstitution\x18! \x01(\v2$.utxorpc.v1beta.cardano.ConstitutionR\fconstitution\x12,\n" +
 	"\x12committee_min_size\x18\" \x01(\x04R\x10committeeMinSize\x129\n" +
 	"\x19committee_max_term_length\x18# \x01(\x04R\x16committeeMaxTermLength\x12.\n" +
-	"\x13gov_action_lifetime\x18$ \x01(\x04R\x11govActionLifetime\x12M\n" +
-	"\x12gov_action_deposit\x18% \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x10govActionDeposit\x12B\n" +
-	"\fdrep_deposit\x18& \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\vdrepDeposit\x12#\n" +
-	"\rdrep_activity\x18' \x01(\x04R\fdrepActivity\x12m\n" +
-	" min_fee_ref_script_cost_per_byte\x18( \x01(\v2'.utxorpc.v1alpha.cardano.RationalNumberR\x1aminFeeRefScriptCostPerByte\x12c\n" +
-	"\x16drep_voting_thresholds\x18) \x01(\v2-.utxorpc.v1alpha.cardano.DRepVotingThresholdsR\x14drepVotingThresholds\x12c\n" +
-	"\x16pool_voting_thresholds\x18* \x01(\v2-.utxorpc.v1alpha.cardano.PoolVotingThresholdsR\x14poolVotingThresholds\x1a<\n" +
+	"\x13gov_action_lifetime\x18$ \x01(\x04R\x11govActionLifetime\x12L\n" +
+	"\x12gov_action_deposit\x18% \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x10govActionDeposit\x12A\n" +
+	"\fdrep_deposit\x18& \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\vdrepDeposit\x12#\n" +
+	"\rdrep_activity\x18' \x01(\x04R\fdrepActivity\x12l\n" +
+	" min_fee_ref_script_cost_per_byte\x18( \x01(\v2&.utxorpc.v1beta.cardano.RationalNumberR\x1aminFeeRefScriptCostPerByte\x12b\n" +
+	"\x16drep_voting_thresholds\x18) \x01(\v2,.utxorpc.v1beta.cardano.DRepVotingThresholdsR\x14drepVotingThresholds\x12b\n" +
+	"\x16pool_voting_thresholds\x18* \x01(\v2,.utxorpc.v1beta.cardano.PoolVotingThresholdsR\x14poolVotingThresholds\x1a<\n" +
 	"\x0eAvvmDistrEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aC\n" +
 	"\x15BootStakeholdersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\x1al\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\x1ak\n" +
 	"\x14HeavyDelegationEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12>\n" +
-	"\x05value\x18\x02 \x01(\v2(.utxorpc.v1alpha.cardano.HeavyDelegationR\x05value:\x028\x01\x1aB\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12=\n" +
+	"\x05value\x18\x02 \x01(\v2'.utxorpc.v1beta.cardano.HeavyDelegationR\x05value:\x028\x01\x1aB\n" +
 	"\x14NonAvvmBalancesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a]\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a\\\n" +
 	"\rVssCertsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x126\n" +
-	"\x05value\x18\x02 \x01(\v2 .utxorpc.v1alpha.cardano.VssCertR\x05value:\x028\x01\x1a`\n" +
-	"\x0eGenDelegsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x128\n" +
-	"\x05value\x18\x02 \x01(\v2\".utxorpc.v1alpha.cardano.GenDelegsR\x05value:\x028\x01\x1a`\n" +
-	"\x11InitialFundsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x125\n" +
-	"\x05value\x18\x02 \x01(\v2\x1f.utxorpc.v1alpha.cardano.BigIntR\x05value:\x028\x01*\xdb\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x1f.utxorpc.v1beta.cardano.VssCertR\x05value:\x028\x01\x1a_\n" +
+	"\x0eGenDelegsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x127\n" +
+	"\x05value\x18\x02 \x01(\v2!.utxorpc.v1beta.cardano.GenDelegsR\x05value:\x028\x01\x1a_\n" +
+	"\x11InitialFundsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x124\n" +
+	"\x05value\x18\x02 \x01(\v2\x1e.utxorpc.v1beta.cardano.BigIntR\x05value:\x028\x01*\xdb\x01\n" +
 	"\x0fRedeemerPurpose\x12 \n" +
 	"\x1cREDEEMER_PURPOSE_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16REDEEMER_PURPOSE_SPEND\x10\x01\x12\x19\n" +
@@ -8352,401 +8695,418 @@ const file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc = "" +
 	"\x15REDEEMER_PURPOSE_CERT\x10\x03\x12\x1b\n" +
 	"\x17REDEEMER_PURPOSE_REWARD\x10\x04\x12\x19\n" +
 	"\x15REDEEMER_PURPOSE_VOTE\x10\x05\x12\x1c\n" +
-	"\x18REDEEMER_PURPOSE_PROPOSE\x10\x06*Y\n" +
+	"\x18REDEEMER_PURPOSE_PROPOSE\x10\x06*I\n" +
+	"\x04Vote\x12\x14\n" +
+	"\x10VOTE_UNSPECIFIED\x10\x00\x12\v\n" +
+	"\aVOTE_NO\x10\x01\x12\f\n" +
+	"\bVOTE_YES\x10\x02\x12\x10\n" +
+	"\fVOTE_ABSTAIN\x10\x03*Y\n" +
 	"\tMirSource\x12\x1a\n" +
 	"\x16MIR_SOURCE_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13MIR_SOURCE_RESERVES\x10\x01\x12\x17\n" +
-	"\x13MIR_SOURCE_TREASURY\x10\x02B\xe0\x01\n" +
-	"\x1bcom.utxorpc.v1alpha.cardanoB\fCardanoProtoP\x01Z5github.com/utxorpc/go-codegen/utxorpc/v1alpha/cardano\xa2\x02\x03UVC\xaa\x02\x17Utxorpc.V1alpha.Cardano\xca\x02\x17Utxorpc\\V1alpha\\Cardano\xe2\x02#Utxorpc\\V1alpha\\Cardano\\GPBMetadata\xea\x02\x19Utxorpc::V1alpha::Cardanob\x06proto3"
+	"\x13MIR_SOURCE_TREASURY\x10\x02B\xda\x01\n" +
+	"\x1acom.utxorpc.v1beta.cardanoB\fCardanoProtoP\x01Z4github.com/utxorpc/go-codegen/utxorpc/v1beta/cardano\xa2\x02\x03UVC\xaa\x02\x16Utxorpc.V1beta.Cardano\xca\x02\x16Utxorpc\\V1beta\\Cardano\xe2\x02\"Utxorpc\\V1beta\\Cardano\\GPBMetadata\xea\x02\x18Utxorpc::V1beta::Cardanob\x06proto3"
 
 var (
-	file_utxorpc_v1alpha_cardano_cardano_proto_rawDescOnce sync.Once
-	file_utxorpc_v1alpha_cardano_cardano_proto_rawDescData []byte
+	file_utxorpc_v1beta_cardano_cardano_proto_rawDescOnce sync.Once
+	file_utxorpc_v1beta_cardano_cardano_proto_rawDescData []byte
 )
 
-func file_utxorpc_v1alpha_cardano_cardano_proto_rawDescGZIP() []byte {
-	file_utxorpc_v1alpha_cardano_cardano_proto_rawDescOnce.Do(func() {
-		file_utxorpc_v1alpha_cardano_cardano_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc), len(file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc)))
+func file_utxorpc_v1beta_cardano_cardano_proto_rawDescGZIP() []byte {
+	file_utxorpc_v1beta_cardano_cardano_proto_rawDescOnce.Do(func() {
+		file_utxorpc_v1beta_cardano_cardano_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_cardano_cardano_proto_rawDesc), len(file_utxorpc_v1beta_cardano_cardano_proto_rawDesc)))
 	})
-	return file_utxorpc_v1alpha_cardano_cardano_proto_rawDescData
+	return file_utxorpc_v1beta_cardano_cardano_proto_rawDescData
 }
 
-var file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes = make([]protoimpl.MessageInfo, 110)
-var file_utxorpc_v1alpha_cardano_cardano_proto_goTypes = []any{
-	(RedeemerPurpose)(0),              // 0: utxorpc.v1alpha.cardano.RedeemerPurpose
-	(MirSource)(0),                    // 1: utxorpc.v1alpha.cardano.MirSource
-	(*Redeemer)(nil),                  // 2: utxorpc.v1alpha.cardano.Redeemer
-	(*TxInput)(nil),                   // 3: utxorpc.v1alpha.cardano.TxInput
-	(*TxOutput)(nil),                  // 4: utxorpc.v1alpha.cardano.TxOutput
-	(*Datum)(nil),                     // 5: utxorpc.v1alpha.cardano.Datum
-	(*Asset)(nil),                     // 6: utxorpc.v1alpha.cardano.Asset
-	(*Multiasset)(nil),                // 7: utxorpc.v1alpha.cardano.Multiasset
-	(*TxValidity)(nil),                // 8: utxorpc.v1alpha.cardano.TxValidity
-	(*Collateral)(nil),                // 9: utxorpc.v1alpha.cardano.Collateral
-	(*Withdrawal)(nil),                // 10: utxorpc.v1alpha.cardano.Withdrawal
-	(*WitnessSet)(nil),                // 11: utxorpc.v1alpha.cardano.WitnessSet
-	(*AuxData)(nil),                   // 12: utxorpc.v1alpha.cardano.AuxData
-	(*Tx)(nil),                        // 13: utxorpc.v1alpha.cardano.Tx
-	(*GovernanceActionProposal)(nil),  // 14: utxorpc.v1alpha.cardano.GovernanceActionProposal
-	(*GovernanceAction)(nil),          // 15: utxorpc.v1alpha.cardano.GovernanceAction
-	(*GovernanceActionId)(nil),        // 16: utxorpc.v1alpha.cardano.GovernanceActionId
-	(*ParameterChangeAction)(nil),     // 17: utxorpc.v1alpha.cardano.ParameterChangeAction
-	(*HardForkInitiationAction)(nil),  // 18: utxorpc.v1alpha.cardano.HardForkInitiationAction
-	(*TreasuryWithdrawalsAction)(nil), // 19: utxorpc.v1alpha.cardano.TreasuryWithdrawalsAction
-	(*WithdrawalAmount)(nil),          // 20: utxorpc.v1alpha.cardano.WithdrawalAmount
-	(*NoConfidenceAction)(nil),        // 21: utxorpc.v1alpha.cardano.NoConfidenceAction
-	(*UpdateCommitteeAction)(nil),     // 22: utxorpc.v1alpha.cardano.UpdateCommitteeAction
-	(*NewConstitutionAction)(nil),     // 23: utxorpc.v1alpha.cardano.NewConstitutionAction
-	(*Constitution)(nil),              // 24: utxorpc.v1alpha.cardano.Constitution
-	(*NewCommitteeCredentials)(nil),   // 25: utxorpc.v1alpha.cardano.NewCommitteeCredentials
-	(*BlockHeader)(nil),               // 26: utxorpc.v1alpha.cardano.BlockHeader
-	(*BlockBody)(nil),                 // 27: utxorpc.v1alpha.cardano.BlockBody
-	(*Block)(nil),                     // 28: utxorpc.v1alpha.cardano.Block
-	(*VKeyWitness)(nil),               // 29: utxorpc.v1alpha.cardano.VKeyWitness
-	(*NativeScript)(nil),              // 30: utxorpc.v1alpha.cardano.NativeScript
-	(*NativeScriptList)(nil),          // 31: utxorpc.v1alpha.cardano.NativeScriptList
-	(*ScriptNOfK)(nil),                // 32: utxorpc.v1alpha.cardano.ScriptNOfK
-	(*Constr)(nil),                    // 33: utxorpc.v1alpha.cardano.Constr
-	(*BigInt)(nil),                    // 34: utxorpc.v1alpha.cardano.BigInt
-	(*PlutusDataPair)(nil),            // 35: utxorpc.v1alpha.cardano.PlutusDataPair
-	(*PlutusData)(nil),                // 36: utxorpc.v1alpha.cardano.PlutusData
-	(*PlutusDataMap)(nil),             // 37: utxorpc.v1alpha.cardano.PlutusDataMap
-	(*PlutusDataArray)(nil),           // 38: utxorpc.v1alpha.cardano.PlutusDataArray
-	(*Script)(nil),                    // 39: utxorpc.v1alpha.cardano.Script
-	(*Metadatum)(nil),                 // 40: utxorpc.v1alpha.cardano.Metadatum
-	(*MetadatumArray)(nil),            // 41: utxorpc.v1alpha.cardano.MetadatumArray
-	(*MetadatumMap)(nil),              // 42: utxorpc.v1alpha.cardano.MetadatumMap
-	(*MetadatumPair)(nil),             // 43: utxorpc.v1alpha.cardano.MetadatumPair
-	(*Metadata)(nil),                  // 44: utxorpc.v1alpha.cardano.Metadata
-	(*StakeCredential)(nil),           // 45: utxorpc.v1alpha.cardano.StakeCredential
-	(*RationalNumber)(nil),            // 46: utxorpc.v1alpha.cardano.RationalNumber
-	(*Relay)(nil),                     // 47: utxorpc.v1alpha.cardano.Relay
-	(*PoolMetadata)(nil),              // 48: utxorpc.v1alpha.cardano.PoolMetadata
-	(*Certificate)(nil),               // 49: utxorpc.v1alpha.cardano.Certificate
-	(*StakeDelegationCert)(nil),       // 50: utxorpc.v1alpha.cardano.StakeDelegationCert
-	(*PoolRegistrationCert)(nil),      // 51: utxorpc.v1alpha.cardano.PoolRegistrationCert
-	(*PoolRetirementCert)(nil),        // 52: utxorpc.v1alpha.cardano.PoolRetirementCert
-	(*GenesisKeyDelegationCert)(nil),  // 53: utxorpc.v1alpha.cardano.GenesisKeyDelegationCert
-	(*MirTarget)(nil),                 // 54: utxorpc.v1alpha.cardano.MirTarget
-	(*MirCert)(nil),                   // 55: utxorpc.v1alpha.cardano.MirCert
-	(*RegCert)(nil),                   // 56: utxorpc.v1alpha.cardano.RegCert
-	(*UnRegCert)(nil),                 // 57: utxorpc.v1alpha.cardano.UnRegCert
-	(*DRep)(nil),                      // 58: utxorpc.v1alpha.cardano.DRep
-	(*VoteDelegCert)(nil),             // 59: utxorpc.v1alpha.cardano.VoteDelegCert
-	(*StakeVoteDelegCert)(nil),        // 60: utxorpc.v1alpha.cardano.StakeVoteDelegCert
-	(*StakeRegDelegCert)(nil),         // 61: utxorpc.v1alpha.cardano.StakeRegDelegCert
-	(*VoteRegDelegCert)(nil),          // 62: utxorpc.v1alpha.cardano.VoteRegDelegCert
-	(*StakeVoteRegDelegCert)(nil),     // 63: utxorpc.v1alpha.cardano.StakeVoteRegDelegCert
-	(*AuthCommitteeHotCert)(nil),      // 64: utxorpc.v1alpha.cardano.AuthCommitteeHotCert
-	(*Anchor)(nil),                    // 65: utxorpc.v1alpha.cardano.Anchor
-	(*ResignCommitteeColdCert)(nil),   // 66: utxorpc.v1alpha.cardano.ResignCommitteeColdCert
-	(*RegDRepCert)(nil),               // 67: utxorpc.v1alpha.cardano.RegDRepCert
-	(*UnRegDRepCert)(nil),             // 68: utxorpc.v1alpha.cardano.UnRegDRepCert
-	(*UpdateDRepCert)(nil),            // 69: utxorpc.v1alpha.cardano.UpdateDRepCert
-	(*AddressPattern)(nil),            // 70: utxorpc.v1alpha.cardano.AddressPattern
-	(*AssetPattern)(nil),              // 71: utxorpc.v1alpha.cardano.AssetPattern
-	(*CertificatePattern)(nil),        // 72: utxorpc.v1alpha.cardano.CertificatePattern
-	(*StakeDelegationPattern)(nil),    // 73: utxorpc.v1alpha.cardano.StakeDelegationPattern
-	(*PoolRegistrationPattern)(nil),   // 74: utxorpc.v1alpha.cardano.PoolRegistrationPattern
-	(*PoolRetirementPattern)(nil),     // 75: utxorpc.v1alpha.cardano.PoolRetirementPattern
-	(*TxOutputPattern)(nil),           // 76: utxorpc.v1alpha.cardano.TxOutputPattern
-	(*TxPattern)(nil),                 // 77: utxorpc.v1alpha.cardano.TxPattern
-	(*ExUnits)(nil),                   // 78: utxorpc.v1alpha.cardano.ExUnits
-	(*ExPrices)(nil),                  // 79: utxorpc.v1alpha.cardano.ExPrices
-	(*ProtocolVersion)(nil),           // 80: utxorpc.v1alpha.cardano.ProtocolVersion
-	(*CostModel)(nil),                 // 81: utxorpc.v1alpha.cardano.CostModel
-	(*CostModels)(nil),                // 82: utxorpc.v1alpha.cardano.CostModels
-	(*VotingThresholds)(nil),          // 83: utxorpc.v1alpha.cardano.VotingThresholds
-	(*PParams)(nil),                   // 84: utxorpc.v1alpha.cardano.PParams
-	(*EraBoundary)(nil),               // 85: utxorpc.v1alpha.cardano.EraBoundary
-	(*EraSummary)(nil),                // 86: utxorpc.v1alpha.cardano.EraSummary
-	(*EraSummaries)(nil),              // 87: utxorpc.v1alpha.cardano.EraSummaries
-	(*EvalError)(nil),                 // 88: utxorpc.v1alpha.cardano.EvalError
-	(*EvalTrace)(nil),                 // 89: utxorpc.v1alpha.cardano.EvalTrace
-	(*TxEval)(nil),                    // 90: utxorpc.v1alpha.cardano.TxEval
-	(*ExtraEntropy)(nil),              // 91: utxorpc.v1alpha.cardano.ExtraEntropy
-	(*BlockVersionData)(nil),          // 92: utxorpc.v1alpha.cardano.BlockVersionData
-	(*SoftforkRule)(nil),              // 93: utxorpc.v1alpha.cardano.SoftforkRule
-	(*TxFeePolicy)(nil),               // 94: utxorpc.v1alpha.cardano.TxFeePolicy
-	(*ProtocolConsts)(nil),            // 95: utxorpc.v1alpha.cardano.ProtocolConsts
-	(*HeavyDelegation)(nil),           // 96: utxorpc.v1alpha.cardano.HeavyDelegation
-	(*VssCert)(nil),                   // 97: utxorpc.v1alpha.cardano.VssCert
-	(*GenDelegs)(nil),                 // 98: utxorpc.v1alpha.cardano.GenDelegs
-	(*PoolVotingThresholds)(nil),      // 99: utxorpc.v1alpha.cardano.PoolVotingThresholds
-	(*DRepVotingThresholds)(nil),      // 100: utxorpc.v1alpha.cardano.DRepVotingThresholds
-	(*Committee)(nil),                 // 101: utxorpc.v1alpha.cardano.Committee
-	(*CostModelMap)(nil),              // 102: utxorpc.v1alpha.cardano.CostModelMap
-	(*Genesis)(nil),                   // 103: utxorpc.v1alpha.cardano.Genesis
-	nil,                               // 104: utxorpc.v1alpha.cardano.Committee.MembersEntry
-	nil,                               // 105: utxorpc.v1alpha.cardano.Genesis.AvvmDistrEntry
-	nil,                               // 106: utxorpc.v1alpha.cardano.Genesis.BootStakeholdersEntry
-	nil,                               // 107: utxorpc.v1alpha.cardano.Genesis.HeavyDelegationEntry
-	nil,                               // 108: utxorpc.v1alpha.cardano.Genesis.NonAvvmBalancesEntry
-	nil,                               // 109: utxorpc.v1alpha.cardano.Genesis.VssCertsEntry
-	nil,                               // 110: utxorpc.v1alpha.cardano.Genesis.GenDelegsEntry
-	nil,                               // 111: utxorpc.v1alpha.cardano.Genesis.InitialFundsEntry
+var file_utxorpc_v1beta_cardano_cardano_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_utxorpc_v1beta_cardano_cardano_proto_msgTypes = make([]protoimpl.MessageInfo, 114)
+var file_utxorpc_v1beta_cardano_cardano_proto_goTypes = []any{
+	(RedeemerPurpose)(0),              // 0: utxorpc.v1beta.cardano.RedeemerPurpose
+	(Vote)(0),                         // 1: utxorpc.v1beta.cardano.Vote
+	(MirSource)(0),                    // 2: utxorpc.v1beta.cardano.MirSource
+	(*Redeemer)(nil),                  // 3: utxorpc.v1beta.cardano.Redeemer
+	(*TxInput)(nil),                   // 4: utxorpc.v1beta.cardano.TxInput
+	(*TxOutput)(nil),                  // 5: utxorpc.v1beta.cardano.TxOutput
+	(*Datum)(nil),                     // 6: utxorpc.v1beta.cardano.Datum
+	(*Asset)(nil),                     // 7: utxorpc.v1beta.cardano.Asset
+	(*Multiasset)(nil),                // 8: utxorpc.v1beta.cardano.Multiasset
+	(*TxValidity)(nil),                // 9: utxorpc.v1beta.cardano.TxValidity
+	(*Collateral)(nil),                // 10: utxorpc.v1beta.cardano.Collateral
+	(*Withdrawal)(nil),                // 11: utxorpc.v1beta.cardano.Withdrawal
+	(*WitnessSet)(nil),                // 12: utxorpc.v1beta.cardano.WitnessSet
+	(*AuxData)(nil),                   // 13: utxorpc.v1beta.cardano.AuxData
+	(*Tx)(nil),                        // 14: utxorpc.v1beta.cardano.Tx
+	(*GovernanceActionProposal)(nil),  // 15: utxorpc.v1beta.cardano.GovernanceActionProposal
+	(*GovernanceAction)(nil),          // 16: utxorpc.v1beta.cardano.GovernanceAction
+	(*GovernanceActionId)(nil),        // 17: utxorpc.v1beta.cardano.GovernanceActionId
+	(*VotingProcedure)(nil),           // 18: utxorpc.v1beta.cardano.VotingProcedure
+	(*VoterVotes)(nil),                // 19: utxorpc.v1beta.cardano.VoterVotes
+	(*ParameterChangeAction)(nil),     // 20: utxorpc.v1beta.cardano.ParameterChangeAction
+	(*HardForkInitiationAction)(nil),  // 21: utxorpc.v1beta.cardano.HardForkInitiationAction
+	(*TreasuryWithdrawalsAction)(nil), // 22: utxorpc.v1beta.cardano.TreasuryWithdrawalsAction
+	(*WithdrawalAmount)(nil),          // 23: utxorpc.v1beta.cardano.WithdrawalAmount
+	(*NoConfidenceAction)(nil),        // 24: utxorpc.v1beta.cardano.NoConfidenceAction
+	(*UpdateCommitteeAction)(nil),     // 25: utxorpc.v1beta.cardano.UpdateCommitteeAction
+	(*NewConstitutionAction)(nil),     // 26: utxorpc.v1beta.cardano.NewConstitutionAction
+	(*InfoAction)(nil),                // 27: utxorpc.v1beta.cardano.InfoAction
+	(*Constitution)(nil),              // 28: utxorpc.v1beta.cardano.Constitution
+	(*NewCommitteeCredentials)(nil),   // 29: utxorpc.v1beta.cardano.NewCommitteeCredentials
+	(*BlockHeader)(nil),               // 30: utxorpc.v1beta.cardano.BlockHeader
+	(*BlockBody)(nil),                 // 31: utxorpc.v1beta.cardano.BlockBody
+	(*Block)(nil),                     // 32: utxorpc.v1beta.cardano.Block
+	(*BootstrapWitness)(nil),          // 33: utxorpc.v1beta.cardano.BootstrapWitness
+	(*VKeyWitness)(nil),               // 34: utxorpc.v1beta.cardano.VKeyWitness
+	(*NativeScript)(nil),              // 35: utxorpc.v1beta.cardano.NativeScript
+	(*NativeScriptList)(nil),          // 36: utxorpc.v1beta.cardano.NativeScriptList
+	(*ScriptNOfK)(nil),                // 37: utxorpc.v1beta.cardano.ScriptNOfK
+	(*Constr)(nil),                    // 38: utxorpc.v1beta.cardano.Constr
+	(*BigInt)(nil),                    // 39: utxorpc.v1beta.cardano.BigInt
+	(*PlutusDataPair)(nil),            // 40: utxorpc.v1beta.cardano.PlutusDataPair
+	(*PlutusData)(nil),                // 41: utxorpc.v1beta.cardano.PlutusData
+	(*PlutusDataMap)(nil),             // 42: utxorpc.v1beta.cardano.PlutusDataMap
+	(*PlutusDataArray)(nil),           // 43: utxorpc.v1beta.cardano.PlutusDataArray
+	(*Script)(nil),                    // 44: utxorpc.v1beta.cardano.Script
+	(*Metadatum)(nil),                 // 45: utxorpc.v1beta.cardano.Metadatum
+	(*MetadatumArray)(nil),            // 46: utxorpc.v1beta.cardano.MetadatumArray
+	(*MetadatumMap)(nil),              // 47: utxorpc.v1beta.cardano.MetadatumMap
+	(*MetadatumPair)(nil),             // 48: utxorpc.v1beta.cardano.MetadatumPair
+	(*Metadata)(nil),                  // 49: utxorpc.v1beta.cardano.Metadata
+	(*StakeCredential)(nil),           // 50: utxorpc.v1beta.cardano.StakeCredential
+	(*RationalNumber)(nil),            // 51: utxorpc.v1beta.cardano.RationalNumber
+	(*Relay)(nil),                     // 52: utxorpc.v1beta.cardano.Relay
+	(*PoolMetadata)(nil),              // 53: utxorpc.v1beta.cardano.PoolMetadata
+	(*Certificate)(nil),               // 54: utxorpc.v1beta.cardano.Certificate
+	(*StakeDelegationCert)(nil),       // 55: utxorpc.v1beta.cardano.StakeDelegationCert
+	(*PoolRegistrationCert)(nil),      // 56: utxorpc.v1beta.cardano.PoolRegistrationCert
+	(*PoolRetirementCert)(nil),        // 57: utxorpc.v1beta.cardano.PoolRetirementCert
+	(*GenesisKeyDelegationCert)(nil),  // 58: utxorpc.v1beta.cardano.GenesisKeyDelegationCert
+	(*MirTarget)(nil),                 // 59: utxorpc.v1beta.cardano.MirTarget
+	(*MirCert)(nil),                   // 60: utxorpc.v1beta.cardano.MirCert
+	(*RegCert)(nil),                   // 61: utxorpc.v1beta.cardano.RegCert
+	(*UnRegCert)(nil),                 // 62: utxorpc.v1beta.cardano.UnRegCert
+	(*DRep)(nil),                      // 63: utxorpc.v1beta.cardano.DRep
+	(*VoteDelegCert)(nil),             // 64: utxorpc.v1beta.cardano.VoteDelegCert
+	(*StakeVoteDelegCert)(nil),        // 65: utxorpc.v1beta.cardano.StakeVoteDelegCert
+	(*StakeRegDelegCert)(nil),         // 66: utxorpc.v1beta.cardano.StakeRegDelegCert
+	(*VoteRegDelegCert)(nil),          // 67: utxorpc.v1beta.cardano.VoteRegDelegCert
+	(*StakeVoteRegDelegCert)(nil),     // 68: utxorpc.v1beta.cardano.StakeVoteRegDelegCert
+	(*AuthCommitteeHotCert)(nil),      // 69: utxorpc.v1beta.cardano.AuthCommitteeHotCert
+	(*Anchor)(nil),                    // 70: utxorpc.v1beta.cardano.Anchor
+	(*ResignCommitteeColdCert)(nil),   // 71: utxorpc.v1beta.cardano.ResignCommitteeColdCert
+	(*RegDRepCert)(nil),               // 72: utxorpc.v1beta.cardano.RegDRepCert
+	(*UnRegDRepCert)(nil),             // 73: utxorpc.v1beta.cardano.UnRegDRepCert
+	(*UpdateDRepCert)(nil),            // 74: utxorpc.v1beta.cardano.UpdateDRepCert
+	(*AddressPattern)(nil),            // 75: utxorpc.v1beta.cardano.AddressPattern
+	(*AssetPattern)(nil),              // 76: utxorpc.v1beta.cardano.AssetPattern
+	(*CertificatePattern)(nil),        // 77: utxorpc.v1beta.cardano.CertificatePattern
+	(*StakeDelegationPattern)(nil),    // 78: utxorpc.v1beta.cardano.StakeDelegationPattern
+	(*PoolRegistrationPattern)(nil),   // 79: utxorpc.v1beta.cardano.PoolRegistrationPattern
+	(*PoolRetirementPattern)(nil),     // 80: utxorpc.v1beta.cardano.PoolRetirementPattern
+	(*TxOutputPattern)(nil),           // 81: utxorpc.v1beta.cardano.TxOutputPattern
+	(*TxPattern)(nil),                 // 82: utxorpc.v1beta.cardano.TxPattern
+	(*ExUnits)(nil),                   // 83: utxorpc.v1beta.cardano.ExUnits
+	(*ExPrices)(nil),                  // 84: utxorpc.v1beta.cardano.ExPrices
+	(*ProtocolVersion)(nil),           // 85: utxorpc.v1beta.cardano.ProtocolVersion
+	(*CostModel)(nil),                 // 86: utxorpc.v1beta.cardano.CostModel
+	(*CostModels)(nil),                // 87: utxorpc.v1beta.cardano.CostModels
+	(*VotingThresholds)(nil),          // 88: utxorpc.v1beta.cardano.VotingThresholds
+	(*PParams)(nil),                   // 89: utxorpc.v1beta.cardano.PParams
+	(*EraBoundary)(nil),               // 90: utxorpc.v1beta.cardano.EraBoundary
+	(*EraSummary)(nil),                // 91: utxorpc.v1beta.cardano.EraSummary
+	(*EraSummaries)(nil),              // 92: utxorpc.v1beta.cardano.EraSummaries
+	(*EvalError)(nil),                 // 93: utxorpc.v1beta.cardano.EvalError
+	(*EvalTrace)(nil),                 // 94: utxorpc.v1beta.cardano.EvalTrace
+	(*TxEval)(nil),                    // 95: utxorpc.v1beta.cardano.TxEval
+	(*ExtraEntropy)(nil),              // 96: utxorpc.v1beta.cardano.ExtraEntropy
+	(*BlockVersionData)(nil),          // 97: utxorpc.v1beta.cardano.BlockVersionData
+	(*SoftforkRule)(nil),              // 98: utxorpc.v1beta.cardano.SoftforkRule
+	(*TxFeePolicy)(nil),               // 99: utxorpc.v1beta.cardano.TxFeePolicy
+	(*ProtocolConsts)(nil),            // 100: utxorpc.v1beta.cardano.ProtocolConsts
+	(*HeavyDelegation)(nil),           // 101: utxorpc.v1beta.cardano.HeavyDelegation
+	(*VssCert)(nil),                   // 102: utxorpc.v1beta.cardano.VssCert
+	(*GenDelegs)(nil),                 // 103: utxorpc.v1beta.cardano.GenDelegs
+	(*PoolVotingThresholds)(nil),      // 104: utxorpc.v1beta.cardano.PoolVotingThresholds
+	(*DRepVotingThresholds)(nil),      // 105: utxorpc.v1beta.cardano.DRepVotingThresholds
+	(*Committee)(nil),                 // 106: utxorpc.v1beta.cardano.Committee
+	(*CostModelMap)(nil),              // 107: utxorpc.v1beta.cardano.CostModelMap
+	(*Genesis)(nil),                   // 108: utxorpc.v1beta.cardano.Genesis
+	nil,                               // 109: utxorpc.v1beta.cardano.Committee.MembersEntry
+	nil,                               // 110: utxorpc.v1beta.cardano.Genesis.AvvmDistrEntry
+	nil,                               // 111: utxorpc.v1beta.cardano.Genesis.BootStakeholdersEntry
+	nil,                               // 112: utxorpc.v1beta.cardano.Genesis.HeavyDelegationEntry
+	nil,                               // 113: utxorpc.v1beta.cardano.Genesis.NonAvvmBalancesEntry
+	nil,                               // 114: utxorpc.v1beta.cardano.Genesis.VssCertsEntry
+	nil,                               // 115: utxorpc.v1beta.cardano.Genesis.GenDelegsEntry
+	nil,                               // 116: utxorpc.v1beta.cardano.Genesis.InitialFundsEntry
 }
-var file_utxorpc_v1alpha_cardano_cardano_proto_depIdxs = []int32{
-	0,   // 0: utxorpc.v1alpha.cardano.Redeemer.purpose:type_name -> utxorpc.v1alpha.cardano.RedeemerPurpose
-	36,  // 1: utxorpc.v1alpha.cardano.Redeemer.payload:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	78,  // 2: utxorpc.v1alpha.cardano.Redeemer.ex_units:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	4,   // 3: utxorpc.v1alpha.cardano.TxInput.as_output:type_name -> utxorpc.v1alpha.cardano.TxOutput
-	2,   // 4: utxorpc.v1alpha.cardano.TxInput.redeemer:type_name -> utxorpc.v1alpha.cardano.Redeemer
-	34,  // 5: utxorpc.v1alpha.cardano.TxOutput.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	7,   // 6: utxorpc.v1alpha.cardano.TxOutput.assets:type_name -> utxorpc.v1alpha.cardano.Multiasset
-	5,   // 7: utxorpc.v1alpha.cardano.TxOutput.datum:type_name -> utxorpc.v1alpha.cardano.Datum
-	39,  // 8: utxorpc.v1alpha.cardano.TxOutput.script:type_name -> utxorpc.v1alpha.cardano.Script
-	36,  // 9: utxorpc.v1alpha.cardano.Datum.payload:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	34,  // 10: utxorpc.v1alpha.cardano.Asset.output_coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 11: utxorpc.v1alpha.cardano.Asset.mint_coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	6,   // 12: utxorpc.v1alpha.cardano.Multiasset.assets:type_name -> utxorpc.v1alpha.cardano.Asset
-	2,   // 13: utxorpc.v1alpha.cardano.Multiasset.redeemer:type_name -> utxorpc.v1alpha.cardano.Redeemer
-	3,   // 14: utxorpc.v1alpha.cardano.Collateral.collateral:type_name -> utxorpc.v1alpha.cardano.TxInput
-	4,   // 15: utxorpc.v1alpha.cardano.Collateral.collateral_return:type_name -> utxorpc.v1alpha.cardano.TxOutput
-	34,  // 16: utxorpc.v1alpha.cardano.Collateral.total_collateral:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 17: utxorpc.v1alpha.cardano.Withdrawal.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	2,   // 18: utxorpc.v1alpha.cardano.Withdrawal.redeemer:type_name -> utxorpc.v1alpha.cardano.Redeemer
-	29,  // 19: utxorpc.v1alpha.cardano.WitnessSet.vkeywitness:type_name -> utxorpc.v1alpha.cardano.VKeyWitness
-	39,  // 20: utxorpc.v1alpha.cardano.WitnessSet.script:type_name -> utxorpc.v1alpha.cardano.Script
-	36,  // 21: utxorpc.v1alpha.cardano.WitnessSet.plutus_datums:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	44,  // 22: utxorpc.v1alpha.cardano.AuxData.metadata:type_name -> utxorpc.v1alpha.cardano.Metadata
-	39,  // 23: utxorpc.v1alpha.cardano.AuxData.scripts:type_name -> utxorpc.v1alpha.cardano.Script
-	3,   // 24: utxorpc.v1alpha.cardano.Tx.inputs:type_name -> utxorpc.v1alpha.cardano.TxInput
-	4,   // 25: utxorpc.v1alpha.cardano.Tx.outputs:type_name -> utxorpc.v1alpha.cardano.TxOutput
-	49,  // 26: utxorpc.v1alpha.cardano.Tx.certificates:type_name -> utxorpc.v1alpha.cardano.Certificate
-	10,  // 27: utxorpc.v1alpha.cardano.Tx.withdrawals:type_name -> utxorpc.v1alpha.cardano.Withdrawal
-	7,   // 28: utxorpc.v1alpha.cardano.Tx.mint:type_name -> utxorpc.v1alpha.cardano.Multiasset
-	3,   // 29: utxorpc.v1alpha.cardano.Tx.reference_inputs:type_name -> utxorpc.v1alpha.cardano.TxInput
-	11,  // 30: utxorpc.v1alpha.cardano.Tx.witnesses:type_name -> utxorpc.v1alpha.cardano.WitnessSet
-	9,   // 31: utxorpc.v1alpha.cardano.Tx.collateral:type_name -> utxorpc.v1alpha.cardano.Collateral
-	34,  // 32: utxorpc.v1alpha.cardano.Tx.fee:type_name -> utxorpc.v1alpha.cardano.BigInt
-	8,   // 33: utxorpc.v1alpha.cardano.Tx.validity:type_name -> utxorpc.v1alpha.cardano.TxValidity
-	12,  // 34: utxorpc.v1alpha.cardano.Tx.auxiliary:type_name -> utxorpc.v1alpha.cardano.AuxData
-	14,  // 35: utxorpc.v1alpha.cardano.Tx.proposals:type_name -> utxorpc.v1alpha.cardano.GovernanceActionProposal
-	34,  // 36: utxorpc.v1alpha.cardano.GovernanceActionProposal.deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	15,  // 37: utxorpc.v1alpha.cardano.GovernanceActionProposal.gov_action:type_name -> utxorpc.v1alpha.cardano.GovernanceAction
-	65,  // 38: utxorpc.v1alpha.cardano.GovernanceActionProposal.anchor:type_name -> utxorpc.v1alpha.cardano.Anchor
-	17,  // 39: utxorpc.v1alpha.cardano.GovernanceAction.parameter_change_action:type_name -> utxorpc.v1alpha.cardano.ParameterChangeAction
-	18,  // 40: utxorpc.v1alpha.cardano.GovernanceAction.hard_fork_initiation_action:type_name -> utxorpc.v1alpha.cardano.HardForkInitiationAction
-	19,  // 41: utxorpc.v1alpha.cardano.GovernanceAction.treasury_withdrawals_action:type_name -> utxorpc.v1alpha.cardano.TreasuryWithdrawalsAction
-	21,  // 42: utxorpc.v1alpha.cardano.GovernanceAction.no_confidence_action:type_name -> utxorpc.v1alpha.cardano.NoConfidenceAction
-	22,  // 43: utxorpc.v1alpha.cardano.GovernanceAction.update_committee_action:type_name -> utxorpc.v1alpha.cardano.UpdateCommitteeAction
-	23,  // 44: utxorpc.v1alpha.cardano.GovernanceAction.new_constitution_action:type_name -> utxorpc.v1alpha.cardano.NewConstitutionAction
-	16,  // 45: utxorpc.v1alpha.cardano.ParameterChangeAction.gov_action_id:type_name -> utxorpc.v1alpha.cardano.GovernanceActionId
-	84,  // 46: utxorpc.v1alpha.cardano.ParameterChangeAction.protocol_param_update:type_name -> utxorpc.v1alpha.cardano.PParams
-	16,  // 47: utxorpc.v1alpha.cardano.HardForkInitiationAction.gov_action_id:type_name -> utxorpc.v1alpha.cardano.GovernanceActionId
-	80,  // 48: utxorpc.v1alpha.cardano.HardForkInitiationAction.protocol_version:type_name -> utxorpc.v1alpha.cardano.ProtocolVersion
-	20,  // 49: utxorpc.v1alpha.cardano.TreasuryWithdrawalsAction.withdrawals:type_name -> utxorpc.v1alpha.cardano.WithdrawalAmount
-	34,  // 50: utxorpc.v1alpha.cardano.WithdrawalAmount.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	16,  // 51: utxorpc.v1alpha.cardano.NoConfidenceAction.gov_action_id:type_name -> utxorpc.v1alpha.cardano.GovernanceActionId
-	16,  // 52: utxorpc.v1alpha.cardano.UpdateCommitteeAction.gov_action_id:type_name -> utxorpc.v1alpha.cardano.GovernanceActionId
-	45,  // 53: utxorpc.v1alpha.cardano.UpdateCommitteeAction.remove_committee_credentials:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	25,  // 54: utxorpc.v1alpha.cardano.UpdateCommitteeAction.new_committee_credentials:type_name -> utxorpc.v1alpha.cardano.NewCommitteeCredentials
-	46,  // 55: utxorpc.v1alpha.cardano.UpdateCommitteeAction.new_committee_threshold:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	16,  // 56: utxorpc.v1alpha.cardano.NewConstitutionAction.gov_action_id:type_name -> utxorpc.v1alpha.cardano.GovernanceActionId
-	24,  // 57: utxorpc.v1alpha.cardano.NewConstitutionAction.constitution:type_name -> utxorpc.v1alpha.cardano.Constitution
-	65,  // 58: utxorpc.v1alpha.cardano.Constitution.anchor:type_name -> utxorpc.v1alpha.cardano.Anchor
-	45,  // 59: utxorpc.v1alpha.cardano.NewCommitteeCredentials.committee_cold_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	13,  // 60: utxorpc.v1alpha.cardano.BlockBody.tx:type_name -> utxorpc.v1alpha.cardano.Tx
-	26,  // 61: utxorpc.v1alpha.cardano.Block.header:type_name -> utxorpc.v1alpha.cardano.BlockHeader
-	27,  // 62: utxorpc.v1alpha.cardano.Block.body:type_name -> utxorpc.v1alpha.cardano.BlockBody
-	31,  // 63: utxorpc.v1alpha.cardano.NativeScript.script_all:type_name -> utxorpc.v1alpha.cardano.NativeScriptList
-	31,  // 64: utxorpc.v1alpha.cardano.NativeScript.script_any:type_name -> utxorpc.v1alpha.cardano.NativeScriptList
-	32,  // 65: utxorpc.v1alpha.cardano.NativeScript.script_n_of_k:type_name -> utxorpc.v1alpha.cardano.ScriptNOfK
-	30,  // 66: utxorpc.v1alpha.cardano.NativeScriptList.items:type_name -> utxorpc.v1alpha.cardano.NativeScript
-	30,  // 67: utxorpc.v1alpha.cardano.ScriptNOfK.scripts:type_name -> utxorpc.v1alpha.cardano.NativeScript
-	36,  // 68: utxorpc.v1alpha.cardano.Constr.fields:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	36,  // 69: utxorpc.v1alpha.cardano.PlutusDataPair.key:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	36,  // 70: utxorpc.v1alpha.cardano.PlutusDataPair.value:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	33,  // 71: utxorpc.v1alpha.cardano.PlutusData.constr:type_name -> utxorpc.v1alpha.cardano.Constr
-	37,  // 72: utxorpc.v1alpha.cardano.PlutusData.map:type_name -> utxorpc.v1alpha.cardano.PlutusDataMap
-	34,  // 73: utxorpc.v1alpha.cardano.PlutusData.big_int:type_name -> utxorpc.v1alpha.cardano.BigInt
-	38,  // 74: utxorpc.v1alpha.cardano.PlutusData.array:type_name -> utxorpc.v1alpha.cardano.PlutusDataArray
-	35,  // 75: utxorpc.v1alpha.cardano.PlutusDataMap.pairs:type_name -> utxorpc.v1alpha.cardano.PlutusDataPair
-	36,  // 76: utxorpc.v1alpha.cardano.PlutusDataArray.items:type_name -> utxorpc.v1alpha.cardano.PlutusData
-	30,  // 77: utxorpc.v1alpha.cardano.Script.native:type_name -> utxorpc.v1alpha.cardano.NativeScript
-	41,  // 78: utxorpc.v1alpha.cardano.Metadatum.array:type_name -> utxorpc.v1alpha.cardano.MetadatumArray
-	42,  // 79: utxorpc.v1alpha.cardano.Metadatum.map:type_name -> utxorpc.v1alpha.cardano.MetadatumMap
-	40,  // 80: utxorpc.v1alpha.cardano.MetadatumArray.items:type_name -> utxorpc.v1alpha.cardano.Metadatum
-	43,  // 81: utxorpc.v1alpha.cardano.MetadatumMap.pairs:type_name -> utxorpc.v1alpha.cardano.MetadatumPair
-	40,  // 82: utxorpc.v1alpha.cardano.MetadatumPair.key:type_name -> utxorpc.v1alpha.cardano.Metadatum
-	40,  // 83: utxorpc.v1alpha.cardano.MetadatumPair.value:type_name -> utxorpc.v1alpha.cardano.Metadatum
-	40,  // 84: utxorpc.v1alpha.cardano.Metadata.value:type_name -> utxorpc.v1alpha.cardano.Metadatum
-	45,  // 85: utxorpc.v1alpha.cardano.Certificate.stake_registration:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	45,  // 86: utxorpc.v1alpha.cardano.Certificate.stake_deregistration:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	50,  // 87: utxorpc.v1alpha.cardano.Certificate.stake_delegation:type_name -> utxorpc.v1alpha.cardano.StakeDelegationCert
-	51,  // 88: utxorpc.v1alpha.cardano.Certificate.pool_registration:type_name -> utxorpc.v1alpha.cardano.PoolRegistrationCert
-	52,  // 89: utxorpc.v1alpha.cardano.Certificate.pool_retirement:type_name -> utxorpc.v1alpha.cardano.PoolRetirementCert
-	53,  // 90: utxorpc.v1alpha.cardano.Certificate.genesis_key_delegation:type_name -> utxorpc.v1alpha.cardano.GenesisKeyDelegationCert
-	55,  // 91: utxorpc.v1alpha.cardano.Certificate.mir_cert:type_name -> utxorpc.v1alpha.cardano.MirCert
-	56,  // 92: utxorpc.v1alpha.cardano.Certificate.reg_cert:type_name -> utxorpc.v1alpha.cardano.RegCert
-	57,  // 93: utxorpc.v1alpha.cardano.Certificate.unreg_cert:type_name -> utxorpc.v1alpha.cardano.UnRegCert
-	59,  // 94: utxorpc.v1alpha.cardano.Certificate.vote_deleg_cert:type_name -> utxorpc.v1alpha.cardano.VoteDelegCert
-	60,  // 95: utxorpc.v1alpha.cardano.Certificate.stake_vote_deleg_cert:type_name -> utxorpc.v1alpha.cardano.StakeVoteDelegCert
-	61,  // 96: utxorpc.v1alpha.cardano.Certificate.stake_reg_deleg_cert:type_name -> utxorpc.v1alpha.cardano.StakeRegDelegCert
-	62,  // 97: utxorpc.v1alpha.cardano.Certificate.vote_reg_deleg_cert:type_name -> utxorpc.v1alpha.cardano.VoteRegDelegCert
-	63,  // 98: utxorpc.v1alpha.cardano.Certificate.stake_vote_reg_deleg_cert:type_name -> utxorpc.v1alpha.cardano.StakeVoteRegDelegCert
-	64,  // 99: utxorpc.v1alpha.cardano.Certificate.auth_committee_hot_cert:type_name -> utxorpc.v1alpha.cardano.AuthCommitteeHotCert
-	66,  // 100: utxorpc.v1alpha.cardano.Certificate.resign_committee_cold_cert:type_name -> utxorpc.v1alpha.cardano.ResignCommitteeColdCert
-	67,  // 101: utxorpc.v1alpha.cardano.Certificate.reg_drep_cert:type_name -> utxorpc.v1alpha.cardano.RegDRepCert
-	68,  // 102: utxorpc.v1alpha.cardano.Certificate.unreg_drep_cert:type_name -> utxorpc.v1alpha.cardano.UnRegDRepCert
-	69,  // 103: utxorpc.v1alpha.cardano.Certificate.update_drep_cert:type_name -> utxorpc.v1alpha.cardano.UpdateDRepCert
-	2,   // 104: utxorpc.v1alpha.cardano.Certificate.redeemer:type_name -> utxorpc.v1alpha.cardano.Redeemer
-	45,  // 105: utxorpc.v1alpha.cardano.StakeDelegationCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 106: utxorpc.v1alpha.cardano.PoolRegistrationCert.pledge:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 107: utxorpc.v1alpha.cardano.PoolRegistrationCert.cost:type_name -> utxorpc.v1alpha.cardano.BigInt
-	46,  // 108: utxorpc.v1alpha.cardano.PoolRegistrationCert.margin:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	47,  // 109: utxorpc.v1alpha.cardano.PoolRegistrationCert.relays:type_name -> utxorpc.v1alpha.cardano.Relay
-	48,  // 110: utxorpc.v1alpha.cardano.PoolRegistrationCert.pool_metadata:type_name -> utxorpc.v1alpha.cardano.PoolMetadata
-	45,  // 111: utxorpc.v1alpha.cardano.MirTarget.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 112: utxorpc.v1alpha.cardano.MirTarget.delta_coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	1,   // 113: utxorpc.v1alpha.cardano.MirCert.from:type_name -> utxorpc.v1alpha.cardano.MirSource
-	54,  // 114: utxorpc.v1alpha.cardano.MirCert.to:type_name -> utxorpc.v1alpha.cardano.MirTarget
-	45,  // 115: utxorpc.v1alpha.cardano.RegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 116: utxorpc.v1alpha.cardano.RegCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 117: utxorpc.v1alpha.cardano.UnRegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 118: utxorpc.v1alpha.cardano.UnRegCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 119: utxorpc.v1alpha.cardano.VoteDelegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	58,  // 120: utxorpc.v1alpha.cardano.VoteDelegCert.drep:type_name -> utxorpc.v1alpha.cardano.DRep
-	45,  // 121: utxorpc.v1alpha.cardano.StakeVoteDelegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	58,  // 122: utxorpc.v1alpha.cardano.StakeVoteDelegCert.drep:type_name -> utxorpc.v1alpha.cardano.DRep
-	45,  // 123: utxorpc.v1alpha.cardano.StakeRegDelegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 124: utxorpc.v1alpha.cardano.StakeRegDelegCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 125: utxorpc.v1alpha.cardano.VoteRegDelegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	58,  // 126: utxorpc.v1alpha.cardano.VoteRegDelegCert.drep:type_name -> utxorpc.v1alpha.cardano.DRep
-	34,  // 127: utxorpc.v1alpha.cardano.VoteRegDelegCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 128: utxorpc.v1alpha.cardano.StakeVoteRegDelegCert.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	58,  // 129: utxorpc.v1alpha.cardano.StakeVoteRegDelegCert.drep:type_name -> utxorpc.v1alpha.cardano.DRep
-	34,  // 130: utxorpc.v1alpha.cardano.StakeVoteRegDelegCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 131: utxorpc.v1alpha.cardano.AuthCommitteeHotCert.committee_cold_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	45,  // 132: utxorpc.v1alpha.cardano.AuthCommitteeHotCert.committee_hot_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	45,  // 133: utxorpc.v1alpha.cardano.ResignCommitteeColdCert.committee_cold_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	65,  // 134: utxorpc.v1alpha.cardano.ResignCommitteeColdCert.anchor:type_name -> utxorpc.v1alpha.cardano.Anchor
-	45,  // 135: utxorpc.v1alpha.cardano.RegDRepCert.drep_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 136: utxorpc.v1alpha.cardano.RegDRepCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	65,  // 137: utxorpc.v1alpha.cardano.RegDRepCert.anchor:type_name -> utxorpc.v1alpha.cardano.Anchor
-	45,  // 138: utxorpc.v1alpha.cardano.UnRegDRepCert.drep_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	34,  // 139: utxorpc.v1alpha.cardano.UnRegDRepCert.coin:type_name -> utxorpc.v1alpha.cardano.BigInt
-	45,  // 140: utxorpc.v1alpha.cardano.UpdateDRepCert.drep_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	65,  // 141: utxorpc.v1alpha.cardano.UpdateDRepCert.anchor:type_name -> utxorpc.v1alpha.cardano.Anchor
-	45,  // 142: utxorpc.v1alpha.cardano.CertificatePattern.stake_registration:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	45,  // 143: utxorpc.v1alpha.cardano.CertificatePattern.stake_deregistration:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	73,  // 144: utxorpc.v1alpha.cardano.CertificatePattern.stake_delegation:type_name -> utxorpc.v1alpha.cardano.StakeDelegationPattern
-	74,  // 145: utxorpc.v1alpha.cardano.CertificatePattern.pool_registration:type_name -> utxorpc.v1alpha.cardano.PoolRegistrationPattern
-	75,  // 146: utxorpc.v1alpha.cardano.CertificatePattern.pool_retirement:type_name -> utxorpc.v1alpha.cardano.PoolRetirementPattern
-	45,  // 147: utxorpc.v1alpha.cardano.StakeDelegationPattern.stake_credential:type_name -> utxorpc.v1alpha.cardano.StakeCredential
-	70,  // 148: utxorpc.v1alpha.cardano.TxOutputPattern.address:type_name -> utxorpc.v1alpha.cardano.AddressPattern
-	71,  // 149: utxorpc.v1alpha.cardano.TxOutputPattern.asset:type_name -> utxorpc.v1alpha.cardano.AssetPattern
-	76,  // 150: utxorpc.v1alpha.cardano.TxPattern.consumes:type_name -> utxorpc.v1alpha.cardano.TxOutputPattern
-	76,  // 151: utxorpc.v1alpha.cardano.TxPattern.produces:type_name -> utxorpc.v1alpha.cardano.TxOutputPattern
-	70,  // 152: utxorpc.v1alpha.cardano.TxPattern.has_address:type_name -> utxorpc.v1alpha.cardano.AddressPattern
-	71,  // 153: utxorpc.v1alpha.cardano.TxPattern.moves_asset:type_name -> utxorpc.v1alpha.cardano.AssetPattern
-	71,  // 154: utxorpc.v1alpha.cardano.TxPattern.mints_asset:type_name -> utxorpc.v1alpha.cardano.AssetPattern
-	72,  // 155: utxorpc.v1alpha.cardano.TxPattern.has_certificate:type_name -> utxorpc.v1alpha.cardano.CertificatePattern
-	46,  // 156: utxorpc.v1alpha.cardano.ExPrices.steps:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 157: utxorpc.v1alpha.cardano.ExPrices.memory:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	81,  // 158: utxorpc.v1alpha.cardano.CostModels.plutus_v1:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 159: utxorpc.v1alpha.cardano.CostModels.plutus_v2:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 160: utxorpc.v1alpha.cardano.CostModels.plutus_v3:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 161: utxorpc.v1alpha.cardano.CostModels.plutus_v4:type_name -> utxorpc.v1alpha.cardano.CostModel
-	46,  // 162: utxorpc.v1alpha.cardano.VotingThresholds.thresholds:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	34,  // 163: utxorpc.v1alpha.cardano.PParams.coins_per_utxo_byte:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 164: utxorpc.v1alpha.cardano.PParams.min_fee_coefficient:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 165: utxorpc.v1alpha.cardano.PParams.min_fee_constant:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 166: utxorpc.v1alpha.cardano.PParams.stake_key_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 167: utxorpc.v1alpha.cardano.PParams.pool_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	46,  // 168: utxorpc.v1alpha.cardano.PParams.pool_influence:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 169: utxorpc.v1alpha.cardano.PParams.monetary_expansion:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 170: utxorpc.v1alpha.cardano.PParams.treasury_expansion:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	34,  // 171: utxorpc.v1alpha.cardano.PParams.min_pool_cost:type_name -> utxorpc.v1alpha.cardano.BigInt
-	80,  // 172: utxorpc.v1alpha.cardano.PParams.protocol_version:type_name -> utxorpc.v1alpha.cardano.ProtocolVersion
-	82,  // 173: utxorpc.v1alpha.cardano.PParams.cost_models:type_name -> utxorpc.v1alpha.cardano.CostModels
-	79,  // 174: utxorpc.v1alpha.cardano.PParams.prices:type_name -> utxorpc.v1alpha.cardano.ExPrices
-	78,  // 175: utxorpc.v1alpha.cardano.PParams.max_execution_units_per_transaction:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	78,  // 176: utxorpc.v1alpha.cardano.PParams.max_execution_units_per_block:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	46,  // 177: utxorpc.v1alpha.cardano.PParams.min_fee_script_ref_cost_per_byte:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	83,  // 178: utxorpc.v1alpha.cardano.PParams.pool_voting_thresholds:type_name -> utxorpc.v1alpha.cardano.VotingThresholds
-	83,  // 179: utxorpc.v1alpha.cardano.PParams.drep_voting_thresholds:type_name -> utxorpc.v1alpha.cardano.VotingThresholds
-	34,  // 180: utxorpc.v1alpha.cardano.PParams.governance_action_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 181: utxorpc.v1alpha.cardano.PParams.drep_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	85,  // 182: utxorpc.v1alpha.cardano.EraSummary.start:type_name -> utxorpc.v1alpha.cardano.EraBoundary
-	85,  // 183: utxorpc.v1alpha.cardano.EraSummary.end:type_name -> utxorpc.v1alpha.cardano.EraBoundary
-	84,  // 184: utxorpc.v1alpha.cardano.EraSummary.protocol_params:type_name -> utxorpc.v1alpha.cardano.PParams
-	86,  // 185: utxorpc.v1alpha.cardano.EraSummaries.summaries:type_name -> utxorpc.v1alpha.cardano.EraSummary
-	34,  // 186: utxorpc.v1alpha.cardano.TxEval.fee:type_name -> utxorpc.v1alpha.cardano.BigInt
-	78,  // 187: utxorpc.v1alpha.cardano.TxEval.ex_units:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	88,  // 188: utxorpc.v1alpha.cardano.TxEval.errors:type_name -> utxorpc.v1alpha.cardano.EvalError
-	89,  // 189: utxorpc.v1alpha.cardano.TxEval.traces:type_name -> utxorpc.v1alpha.cardano.EvalTrace
-	2,   // 190: utxorpc.v1alpha.cardano.TxEval.redeemers:type_name -> utxorpc.v1alpha.cardano.Redeemer
-	93,  // 191: utxorpc.v1alpha.cardano.BlockVersionData.softfork_rule:type_name -> utxorpc.v1alpha.cardano.SoftforkRule
-	94,  // 192: utxorpc.v1alpha.cardano.BlockVersionData.tx_fee_policy:type_name -> utxorpc.v1alpha.cardano.TxFeePolicy
-	46,  // 193: utxorpc.v1alpha.cardano.PoolVotingThresholds.motion_no_confidence:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 194: utxorpc.v1alpha.cardano.PoolVotingThresholds.committee_normal:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 195: utxorpc.v1alpha.cardano.PoolVotingThresholds.committee_no_confidence:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 196: utxorpc.v1alpha.cardano.PoolVotingThresholds.hard_fork_initiation:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 197: utxorpc.v1alpha.cardano.PoolVotingThresholds.pp_security_group:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 198: utxorpc.v1alpha.cardano.DRepVotingThresholds.motion_no_confidence:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 199: utxorpc.v1alpha.cardano.DRepVotingThresholds.committee_normal:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 200: utxorpc.v1alpha.cardano.DRepVotingThresholds.committee_no_confidence:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 201: utxorpc.v1alpha.cardano.DRepVotingThresholds.update_to_constitution:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 202: utxorpc.v1alpha.cardano.DRepVotingThresholds.hard_fork_initiation:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 203: utxorpc.v1alpha.cardano.DRepVotingThresholds.pp_network_group:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 204: utxorpc.v1alpha.cardano.DRepVotingThresholds.pp_economic_group:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 205: utxorpc.v1alpha.cardano.DRepVotingThresholds.pp_technical_group:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 206: utxorpc.v1alpha.cardano.DRepVotingThresholds.pp_gov_group:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	46,  // 207: utxorpc.v1alpha.cardano.DRepVotingThresholds.treasury_withdrawal:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	104, // 208: utxorpc.v1alpha.cardano.Committee.members:type_name -> utxorpc.v1alpha.cardano.Committee.MembersEntry
-	46,  // 209: utxorpc.v1alpha.cardano.Committee.threshold:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	81,  // 210: utxorpc.v1alpha.cardano.CostModelMap.plutus_v1:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 211: utxorpc.v1alpha.cardano.CostModelMap.plutus_v2:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 212: utxorpc.v1alpha.cardano.CostModelMap.plutus_v3:type_name -> utxorpc.v1alpha.cardano.CostModel
-	81,  // 213: utxorpc.v1alpha.cardano.CostModelMap.plutus_v4:type_name -> utxorpc.v1alpha.cardano.CostModel
-	105, // 214: utxorpc.v1alpha.cardano.Genesis.avvm_distr:type_name -> utxorpc.v1alpha.cardano.Genesis.AvvmDistrEntry
-	92,  // 215: utxorpc.v1alpha.cardano.Genesis.block_version_data:type_name -> utxorpc.v1alpha.cardano.BlockVersionData
-	95,  // 216: utxorpc.v1alpha.cardano.Genesis.protocol_consts:type_name -> utxorpc.v1alpha.cardano.ProtocolConsts
-	106, // 217: utxorpc.v1alpha.cardano.Genesis.boot_stakeholders:type_name -> utxorpc.v1alpha.cardano.Genesis.BootStakeholdersEntry
-	107, // 218: utxorpc.v1alpha.cardano.Genesis.heavy_delegation:type_name -> utxorpc.v1alpha.cardano.Genesis.HeavyDelegationEntry
-	108, // 219: utxorpc.v1alpha.cardano.Genesis.non_avvm_balances:type_name -> utxorpc.v1alpha.cardano.Genesis.NonAvvmBalancesEntry
-	109, // 220: utxorpc.v1alpha.cardano.Genesis.vss_certs:type_name -> utxorpc.v1alpha.cardano.Genesis.VssCertsEntry
-	46,  // 221: utxorpc.v1alpha.cardano.Genesis.active_slots_coeff:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	110, // 222: utxorpc.v1alpha.cardano.Genesis.gen_delegs:type_name -> utxorpc.v1alpha.cardano.Genesis.GenDelegsEntry
-	111, // 223: utxorpc.v1alpha.cardano.Genesis.initial_funds:type_name -> utxorpc.v1alpha.cardano.Genesis.InitialFundsEntry
-	34,  // 224: utxorpc.v1alpha.cardano.Genesis.max_lovelace_supply:type_name -> utxorpc.v1alpha.cardano.BigInt
-	84,  // 225: utxorpc.v1alpha.cardano.Genesis.protocol_params:type_name -> utxorpc.v1alpha.cardano.PParams
-	34,  // 226: utxorpc.v1alpha.cardano.Genesis.lovelace_per_utxo_word:type_name -> utxorpc.v1alpha.cardano.BigInt
-	79,  // 227: utxorpc.v1alpha.cardano.Genesis.execution_prices:type_name -> utxorpc.v1alpha.cardano.ExPrices
-	78,  // 228: utxorpc.v1alpha.cardano.Genesis.max_tx_ex_units:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	78,  // 229: utxorpc.v1alpha.cardano.Genesis.max_block_ex_units:type_name -> utxorpc.v1alpha.cardano.ExUnits
-	102, // 230: utxorpc.v1alpha.cardano.Genesis.cost_models:type_name -> utxorpc.v1alpha.cardano.CostModelMap
-	101, // 231: utxorpc.v1alpha.cardano.Genesis.committee:type_name -> utxorpc.v1alpha.cardano.Committee
-	24,  // 232: utxorpc.v1alpha.cardano.Genesis.constitution:type_name -> utxorpc.v1alpha.cardano.Constitution
-	34,  // 233: utxorpc.v1alpha.cardano.Genesis.gov_action_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	34,  // 234: utxorpc.v1alpha.cardano.Genesis.drep_deposit:type_name -> utxorpc.v1alpha.cardano.BigInt
-	46,  // 235: utxorpc.v1alpha.cardano.Genesis.min_fee_ref_script_cost_per_byte:type_name -> utxorpc.v1alpha.cardano.RationalNumber
-	100, // 236: utxorpc.v1alpha.cardano.Genesis.drep_voting_thresholds:type_name -> utxorpc.v1alpha.cardano.DRepVotingThresholds
-	99,  // 237: utxorpc.v1alpha.cardano.Genesis.pool_voting_thresholds:type_name -> utxorpc.v1alpha.cardano.PoolVotingThresholds
-	96,  // 238: utxorpc.v1alpha.cardano.Genesis.HeavyDelegationEntry.value:type_name -> utxorpc.v1alpha.cardano.HeavyDelegation
-	97,  // 239: utxorpc.v1alpha.cardano.Genesis.VssCertsEntry.value:type_name -> utxorpc.v1alpha.cardano.VssCert
-	98,  // 240: utxorpc.v1alpha.cardano.Genesis.GenDelegsEntry.value:type_name -> utxorpc.v1alpha.cardano.GenDelegs
-	34,  // 241: utxorpc.v1alpha.cardano.Genesis.InitialFundsEntry.value:type_name -> utxorpc.v1alpha.cardano.BigInt
-	242, // [242:242] is the sub-list for method output_type
-	242, // [242:242] is the sub-list for method input_type
-	242, // [242:242] is the sub-list for extension type_name
-	242, // [242:242] is the sub-list for extension extendee
-	0,   // [0:242] is the sub-list for field type_name
+var file_utxorpc_v1beta_cardano_cardano_proto_depIdxs = []int32{
+	0,   // 0: utxorpc.v1beta.cardano.Redeemer.purpose:type_name -> utxorpc.v1beta.cardano.RedeemerPurpose
+	41,  // 1: utxorpc.v1beta.cardano.Redeemer.payload:type_name -> utxorpc.v1beta.cardano.PlutusData
+	83,  // 2: utxorpc.v1beta.cardano.Redeemer.ex_units:type_name -> utxorpc.v1beta.cardano.ExUnits
+	5,   // 3: utxorpc.v1beta.cardano.TxInput.as_output:type_name -> utxorpc.v1beta.cardano.TxOutput
+	3,   // 4: utxorpc.v1beta.cardano.TxInput.redeemer:type_name -> utxorpc.v1beta.cardano.Redeemer
+	39,  // 5: utxorpc.v1beta.cardano.TxOutput.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	8,   // 6: utxorpc.v1beta.cardano.TxOutput.assets:type_name -> utxorpc.v1beta.cardano.Multiasset
+	6,   // 7: utxorpc.v1beta.cardano.TxOutput.datum:type_name -> utxorpc.v1beta.cardano.Datum
+	44,  // 8: utxorpc.v1beta.cardano.TxOutput.script:type_name -> utxorpc.v1beta.cardano.Script
+	41,  // 9: utxorpc.v1beta.cardano.Datum.payload:type_name -> utxorpc.v1beta.cardano.PlutusData
+	39,  // 10: utxorpc.v1beta.cardano.Asset.quantity:type_name -> utxorpc.v1beta.cardano.BigInt
+	7,   // 11: utxorpc.v1beta.cardano.Multiasset.assets:type_name -> utxorpc.v1beta.cardano.Asset
+	4,   // 12: utxorpc.v1beta.cardano.Collateral.collateral:type_name -> utxorpc.v1beta.cardano.TxInput
+	5,   // 13: utxorpc.v1beta.cardano.Collateral.collateral_return:type_name -> utxorpc.v1beta.cardano.TxOutput
+	39,  // 14: utxorpc.v1beta.cardano.Collateral.total_collateral:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 15: utxorpc.v1beta.cardano.Withdrawal.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	3,   // 16: utxorpc.v1beta.cardano.Withdrawal.redeemer:type_name -> utxorpc.v1beta.cardano.Redeemer
+	34,  // 17: utxorpc.v1beta.cardano.WitnessSet.vkeywitness:type_name -> utxorpc.v1beta.cardano.VKeyWitness
+	44,  // 18: utxorpc.v1beta.cardano.WitnessSet.script:type_name -> utxorpc.v1beta.cardano.Script
+	41,  // 19: utxorpc.v1beta.cardano.WitnessSet.plutus_datums:type_name -> utxorpc.v1beta.cardano.PlutusData
+	3,   // 20: utxorpc.v1beta.cardano.WitnessSet.redeemers:type_name -> utxorpc.v1beta.cardano.Redeemer
+	33,  // 21: utxorpc.v1beta.cardano.WitnessSet.bootstrapWitnesses:type_name -> utxorpc.v1beta.cardano.BootstrapWitness
+	49,  // 22: utxorpc.v1beta.cardano.AuxData.metadata:type_name -> utxorpc.v1beta.cardano.Metadata
+	44,  // 23: utxorpc.v1beta.cardano.AuxData.scripts:type_name -> utxorpc.v1beta.cardano.Script
+	4,   // 24: utxorpc.v1beta.cardano.Tx.inputs:type_name -> utxorpc.v1beta.cardano.TxInput
+	5,   // 25: utxorpc.v1beta.cardano.Tx.outputs:type_name -> utxorpc.v1beta.cardano.TxOutput
+	54,  // 26: utxorpc.v1beta.cardano.Tx.certificates:type_name -> utxorpc.v1beta.cardano.Certificate
+	11,  // 27: utxorpc.v1beta.cardano.Tx.withdrawals:type_name -> utxorpc.v1beta.cardano.Withdrawal
+	8,   // 28: utxorpc.v1beta.cardano.Tx.mint:type_name -> utxorpc.v1beta.cardano.Multiasset
+	4,   // 29: utxorpc.v1beta.cardano.Tx.reference_inputs:type_name -> utxorpc.v1beta.cardano.TxInput
+	12,  // 30: utxorpc.v1beta.cardano.Tx.witnesses:type_name -> utxorpc.v1beta.cardano.WitnessSet
+	10,  // 31: utxorpc.v1beta.cardano.Tx.collateral:type_name -> utxorpc.v1beta.cardano.Collateral
+	39,  // 32: utxorpc.v1beta.cardano.Tx.fee:type_name -> utxorpc.v1beta.cardano.BigInt
+	9,   // 33: utxorpc.v1beta.cardano.Tx.validity:type_name -> utxorpc.v1beta.cardano.TxValidity
+	13,  // 34: utxorpc.v1beta.cardano.Tx.auxiliary:type_name -> utxorpc.v1beta.cardano.AuxData
+	15,  // 35: utxorpc.v1beta.cardano.Tx.proposals:type_name -> utxorpc.v1beta.cardano.GovernanceActionProposal
+	19,  // 36: utxorpc.v1beta.cardano.Tx.votes:type_name -> utxorpc.v1beta.cardano.VoterVotes
+	39,  // 37: utxorpc.v1beta.cardano.GovernanceActionProposal.deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	16,  // 38: utxorpc.v1beta.cardano.GovernanceActionProposal.gov_action:type_name -> utxorpc.v1beta.cardano.GovernanceAction
+	70,  // 39: utxorpc.v1beta.cardano.GovernanceActionProposal.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	20,  // 40: utxorpc.v1beta.cardano.GovernanceAction.parameter_change_action:type_name -> utxorpc.v1beta.cardano.ParameterChangeAction
+	21,  // 41: utxorpc.v1beta.cardano.GovernanceAction.hard_fork_initiation_action:type_name -> utxorpc.v1beta.cardano.HardForkInitiationAction
+	22,  // 42: utxorpc.v1beta.cardano.GovernanceAction.treasury_withdrawals_action:type_name -> utxorpc.v1beta.cardano.TreasuryWithdrawalsAction
+	24,  // 43: utxorpc.v1beta.cardano.GovernanceAction.no_confidence_action:type_name -> utxorpc.v1beta.cardano.NoConfidenceAction
+	25,  // 44: utxorpc.v1beta.cardano.GovernanceAction.update_committee_action:type_name -> utxorpc.v1beta.cardano.UpdateCommitteeAction
+	26,  // 45: utxorpc.v1beta.cardano.GovernanceAction.new_constitution_action:type_name -> utxorpc.v1beta.cardano.NewConstitutionAction
+	27,  // 46: utxorpc.v1beta.cardano.GovernanceAction.info_action:type_name -> utxorpc.v1beta.cardano.InfoAction
+	17,  // 47: utxorpc.v1beta.cardano.VotingProcedure.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	1,   // 48: utxorpc.v1beta.cardano.VotingProcedure.vote:type_name -> utxorpc.v1beta.cardano.Vote
+	70,  // 49: utxorpc.v1beta.cardano.VotingProcedure.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	50,  // 50: utxorpc.v1beta.cardano.VoterVotes.constitutional_committee:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	50,  // 51: utxorpc.v1beta.cardano.VoterVotes.drep:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	18,  // 52: utxorpc.v1beta.cardano.VoterVotes.votes:type_name -> utxorpc.v1beta.cardano.VotingProcedure
+	17,  // 53: utxorpc.v1beta.cardano.ParameterChangeAction.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	89,  // 54: utxorpc.v1beta.cardano.ParameterChangeAction.protocol_param_update:type_name -> utxorpc.v1beta.cardano.PParams
+	17,  // 55: utxorpc.v1beta.cardano.HardForkInitiationAction.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	85,  // 56: utxorpc.v1beta.cardano.HardForkInitiationAction.protocol_version:type_name -> utxorpc.v1beta.cardano.ProtocolVersion
+	23,  // 57: utxorpc.v1beta.cardano.TreasuryWithdrawalsAction.withdrawals:type_name -> utxorpc.v1beta.cardano.WithdrawalAmount
+	39,  // 58: utxorpc.v1beta.cardano.WithdrawalAmount.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	17,  // 59: utxorpc.v1beta.cardano.NoConfidenceAction.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	17,  // 60: utxorpc.v1beta.cardano.UpdateCommitteeAction.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	50,  // 61: utxorpc.v1beta.cardano.UpdateCommitteeAction.remove_committee_credentials:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	29,  // 62: utxorpc.v1beta.cardano.UpdateCommitteeAction.new_committee_credentials:type_name -> utxorpc.v1beta.cardano.NewCommitteeCredentials
+	51,  // 63: utxorpc.v1beta.cardano.UpdateCommitteeAction.new_committee_threshold:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	17,  // 64: utxorpc.v1beta.cardano.NewConstitutionAction.gov_action_id:type_name -> utxorpc.v1beta.cardano.GovernanceActionId
+	28,  // 65: utxorpc.v1beta.cardano.NewConstitutionAction.constitution:type_name -> utxorpc.v1beta.cardano.Constitution
+	70,  // 66: utxorpc.v1beta.cardano.Constitution.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	50,  // 67: utxorpc.v1beta.cardano.NewCommitteeCredentials.committee_cold_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	14,  // 68: utxorpc.v1beta.cardano.BlockBody.tx:type_name -> utxorpc.v1beta.cardano.Tx
+	30,  // 69: utxorpc.v1beta.cardano.Block.header:type_name -> utxorpc.v1beta.cardano.BlockHeader
+	31,  // 70: utxorpc.v1beta.cardano.Block.body:type_name -> utxorpc.v1beta.cardano.BlockBody
+	36,  // 71: utxorpc.v1beta.cardano.NativeScript.script_all:type_name -> utxorpc.v1beta.cardano.NativeScriptList
+	36,  // 72: utxorpc.v1beta.cardano.NativeScript.script_any:type_name -> utxorpc.v1beta.cardano.NativeScriptList
+	37,  // 73: utxorpc.v1beta.cardano.NativeScript.script_n_of_k:type_name -> utxorpc.v1beta.cardano.ScriptNOfK
+	35,  // 74: utxorpc.v1beta.cardano.NativeScriptList.items:type_name -> utxorpc.v1beta.cardano.NativeScript
+	35,  // 75: utxorpc.v1beta.cardano.ScriptNOfK.scripts:type_name -> utxorpc.v1beta.cardano.NativeScript
+	41,  // 76: utxorpc.v1beta.cardano.Constr.fields:type_name -> utxorpc.v1beta.cardano.PlutusData
+	41,  // 77: utxorpc.v1beta.cardano.PlutusDataPair.key:type_name -> utxorpc.v1beta.cardano.PlutusData
+	41,  // 78: utxorpc.v1beta.cardano.PlutusDataPair.value:type_name -> utxorpc.v1beta.cardano.PlutusData
+	38,  // 79: utxorpc.v1beta.cardano.PlutusData.constr:type_name -> utxorpc.v1beta.cardano.Constr
+	42,  // 80: utxorpc.v1beta.cardano.PlutusData.map:type_name -> utxorpc.v1beta.cardano.PlutusDataMap
+	39,  // 81: utxorpc.v1beta.cardano.PlutusData.big_int:type_name -> utxorpc.v1beta.cardano.BigInt
+	43,  // 82: utxorpc.v1beta.cardano.PlutusData.array:type_name -> utxorpc.v1beta.cardano.PlutusDataArray
+	40,  // 83: utxorpc.v1beta.cardano.PlutusDataMap.pairs:type_name -> utxorpc.v1beta.cardano.PlutusDataPair
+	41,  // 84: utxorpc.v1beta.cardano.PlutusDataArray.items:type_name -> utxorpc.v1beta.cardano.PlutusData
+	35,  // 85: utxorpc.v1beta.cardano.Script.native:type_name -> utxorpc.v1beta.cardano.NativeScript
+	46,  // 86: utxorpc.v1beta.cardano.Metadatum.array:type_name -> utxorpc.v1beta.cardano.MetadatumArray
+	47,  // 87: utxorpc.v1beta.cardano.Metadatum.map:type_name -> utxorpc.v1beta.cardano.MetadatumMap
+	45,  // 88: utxorpc.v1beta.cardano.MetadatumArray.items:type_name -> utxorpc.v1beta.cardano.Metadatum
+	48,  // 89: utxorpc.v1beta.cardano.MetadatumMap.pairs:type_name -> utxorpc.v1beta.cardano.MetadatumPair
+	45,  // 90: utxorpc.v1beta.cardano.MetadatumPair.key:type_name -> utxorpc.v1beta.cardano.Metadatum
+	45,  // 91: utxorpc.v1beta.cardano.MetadatumPair.value:type_name -> utxorpc.v1beta.cardano.Metadatum
+	45,  // 92: utxorpc.v1beta.cardano.Metadata.value:type_name -> utxorpc.v1beta.cardano.Metadatum
+	50,  // 93: utxorpc.v1beta.cardano.Certificate.stake_registration:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	50,  // 94: utxorpc.v1beta.cardano.Certificate.stake_deregistration:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	55,  // 95: utxorpc.v1beta.cardano.Certificate.stake_delegation:type_name -> utxorpc.v1beta.cardano.StakeDelegationCert
+	56,  // 96: utxorpc.v1beta.cardano.Certificate.pool_registration:type_name -> utxorpc.v1beta.cardano.PoolRegistrationCert
+	57,  // 97: utxorpc.v1beta.cardano.Certificate.pool_retirement:type_name -> utxorpc.v1beta.cardano.PoolRetirementCert
+	58,  // 98: utxorpc.v1beta.cardano.Certificate.genesis_key_delegation:type_name -> utxorpc.v1beta.cardano.GenesisKeyDelegationCert
+	60,  // 99: utxorpc.v1beta.cardano.Certificate.mir_cert:type_name -> utxorpc.v1beta.cardano.MirCert
+	61,  // 100: utxorpc.v1beta.cardano.Certificate.reg_cert:type_name -> utxorpc.v1beta.cardano.RegCert
+	62,  // 101: utxorpc.v1beta.cardano.Certificate.unreg_cert:type_name -> utxorpc.v1beta.cardano.UnRegCert
+	64,  // 102: utxorpc.v1beta.cardano.Certificate.vote_deleg_cert:type_name -> utxorpc.v1beta.cardano.VoteDelegCert
+	65,  // 103: utxorpc.v1beta.cardano.Certificate.stake_vote_deleg_cert:type_name -> utxorpc.v1beta.cardano.StakeVoteDelegCert
+	66,  // 104: utxorpc.v1beta.cardano.Certificate.stake_reg_deleg_cert:type_name -> utxorpc.v1beta.cardano.StakeRegDelegCert
+	67,  // 105: utxorpc.v1beta.cardano.Certificate.vote_reg_deleg_cert:type_name -> utxorpc.v1beta.cardano.VoteRegDelegCert
+	68,  // 106: utxorpc.v1beta.cardano.Certificate.stake_vote_reg_deleg_cert:type_name -> utxorpc.v1beta.cardano.StakeVoteRegDelegCert
+	69,  // 107: utxorpc.v1beta.cardano.Certificate.auth_committee_hot_cert:type_name -> utxorpc.v1beta.cardano.AuthCommitteeHotCert
+	71,  // 108: utxorpc.v1beta.cardano.Certificate.resign_committee_cold_cert:type_name -> utxorpc.v1beta.cardano.ResignCommitteeColdCert
+	72,  // 109: utxorpc.v1beta.cardano.Certificate.reg_drep_cert:type_name -> utxorpc.v1beta.cardano.RegDRepCert
+	73,  // 110: utxorpc.v1beta.cardano.Certificate.unreg_drep_cert:type_name -> utxorpc.v1beta.cardano.UnRegDRepCert
+	74,  // 111: utxorpc.v1beta.cardano.Certificate.update_drep_cert:type_name -> utxorpc.v1beta.cardano.UpdateDRepCert
+	3,   // 112: utxorpc.v1beta.cardano.Certificate.redeemer:type_name -> utxorpc.v1beta.cardano.Redeemer
+	50,  // 113: utxorpc.v1beta.cardano.StakeDelegationCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 114: utxorpc.v1beta.cardano.PoolRegistrationCert.pledge:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 115: utxorpc.v1beta.cardano.PoolRegistrationCert.cost:type_name -> utxorpc.v1beta.cardano.BigInt
+	51,  // 116: utxorpc.v1beta.cardano.PoolRegistrationCert.margin:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	52,  // 117: utxorpc.v1beta.cardano.PoolRegistrationCert.relays:type_name -> utxorpc.v1beta.cardano.Relay
+	53,  // 118: utxorpc.v1beta.cardano.PoolRegistrationCert.pool_metadata:type_name -> utxorpc.v1beta.cardano.PoolMetadata
+	50,  // 119: utxorpc.v1beta.cardano.MirTarget.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 120: utxorpc.v1beta.cardano.MirTarget.delta_coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	2,   // 121: utxorpc.v1beta.cardano.MirCert.from:type_name -> utxorpc.v1beta.cardano.MirSource
+	59,  // 122: utxorpc.v1beta.cardano.MirCert.to:type_name -> utxorpc.v1beta.cardano.MirTarget
+	50,  // 123: utxorpc.v1beta.cardano.RegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 124: utxorpc.v1beta.cardano.RegCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 125: utxorpc.v1beta.cardano.UnRegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 126: utxorpc.v1beta.cardano.UnRegCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 127: utxorpc.v1beta.cardano.VoteDelegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	63,  // 128: utxorpc.v1beta.cardano.VoteDelegCert.drep:type_name -> utxorpc.v1beta.cardano.DRep
+	50,  // 129: utxorpc.v1beta.cardano.StakeVoteDelegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	63,  // 130: utxorpc.v1beta.cardano.StakeVoteDelegCert.drep:type_name -> utxorpc.v1beta.cardano.DRep
+	50,  // 131: utxorpc.v1beta.cardano.StakeRegDelegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 132: utxorpc.v1beta.cardano.StakeRegDelegCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 133: utxorpc.v1beta.cardano.VoteRegDelegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	63,  // 134: utxorpc.v1beta.cardano.VoteRegDelegCert.drep:type_name -> utxorpc.v1beta.cardano.DRep
+	39,  // 135: utxorpc.v1beta.cardano.VoteRegDelegCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 136: utxorpc.v1beta.cardano.StakeVoteRegDelegCert.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	63,  // 137: utxorpc.v1beta.cardano.StakeVoteRegDelegCert.drep:type_name -> utxorpc.v1beta.cardano.DRep
+	39,  // 138: utxorpc.v1beta.cardano.StakeVoteRegDelegCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 139: utxorpc.v1beta.cardano.AuthCommitteeHotCert.committee_cold_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	50,  // 140: utxorpc.v1beta.cardano.AuthCommitteeHotCert.committee_hot_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	50,  // 141: utxorpc.v1beta.cardano.ResignCommitteeColdCert.committee_cold_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	70,  // 142: utxorpc.v1beta.cardano.ResignCommitteeColdCert.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	50,  // 143: utxorpc.v1beta.cardano.RegDRepCert.drep_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 144: utxorpc.v1beta.cardano.RegDRepCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	70,  // 145: utxorpc.v1beta.cardano.RegDRepCert.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	50,  // 146: utxorpc.v1beta.cardano.UnRegDRepCert.drep_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	39,  // 147: utxorpc.v1beta.cardano.UnRegDRepCert.coin:type_name -> utxorpc.v1beta.cardano.BigInt
+	50,  // 148: utxorpc.v1beta.cardano.UpdateDRepCert.drep_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	70,  // 149: utxorpc.v1beta.cardano.UpdateDRepCert.anchor:type_name -> utxorpc.v1beta.cardano.Anchor
+	50,  // 150: utxorpc.v1beta.cardano.CertificatePattern.stake_registration:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	50,  // 151: utxorpc.v1beta.cardano.CertificatePattern.stake_deregistration:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	78,  // 152: utxorpc.v1beta.cardano.CertificatePattern.stake_delegation:type_name -> utxorpc.v1beta.cardano.StakeDelegationPattern
+	79,  // 153: utxorpc.v1beta.cardano.CertificatePattern.pool_registration:type_name -> utxorpc.v1beta.cardano.PoolRegistrationPattern
+	80,  // 154: utxorpc.v1beta.cardano.CertificatePattern.pool_retirement:type_name -> utxorpc.v1beta.cardano.PoolRetirementPattern
+	50,  // 155: utxorpc.v1beta.cardano.StakeDelegationPattern.stake_credential:type_name -> utxorpc.v1beta.cardano.StakeCredential
+	75,  // 156: utxorpc.v1beta.cardano.TxOutputPattern.address:type_name -> utxorpc.v1beta.cardano.AddressPattern
+	76,  // 157: utxorpc.v1beta.cardano.TxOutputPattern.asset:type_name -> utxorpc.v1beta.cardano.AssetPattern
+	81,  // 158: utxorpc.v1beta.cardano.TxPattern.consumes:type_name -> utxorpc.v1beta.cardano.TxOutputPattern
+	81,  // 159: utxorpc.v1beta.cardano.TxPattern.produces:type_name -> utxorpc.v1beta.cardano.TxOutputPattern
+	75,  // 160: utxorpc.v1beta.cardano.TxPattern.has_address:type_name -> utxorpc.v1beta.cardano.AddressPattern
+	76,  // 161: utxorpc.v1beta.cardano.TxPattern.moves_asset:type_name -> utxorpc.v1beta.cardano.AssetPattern
+	76,  // 162: utxorpc.v1beta.cardano.TxPattern.mints_asset:type_name -> utxorpc.v1beta.cardano.AssetPattern
+	77,  // 163: utxorpc.v1beta.cardano.TxPattern.has_certificate:type_name -> utxorpc.v1beta.cardano.CertificatePattern
+	51,  // 164: utxorpc.v1beta.cardano.ExPrices.steps:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 165: utxorpc.v1beta.cardano.ExPrices.memory:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	86,  // 166: utxorpc.v1beta.cardano.CostModels.plutus_v1:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 167: utxorpc.v1beta.cardano.CostModels.plutus_v2:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 168: utxorpc.v1beta.cardano.CostModels.plutus_v3:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 169: utxorpc.v1beta.cardano.CostModels.plutus_v4:type_name -> utxorpc.v1beta.cardano.CostModel
+	51,  // 170: utxorpc.v1beta.cardano.VotingThresholds.thresholds:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	39,  // 171: utxorpc.v1beta.cardano.PParams.coins_per_utxo_byte:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 172: utxorpc.v1beta.cardano.PParams.min_fee_coefficient:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 173: utxorpc.v1beta.cardano.PParams.min_fee_constant:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 174: utxorpc.v1beta.cardano.PParams.stake_key_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 175: utxorpc.v1beta.cardano.PParams.pool_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	51,  // 176: utxorpc.v1beta.cardano.PParams.pool_influence:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 177: utxorpc.v1beta.cardano.PParams.monetary_expansion:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 178: utxorpc.v1beta.cardano.PParams.treasury_expansion:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	39,  // 179: utxorpc.v1beta.cardano.PParams.min_pool_cost:type_name -> utxorpc.v1beta.cardano.BigInt
+	85,  // 180: utxorpc.v1beta.cardano.PParams.protocol_version:type_name -> utxorpc.v1beta.cardano.ProtocolVersion
+	87,  // 181: utxorpc.v1beta.cardano.PParams.cost_models:type_name -> utxorpc.v1beta.cardano.CostModels
+	84,  // 182: utxorpc.v1beta.cardano.PParams.prices:type_name -> utxorpc.v1beta.cardano.ExPrices
+	83,  // 183: utxorpc.v1beta.cardano.PParams.max_execution_units_per_transaction:type_name -> utxorpc.v1beta.cardano.ExUnits
+	83,  // 184: utxorpc.v1beta.cardano.PParams.max_execution_units_per_block:type_name -> utxorpc.v1beta.cardano.ExUnits
+	51,  // 185: utxorpc.v1beta.cardano.PParams.min_fee_script_ref_cost_per_byte:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	88,  // 186: utxorpc.v1beta.cardano.PParams.pool_voting_thresholds:type_name -> utxorpc.v1beta.cardano.VotingThresholds
+	88,  // 187: utxorpc.v1beta.cardano.PParams.drep_voting_thresholds:type_name -> utxorpc.v1beta.cardano.VotingThresholds
+	39,  // 188: utxorpc.v1beta.cardano.PParams.governance_action_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 189: utxorpc.v1beta.cardano.PParams.drep_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	90,  // 190: utxorpc.v1beta.cardano.EraSummary.start:type_name -> utxorpc.v1beta.cardano.EraBoundary
+	90,  // 191: utxorpc.v1beta.cardano.EraSummary.end:type_name -> utxorpc.v1beta.cardano.EraBoundary
+	89,  // 192: utxorpc.v1beta.cardano.EraSummary.protocol_params:type_name -> utxorpc.v1beta.cardano.PParams
+	91,  // 193: utxorpc.v1beta.cardano.EraSummaries.summaries:type_name -> utxorpc.v1beta.cardano.EraSummary
+	39,  // 194: utxorpc.v1beta.cardano.TxEval.fee:type_name -> utxorpc.v1beta.cardano.BigInt
+	83,  // 195: utxorpc.v1beta.cardano.TxEval.ex_units:type_name -> utxorpc.v1beta.cardano.ExUnits
+	93,  // 196: utxorpc.v1beta.cardano.TxEval.errors:type_name -> utxorpc.v1beta.cardano.EvalError
+	94,  // 197: utxorpc.v1beta.cardano.TxEval.traces:type_name -> utxorpc.v1beta.cardano.EvalTrace
+	3,   // 198: utxorpc.v1beta.cardano.TxEval.redeemers:type_name -> utxorpc.v1beta.cardano.Redeemer
+	98,  // 199: utxorpc.v1beta.cardano.BlockVersionData.softfork_rule:type_name -> utxorpc.v1beta.cardano.SoftforkRule
+	99,  // 200: utxorpc.v1beta.cardano.BlockVersionData.tx_fee_policy:type_name -> utxorpc.v1beta.cardano.TxFeePolicy
+	51,  // 201: utxorpc.v1beta.cardano.PoolVotingThresholds.motion_no_confidence:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 202: utxorpc.v1beta.cardano.PoolVotingThresholds.committee_normal:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 203: utxorpc.v1beta.cardano.PoolVotingThresholds.committee_no_confidence:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 204: utxorpc.v1beta.cardano.PoolVotingThresholds.hard_fork_initiation:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 205: utxorpc.v1beta.cardano.PoolVotingThresholds.pp_security_group:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 206: utxorpc.v1beta.cardano.DRepVotingThresholds.motion_no_confidence:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 207: utxorpc.v1beta.cardano.DRepVotingThresholds.committee_normal:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 208: utxorpc.v1beta.cardano.DRepVotingThresholds.committee_no_confidence:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 209: utxorpc.v1beta.cardano.DRepVotingThresholds.update_to_constitution:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 210: utxorpc.v1beta.cardano.DRepVotingThresholds.hard_fork_initiation:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 211: utxorpc.v1beta.cardano.DRepVotingThresholds.pp_network_group:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 212: utxorpc.v1beta.cardano.DRepVotingThresholds.pp_economic_group:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 213: utxorpc.v1beta.cardano.DRepVotingThresholds.pp_technical_group:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 214: utxorpc.v1beta.cardano.DRepVotingThresholds.pp_gov_group:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	51,  // 215: utxorpc.v1beta.cardano.DRepVotingThresholds.treasury_withdrawal:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	109, // 216: utxorpc.v1beta.cardano.Committee.members:type_name -> utxorpc.v1beta.cardano.Committee.MembersEntry
+	51,  // 217: utxorpc.v1beta.cardano.Committee.threshold:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	86,  // 218: utxorpc.v1beta.cardano.CostModelMap.plutus_v1:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 219: utxorpc.v1beta.cardano.CostModelMap.plutus_v2:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 220: utxorpc.v1beta.cardano.CostModelMap.plutus_v3:type_name -> utxorpc.v1beta.cardano.CostModel
+	86,  // 221: utxorpc.v1beta.cardano.CostModelMap.plutus_v4:type_name -> utxorpc.v1beta.cardano.CostModel
+	110, // 222: utxorpc.v1beta.cardano.Genesis.avvm_distr:type_name -> utxorpc.v1beta.cardano.Genesis.AvvmDistrEntry
+	97,  // 223: utxorpc.v1beta.cardano.Genesis.block_version_data:type_name -> utxorpc.v1beta.cardano.BlockVersionData
+	100, // 224: utxorpc.v1beta.cardano.Genesis.protocol_consts:type_name -> utxorpc.v1beta.cardano.ProtocolConsts
+	111, // 225: utxorpc.v1beta.cardano.Genesis.boot_stakeholders:type_name -> utxorpc.v1beta.cardano.Genesis.BootStakeholdersEntry
+	112, // 226: utxorpc.v1beta.cardano.Genesis.heavy_delegation:type_name -> utxorpc.v1beta.cardano.Genesis.HeavyDelegationEntry
+	113, // 227: utxorpc.v1beta.cardano.Genesis.non_avvm_balances:type_name -> utxorpc.v1beta.cardano.Genesis.NonAvvmBalancesEntry
+	114, // 228: utxorpc.v1beta.cardano.Genesis.vss_certs:type_name -> utxorpc.v1beta.cardano.Genesis.VssCertsEntry
+	51,  // 229: utxorpc.v1beta.cardano.Genesis.active_slots_coeff:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	115, // 230: utxorpc.v1beta.cardano.Genesis.gen_delegs:type_name -> utxorpc.v1beta.cardano.Genesis.GenDelegsEntry
+	116, // 231: utxorpc.v1beta.cardano.Genesis.initial_funds:type_name -> utxorpc.v1beta.cardano.Genesis.InitialFundsEntry
+	39,  // 232: utxorpc.v1beta.cardano.Genesis.max_lovelace_supply:type_name -> utxorpc.v1beta.cardano.BigInt
+	89,  // 233: utxorpc.v1beta.cardano.Genesis.protocol_params:type_name -> utxorpc.v1beta.cardano.PParams
+	39,  // 234: utxorpc.v1beta.cardano.Genesis.lovelace_per_utxo_word:type_name -> utxorpc.v1beta.cardano.BigInt
+	84,  // 235: utxorpc.v1beta.cardano.Genesis.execution_prices:type_name -> utxorpc.v1beta.cardano.ExPrices
+	83,  // 236: utxorpc.v1beta.cardano.Genesis.max_tx_ex_units:type_name -> utxorpc.v1beta.cardano.ExUnits
+	83,  // 237: utxorpc.v1beta.cardano.Genesis.max_block_ex_units:type_name -> utxorpc.v1beta.cardano.ExUnits
+	107, // 238: utxorpc.v1beta.cardano.Genesis.cost_models:type_name -> utxorpc.v1beta.cardano.CostModelMap
+	106, // 239: utxorpc.v1beta.cardano.Genesis.committee:type_name -> utxorpc.v1beta.cardano.Committee
+	28,  // 240: utxorpc.v1beta.cardano.Genesis.constitution:type_name -> utxorpc.v1beta.cardano.Constitution
+	39,  // 241: utxorpc.v1beta.cardano.Genesis.gov_action_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	39,  // 242: utxorpc.v1beta.cardano.Genesis.drep_deposit:type_name -> utxorpc.v1beta.cardano.BigInt
+	51,  // 243: utxorpc.v1beta.cardano.Genesis.min_fee_ref_script_cost_per_byte:type_name -> utxorpc.v1beta.cardano.RationalNumber
+	105, // 244: utxorpc.v1beta.cardano.Genesis.drep_voting_thresholds:type_name -> utxorpc.v1beta.cardano.DRepVotingThresholds
+	104, // 245: utxorpc.v1beta.cardano.Genesis.pool_voting_thresholds:type_name -> utxorpc.v1beta.cardano.PoolVotingThresholds
+	101, // 246: utxorpc.v1beta.cardano.Genesis.HeavyDelegationEntry.value:type_name -> utxorpc.v1beta.cardano.HeavyDelegation
+	102, // 247: utxorpc.v1beta.cardano.Genesis.VssCertsEntry.value:type_name -> utxorpc.v1beta.cardano.VssCert
+	103, // 248: utxorpc.v1beta.cardano.Genesis.GenDelegsEntry.value:type_name -> utxorpc.v1beta.cardano.GenDelegs
+	39,  // 249: utxorpc.v1beta.cardano.Genesis.InitialFundsEntry.value:type_name -> utxorpc.v1beta.cardano.BigInt
+	250, // [250:250] is the sub-list for method output_type
+	250, // [250:250] is the sub-list for method input_type
+	250, // [250:250] is the sub-list for extension type_name
+	250, // [250:250] is the sub-list for extension extendee
+	0,   // [0:250] is the sub-list for field type_name
 }
 
-func init() { file_utxorpc_v1alpha_cardano_cardano_proto_init() }
-func file_utxorpc_v1alpha_cardano_cardano_proto_init() {
-	if File_utxorpc_v1alpha_cardano_cardano_proto != nil {
+func init() { file_utxorpc_v1beta_cardano_cardano_proto_init() }
+func file_utxorpc_v1beta_cardano_cardano_proto_init() {
+	if File_utxorpc_v1beta_cardano_cardano_proto != nil {
 		return
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[4].OneofWrappers = []any{
-		(*Asset_OutputCoin)(nil),
-		(*Asset_MintCoin)(nil),
-	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[13].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[1].OneofWrappers = []any{}
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[2].OneofWrappers = []any{}
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[3].OneofWrappers = []any{}
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[13].OneofWrappers = []any{
 		(*GovernanceAction_ParameterChangeAction)(nil),
 		(*GovernanceAction_HardForkInitiationAction)(nil),
 		(*GovernanceAction_TreasuryWithdrawalsAction)(nil),
@@ -8755,45 +9115,51 @@ func file_utxorpc_v1alpha_cardano_cardano_proto_init() {
 		(*GovernanceAction_NewConstitutionAction)(nil),
 		(*GovernanceAction_InfoAction)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[28].OneofWrappers = []any{
-		(*NativeScript_ScriptPubkey)(nil),
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[15].OneofWrappers = []any{}
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[16].OneofWrappers = []any{
+		(*VoterVotes_ConstitutionalCommittee)(nil),
+		(*VoterVotes_Drep)(nil),
+		(*VoterVotes_Spo)(nil),
+	}
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[32].OneofWrappers = []any{
+		(*NativeScript_ScriptPubkeyHash)(nil),
 		(*NativeScript_ScriptAll)(nil),
 		(*NativeScript_ScriptAny)(nil),
 		(*NativeScript_ScriptNOfK)(nil),
 		(*NativeScript_InvalidBefore)(nil),
 		(*NativeScript_InvalidHereafter)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[32].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[36].OneofWrappers = []any{
 		(*BigInt_Int)(nil),
 		(*BigInt_BigUInt)(nil),
 		(*BigInt_BigNInt)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[34].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[38].OneofWrappers = []any{
 		(*PlutusData_Constr)(nil),
 		(*PlutusData_Map)(nil),
 		(*PlutusData_BigInt)(nil),
 		(*PlutusData_BoundedBytes)(nil),
 		(*PlutusData_Array)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[37].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[41].OneofWrappers = []any{
 		(*Script_Native)(nil),
 		(*Script_PlutusV1)(nil),
 		(*Script_PlutusV2)(nil),
 		(*Script_PlutusV3)(nil),
 		(*Script_PlutusV4)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[38].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[42].OneofWrappers = []any{
 		(*Metadatum_Int)(nil),
 		(*Metadatum_Bytes)(nil),
 		(*Metadatum_Text)(nil),
 		(*Metadatum_Array)(nil),
 		(*Metadatum_Map)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[43].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[47].OneofWrappers = []any{
 		(*StakeCredential_AddrKeyHash)(nil),
 		(*StakeCredential_ScriptHash)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[47].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[51].OneofWrappers = []any{
 		(*Certificate_StakeRegistration)(nil),
 		(*Certificate_StakeDeregistration)(nil),
 		(*Certificate_StakeDelegation)(nil),
@@ -8814,13 +9180,13 @@ func file_utxorpc_v1alpha_cardano_cardano_proto_init() {
 		(*Certificate_UnregDrepCert)(nil),
 		(*Certificate_UpdateDrepCert)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[56].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[60].OneofWrappers = []any{
 		(*DRep_AddrKeyHash)(nil),
 		(*DRep_ScriptHash)(nil),
 		(*DRep_Abstain)(nil),
 		(*DRep_NoConfidence)(nil),
 	}
-	file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes[70].OneofWrappers = []any{
+	file_utxorpc_v1beta_cardano_cardano_proto_msgTypes[74].OneofWrappers = []any{
 		(*CertificatePattern_StakeRegistration)(nil),
 		(*CertificatePattern_StakeDeregistration)(nil),
 		(*CertificatePattern_StakeDelegation)(nil),
@@ -8834,18 +9200,18 @@ func file_utxorpc_v1alpha_cardano_cardano_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc), len(file_utxorpc_v1alpha_cardano_cardano_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   110,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_cardano_cardano_proto_rawDesc), len(file_utxorpc_v1beta_cardano_cardano_proto_rawDesc)),
+			NumEnums:      3,
+			NumMessages:   114,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_utxorpc_v1alpha_cardano_cardano_proto_goTypes,
-		DependencyIndexes: file_utxorpc_v1alpha_cardano_cardano_proto_depIdxs,
-		EnumInfos:         file_utxorpc_v1alpha_cardano_cardano_proto_enumTypes,
-		MessageInfos:      file_utxorpc_v1alpha_cardano_cardano_proto_msgTypes,
+		GoTypes:           file_utxorpc_v1beta_cardano_cardano_proto_goTypes,
+		DependencyIndexes: file_utxorpc_v1beta_cardano_cardano_proto_depIdxs,
+		EnumInfos:         file_utxorpc_v1beta_cardano_cardano_proto_enumTypes,
+		MessageInfos:      file_utxorpc_v1beta_cardano_cardano_proto_msgTypes,
 	}.Build()
-	File_utxorpc_v1alpha_cardano_cardano_proto = out.File
-	file_utxorpc_v1alpha_cardano_cardano_proto_goTypes = nil
-	file_utxorpc_v1alpha_cardano_cardano_proto_depIdxs = nil
+	File_utxorpc_v1beta_cardano_cardano_proto = out.File
+	file_utxorpc_v1beta_cardano_cardano_proto_goTypes = nil
+	file_utxorpc_v1beta_cardano_cardano_proto_depIdxs = nil
 }

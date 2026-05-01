@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: utxorpc/v1alpha/submit/submit.proto
+// source: utxorpc/v1beta/submit/submit.proto
 
 package submit
 
 import (
-	cardano "github.com/utxorpc/go-codegen/utxorpc/v1alpha/cardano"
+	cardano "github.com/utxorpc/go-codegen/utxorpc/v1beta/cardano"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -63,11 +63,11 @@ func (x Stage) String() string {
 }
 
 func (Stage) Descriptor() protoreflect.EnumDescriptor {
-	return file_utxorpc_v1alpha_submit_submit_proto_enumTypes[0].Descriptor()
+	return file_utxorpc_v1beta_submit_submit_proto_enumTypes[0].Descriptor()
 }
 
 func (Stage) Type() protoreflect.EnumType {
-	return &file_utxorpc_v1alpha_submit_submit_proto_enumTypes[0]
+	return &file_utxorpc_v1beta_submit_submit_proto_enumTypes[0]
 }
 
 func (x Stage) Number() protoreflect.EnumNumber {
@@ -76,7 +76,7 @@ func (x Stage) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Stage.Descriptor instead.
 func (Stage) EnumDescriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{0}
 }
 
 // Represents a transaction from any supported blockchain.
@@ -92,7 +92,7 @@ type AnyChainTx struct {
 
 func (x *AnyChainTx) Reset() {
 	*x = AnyChainTx{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -104,7 +104,7 @@ func (x *AnyChainTx) String() string {
 func (*AnyChainTx) ProtoMessage() {}
 
 func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[0]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117,7 +117,7 @@ func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainTx.ProtoReflect.Descriptor instead.
 func (*AnyChainTx) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{0}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AnyChainTx) GetType() isAnyChainTx_Type {
@@ -156,7 +156,7 @@ type EvalTxRequest struct {
 
 func (x *EvalTxRequest) Reset() {
 	*x = EvalTxRequest{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -168,7 +168,7 @@ func (x *EvalTxRequest) String() string {
 func (*EvalTxRequest) ProtoMessage() {}
 
 func (x *EvalTxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[1]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -181,7 +181,7 @@ func (x *EvalTxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvalTxRequest.ProtoReflect.Descriptor instead.
 func (*EvalTxRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{1}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *EvalTxRequest) GetTx() *AnyChainTx {
@@ -204,7 +204,7 @@ type AnyChainEval struct {
 
 func (x *AnyChainEval) Reset() {
 	*x = AnyChainEval{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -216,7 +216,7 @@ func (x *AnyChainEval) String() string {
 func (*AnyChainEval) ProtoMessage() {}
 
 func (x *AnyChainEval) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[2]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +229,7 @@ func (x *AnyChainEval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainEval.ProtoReflect.Descriptor instead.
 func (*AnyChainEval) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{2}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AnyChainEval) GetChain() isAnyChainEval_Chain {
@@ -268,7 +268,7 @@ type EvalTxResponse struct {
 
 func (x *EvalTxResponse) Reset() {
 	*x = EvalTxResponse{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -280,7 +280,7 @@ func (x *EvalTxResponse) String() string {
 func (*EvalTxResponse) ProtoMessage() {}
 
 func (x *EvalTxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[3]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -293,7 +293,7 @@ func (x *EvalTxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvalTxResponse.ProtoReflect.Descriptor instead.
 func (*EvalTxResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{3}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *EvalTxResponse) GetReport() *AnyChainEval {
@@ -313,7 +313,7 @@ type SubmitTxRequest struct {
 
 func (x *SubmitTxRequest) Reset() {
 	*x = SubmitTxRequest{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -325,7 +325,7 @@ func (x *SubmitTxRequest) String() string {
 func (*SubmitTxRequest) ProtoMessage() {}
 
 func (x *SubmitTxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[4]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +338,7 @@ func (x *SubmitTxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitTxRequest.ProtoReflect.Descriptor instead.
 func (*SubmitTxRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{4}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SubmitTxRequest) GetTx() *AnyChainTx {
@@ -358,7 +358,7 @@ type SubmitTxResponse struct {
 
 func (x *SubmitTxResponse) Reset() {
 	*x = SubmitTxResponse{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -370,7 +370,7 @@ func (x *SubmitTxResponse) String() string {
 func (*SubmitTxResponse) ProtoMessage() {}
 
 func (x *SubmitTxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[5]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,7 +383,7 @@ func (x *SubmitTxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitTxResponse.ProtoReflect.Descriptor instead.
 func (*SubmitTxResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{5}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SubmitTxResponse) GetRef() []byte {
@@ -395,9 +395,9 @@ func (x *SubmitTxResponse) GetRef() []byte {
 
 type TxInMempool struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Ref         []byte                 `protobuf:"bytes,1,opt,name=ref,proto3" json:"ref,omitempty"`                                        // The transaction reference.
-	NativeBytes []byte                 `protobuf:"bytes,2,opt,name=native_bytes,json=nativeBytes,proto3" json:"native_bytes,omitempty"`     // Original bytes as defined by the chain
-	Stage       Stage                  `protobuf:"varint,3,opt,name=stage,proto3,enum=utxorpc.v1alpha.submit.Stage" json:"stage,omitempty"` // The current stage of the tx
+	Ref         []byte                 `protobuf:"bytes,1,opt,name=ref,proto3" json:"ref,omitempty"`                                       // The transaction reference.
+	NativeBytes []byte                 `protobuf:"bytes,2,opt,name=native_bytes,json=nativeBytes,proto3" json:"native_bytes,omitempty"`    // Original bytes as defined by the chain
+	Stage       Stage                  `protobuf:"varint,3,opt,name=stage,proto3,enum=utxorpc.v1beta.submit.Stage" json:"stage,omitempty"` // The current stage of the tx
 	// Types that are valid to be assigned to ParsedState:
 	//
 	//	*TxInMempool_Cardano
@@ -408,7 +408,7 @@ type TxInMempool struct {
 
 func (x *TxInMempool) Reset() {
 	*x = TxInMempool{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -420,7 +420,7 @@ func (x *TxInMempool) String() string {
 func (*TxInMempool) ProtoMessage() {}
 
 func (x *TxInMempool) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[6]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -433,7 +433,7 @@ func (x *TxInMempool) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxInMempool.ProtoReflect.Descriptor instead.
 func (*TxInMempool) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{6}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TxInMempool) GetRef() []byte {
@@ -492,7 +492,7 @@ type ReadMempoolRequest struct {
 
 func (x *ReadMempoolRequest) Reset() {
 	*x = ReadMempoolRequest{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +504,7 @@ func (x *ReadMempoolRequest) String() string {
 func (*ReadMempoolRequest) ProtoMessage() {}
 
 func (x *ReadMempoolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[7]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +517,7 @@ func (x *ReadMempoolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMempoolRequest.ProtoReflect.Descriptor instead.
 func (*ReadMempoolRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{7}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{7}
 }
 
 // Response containing the stage of the submitted transactions.
@@ -530,7 +530,7 @@ type ReadMempoolResponse struct {
 
 func (x *ReadMempoolResponse) Reset() {
 	*x = ReadMempoolResponse{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -542,7 +542,7 @@ func (x *ReadMempoolResponse) String() string {
 func (*ReadMempoolResponse) ProtoMessage() {}
 
 func (x *ReadMempoolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[8]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -555,7 +555,7 @@ func (x *ReadMempoolResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMempoolResponse.ProtoReflect.Descriptor instead.
 func (*ReadMempoolResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{8}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ReadMempoolResponse) GetItems() []*TxInMempool {
@@ -575,7 +575,7 @@ type WaitForTxRequest struct {
 
 func (x *WaitForTxRequest) Reset() {
 	*x = WaitForTxRequest{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -587,7 +587,7 @@ func (x *WaitForTxRequest) String() string {
 func (*WaitForTxRequest) ProtoMessage() {}
 
 func (x *WaitForTxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[9]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -600,7 +600,7 @@ func (x *WaitForTxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WaitForTxRequest.ProtoReflect.Descriptor instead.
 func (*WaitForTxRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{9}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *WaitForTxRequest) GetRef() [][]byte {
@@ -613,15 +613,15 @@ func (x *WaitForTxRequest) GetRef() [][]byte {
 // Response containing the transaction reference and stage once it has been reached.
 type WaitForTxResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ref           []byte                 `protobuf:"bytes,1,opt,name=ref,proto3" json:"ref,omitempty"`                                        // Transaction reference.
-	Stage         Stage                  `protobuf:"varint,2,opt,name=stage,proto3,enum=utxorpc.v1alpha.submit.Stage" json:"stage,omitempty"` // Stage reached by the transaction.
+	Ref           []byte                 `protobuf:"bytes,1,opt,name=ref,proto3" json:"ref,omitempty"`                                       // Transaction reference.
+	Stage         Stage                  `protobuf:"varint,2,opt,name=stage,proto3,enum=utxorpc.v1beta.submit.Stage" json:"stage,omitempty"` // Stage reached by the transaction.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *WaitForTxResponse) Reset() {
 	*x = WaitForTxResponse{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -633,7 +633,7 @@ func (x *WaitForTxResponse) String() string {
 func (*WaitForTxResponse) ProtoMessage() {}
 
 func (x *WaitForTxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -646,7 +646,7 @@ func (x *WaitForTxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WaitForTxResponse.ProtoReflect.Descriptor instead.
 func (*WaitForTxResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{10}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *WaitForTxResponse) GetRef() []byte {
@@ -676,7 +676,7 @@ type AnyChainTxPattern struct {
 
 func (x *AnyChainTxPattern) Reset() {
 	*x = AnyChainTxPattern{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -688,7 +688,7 @@ func (x *AnyChainTxPattern) String() string {
 func (*AnyChainTxPattern) ProtoMessage() {}
 
 func (x *AnyChainTxPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -701,7 +701,7 @@ func (x *AnyChainTxPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainTxPattern.ProtoReflect.Descriptor instead.
 func (*AnyChainTxPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{11}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AnyChainTxPattern) GetChain() isAnyChainTxPattern_Chain {
@@ -743,7 +743,7 @@ type TxPredicate struct {
 
 func (x *TxPredicate) Reset() {
 	*x = TxPredicate{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -755,7 +755,7 @@ func (x *TxPredicate) String() string {
 func (*TxPredicate) ProtoMessage() {}
 
 func (x *TxPredicate) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -768,7 +768,7 @@ func (x *TxPredicate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxPredicate.ProtoReflect.Descriptor instead.
 func (*TxPredicate) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{12}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TxPredicate) GetMatch() *AnyChainTxPattern {
@@ -810,7 +810,7 @@ type WatchMempoolRequest struct {
 
 func (x *WatchMempoolRequest) Reset() {
 	*x = WatchMempoolRequest{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -822,7 +822,7 @@ func (x *WatchMempoolRequest) String() string {
 func (*WatchMempoolRequest) ProtoMessage() {}
 
 func (x *WatchMempoolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -835,7 +835,7 @@ func (x *WatchMempoolRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchMempoolRequest.ProtoReflect.Descriptor instead.
 func (*WatchMempoolRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{13}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *WatchMempoolRequest) GetPredicate() *TxPredicate {
@@ -862,7 +862,7 @@ type WatchMempoolResponse struct {
 
 func (x *WatchMempoolResponse) Reset() {
 	*x = WatchMempoolResponse{}
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -874,7 +874,7 @@ func (x *WatchMempoolResponse) String() string {
 func (*WatchMempoolResponse) ProtoMessage() {}
 
 func (x *WatchMempoolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1alpha_submit_submit_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_submit_submit_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -887,7 +887,7 @@ func (x *WatchMempoolResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WatchMempoolResponse.ProtoReflect.Descriptor instead.
 func (*WatchMempoolResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP(), []int{14}
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *WatchMempoolResponse) GetTx() *TxInMempool {
@@ -897,131 +897,131 @@ func (x *WatchMempoolResponse) GetTx() *TxInMempool {
 	return nil
 }
 
-var File_utxorpc_v1alpha_submit_submit_proto protoreflect.FileDescriptor
+var File_utxorpc_v1beta_submit_submit_proto protoreflect.FileDescriptor
 
-const file_utxorpc_v1alpha_submit_submit_proto_rawDesc = "" +
+const file_utxorpc_v1beta_submit_submit_proto_rawDesc = "" +
 	"\n" +
-	"#utxorpc/v1alpha/submit/submit.proto\x12\x16utxorpc.v1alpha.submit\x1a google/protobuf/field_mask.proto\x1a%utxorpc/v1alpha/cardano/cardano.proto\"(\n" +
+	"\"utxorpc/v1beta/submit/submit.proto\x12\x15utxorpc.v1beta.submit\x1a google/protobuf/field_mask.proto\x1a$utxorpc/v1beta/cardano/cardano.proto\"(\n" +
 	"\n" +
 	"AnyChainTx\x12\x12\n" +
 	"\x03raw\x18\x01 \x01(\fH\x00R\x03rawB\x06\n" +
-	"\x04type\"C\n" +
-	"\rEvalTxRequest\x122\n" +
-	"\x02tx\x18\x01 \x01(\v2\".utxorpc.v1alpha.submit.AnyChainTxR\x02tx\"T\n" +
-	"\fAnyChainEval\x12;\n" +
-	"\acardano\x18\x01 \x01(\v2\x1f.utxorpc.v1alpha.cardano.TxEvalH\x00R\acardanoB\a\n" +
-	"\x05chain\"N\n" +
-	"\x0eEvalTxResponse\x12<\n" +
-	"\x06report\x18\x01 \x01(\v2$.utxorpc.v1alpha.submit.AnyChainEvalR\x06report\"E\n" +
-	"\x0fSubmitTxRequest\x122\n" +
-	"\x02tx\x18\x01 \x01(\v2\".utxorpc.v1alpha.submit.AnyChainTxR\x02tx\"$\n" +
+	"\x04type\"B\n" +
+	"\rEvalTxRequest\x121\n" +
+	"\x02tx\x18\x01 \x01(\v2!.utxorpc.v1beta.submit.AnyChainTxR\x02tx\"S\n" +
+	"\fAnyChainEval\x12:\n" +
+	"\acardano\x18\x01 \x01(\v2\x1e.utxorpc.v1beta.cardano.TxEvalH\x00R\acardanoB\a\n" +
+	"\x05chain\"M\n" +
+	"\x0eEvalTxResponse\x12;\n" +
+	"\x06report\x18\x01 \x01(\v2#.utxorpc.v1beta.submit.AnyChainEvalR\x06report\"D\n" +
+	"\x0fSubmitTxRequest\x121\n" +
+	"\x02tx\x18\x01 \x01(\v2!.utxorpc.v1beta.submit.AnyChainTxR\x02tx\"$\n" +
 	"\x10SubmitTxResponse\x12\x10\n" +
-	"\x03ref\x18\x01 \x01(\fR\x03ref\"\xc0\x01\n" +
+	"\x03ref\x18\x01 \x01(\fR\x03ref\"\xbe\x01\n" +
 	"\vTxInMempool\x12\x10\n" +
 	"\x03ref\x18\x01 \x01(\fR\x03ref\x12!\n" +
-	"\fnative_bytes\x18\x02 \x01(\fR\vnativeBytes\x123\n" +
-	"\x05stage\x18\x03 \x01(\x0e2\x1d.utxorpc.v1alpha.submit.StageR\x05stage\x127\n" +
-	"\acardano\x18\x04 \x01(\v2\x1b.utxorpc.v1alpha.cardano.TxH\x00R\acardanoB\x0e\n" +
+	"\fnative_bytes\x18\x02 \x01(\fR\vnativeBytes\x122\n" +
+	"\x05stage\x18\x03 \x01(\x0e2\x1c.utxorpc.v1beta.submit.StageR\x05stage\x126\n" +
+	"\acardano\x18\x04 \x01(\v2\x1a.utxorpc.v1beta.cardano.TxH\x00R\acardanoB\x0e\n" +
 	"\fparsed_state\"\x14\n" +
-	"\x12ReadMempoolRequest\"P\n" +
-	"\x13ReadMempoolResponse\x129\n" +
-	"\x05items\x18\x01 \x03(\v2#.utxorpc.v1alpha.submit.TxInMempoolR\x05items\"$\n" +
+	"\x12ReadMempoolRequest\"O\n" +
+	"\x13ReadMempoolResponse\x128\n" +
+	"\x05items\x18\x01 \x03(\v2\".utxorpc.v1beta.submit.TxInMempoolR\x05items\"$\n" +
 	"\x10WaitForTxRequest\x12\x10\n" +
-	"\x03ref\x18\x01 \x03(\fR\x03ref\"Z\n" +
+	"\x03ref\x18\x01 \x03(\fR\x03ref\"Y\n" +
 	"\x11WaitForTxResponse\x12\x10\n" +
-	"\x03ref\x18\x01 \x01(\fR\x03ref\x123\n" +
-	"\x05stage\x18\x02 \x01(\x0e2\x1d.utxorpc.v1alpha.submit.StageR\x05stage\"\\\n" +
-	"\x11AnyChainTxPattern\x12>\n" +
-	"\acardano\x18\x01 \x01(\v2\".utxorpc.v1alpha.cardano.TxPatternH\x00R\acardanoB\a\n" +
-	"\x05chain\"\xfd\x01\n" +
-	"\vTxPredicate\x12?\n" +
-	"\x05match\x18\x01 \x01(\v2).utxorpc.v1alpha.submit.AnyChainTxPatternR\x05match\x125\n" +
-	"\x03not\x18\x02 \x03(\v2#.utxorpc.v1alpha.submit.TxPredicateR\x03not\x12:\n" +
-	"\x06all_of\x18\x03 \x03(\v2#.utxorpc.v1alpha.submit.TxPredicateR\x05allOf\x12:\n" +
-	"\x06any_of\x18\x04 \x03(\v2#.utxorpc.v1alpha.submit.TxPredicateR\x05anyOf\"\x93\x01\n" +
-	"\x13WatchMempoolRequest\x12A\n" +
-	"\tpredicate\x18\x01 \x01(\v2#.utxorpc.v1alpha.submit.TxPredicateR\tpredicate\x129\n" +
+	"\x03ref\x18\x01 \x01(\fR\x03ref\x122\n" +
+	"\x05stage\x18\x02 \x01(\x0e2\x1c.utxorpc.v1beta.submit.StageR\x05stage\"[\n" +
+	"\x11AnyChainTxPattern\x12=\n" +
+	"\acardano\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.TxPatternH\x00R\acardanoB\a\n" +
+	"\x05chain\"\xf9\x01\n" +
+	"\vTxPredicate\x12>\n" +
+	"\x05match\x18\x01 \x01(\v2(.utxorpc.v1beta.submit.AnyChainTxPatternR\x05match\x124\n" +
+	"\x03not\x18\x02 \x03(\v2\".utxorpc.v1beta.submit.TxPredicateR\x03not\x129\n" +
+	"\x06all_of\x18\x03 \x03(\v2\".utxorpc.v1beta.submit.TxPredicateR\x05allOf\x129\n" +
+	"\x06any_of\x18\x04 \x03(\v2\".utxorpc.v1beta.submit.TxPredicateR\x05anyOf\"\x92\x01\n" +
+	"\x13WatchMempoolRequest\x12@\n" +
+	"\tpredicate\x18\x01 \x01(\v2\".utxorpc.v1beta.submit.TxPredicateR\tpredicate\x129\n" +
 	"\n" +
-	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"K\n" +
-	"\x14WatchMempoolResponse\x123\n" +
-	"\x02tx\x18\x01 \x01(\v2#.utxorpc.v1alpha.submit.TxInMempoolR\x02tx*q\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"J\n" +
+	"\x14WatchMempoolResponse\x122\n" +
+	"\x02tx\x18\x01 \x01(\v2\".utxorpc.v1beta.submit.TxInMempoolR\x02tx*q\n" +
 	"\x05Stage\x12\x15\n" +
 	"\x11STAGE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12STAGE_ACKNOWLEDGED\x10\x01\x12\x11\n" +
 	"\rSTAGE_MEMPOOL\x10\x02\x12\x11\n" +
 	"\rSTAGE_NETWORK\x10\x03\x12\x13\n" +
-	"\x0fSTAGE_CONFIRMED\x10\x042\x80\x04\n" +
-	"\rSubmitService\x12W\n" +
-	"\x06EvalTx\x12%.utxorpc.v1alpha.submit.EvalTxRequest\x1a&.utxorpc.v1alpha.submit.EvalTxResponse\x12]\n" +
-	"\bSubmitTx\x12'.utxorpc.v1alpha.submit.SubmitTxRequest\x1a(.utxorpc.v1alpha.submit.SubmitTxResponse\x12b\n" +
-	"\tWaitForTx\x12(.utxorpc.v1alpha.submit.WaitForTxRequest\x1a).utxorpc.v1alpha.submit.WaitForTxResponse0\x01\x12f\n" +
-	"\vReadMempool\x12*.utxorpc.v1alpha.submit.ReadMempoolRequest\x1a+.utxorpc.v1alpha.submit.ReadMempoolResponse\x12k\n" +
-	"\fWatchMempool\x12+.utxorpc.v1alpha.submit.WatchMempoolRequest\x1a,.utxorpc.v1alpha.submit.WatchMempoolResponse0\x01B\xd9\x01\n" +
-	"\x1acom.utxorpc.v1alpha.submitB\vSubmitProtoP\x01Z4github.com/utxorpc/go-codegen/utxorpc/v1alpha/submit\xa2\x02\x03UVS\xaa\x02\x16Utxorpc.V1alpha.Submit\xca\x02\x16Utxorpc\\V1alpha\\Submit\xe2\x02\"Utxorpc\\V1alpha\\Submit\\GPBMetadata\xea\x02\x18Utxorpc::V1alpha::Submitb\x06proto3"
+	"\x0fSTAGE_CONFIRMED\x10\x042\xf6\x03\n" +
+	"\rSubmitService\x12U\n" +
+	"\x06EvalTx\x12$.utxorpc.v1beta.submit.EvalTxRequest\x1a%.utxorpc.v1beta.submit.EvalTxResponse\x12[\n" +
+	"\bSubmitTx\x12&.utxorpc.v1beta.submit.SubmitTxRequest\x1a'.utxorpc.v1beta.submit.SubmitTxResponse\x12`\n" +
+	"\tWaitForTx\x12'.utxorpc.v1beta.submit.WaitForTxRequest\x1a(.utxorpc.v1beta.submit.WaitForTxResponse0\x01\x12d\n" +
+	"\vReadMempool\x12).utxorpc.v1beta.submit.ReadMempoolRequest\x1a*.utxorpc.v1beta.submit.ReadMempoolResponse\x12i\n" +
+	"\fWatchMempool\x12*.utxorpc.v1beta.submit.WatchMempoolRequest\x1a+.utxorpc.v1beta.submit.WatchMempoolResponse0\x01B\xd3\x01\n" +
+	"\x19com.utxorpc.v1beta.submitB\vSubmitProtoP\x01Z3github.com/utxorpc/go-codegen/utxorpc/v1beta/submit\xa2\x02\x03UVS\xaa\x02\x15Utxorpc.V1beta.Submit\xca\x02\x15Utxorpc\\V1beta\\Submit\xe2\x02!Utxorpc\\V1beta\\Submit\\GPBMetadata\xea\x02\x17Utxorpc::V1beta::Submitb\x06proto3"
 
 var (
-	file_utxorpc_v1alpha_submit_submit_proto_rawDescOnce sync.Once
-	file_utxorpc_v1alpha_submit_submit_proto_rawDescData []byte
+	file_utxorpc_v1beta_submit_submit_proto_rawDescOnce sync.Once
+	file_utxorpc_v1beta_submit_submit_proto_rawDescData []byte
 )
 
-func file_utxorpc_v1alpha_submit_submit_proto_rawDescGZIP() []byte {
-	file_utxorpc_v1alpha_submit_submit_proto_rawDescOnce.Do(func() {
-		file_utxorpc_v1alpha_submit_submit_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_submit_submit_proto_rawDesc), len(file_utxorpc_v1alpha_submit_submit_proto_rawDesc)))
+func file_utxorpc_v1beta_submit_submit_proto_rawDescGZIP() []byte {
+	file_utxorpc_v1beta_submit_submit_proto_rawDescOnce.Do(func() {
+		file_utxorpc_v1beta_submit_submit_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_submit_submit_proto_rawDesc), len(file_utxorpc_v1beta_submit_submit_proto_rawDesc)))
 	})
-	return file_utxorpc_v1alpha_submit_submit_proto_rawDescData
+	return file_utxorpc_v1beta_submit_submit_proto_rawDescData
 }
 
-var file_utxorpc_v1alpha_submit_submit_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_utxorpc_v1alpha_submit_submit_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
-var file_utxorpc_v1alpha_submit_submit_proto_goTypes = []any{
-	(Stage)(0),                    // 0: utxorpc.v1alpha.submit.Stage
-	(*AnyChainTx)(nil),            // 1: utxorpc.v1alpha.submit.AnyChainTx
-	(*EvalTxRequest)(nil),         // 2: utxorpc.v1alpha.submit.EvalTxRequest
-	(*AnyChainEval)(nil),          // 3: utxorpc.v1alpha.submit.AnyChainEval
-	(*EvalTxResponse)(nil),        // 4: utxorpc.v1alpha.submit.EvalTxResponse
-	(*SubmitTxRequest)(nil),       // 5: utxorpc.v1alpha.submit.SubmitTxRequest
-	(*SubmitTxResponse)(nil),      // 6: utxorpc.v1alpha.submit.SubmitTxResponse
-	(*TxInMempool)(nil),           // 7: utxorpc.v1alpha.submit.TxInMempool
-	(*ReadMempoolRequest)(nil),    // 8: utxorpc.v1alpha.submit.ReadMempoolRequest
-	(*ReadMempoolResponse)(nil),   // 9: utxorpc.v1alpha.submit.ReadMempoolResponse
-	(*WaitForTxRequest)(nil),      // 10: utxorpc.v1alpha.submit.WaitForTxRequest
-	(*WaitForTxResponse)(nil),     // 11: utxorpc.v1alpha.submit.WaitForTxResponse
-	(*AnyChainTxPattern)(nil),     // 12: utxorpc.v1alpha.submit.AnyChainTxPattern
-	(*TxPredicate)(nil),           // 13: utxorpc.v1alpha.submit.TxPredicate
-	(*WatchMempoolRequest)(nil),   // 14: utxorpc.v1alpha.submit.WatchMempoolRequest
-	(*WatchMempoolResponse)(nil),  // 15: utxorpc.v1alpha.submit.WatchMempoolResponse
-	(*cardano.TxEval)(nil),        // 16: utxorpc.v1alpha.cardano.TxEval
-	(*cardano.Tx)(nil),            // 17: utxorpc.v1alpha.cardano.Tx
-	(*cardano.TxPattern)(nil),     // 18: utxorpc.v1alpha.cardano.TxPattern
+var file_utxorpc_v1beta_submit_submit_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_utxorpc_v1beta_submit_submit_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_utxorpc_v1beta_submit_submit_proto_goTypes = []any{
+	(Stage)(0),                    // 0: utxorpc.v1beta.submit.Stage
+	(*AnyChainTx)(nil),            // 1: utxorpc.v1beta.submit.AnyChainTx
+	(*EvalTxRequest)(nil),         // 2: utxorpc.v1beta.submit.EvalTxRequest
+	(*AnyChainEval)(nil),          // 3: utxorpc.v1beta.submit.AnyChainEval
+	(*EvalTxResponse)(nil),        // 4: utxorpc.v1beta.submit.EvalTxResponse
+	(*SubmitTxRequest)(nil),       // 5: utxorpc.v1beta.submit.SubmitTxRequest
+	(*SubmitTxResponse)(nil),      // 6: utxorpc.v1beta.submit.SubmitTxResponse
+	(*TxInMempool)(nil),           // 7: utxorpc.v1beta.submit.TxInMempool
+	(*ReadMempoolRequest)(nil),    // 8: utxorpc.v1beta.submit.ReadMempoolRequest
+	(*ReadMempoolResponse)(nil),   // 9: utxorpc.v1beta.submit.ReadMempoolResponse
+	(*WaitForTxRequest)(nil),      // 10: utxorpc.v1beta.submit.WaitForTxRequest
+	(*WaitForTxResponse)(nil),     // 11: utxorpc.v1beta.submit.WaitForTxResponse
+	(*AnyChainTxPattern)(nil),     // 12: utxorpc.v1beta.submit.AnyChainTxPattern
+	(*TxPredicate)(nil),           // 13: utxorpc.v1beta.submit.TxPredicate
+	(*WatchMempoolRequest)(nil),   // 14: utxorpc.v1beta.submit.WatchMempoolRequest
+	(*WatchMempoolResponse)(nil),  // 15: utxorpc.v1beta.submit.WatchMempoolResponse
+	(*cardano.TxEval)(nil),        // 16: utxorpc.v1beta.cardano.TxEval
+	(*cardano.Tx)(nil),            // 17: utxorpc.v1beta.cardano.Tx
+	(*cardano.TxPattern)(nil),     // 18: utxorpc.v1beta.cardano.TxPattern
 	(*fieldmaskpb.FieldMask)(nil), // 19: google.protobuf.FieldMask
 }
-var file_utxorpc_v1alpha_submit_submit_proto_depIdxs = []int32{
-	1,  // 0: utxorpc.v1alpha.submit.EvalTxRequest.tx:type_name -> utxorpc.v1alpha.submit.AnyChainTx
-	16, // 1: utxorpc.v1alpha.submit.AnyChainEval.cardano:type_name -> utxorpc.v1alpha.cardano.TxEval
-	3,  // 2: utxorpc.v1alpha.submit.EvalTxResponse.report:type_name -> utxorpc.v1alpha.submit.AnyChainEval
-	1,  // 3: utxorpc.v1alpha.submit.SubmitTxRequest.tx:type_name -> utxorpc.v1alpha.submit.AnyChainTx
-	0,  // 4: utxorpc.v1alpha.submit.TxInMempool.stage:type_name -> utxorpc.v1alpha.submit.Stage
-	17, // 5: utxorpc.v1alpha.submit.TxInMempool.cardano:type_name -> utxorpc.v1alpha.cardano.Tx
-	7,  // 6: utxorpc.v1alpha.submit.ReadMempoolResponse.items:type_name -> utxorpc.v1alpha.submit.TxInMempool
-	0,  // 7: utxorpc.v1alpha.submit.WaitForTxResponse.stage:type_name -> utxorpc.v1alpha.submit.Stage
-	18, // 8: utxorpc.v1alpha.submit.AnyChainTxPattern.cardano:type_name -> utxorpc.v1alpha.cardano.TxPattern
-	12, // 9: utxorpc.v1alpha.submit.TxPredicate.match:type_name -> utxorpc.v1alpha.submit.AnyChainTxPattern
-	13, // 10: utxorpc.v1alpha.submit.TxPredicate.not:type_name -> utxorpc.v1alpha.submit.TxPredicate
-	13, // 11: utxorpc.v1alpha.submit.TxPredicate.all_of:type_name -> utxorpc.v1alpha.submit.TxPredicate
-	13, // 12: utxorpc.v1alpha.submit.TxPredicate.any_of:type_name -> utxorpc.v1alpha.submit.TxPredicate
-	13, // 13: utxorpc.v1alpha.submit.WatchMempoolRequest.predicate:type_name -> utxorpc.v1alpha.submit.TxPredicate
-	19, // 14: utxorpc.v1alpha.submit.WatchMempoolRequest.field_mask:type_name -> google.protobuf.FieldMask
-	7,  // 15: utxorpc.v1alpha.submit.WatchMempoolResponse.tx:type_name -> utxorpc.v1alpha.submit.TxInMempool
-	2,  // 16: utxorpc.v1alpha.submit.SubmitService.EvalTx:input_type -> utxorpc.v1alpha.submit.EvalTxRequest
-	5,  // 17: utxorpc.v1alpha.submit.SubmitService.SubmitTx:input_type -> utxorpc.v1alpha.submit.SubmitTxRequest
-	10, // 18: utxorpc.v1alpha.submit.SubmitService.WaitForTx:input_type -> utxorpc.v1alpha.submit.WaitForTxRequest
-	8,  // 19: utxorpc.v1alpha.submit.SubmitService.ReadMempool:input_type -> utxorpc.v1alpha.submit.ReadMempoolRequest
-	14, // 20: utxorpc.v1alpha.submit.SubmitService.WatchMempool:input_type -> utxorpc.v1alpha.submit.WatchMempoolRequest
-	4,  // 21: utxorpc.v1alpha.submit.SubmitService.EvalTx:output_type -> utxorpc.v1alpha.submit.EvalTxResponse
-	6,  // 22: utxorpc.v1alpha.submit.SubmitService.SubmitTx:output_type -> utxorpc.v1alpha.submit.SubmitTxResponse
-	11, // 23: utxorpc.v1alpha.submit.SubmitService.WaitForTx:output_type -> utxorpc.v1alpha.submit.WaitForTxResponse
-	9,  // 24: utxorpc.v1alpha.submit.SubmitService.ReadMempool:output_type -> utxorpc.v1alpha.submit.ReadMempoolResponse
-	15, // 25: utxorpc.v1alpha.submit.SubmitService.WatchMempool:output_type -> utxorpc.v1alpha.submit.WatchMempoolResponse
+var file_utxorpc_v1beta_submit_submit_proto_depIdxs = []int32{
+	1,  // 0: utxorpc.v1beta.submit.EvalTxRequest.tx:type_name -> utxorpc.v1beta.submit.AnyChainTx
+	16, // 1: utxorpc.v1beta.submit.AnyChainEval.cardano:type_name -> utxorpc.v1beta.cardano.TxEval
+	3,  // 2: utxorpc.v1beta.submit.EvalTxResponse.report:type_name -> utxorpc.v1beta.submit.AnyChainEval
+	1,  // 3: utxorpc.v1beta.submit.SubmitTxRequest.tx:type_name -> utxorpc.v1beta.submit.AnyChainTx
+	0,  // 4: utxorpc.v1beta.submit.TxInMempool.stage:type_name -> utxorpc.v1beta.submit.Stage
+	17, // 5: utxorpc.v1beta.submit.TxInMempool.cardano:type_name -> utxorpc.v1beta.cardano.Tx
+	7,  // 6: utxorpc.v1beta.submit.ReadMempoolResponse.items:type_name -> utxorpc.v1beta.submit.TxInMempool
+	0,  // 7: utxorpc.v1beta.submit.WaitForTxResponse.stage:type_name -> utxorpc.v1beta.submit.Stage
+	18, // 8: utxorpc.v1beta.submit.AnyChainTxPattern.cardano:type_name -> utxorpc.v1beta.cardano.TxPattern
+	12, // 9: utxorpc.v1beta.submit.TxPredicate.match:type_name -> utxorpc.v1beta.submit.AnyChainTxPattern
+	13, // 10: utxorpc.v1beta.submit.TxPredicate.not:type_name -> utxorpc.v1beta.submit.TxPredicate
+	13, // 11: utxorpc.v1beta.submit.TxPredicate.all_of:type_name -> utxorpc.v1beta.submit.TxPredicate
+	13, // 12: utxorpc.v1beta.submit.TxPredicate.any_of:type_name -> utxorpc.v1beta.submit.TxPredicate
+	13, // 13: utxorpc.v1beta.submit.WatchMempoolRequest.predicate:type_name -> utxorpc.v1beta.submit.TxPredicate
+	19, // 14: utxorpc.v1beta.submit.WatchMempoolRequest.field_mask:type_name -> google.protobuf.FieldMask
+	7,  // 15: utxorpc.v1beta.submit.WatchMempoolResponse.tx:type_name -> utxorpc.v1beta.submit.TxInMempool
+	2,  // 16: utxorpc.v1beta.submit.SubmitService.EvalTx:input_type -> utxorpc.v1beta.submit.EvalTxRequest
+	5,  // 17: utxorpc.v1beta.submit.SubmitService.SubmitTx:input_type -> utxorpc.v1beta.submit.SubmitTxRequest
+	10, // 18: utxorpc.v1beta.submit.SubmitService.WaitForTx:input_type -> utxorpc.v1beta.submit.WaitForTxRequest
+	8,  // 19: utxorpc.v1beta.submit.SubmitService.ReadMempool:input_type -> utxorpc.v1beta.submit.ReadMempoolRequest
+	14, // 20: utxorpc.v1beta.submit.SubmitService.WatchMempool:input_type -> utxorpc.v1beta.submit.WatchMempoolRequest
+	4,  // 21: utxorpc.v1beta.submit.SubmitService.EvalTx:output_type -> utxorpc.v1beta.submit.EvalTxResponse
+	6,  // 22: utxorpc.v1beta.submit.SubmitService.SubmitTx:output_type -> utxorpc.v1beta.submit.SubmitTxResponse
+	11, // 23: utxorpc.v1beta.submit.SubmitService.WaitForTx:output_type -> utxorpc.v1beta.submit.WaitForTxResponse
+	9,  // 24: utxorpc.v1beta.submit.SubmitService.ReadMempool:output_type -> utxorpc.v1beta.submit.ReadMempoolResponse
+	15, // 25: utxorpc.v1beta.submit.SubmitService.WatchMempool:output_type -> utxorpc.v1beta.submit.WatchMempoolResponse
 	21, // [21:26] is the sub-list for method output_type
 	16, // [16:21] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
@@ -1029,39 +1029,39 @@ var file_utxorpc_v1alpha_submit_submit_proto_depIdxs = []int32{
 	0,  // [0:16] is the sub-list for field type_name
 }
 
-func init() { file_utxorpc_v1alpha_submit_submit_proto_init() }
-func file_utxorpc_v1alpha_submit_submit_proto_init() {
-	if File_utxorpc_v1alpha_submit_submit_proto != nil {
+func init() { file_utxorpc_v1beta_submit_submit_proto_init() }
+func file_utxorpc_v1beta_submit_submit_proto_init() {
+	if File_utxorpc_v1beta_submit_submit_proto != nil {
 		return
 	}
-	file_utxorpc_v1alpha_submit_submit_proto_msgTypes[0].OneofWrappers = []any{
+	file_utxorpc_v1beta_submit_submit_proto_msgTypes[0].OneofWrappers = []any{
 		(*AnyChainTx_Raw)(nil),
 	}
-	file_utxorpc_v1alpha_submit_submit_proto_msgTypes[2].OneofWrappers = []any{
+	file_utxorpc_v1beta_submit_submit_proto_msgTypes[2].OneofWrappers = []any{
 		(*AnyChainEval_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_submit_submit_proto_msgTypes[6].OneofWrappers = []any{
+	file_utxorpc_v1beta_submit_submit_proto_msgTypes[6].OneofWrappers = []any{
 		(*TxInMempool_Cardano)(nil),
 	}
-	file_utxorpc_v1alpha_submit_submit_proto_msgTypes[11].OneofWrappers = []any{
+	file_utxorpc_v1beta_submit_submit_proto_msgTypes[11].OneofWrappers = []any{
 		(*AnyChainTxPattern_Cardano)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1alpha_submit_submit_proto_rawDesc), len(file_utxorpc_v1alpha_submit_submit_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_submit_submit_proto_rawDesc), len(file_utxorpc_v1beta_submit_submit_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_utxorpc_v1alpha_submit_submit_proto_goTypes,
-		DependencyIndexes: file_utxorpc_v1alpha_submit_submit_proto_depIdxs,
-		EnumInfos:         file_utxorpc_v1alpha_submit_submit_proto_enumTypes,
-		MessageInfos:      file_utxorpc_v1alpha_submit_submit_proto_msgTypes,
+		GoTypes:           file_utxorpc_v1beta_submit_submit_proto_goTypes,
+		DependencyIndexes: file_utxorpc_v1beta_submit_submit_proto_depIdxs,
+		EnumInfos:         file_utxorpc_v1beta_submit_submit_proto_enumTypes,
+		MessageInfos:      file_utxorpc_v1beta_submit_submit_proto_msgTypes,
 	}.Build()
-	File_utxorpc_v1alpha_submit_submit_proto = out.File
-	file_utxorpc_v1alpha_submit_submit_proto_goTypes = nil
-	file_utxorpc_v1alpha_submit_submit_proto_depIdxs = nil
+	File_utxorpc_v1beta_submit_submit_proto = out.File
+	file_utxorpc_v1beta_submit_submit_proto_goTypes = nil
+	file_utxorpc_v1beta_submit_submit_proto_depIdxs = nil
 }
