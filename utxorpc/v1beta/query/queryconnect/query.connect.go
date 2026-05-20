@@ -52,6 +52,8 @@ const (
 	// QueryServiceReadEraSummaryProcedure is the fully-qualified name of the QueryService's
 	// ReadEraSummary RPC.
 	QueryServiceReadEraSummaryProcedure = "/utxorpc.v1beta.query.QueryService/ReadEraSummary"
+	// QueryServiceReadStateProcedure is the fully-qualified name of the QueryService's ReadState RPC.
+	QueryServiceReadStateProcedure = "/utxorpc.v1beta.query.QueryService/ReadState"
 )
 
 // QueryServiceClient is a client for the utxorpc.v1beta.query.QueryService service.
@@ -63,6 +65,7 @@ type QueryServiceClient interface {
 	ReadTx(context.Context, *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error)
 	ReadGenesis(context.Context, *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error)
 	ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error)
+	ReadState(context.Context, *connect.Request[query.ReadStateRequest]) (*connect.Response[query.ReadStateResponse], error)
 }
 
 // NewQueryServiceClient constructs a client for the utxorpc.v1beta.query.QueryService service. By
@@ -118,6 +121,12 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceMethods.ByName("ReadEraSummary")),
 			connect.WithClientOptions(opts...),
 		),
+		readState: connect.NewClient[query.ReadStateRequest, query.ReadStateResponse](
+			httpClient,
+			baseURL+QueryServiceReadStateProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("ReadState")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -130,6 +139,7 @@ type queryServiceClient struct {
 	readTx         *connect.Client[query.ReadTxRequest, query.ReadTxResponse]
 	readGenesis    *connect.Client[query.ReadGenesisRequest, query.ReadGenesisResponse]
 	readEraSummary *connect.Client[query.ReadEraSummaryRequest, query.ReadEraSummaryResponse]
+	readState      *connect.Client[query.ReadStateRequest, query.ReadStateResponse]
 }
 
 // ReadParams calls utxorpc.v1beta.query.QueryService.ReadParams.
@@ -167,6 +177,11 @@ func (c *queryServiceClient) ReadEraSummary(ctx context.Context, req *connect.Re
 	return c.readEraSummary.CallUnary(ctx, req)
 }
 
+// ReadState calls utxorpc.v1beta.query.QueryService.ReadState.
+func (c *queryServiceClient) ReadState(ctx context.Context, req *connect.Request[query.ReadStateRequest]) (*connect.Response[query.ReadStateResponse], error) {
+	return c.readState.CallUnary(ctx, req)
+}
+
 // QueryServiceHandler is an implementation of the utxorpc.v1beta.query.QueryService service.
 type QueryServiceHandler interface {
 	ReadParams(context.Context, *connect.Request[query.ReadParamsRequest]) (*connect.Response[query.ReadParamsResponse], error)
@@ -176,6 +191,7 @@ type QueryServiceHandler interface {
 	ReadTx(context.Context, *connect.Request[query.ReadTxRequest]) (*connect.Response[query.ReadTxResponse], error)
 	ReadGenesis(context.Context, *connect.Request[query.ReadGenesisRequest]) (*connect.Response[query.ReadGenesisResponse], error)
 	ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error)
+	ReadState(context.Context, *connect.Request[query.ReadStateRequest]) (*connect.Response[query.ReadStateResponse], error)
 }
 
 // NewQueryServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -227,6 +243,12 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceMethods.ByName("ReadEraSummary")),
 		connect.WithHandlerOptions(opts...),
 	)
+	queryServiceReadStateHandler := connect.NewUnaryHandler(
+		QueryServiceReadStateProcedure,
+		svc.ReadState,
+		connect.WithSchema(queryServiceMethods.ByName("ReadState")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/utxorpc.v1beta.query.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case QueryServiceReadParamsProcedure:
@@ -243,6 +265,8 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 			queryServiceReadGenesisHandler.ServeHTTP(w, r)
 		case QueryServiceReadEraSummaryProcedure:
 			queryServiceReadEraSummaryHandler.ServeHTTP(w, r)
+		case QueryServiceReadStateProcedure:
+			queryServiceReadStateHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -278,4 +302,8 @@ func (UnimplementedQueryServiceHandler) ReadGenesis(context.Context, *connect.Re
 
 func (UnimplementedQueryServiceHandler) ReadEraSummary(context.Context, *connect.Request[query.ReadEraSummaryRequest]) (*connect.Response[query.ReadEraSummaryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1beta.query.QueryService.ReadEraSummary is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) ReadState(context.Context, *connect.Request[query.ReadStateRequest]) (*connect.Response[query.ReadStateResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("utxorpc.v1beta.query.QueryService.ReadState is not implemented"))
 }

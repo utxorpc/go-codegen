@@ -626,6 +626,246 @@ func (x *ReadParamsResponse) GetLedgerTip() *ChainPoint {
 	return nil
 }
 
+// An envelope that wraps a chain-specific ledger-state query.
+type AnyChainStateQuery struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Query:
+	//
+	//	*AnyChainStateQuery_Cardano
+	Query         isAnyChainStateQuery_Query `protobuf_oneof:"query"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AnyChainStateQuery) Reset() {
+	*x = AnyChainStateQuery{}
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AnyChainStateQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AnyChainStateQuery) ProtoMessage() {}
+
+func (x *AnyChainStateQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AnyChainStateQuery.ProtoReflect.Descriptor instead.
+func (*AnyChainStateQuery) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *AnyChainStateQuery) GetQuery() isAnyChainStateQuery_Query {
+	if x != nil {
+		return x.Query
+	}
+	return nil
+}
+
+func (x *AnyChainStateQuery) GetCardano() *cardano.StateQuery {
+	if x != nil {
+		if x, ok := x.Query.(*AnyChainStateQuery_Cardano); ok {
+			return x.Cardano
+		}
+	}
+	return nil
+}
+
+type isAnyChainStateQuery_Query interface {
+	isAnyChainStateQuery_Query()
+}
+
+type AnyChainStateQuery_Cardano struct {
+	Cardano *cardano.StateQuery `protobuf:"bytes,1,opt,name=cardano,proto3,oneof"` // A Cardano ledger-state query.
+}
+
+func (*AnyChainStateQuery_Cardano) isAnyChainStateQuery_Query() {}
+
+// An envelope that wraps a chain-specific ledger-state query result.
+type AnyChainStateData struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Result:
+	//
+	//	*AnyChainStateData_Cardano
+	Result        isAnyChainStateData_Result `protobuf_oneof:"result"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AnyChainStateData) Reset() {
+	*x = AnyChainStateData{}
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AnyChainStateData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AnyChainStateData) ProtoMessage() {}
+
+func (x *AnyChainStateData) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AnyChainStateData.ProtoReflect.Descriptor instead.
+func (*AnyChainStateData) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *AnyChainStateData) GetResult() isAnyChainStateData_Result {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
+func (x *AnyChainStateData) GetCardano() *cardano.StateData {
+	if x != nil {
+		if x, ok := x.Result.(*AnyChainStateData_Cardano); ok {
+			return x.Cardano
+		}
+	}
+	return nil
+}
+
+type isAnyChainStateData_Result interface {
+	isAnyChainStateData_Result()
+}
+
+type AnyChainStateData_Cardano struct {
+	Cardano *cardano.StateData `protobuf:"bytes,1,opt,name=cardano,proto3,oneof"` // A Cardano ledger-state query result.
+}
+
+func (*AnyChainStateData_Cardano) isAnyChainStateData_Result() {}
+
+// Request to run a chain-specific ledger-state query against the current ledger snapshot.
+type ReadStateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         *AnyChainStateQuery    `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`                          // The chain-specific query to evaluate.
+	FieldMask     *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=field_mask,json=fieldMask,proto3" json:"field_mask,omitempty"` // Field mask to selectively return fields.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReadStateRequest) Reset() {
+	*x = ReadStateRequest{}
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReadStateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadStateRequest) ProtoMessage() {}
+
+func (x *ReadStateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadStateRequest.ProtoReflect.Descriptor instead.
+func (*ReadStateRequest) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ReadStateRequest) GetQuery() *AnyChainStateQuery {
+	if x != nil {
+		return x.Query
+	}
+	return nil
+}
+
+func (x *ReadStateRequest) GetFieldMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.FieldMask
+	}
+	return nil
+}
+
+// Response carrying the ledger-state query result.
+type ReadStateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        *AnyChainStateData     `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`                        // The query result.
+	LedgerTip     *ChainPoint            `protobuf:"bytes,2,opt,name=ledger_tip,json=ledgerTip,proto3" json:"ledger_tip,omitempty"` // Chain point representing the snapshot the query was evaluated against.
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReadStateResponse) Reset() {
+	*x = ReadStateResponse{}
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReadStateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReadStateResponse) ProtoMessage() {}
+
+func (x *ReadStateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReadStateResponse.ProtoReflect.Descriptor instead.
+func (*ReadStateResponse) Descriptor() ([]byte, []int) {
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ReadStateResponse) GetResult() *AnyChainStateData {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
+func (x *ReadStateResponse) GetLedgerTip() *ChainPoint {
+	if x != nil {
+		return x.LedgerTip
+	}
+	return nil
+}
+
 // An evenlope that holds an UTxO patterns from any of compatible chains
 type AnyUtxoPattern struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -639,7 +879,7 @@ type AnyUtxoPattern struct {
 
 func (x *AnyUtxoPattern) Reset() {
 	*x = AnyUtxoPattern{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -651,7 +891,7 @@ func (x *AnyUtxoPattern) String() string {
 func (*AnyUtxoPattern) ProtoMessage() {}
 
 func (x *AnyUtxoPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[10]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -664,7 +904,7 @@ func (x *AnyUtxoPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyUtxoPattern.ProtoReflect.Descriptor instead.
 func (*AnyUtxoPattern) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{10}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AnyUtxoPattern) GetUtxoPattern() isAnyUtxoPattern_UtxoPattern {
@@ -696,7 +936,7 @@ func (*AnyUtxoPattern_Cardano) isAnyUtxoPattern_UtxoPattern() {}
 // Represents a simple utxo predicate that can composed to create more complex ones
 type UtxoPredicate struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Match         *AnyUtxoPattern        `protobuf:"bytes,1,opt,name=match,proto3" json:"match,omitempty"`              // Predicate is true if tx exhibits pattern.
+	Match         *AnyUtxoPattern        `protobuf:"bytes,1,opt,name=match,proto3,oneof" json:"match,omitempty"`        // Predicate is true if tx exhibits pattern.
 	Not           []*UtxoPredicate       `protobuf:"bytes,2,rep,name=not,proto3" json:"not,omitempty"`                  // Predicate is true if tx doesn't exhibit pattern.
 	AllOf         []*UtxoPredicate       `protobuf:"bytes,3,rep,name=all_of,json=allOf,proto3" json:"all_of,omitempty"` // Predicate is true if utxo exhibits all of the patterns.
 	AnyOf         []*UtxoPredicate       `protobuf:"bytes,4,rep,name=any_of,json=anyOf,proto3" json:"any_of,omitempty"` // Predicate is true if utxo exhibits any of the patterns.
@@ -706,7 +946,7 @@ type UtxoPredicate struct {
 
 func (x *UtxoPredicate) Reset() {
 	*x = UtxoPredicate{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -718,7 +958,7 @@ func (x *UtxoPredicate) String() string {
 func (*UtxoPredicate) ProtoMessage() {}
 
 func (x *UtxoPredicate) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[11]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -731,7 +971,7 @@ func (x *UtxoPredicate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UtxoPredicate.ProtoReflect.Descriptor instead.
 func (*UtxoPredicate) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{11}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UtxoPredicate) GetMatch() *AnyUtxoPattern {
@@ -778,7 +1018,7 @@ type AnyUtxoData struct {
 
 func (x *AnyUtxoData) Reset() {
 	*x = AnyUtxoData{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -790,7 +1030,7 @@ func (x *AnyUtxoData) String() string {
 func (*AnyUtxoData) ProtoMessage() {}
 
 func (x *AnyUtxoData) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[12]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -803,7 +1043,7 @@ func (x *AnyUtxoData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyUtxoData.ProtoReflect.Descriptor instead.
 func (*AnyUtxoData) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{12}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *AnyUtxoData) GetNativeBytes() []byte {
@@ -864,7 +1104,7 @@ type ReadUtxosRequest struct {
 
 func (x *ReadUtxosRequest) Reset() {
 	*x = ReadUtxosRequest{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -876,7 +1116,7 @@ func (x *ReadUtxosRequest) String() string {
 func (*ReadUtxosRequest) ProtoMessage() {}
 
 func (x *ReadUtxosRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[13]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -889,7 +1129,7 @@ func (x *ReadUtxosRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadUtxosRequest.ProtoReflect.Descriptor instead.
 func (*ReadUtxosRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{13}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ReadUtxosRequest) GetKeys() []*TxoRef {
@@ -917,7 +1157,7 @@ type ReadUtxosResponse struct {
 
 func (x *ReadUtxosResponse) Reset() {
 	*x = ReadUtxosResponse{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -929,7 +1169,7 @@ func (x *ReadUtxosResponse) String() string {
 func (*ReadUtxosResponse) ProtoMessage() {}
 
 func (x *ReadUtxosResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[14]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -942,7 +1182,7 @@ func (x *ReadUtxosResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadUtxosResponse.ProtoReflect.Descriptor instead.
 func (*ReadUtxosResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{14}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ReadUtxosResponse) GetItems() []*AnyUtxoData {
@@ -962,17 +1202,17 @@ func (x *ReadUtxosResponse) GetLedgerTip() *ChainPoint {
 // Request to search for UTxO based on a pattern.
 type SearchUtxosRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Predicate     *UtxoPredicate         `protobuf:"bytes,1,opt,name=predicate,proto3" json:"predicate,omitempty"`                     // Pattern to match UTxOs by.
-	FieldMask     *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=field_mask,json=fieldMask,proto3" json:"field_mask,omitempty"`    // Field mask to selectively return fields.
-	MaxItems      int32                  `protobuf:"varint,3,opt,name=max_items,json=maxItems,proto3" json:"max_items,omitempty"`      // The maximum number of items to return.
-	StartToken    string                 `protobuf:"bytes,4,opt,name=start_token,json=startToken,proto3" json:"start_token,omitempty"` // The next_page_token value returned from a previous request, if any.
+	Predicate     *UtxoPredicate         `protobuf:"bytes,1,opt,name=predicate,proto3,oneof" json:"predicate,omitempty"`                     // Pattern to match UTxOs by.
+	FieldMask     *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=field_mask,json=fieldMask,proto3" json:"field_mask,omitempty"`          // Field mask to selectively return fields.
+	MaxItems      *int32                 `protobuf:"varint,3,opt,name=max_items,json=maxItems,proto3,oneof" json:"max_items,omitempty"`      // The maximum number of items to return.
+	StartToken    *string                `protobuf:"bytes,4,opt,name=start_token,json=startToken,proto3,oneof" json:"start_token,omitempty"` // The next_page_token value returned from a previous request, if any.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchUtxosRequest) Reset() {
 	*x = SearchUtxosRequest{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[15]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -984,7 +1224,7 @@ func (x *SearchUtxosRequest) String() string {
 func (*SearchUtxosRequest) ProtoMessage() {}
 
 func (x *SearchUtxosRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[15]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -997,7 +1237,7 @@ func (x *SearchUtxosRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchUtxosRequest.ProtoReflect.Descriptor instead.
 func (*SearchUtxosRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{15}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SearchUtxosRequest) GetPredicate() *UtxoPredicate {
@@ -1015,15 +1255,15 @@ func (x *SearchUtxosRequest) GetFieldMask() *fieldmaskpb.FieldMask {
 }
 
 func (x *SearchUtxosRequest) GetMaxItems() int32 {
-	if x != nil {
-		return x.MaxItems
+	if x != nil && x.MaxItems != nil {
+		return *x.MaxItems
 	}
 	return 0
 }
 
 func (x *SearchUtxosRequest) GetStartToken() string {
-	if x != nil {
-		return x.StartToken
+	if x != nil && x.StartToken != nil {
+		return *x.StartToken
 	}
 	return ""
 }
@@ -1031,16 +1271,16 @@ func (x *SearchUtxosRequest) GetStartToken() string {
 // Response containing the UTxOs that match the requested addresses.
 type SearchUtxosResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Items         []*AnyUtxoData         `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`                          // List of UTxOs.
-	LedgerTip     *ChainPoint            `protobuf:"bytes,2,opt,name=ledger_tip,json=ledgerTip,proto3" json:"ledger_tip,omitempty"` // The chain point that represent the ledger current position.
-	NextToken     string                 `protobuf:"bytes,3,opt,name=next_token,json=nextToken,proto3" json:"next_token,omitempty"` // Token to retrieve the next page of results, or empty if there are no more results.
+	Items         []*AnyUtxoData         `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`                                // List of UTxOs.
+	LedgerTip     *ChainPoint            `protobuf:"bytes,2,opt,name=ledger_tip,json=ledgerTip,proto3" json:"ledger_tip,omitempty"`       // The chain point that represent the ledger current position.
+	NextToken     *string                `protobuf:"bytes,3,opt,name=next_token,json=nextToken,proto3,oneof" json:"next_token,omitempty"` // Token to retrieve the next page of results, absent if there are no more results.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchUtxosResponse) Reset() {
 	*x = SearchUtxosResponse{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[16]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1052,7 +1292,7 @@ func (x *SearchUtxosResponse) String() string {
 func (*SearchUtxosResponse) ProtoMessage() {}
 
 func (x *SearchUtxosResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[16]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1065,7 +1305,7 @@ func (x *SearchUtxosResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchUtxosResponse.ProtoReflect.Descriptor instead.
 func (*SearchUtxosResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{16}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SearchUtxosResponse) GetItems() []*AnyUtxoData {
@@ -1083,8 +1323,8 @@ func (x *SearchUtxosResponse) GetLedgerTip() *ChainPoint {
 }
 
 func (x *SearchUtxosResponse) GetNextToken() string {
-	if x != nil {
-		return x.NextToken
+	if x != nil && x.NextToken != nil {
+		return *x.NextToken
 	}
 	return ""
 }
@@ -1100,7 +1340,7 @@ type ReadDataRequest struct {
 
 func (x *ReadDataRequest) Reset() {
 	*x = ReadDataRequest{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[17]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1112,7 +1352,7 @@ func (x *ReadDataRequest) String() string {
 func (*ReadDataRequest) ProtoMessage() {}
 
 func (x *ReadDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[17]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1125,7 +1365,7 @@ func (x *ReadDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadDataRequest.ProtoReflect.Descriptor instead.
 func (*ReadDataRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{17}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ReadDataRequest) GetKeys() [][]byte {
@@ -1157,7 +1397,7 @@ type AnyChainDatum struct {
 
 func (x *AnyChainDatum) Reset() {
 	*x = AnyChainDatum{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[18]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1169,7 +1409,7 @@ func (x *AnyChainDatum) String() string {
 func (*AnyChainDatum) ProtoMessage() {}
 
 func (x *AnyChainDatum) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[18]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1182,7 +1422,7 @@ func (x *AnyChainDatum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainDatum.ProtoReflect.Descriptor instead.
 func (*AnyChainDatum) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{18}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *AnyChainDatum) GetNativeBytes() []byte {
@@ -1236,7 +1476,7 @@ type ReadDataResponse struct {
 
 func (x *ReadDataResponse) Reset() {
 	*x = ReadDataResponse{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[19]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1248,7 +1488,7 @@ func (x *ReadDataResponse) String() string {
 func (*ReadDataResponse) ProtoMessage() {}
 
 func (x *ReadDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[19]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1261,7 +1501,7 @@ func (x *ReadDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadDataResponse.ProtoReflect.Descriptor instead.
 func (*ReadDataResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{19}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ReadDataResponse) GetValues() []*AnyChainDatum {
@@ -1289,7 +1529,7 @@ type ReadTxRequest struct {
 
 func (x *ReadTxRequest) Reset() {
 	*x = ReadTxRequest{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[20]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1301,7 +1541,7 @@ func (x *ReadTxRequest) String() string {
 func (*ReadTxRequest) ProtoMessage() {}
 
 func (x *ReadTxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[20]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1314,7 +1554,7 @@ func (x *ReadTxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadTxRequest.ProtoReflect.Descriptor instead.
 func (*ReadTxRequest) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{20}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ReadTxRequest) GetHash() []byte {
@@ -1346,7 +1586,7 @@ type AnyChainTx struct {
 
 func (x *AnyChainTx) Reset() {
 	*x = AnyChainTx{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[21]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1358,7 +1598,7 @@ func (x *AnyChainTx) String() string {
 func (*AnyChainTx) ProtoMessage() {}
 
 func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[21]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1371,7 +1611,7 @@ func (x *AnyChainTx) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyChainTx.ProtoReflect.Descriptor instead.
 func (*AnyChainTx) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{21}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *AnyChainTx) GetNativeBytes() []byte {
@@ -1425,7 +1665,7 @@ type ReadTxResponse struct {
 
 func (x *ReadTxResponse) Reset() {
 	*x = ReadTxResponse{}
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[22]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1437,7 +1677,7 @@ func (x *ReadTxResponse) String() string {
 func (*ReadTxResponse) ProtoMessage() {}
 
 func (x *ReadTxResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[22]
+	mi := &file_utxorpc_v1beta_query_query_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1450,7 +1690,7 @@ func (x *ReadTxResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadTxResponse.ProtoReflect.Descriptor instead.
 func (*ReadTxResponse) Descriptor() ([]byte, []int) {
-	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{22}
+	return file_utxorpc_v1beta_query_query_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ReadTxResponse) GetTx() *AnyChainTx {
@@ -1508,15 +1748,30 @@ const file_utxorpc_v1beta_query_query_proto_rawDesc = "" +
 	"\x12ReadParamsResponse\x12<\n" +
 	"\x06values\x18\x01 \x01(\v2$.utxorpc.v1beta.query.AnyChainParamsR\x06values\x12?\n" +
 	"\n" +
+	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\"]\n" +
+	"\x12AnyChainStateQuery\x12>\n" +
+	"\acardano\x18\x01 \x01(\v2\".utxorpc.v1beta.cardano.StateQueryH\x00R\acardanoB\a\n" +
+	"\x05query\"\\\n" +
+	"\x11AnyChainStateData\x12=\n" +
+	"\acardano\x18\x01 \x01(\v2!.utxorpc.v1beta.cardano.StateDataH\x00R\acardanoB\b\n" +
+	"\x06result\"\x8d\x01\n" +
+	"\x10ReadStateRequest\x12>\n" +
+	"\x05query\x18\x01 \x01(\v2(.utxorpc.v1beta.query.AnyChainStateQueryR\x05query\x129\n" +
+	"\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\"\x95\x01\n" +
+	"\x11ReadStateResponse\x12?\n" +
+	"\x06result\x18\x01 \x01(\v2'.utxorpc.v1beta.query.AnyChainStateDataR\x06result\x12?\n" +
+	"\n" +
 	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\"e\n" +
 	"\x0eAnyUtxoPattern\x12C\n" +
 	"\acardano\x18\x01 \x01(\v2'.utxorpc.v1beta.cardano.TxOutputPatternH\x00R\acardanoB\x0e\n" +
-	"\futxo_pattern\"\xfa\x01\n" +
-	"\rUtxoPredicate\x12:\n" +
-	"\x05match\x18\x01 \x01(\v2$.utxorpc.v1beta.query.AnyUtxoPatternR\x05match\x125\n" +
+	"\futxo_pattern\"\x89\x02\n" +
+	"\rUtxoPredicate\x12?\n" +
+	"\x05match\x18\x01 \x01(\v2$.utxorpc.v1beta.query.AnyUtxoPatternH\x00R\x05match\x88\x01\x01\x125\n" +
 	"\x03not\x18\x02 \x03(\v2#.utxorpc.v1beta.query.UtxoPredicateR\x03not\x12:\n" +
 	"\x06all_of\x18\x03 \x03(\v2#.utxorpc.v1beta.query.UtxoPredicateR\x05allOf\x12:\n" +
-	"\x06any_of\x18\x04 \x03(\v2#.utxorpc.v1beta.query.UtxoPredicateR\x05anyOf\"\xf4\x01\n" +
+	"\x06any_of\x18\x04 \x03(\v2#.utxorpc.v1beta.query.UtxoPredicateR\x05anyOfB\b\n" +
+	"\x06_match\"\xf4\x01\n" +
 	"\vAnyUtxoData\x12!\n" +
 	"\fnative_bytes\x18\x01 \x01(\fR\vnativeBytes\x125\n" +
 	"\atxo_ref\x18\x02 \x01(\v2\x1c.utxorpc.v1beta.query.TxoRefR\x06txoRef\x12<\n" +
@@ -1530,20 +1785,26 @@ const file_utxorpc_v1beta_query_query_proto_rawDesc = "" +
 	"\x11ReadUtxosResponse\x127\n" +
 	"\x05items\x18\x01 \x03(\v2!.utxorpc.v1beta.query.AnyUtxoDataR\x05items\x12?\n" +
 	"\n" +
-	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\"\xd0\x01\n" +
-	"\x12SearchUtxosRequest\x12A\n" +
-	"\tpredicate\x18\x01 \x01(\v2#.utxorpc.v1beta.query.UtxoPredicateR\tpredicate\x129\n" +
+	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\"\x8b\x02\n" +
+	"\x12SearchUtxosRequest\x12F\n" +
+	"\tpredicate\x18\x01 \x01(\v2#.utxorpc.v1beta.query.UtxoPredicateH\x00R\tpredicate\x88\x01\x01\x129\n" +
 	"\n" +
-	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\x12\x1b\n" +
-	"\tmax_items\x18\x03 \x01(\x05R\bmaxItems\x12\x1f\n" +
-	"\vstart_token\x18\x04 \x01(\tR\n" +
-	"startToken\"\xae\x01\n" +
+	"field_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\tfieldMask\x12 \n" +
+	"\tmax_items\x18\x03 \x01(\x05H\x01R\bmaxItems\x88\x01\x01\x12$\n" +
+	"\vstart_token\x18\x04 \x01(\tH\x02R\n" +
+	"startToken\x88\x01\x01B\f\n" +
+	"\n" +
+	"_predicateB\f\n" +
+	"\n" +
+	"_max_itemsB\x0e\n" +
+	"\f_start_token\"\xc2\x01\n" +
 	"\x13SearchUtxosResponse\x127\n" +
 	"\x05items\x18\x01 \x03(\v2!.utxorpc.v1beta.query.AnyUtxoDataR\x05items\x12?\n" +
 	"\n" +
-	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\x12\x1d\n" +
+	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip\x12\"\n" +
 	"\n" +
-	"next_token\x18\x03 \x01(\tR\tnextToken\"`\n" +
+	"next_token\x18\x03 \x01(\tH\x00R\tnextToken\x88\x01\x01B\r\n" +
+	"\v_next_token\"`\n" +
 	"\x0fReadDataRequest\x12\x12\n" +
 	"\x04keys\x18\x01 \x03(\fR\x04keys\x129\n" +
 	"\n" +
@@ -1570,7 +1831,7 @@ const file_utxorpc_v1beta_query_query_proto_rawDesc = "" +
 	"\x0eReadTxResponse\x120\n" +
 	"\x02tx\x18\x01 \x01(\v2 .utxorpc.v1beta.query.AnyChainTxR\x02tx\x12?\n" +
 	"\n" +
-	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip2\xb2\x05\n" +
+	"ledger_tip\x18\x02 \x01(\v2 .utxorpc.v1beta.query.ChainPointR\tledgerTip2\x90\x06\n" +
 	"\fQueryService\x12_\n" +
 	"\n" +
 	"ReadParams\x12'.utxorpc.v1beta.query.ReadParamsRequest\x1a(.utxorpc.v1beta.query.ReadParamsResponse\x12\\\n" +
@@ -1579,7 +1840,8 @@ const file_utxorpc_v1beta_query_query_proto_rawDesc = "" +
 	"\bReadData\x12%.utxorpc.v1beta.query.ReadDataRequest\x1a&.utxorpc.v1beta.query.ReadDataResponse\x12S\n" +
 	"\x06ReadTx\x12#.utxorpc.v1beta.query.ReadTxRequest\x1a$.utxorpc.v1beta.query.ReadTxResponse\x12b\n" +
 	"\vReadGenesis\x12(.utxorpc.v1beta.query.ReadGenesisRequest\x1a).utxorpc.v1beta.query.ReadGenesisResponse\x12k\n" +
-	"\x0eReadEraSummary\x12+.utxorpc.v1beta.query.ReadEraSummaryRequest\x1a,.utxorpc.v1beta.query.ReadEraSummaryResponseB\xcc\x01\n" +
+	"\x0eReadEraSummary\x12+.utxorpc.v1beta.query.ReadEraSummaryRequest\x1a,.utxorpc.v1beta.query.ReadEraSummaryResponse\x12\\\n" +
+	"\tReadState\x12&.utxorpc.v1beta.query.ReadStateRequest\x1a'.utxorpc.v1beta.query.ReadStateResponseB\xcc\x01\n" +
 	"\x18com.utxorpc.v1beta.queryB\n" +
 	"QueryProtoP\x01Z2github.com/utxorpc/go-codegen/utxorpc/v1beta/query\xa2\x02\x03UVQ\xaa\x02\x14Utxorpc.V1beta.Query\xca\x02\x14Utxorpc\\V1beta\\Query\xe2\x02 Utxorpc\\V1beta\\Query\\GPBMetadata\xea\x02\x16Utxorpc::V1beta::Queryb\x06proto3"
 
@@ -1595,7 +1857,7 @@ func file_utxorpc_v1beta_query_query_proto_rawDescGZIP() []byte {
 	return file_utxorpc_v1beta_query_query_proto_rawDescData
 }
 
-var file_utxorpc_v1beta_query_query_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_utxorpc_v1beta_query_query_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_utxorpc_v1beta_query_query_proto_goTypes = []any{
 	(*ChainPoint)(nil),              // 0: utxorpc.v1beta.query.ChainPoint
 	(*AnyChainBlock)(nil),           // 1: utxorpc.v1beta.query.AnyChainBlock
@@ -1607,83 +1869,97 @@ var file_utxorpc_v1beta_query_query_proto_goTypes = []any{
 	(*ReadEraSummaryResponse)(nil),  // 7: utxorpc.v1beta.query.ReadEraSummaryResponse
 	(*AnyChainParams)(nil),          // 8: utxorpc.v1beta.query.AnyChainParams
 	(*ReadParamsResponse)(nil),      // 9: utxorpc.v1beta.query.ReadParamsResponse
-	(*AnyUtxoPattern)(nil),          // 10: utxorpc.v1beta.query.AnyUtxoPattern
-	(*UtxoPredicate)(nil),           // 11: utxorpc.v1beta.query.UtxoPredicate
-	(*AnyUtxoData)(nil),             // 12: utxorpc.v1beta.query.AnyUtxoData
-	(*ReadUtxosRequest)(nil),        // 13: utxorpc.v1beta.query.ReadUtxosRequest
-	(*ReadUtxosResponse)(nil),       // 14: utxorpc.v1beta.query.ReadUtxosResponse
-	(*SearchUtxosRequest)(nil),      // 15: utxorpc.v1beta.query.SearchUtxosRequest
-	(*SearchUtxosResponse)(nil),     // 16: utxorpc.v1beta.query.SearchUtxosResponse
-	(*ReadDataRequest)(nil),         // 17: utxorpc.v1beta.query.ReadDataRequest
-	(*AnyChainDatum)(nil),           // 18: utxorpc.v1beta.query.AnyChainDatum
-	(*ReadDataResponse)(nil),        // 19: utxorpc.v1beta.query.ReadDataResponse
-	(*ReadTxRequest)(nil),           // 20: utxorpc.v1beta.query.ReadTxRequest
-	(*AnyChainTx)(nil),              // 21: utxorpc.v1beta.query.AnyChainTx
-	(*ReadTxResponse)(nil),          // 22: utxorpc.v1beta.query.ReadTxResponse
-	(*cardano.Block)(nil),           // 23: utxorpc.v1beta.cardano.Block
-	(*fieldmaskpb.FieldMask)(nil),   // 24: google.protobuf.FieldMask
-	(*cardano.Genesis)(nil),         // 25: utxorpc.v1beta.cardano.Genesis
-	(*cardano.EraSummaries)(nil),    // 26: utxorpc.v1beta.cardano.EraSummaries
-	(*cardano.PParams)(nil),         // 27: utxorpc.v1beta.cardano.PParams
-	(*cardano.TxOutputPattern)(nil), // 28: utxorpc.v1beta.cardano.TxOutputPattern
-	(*cardano.TxOutput)(nil),        // 29: utxorpc.v1beta.cardano.TxOutput
-	(*cardano.PlutusData)(nil),      // 30: utxorpc.v1beta.cardano.PlutusData
-	(*cardano.Tx)(nil),              // 31: utxorpc.v1beta.cardano.Tx
+	(*AnyChainStateQuery)(nil),      // 10: utxorpc.v1beta.query.AnyChainStateQuery
+	(*AnyChainStateData)(nil),       // 11: utxorpc.v1beta.query.AnyChainStateData
+	(*ReadStateRequest)(nil),        // 12: utxorpc.v1beta.query.ReadStateRequest
+	(*ReadStateResponse)(nil),       // 13: utxorpc.v1beta.query.ReadStateResponse
+	(*AnyUtxoPattern)(nil),          // 14: utxorpc.v1beta.query.AnyUtxoPattern
+	(*UtxoPredicate)(nil),           // 15: utxorpc.v1beta.query.UtxoPredicate
+	(*AnyUtxoData)(nil),             // 16: utxorpc.v1beta.query.AnyUtxoData
+	(*ReadUtxosRequest)(nil),        // 17: utxorpc.v1beta.query.ReadUtxosRequest
+	(*ReadUtxosResponse)(nil),       // 18: utxorpc.v1beta.query.ReadUtxosResponse
+	(*SearchUtxosRequest)(nil),      // 19: utxorpc.v1beta.query.SearchUtxosRequest
+	(*SearchUtxosResponse)(nil),     // 20: utxorpc.v1beta.query.SearchUtxosResponse
+	(*ReadDataRequest)(nil),         // 21: utxorpc.v1beta.query.ReadDataRequest
+	(*AnyChainDatum)(nil),           // 22: utxorpc.v1beta.query.AnyChainDatum
+	(*ReadDataResponse)(nil),        // 23: utxorpc.v1beta.query.ReadDataResponse
+	(*ReadTxRequest)(nil),           // 24: utxorpc.v1beta.query.ReadTxRequest
+	(*AnyChainTx)(nil),              // 25: utxorpc.v1beta.query.AnyChainTx
+	(*ReadTxResponse)(nil),          // 26: utxorpc.v1beta.query.ReadTxResponse
+	(*cardano.Block)(nil),           // 27: utxorpc.v1beta.cardano.Block
+	(*fieldmaskpb.FieldMask)(nil),   // 28: google.protobuf.FieldMask
+	(*cardano.Genesis)(nil),         // 29: utxorpc.v1beta.cardano.Genesis
+	(*cardano.EraSummaries)(nil),    // 30: utxorpc.v1beta.cardano.EraSummaries
+	(*cardano.PParams)(nil),         // 31: utxorpc.v1beta.cardano.PParams
+	(*cardano.StateQuery)(nil),      // 32: utxorpc.v1beta.cardano.StateQuery
+	(*cardano.StateData)(nil),       // 33: utxorpc.v1beta.cardano.StateData
+	(*cardano.TxOutputPattern)(nil), // 34: utxorpc.v1beta.cardano.TxOutputPattern
+	(*cardano.TxOutput)(nil),        // 35: utxorpc.v1beta.cardano.TxOutput
+	(*cardano.PlutusData)(nil),      // 36: utxorpc.v1beta.cardano.PlutusData
+	(*cardano.Tx)(nil),              // 37: utxorpc.v1beta.cardano.Tx
 }
 var file_utxorpc_v1beta_query_query_proto_depIdxs = []int32{
-	23, // 0: utxorpc.v1beta.query.AnyChainBlock.cardano:type_name -> utxorpc.v1beta.cardano.Block
-	24, // 1: utxorpc.v1beta.query.ReadParamsRequest.field_mask:type_name -> google.protobuf.FieldMask
-	24, // 2: utxorpc.v1beta.query.ReadGenesisRequest.field_mask:type_name -> google.protobuf.FieldMask
-	24, // 3: utxorpc.v1beta.query.ReadEraSummaryRequest.field_mask:type_name -> google.protobuf.FieldMask
-	25, // 4: utxorpc.v1beta.query.ReadGenesisResponse.cardano:type_name -> utxorpc.v1beta.cardano.Genesis
-	26, // 5: utxorpc.v1beta.query.ReadEraSummaryResponse.cardano:type_name -> utxorpc.v1beta.cardano.EraSummaries
-	27, // 6: utxorpc.v1beta.query.AnyChainParams.cardano:type_name -> utxorpc.v1beta.cardano.PParams
+	27, // 0: utxorpc.v1beta.query.AnyChainBlock.cardano:type_name -> utxorpc.v1beta.cardano.Block
+	28, // 1: utxorpc.v1beta.query.ReadParamsRequest.field_mask:type_name -> google.protobuf.FieldMask
+	28, // 2: utxorpc.v1beta.query.ReadGenesisRequest.field_mask:type_name -> google.protobuf.FieldMask
+	28, // 3: utxorpc.v1beta.query.ReadEraSummaryRequest.field_mask:type_name -> google.protobuf.FieldMask
+	29, // 4: utxorpc.v1beta.query.ReadGenesisResponse.cardano:type_name -> utxorpc.v1beta.cardano.Genesis
+	30, // 5: utxorpc.v1beta.query.ReadEraSummaryResponse.cardano:type_name -> utxorpc.v1beta.cardano.EraSummaries
+	31, // 6: utxorpc.v1beta.query.AnyChainParams.cardano:type_name -> utxorpc.v1beta.cardano.PParams
 	8,  // 7: utxorpc.v1beta.query.ReadParamsResponse.values:type_name -> utxorpc.v1beta.query.AnyChainParams
 	0,  // 8: utxorpc.v1beta.query.ReadParamsResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
-	28, // 9: utxorpc.v1beta.query.AnyUtxoPattern.cardano:type_name -> utxorpc.v1beta.cardano.TxOutputPattern
-	10, // 10: utxorpc.v1beta.query.UtxoPredicate.match:type_name -> utxorpc.v1beta.query.AnyUtxoPattern
-	11, // 11: utxorpc.v1beta.query.UtxoPredicate.not:type_name -> utxorpc.v1beta.query.UtxoPredicate
-	11, // 12: utxorpc.v1beta.query.UtxoPredicate.all_of:type_name -> utxorpc.v1beta.query.UtxoPredicate
-	11, // 13: utxorpc.v1beta.query.UtxoPredicate.any_of:type_name -> utxorpc.v1beta.query.UtxoPredicate
-	2,  // 14: utxorpc.v1beta.query.AnyUtxoData.txo_ref:type_name -> utxorpc.v1beta.query.TxoRef
-	29, // 15: utxorpc.v1beta.query.AnyUtxoData.cardano:type_name -> utxorpc.v1beta.cardano.TxOutput
-	0,  // 16: utxorpc.v1beta.query.AnyUtxoData.block_ref:type_name -> utxorpc.v1beta.query.ChainPoint
-	2,  // 17: utxorpc.v1beta.query.ReadUtxosRequest.keys:type_name -> utxorpc.v1beta.query.TxoRef
-	24, // 18: utxorpc.v1beta.query.ReadUtxosRequest.field_mask:type_name -> google.protobuf.FieldMask
-	12, // 19: utxorpc.v1beta.query.ReadUtxosResponse.items:type_name -> utxorpc.v1beta.query.AnyUtxoData
-	0,  // 20: utxorpc.v1beta.query.ReadUtxosResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
-	11, // 21: utxorpc.v1beta.query.SearchUtxosRequest.predicate:type_name -> utxorpc.v1beta.query.UtxoPredicate
-	24, // 22: utxorpc.v1beta.query.SearchUtxosRequest.field_mask:type_name -> google.protobuf.FieldMask
-	12, // 23: utxorpc.v1beta.query.SearchUtxosResponse.items:type_name -> utxorpc.v1beta.query.AnyUtxoData
-	0,  // 24: utxorpc.v1beta.query.SearchUtxosResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
-	24, // 25: utxorpc.v1beta.query.ReadDataRequest.field_mask:type_name -> google.protobuf.FieldMask
-	30, // 26: utxorpc.v1beta.query.AnyChainDatum.cardano:type_name -> utxorpc.v1beta.cardano.PlutusData
-	18, // 27: utxorpc.v1beta.query.ReadDataResponse.values:type_name -> utxorpc.v1beta.query.AnyChainDatum
-	0,  // 28: utxorpc.v1beta.query.ReadDataResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
-	24, // 29: utxorpc.v1beta.query.ReadTxRequest.field_mask:type_name -> google.protobuf.FieldMask
-	31, // 30: utxorpc.v1beta.query.AnyChainTx.cardano:type_name -> utxorpc.v1beta.cardano.Tx
-	0,  // 31: utxorpc.v1beta.query.AnyChainTx.block_ref:type_name -> utxorpc.v1beta.query.ChainPoint
-	21, // 32: utxorpc.v1beta.query.ReadTxResponse.tx:type_name -> utxorpc.v1beta.query.AnyChainTx
-	0,  // 33: utxorpc.v1beta.query.ReadTxResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
-	3,  // 34: utxorpc.v1beta.query.QueryService.ReadParams:input_type -> utxorpc.v1beta.query.ReadParamsRequest
-	13, // 35: utxorpc.v1beta.query.QueryService.ReadUtxos:input_type -> utxorpc.v1beta.query.ReadUtxosRequest
-	15, // 36: utxorpc.v1beta.query.QueryService.SearchUtxos:input_type -> utxorpc.v1beta.query.SearchUtxosRequest
-	17, // 37: utxorpc.v1beta.query.QueryService.ReadData:input_type -> utxorpc.v1beta.query.ReadDataRequest
-	20, // 38: utxorpc.v1beta.query.QueryService.ReadTx:input_type -> utxorpc.v1beta.query.ReadTxRequest
-	4,  // 39: utxorpc.v1beta.query.QueryService.ReadGenesis:input_type -> utxorpc.v1beta.query.ReadGenesisRequest
-	5,  // 40: utxorpc.v1beta.query.QueryService.ReadEraSummary:input_type -> utxorpc.v1beta.query.ReadEraSummaryRequest
-	9,  // 41: utxorpc.v1beta.query.QueryService.ReadParams:output_type -> utxorpc.v1beta.query.ReadParamsResponse
-	14, // 42: utxorpc.v1beta.query.QueryService.ReadUtxos:output_type -> utxorpc.v1beta.query.ReadUtxosResponse
-	16, // 43: utxorpc.v1beta.query.QueryService.SearchUtxos:output_type -> utxorpc.v1beta.query.SearchUtxosResponse
-	19, // 44: utxorpc.v1beta.query.QueryService.ReadData:output_type -> utxorpc.v1beta.query.ReadDataResponse
-	22, // 45: utxorpc.v1beta.query.QueryService.ReadTx:output_type -> utxorpc.v1beta.query.ReadTxResponse
-	6,  // 46: utxorpc.v1beta.query.QueryService.ReadGenesis:output_type -> utxorpc.v1beta.query.ReadGenesisResponse
-	7,  // 47: utxorpc.v1beta.query.QueryService.ReadEraSummary:output_type -> utxorpc.v1beta.query.ReadEraSummaryResponse
-	41, // [41:48] is the sub-list for method output_type
-	34, // [34:41] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	32, // 9: utxorpc.v1beta.query.AnyChainStateQuery.cardano:type_name -> utxorpc.v1beta.cardano.StateQuery
+	33, // 10: utxorpc.v1beta.query.AnyChainStateData.cardano:type_name -> utxorpc.v1beta.cardano.StateData
+	10, // 11: utxorpc.v1beta.query.ReadStateRequest.query:type_name -> utxorpc.v1beta.query.AnyChainStateQuery
+	28, // 12: utxorpc.v1beta.query.ReadStateRequest.field_mask:type_name -> google.protobuf.FieldMask
+	11, // 13: utxorpc.v1beta.query.ReadStateResponse.result:type_name -> utxorpc.v1beta.query.AnyChainStateData
+	0,  // 14: utxorpc.v1beta.query.ReadStateResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
+	34, // 15: utxorpc.v1beta.query.AnyUtxoPattern.cardano:type_name -> utxorpc.v1beta.cardano.TxOutputPattern
+	14, // 16: utxorpc.v1beta.query.UtxoPredicate.match:type_name -> utxorpc.v1beta.query.AnyUtxoPattern
+	15, // 17: utxorpc.v1beta.query.UtxoPredicate.not:type_name -> utxorpc.v1beta.query.UtxoPredicate
+	15, // 18: utxorpc.v1beta.query.UtxoPredicate.all_of:type_name -> utxorpc.v1beta.query.UtxoPredicate
+	15, // 19: utxorpc.v1beta.query.UtxoPredicate.any_of:type_name -> utxorpc.v1beta.query.UtxoPredicate
+	2,  // 20: utxorpc.v1beta.query.AnyUtxoData.txo_ref:type_name -> utxorpc.v1beta.query.TxoRef
+	35, // 21: utxorpc.v1beta.query.AnyUtxoData.cardano:type_name -> utxorpc.v1beta.cardano.TxOutput
+	0,  // 22: utxorpc.v1beta.query.AnyUtxoData.block_ref:type_name -> utxorpc.v1beta.query.ChainPoint
+	2,  // 23: utxorpc.v1beta.query.ReadUtxosRequest.keys:type_name -> utxorpc.v1beta.query.TxoRef
+	28, // 24: utxorpc.v1beta.query.ReadUtxosRequest.field_mask:type_name -> google.protobuf.FieldMask
+	16, // 25: utxorpc.v1beta.query.ReadUtxosResponse.items:type_name -> utxorpc.v1beta.query.AnyUtxoData
+	0,  // 26: utxorpc.v1beta.query.ReadUtxosResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
+	15, // 27: utxorpc.v1beta.query.SearchUtxosRequest.predicate:type_name -> utxorpc.v1beta.query.UtxoPredicate
+	28, // 28: utxorpc.v1beta.query.SearchUtxosRequest.field_mask:type_name -> google.protobuf.FieldMask
+	16, // 29: utxorpc.v1beta.query.SearchUtxosResponse.items:type_name -> utxorpc.v1beta.query.AnyUtxoData
+	0,  // 30: utxorpc.v1beta.query.SearchUtxosResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
+	28, // 31: utxorpc.v1beta.query.ReadDataRequest.field_mask:type_name -> google.protobuf.FieldMask
+	36, // 32: utxorpc.v1beta.query.AnyChainDatum.cardano:type_name -> utxorpc.v1beta.cardano.PlutusData
+	22, // 33: utxorpc.v1beta.query.ReadDataResponse.values:type_name -> utxorpc.v1beta.query.AnyChainDatum
+	0,  // 34: utxorpc.v1beta.query.ReadDataResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
+	28, // 35: utxorpc.v1beta.query.ReadTxRequest.field_mask:type_name -> google.protobuf.FieldMask
+	37, // 36: utxorpc.v1beta.query.AnyChainTx.cardano:type_name -> utxorpc.v1beta.cardano.Tx
+	0,  // 37: utxorpc.v1beta.query.AnyChainTx.block_ref:type_name -> utxorpc.v1beta.query.ChainPoint
+	25, // 38: utxorpc.v1beta.query.ReadTxResponse.tx:type_name -> utxorpc.v1beta.query.AnyChainTx
+	0,  // 39: utxorpc.v1beta.query.ReadTxResponse.ledger_tip:type_name -> utxorpc.v1beta.query.ChainPoint
+	3,  // 40: utxorpc.v1beta.query.QueryService.ReadParams:input_type -> utxorpc.v1beta.query.ReadParamsRequest
+	17, // 41: utxorpc.v1beta.query.QueryService.ReadUtxos:input_type -> utxorpc.v1beta.query.ReadUtxosRequest
+	19, // 42: utxorpc.v1beta.query.QueryService.SearchUtxos:input_type -> utxorpc.v1beta.query.SearchUtxosRequest
+	21, // 43: utxorpc.v1beta.query.QueryService.ReadData:input_type -> utxorpc.v1beta.query.ReadDataRequest
+	24, // 44: utxorpc.v1beta.query.QueryService.ReadTx:input_type -> utxorpc.v1beta.query.ReadTxRequest
+	4,  // 45: utxorpc.v1beta.query.QueryService.ReadGenesis:input_type -> utxorpc.v1beta.query.ReadGenesisRequest
+	5,  // 46: utxorpc.v1beta.query.QueryService.ReadEraSummary:input_type -> utxorpc.v1beta.query.ReadEraSummaryRequest
+	12, // 47: utxorpc.v1beta.query.QueryService.ReadState:input_type -> utxorpc.v1beta.query.ReadStateRequest
+	9,  // 48: utxorpc.v1beta.query.QueryService.ReadParams:output_type -> utxorpc.v1beta.query.ReadParamsResponse
+	18, // 49: utxorpc.v1beta.query.QueryService.ReadUtxos:output_type -> utxorpc.v1beta.query.ReadUtxosResponse
+	20, // 50: utxorpc.v1beta.query.QueryService.SearchUtxos:output_type -> utxorpc.v1beta.query.SearchUtxosResponse
+	23, // 51: utxorpc.v1beta.query.QueryService.ReadData:output_type -> utxorpc.v1beta.query.ReadDataResponse
+	26, // 52: utxorpc.v1beta.query.QueryService.ReadTx:output_type -> utxorpc.v1beta.query.ReadTxResponse
+	6,  // 53: utxorpc.v1beta.query.QueryService.ReadGenesis:output_type -> utxorpc.v1beta.query.ReadGenesisResponse
+	7,  // 54: utxorpc.v1beta.query.QueryService.ReadEraSummary:output_type -> utxorpc.v1beta.query.ReadEraSummaryResponse
+	13, // 55: utxorpc.v1beta.query.QueryService.ReadState:output_type -> utxorpc.v1beta.query.ReadStateResponse
+	48, // [48:56] is the sub-list for method output_type
+	40, // [40:48] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_utxorpc_v1beta_query_query_proto_init() }
@@ -1704,15 +1980,24 @@ func file_utxorpc_v1beta_query_query_proto_init() {
 		(*AnyChainParams_Cardano)(nil),
 	}
 	file_utxorpc_v1beta_query_query_proto_msgTypes[10].OneofWrappers = []any{
+		(*AnyChainStateQuery_Cardano)(nil),
+	}
+	file_utxorpc_v1beta_query_query_proto_msgTypes[11].OneofWrappers = []any{
+		(*AnyChainStateData_Cardano)(nil),
+	}
+	file_utxorpc_v1beta_query_query_proto_msgTypes[14].OneofWrappers = []any{
 		(*AnyUtxoPattern_Cardano)(nil),
 	}
-	file_utxorpc_v1beta_query_query_proto_msgTypes[12].OneofWrappers = []any{
+	file_utxorpc_v1beta_query_query_proto_msgTypes[15].OneofWrappers = []any{}
+	file_utxorpc_v1beta_query_query_proto_msgTypes[16].OneofWrappers = []any{
 		(*AnyUtxoData_Cardano)(nil),
 	}
-	file_utxorpc_v1beta_query_query_proto_msgTypes[18].OneofWrappers = []any{
+	file_utxorpc_v1beta_query_query_proto_msgTypes[19].OneofWrappers = []any{}
+	file_utxorpc_v1beta_query_query_proto_msgTypes[20].OneofWrappers = []any{}
+	file_utxorpc_v1beta_query_query_proto_msgTypes[22].OneofWrappers = []any{
 		(*AnyChainDatum_Cardano)(nil),
 	}
-	file_utxorpc_v1beta_query_query_proto_msgTypes[21].OneofWrappers = []any{
+	file_utxorpc_v1beta_query_query_proto_msgTypes[25].OneofWrappers = []any{
 		(*AnyChainTx_Cardano)(nil),
 	}
 	type x struct{}
@@ -1721,7 +2006,7 @@ func file_utxorpc_v1beta_query_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_utxorpc_v1beta_query_query_proto_rawDesc), len(file_utxorpc_v1beta_query_query_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
